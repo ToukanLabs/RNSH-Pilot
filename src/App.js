@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import MultiGraph from './components/MultiGraph';
 
 export default class App extends Component {
   render() {
     return (
-      <h1>STAR WARS!</h1>
+      <div>
+        <h1>RNSH Pilot</h1>
+        <MultiGraph />
+      </div>
     );
   }
 }
