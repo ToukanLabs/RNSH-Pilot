@@ -23,7 +23,7 @@
     "webpack"
   ],
   "author": "Mike Leonard <mike.leonard@fivium.co.uk> (http://github.com/mleonard87)",
-  "license": "BSD3",
+  "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/FiviumAustralia/RNSH-Pilot/issues"
   },
@@ -41,7 +41,9 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
+    "d3": "^3.5.12",
     "react": "^0.14.0",
-    "react-dom": "^0.14.0"
+    "react-dom": "^0.14.0",
+    "whatwg-fetch": "^0.10.1"
   }
 }
