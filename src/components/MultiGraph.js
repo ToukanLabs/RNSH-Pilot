@@ -14,7 +14,7 @@ export default class MultiGraph extends Component {
 
   componentDidMount() {
     var thisComponent = this;
-    fetch('/static/data/graphdata.json')
+    fetch('static/data/graphdata.json')
       .then(function(response) {
         return response.json()
       }).then(function(json) {
