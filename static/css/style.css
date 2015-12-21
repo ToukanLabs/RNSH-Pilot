@@ -1,0 +1,48 @@
+body {
+  font: 10px sans-serif;
+}
+
+.multigraph {
+  cursor: move;
+  border: 1px solid rgb(213, 213, 213);
+}
+
+.multigraph text {
+  font-size: 1.4em;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  /*display: none;*/
+}
+
+.line {
+  stroke-width: 2px;
+}
+
+.line, .dot, .bar {
+  fill: none;
+  stroke: steelblue;
+}
+
+.bar {
+  stroke-width: 10px;
+}
+
+.point {
+  fill: steelblue;
+}
+
+.graph {
+  border: 1px solid grey;
+}
+
+.scrollpane {
+  fill: transparent;
+}
