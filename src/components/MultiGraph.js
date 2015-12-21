@@ -94,19 +94,37 @@ export default class MultiGraph extends Component {
           .datum(data)
           .attr('d', this.line);
 
-      this.graphSvg.selectAll('.dot')
+
+
+      this.graphSvg.selectAll('.points')
             .data(data)
-          .enter().append('circle')
+        .enter().append('circle')
             //.attr('transform', 'translate(0,' + ((height*4) + padding) + ')')
-            .attr('class', 'dot')
-            .attr('r', 4)
+            .attr('class', 'points')
+            .attr('r', 3)
             .attr('cx', function(d) { return x(d.date); })
-            .attr('cy', function(d) { return y(d.close); });
+            .attr('cy', function(d) { return y(d.close); })
+            .on('mouseenter', function(e) {
+                var offset = $('#root').offset(), // { left: 0, top: 0 }
+                      left = d3.select(this).attr('cx') + margin.left,
+                      top = d3.select(this).attr('cy') + (height * 0),
+                      formatter = d3.format('.04f');
+
+                  var content = '<h3>PSA: </h3>' +
+                                '<p>' +
+                                '<span class="value">' + e.close + '</span>' +
+                                '</p>';
+
+                  nvtooltip.show([left, top], content);
+                  d3.select(this).classed('hover',true);
+                })
+             .on('mouseleave', function(e) {
+                    nvtooltip.cleanup();
+                    d3.select(this).classed('hover',false);
+              });
+
 
     }.bind(this));
-
-
-
 
 
     d3.tsv('static/data/testosterone.tsv', function(error, data) {

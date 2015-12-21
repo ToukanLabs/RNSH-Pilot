@@ -18,27 +18,117 @@
         display: none;
       }
 
-      .line, .dot, .bar {
+      .line, .dot {
         fill: none;
         stroke: steelblue;
       }
 
-      .bar {
-        stroke-width: 10px;
-      }
-
-      .point {
+      .dot {
         fill: steelblue;
       }
 
       .graph {
         border: 1px solid grey;
       }
+
+
+      /**********
+      *  Line chart
+      */
+
+      .point-paths {
+        /*
+        fill: #eee;
+        stroke: #aaa;
+        */
+
+        fill: transperant;
+      }
+
+
+      .lines path {
+        fill: none;
+        stroke-width: 1.5px;
+        stroke-linecap: round;
+
+        transition: stroke-width 250ms linear;
+        -moz-transition: stroke-width 250ms linear;
+        -webkit-transition: stroke-width 250ms linear;
+
+        transition-delay: 250ms
+        -moz-transition-delay: 250ms;
+        -webkit-transition-delay: 250ms;
+      }
+
+      circle.hover {
+        stroke-width: 6px;
+      }
+
+      .point-paths {
+        transition: stroke-width 250ms linear;
+        -moz-transition: stroke-width 250ms linear;
+        -webkit-transition: stroke-width 250ms linear;
+      }
+
+      .point-paths.hover {
+        stroke-width: 20px;
+        stroke-opacity: .5;
+      }
+
+      /********************
+ * TOOLTIP CSS
+ */
+
+.nvtooltip {
+  position: absolute;
+  background-color: rgba(255,255,255,1);
+  padding: 10px;
+  border: 1px solid #ddd;
+
+  font-family: Arial;
+  font-size: 13px;
+
+  transition: opacity 500ms linear;
+  -moz-transition: opacity 500ms linear;
+  -webkit-transition: opacity 500ms linear;
+
+  transition-delay: 500ms
+  -moz-transition-delay: 500ms;
+  -webkit-transition-delay: 500ms;
+
+  -moz-box-shadow: 4px 4px 12px rgba(0,0,0,.5);
+  -webkit-box-shadow: 4px 4px 12px rgba(0,0,0,.5);
+  box-shadow: 4px 4px 12px rgba(0,0,0,.5);
+
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+
+.nvtooltip h3 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.nvtooltip p {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.nvtooltip span {
+  display: inline-block;
+  margin: 2px 0;
+}
+
+
     </style>
   </head>
   <body>
     <div id="root">
     </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="static/js/nvtooltip.js"></script>
     <script src="static/bundle.js"></script>
   </body>
 </html>
