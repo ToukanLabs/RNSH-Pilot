@@ -3,7 +3,7 @@ body {
 }
 
 .multigraph {
-  cursor: move;
+  /*cursor: move;*/
   border: 1px solid rgb(213, 213, 213);
 }
 
@@ -41,6 +41,8 @@ body {
 }
 
 .point {
+  stroke-width: 4px;
+  stroke: steelblue;
   fill: steelblue;
 }
 
@@ -52,63 +54,20 @@ body {
   fill: transparent;
 }
 
+g.hoverable .point.hovertarget {
+  stroke-width: 0;
+  fill: transparent;
+}
 
+g.hoverable:hover .point.hovertarget {
+  stroke-width: 2px;
+  stroke: steelblue;
+}
 
-
-
-
-
-
-
-
-
-
-/**********
-      *  Line chart
-      */
-
-      .point-paths {
-        /*
-        fill: #eee;
-        stroke: #aaa;
-        */
-
-        fill: transperant;
-      }
-
-
-      .lines path {
-        fill: none;
-        stroke-width: 1.5px;
-        stroke-linecap: round;
-
-        transition: stroke-width 250ms linear;
-        -moz-transition: stroke-width 250ms linear;
-        -webkit-transition: stroke-width 250ms linear;
-
-        transition-delay: 250ms;
-        -moz-transition-delay: 250ms;
-        -webkit-transition-delay: 250ms;
-      }
-
-      circle.hover {
-        stroke-width: 6px;
-      }
-
-      .point-paths {
-        transition: stroke-width 250ms linear;
-        -moz-transition: stroke-width 250ms linear;
-        -webkit-transition: stroke-width 250ms linear;
-      }
-
-      .point-paths.hover {
-        stroke-width: 20px;
-        stroke-opacity: .5;
-      }
-
-      /********************
- * TOOLTIP CSS
- */
+g.hoverable:hover .point.data {
+  stroke-width: 2px;
+  stroke: steelblue;
+}
 
 .nvtooltip {
   position: absolute;
@@ -119,13 +78,13 @@ body {
   font-family: Arial;
   font-size: 13px;
 
-  transition: opacity 500ms linear;
-  -moz-transition: opacity 500ms linear;
-  -webkit-transition: opacity 500ms linear;
+  transition: opacity 200ms linear;
+  -moz-transition: opacity 200ms linear;
+  -webkit-transition: opacity 200ms linear;
 
-  transition-delay: 500ms;
-  -moz-transition-delay: 500ms;
-  -webkit-transition-delay: 500ms;
+  transition-delay: 200ms;
+  -moz-transition-delay: 200ms;
+  -webkit-transition-delay: 200ms;
 
   -moz-box-shadow: 4px 4px 12px rgba(0,0,0,.5);
   -webkit-box-shadow: 4px 4px 12px rgba(0,0,0,.5);
@@ -139,7 +98,7 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
-}
+  }
 
 .nvtooltip p {
   margin: 0;

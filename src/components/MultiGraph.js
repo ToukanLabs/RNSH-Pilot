@@ -106,30 +106,46 @@ export default class MultiGraph extends Component {
           .attr('clip-path', 'url(#clip)')
           .datum(data);
 
-      this.graphSvg.selectAll('.psa.point')
+      var _this = this;
+
+      var g = this.graphSvg.selectAll('.psa.hoverable')
+          .data(data)
+          .enter().append('g')
+          .attr('class', 'psa hoverable')
+          .on('mouseenter', function(e) {
+
+            var point = d3.select(this).select('.psa.point.data');
+
+            var offset = document.getElementById(_this.id).offsetTop, // { left: 0, top: 0 }
+                left = parseInt(point.attr('cx')) + parseInt(margin.left),
+                top = parseInt(point.attr('cy')) + parseInt(offset);
+
+
+            var content = '<b>PSA: </b><span class="value">' + e.close + '</span><br/>' +
+                          '<b>Date: </b><span class="value">' + e.date.getDate() + '/' + e.date.getMonth() + '/' + e.date.getFullYear() + '</span>';
+
+            nvtooltip.show([left, top], content);
+          })
+          .on('mouseleave', function(e) {
+            nvtooltip.cleanup();
+          });
+
+      g.append('circle')
+          .attr('class', 'psa point data')
+          .attr('clip-path', 'url(#clip)')
+          .attr('r', 2);
+
+      g.append('circle')
+          .attr('class', 'psa point hovertarget')
+          .attr('clip-path', 'url(#clip)')
+          .attr('r', 10);
+
+      this.graphSvg.selectAll('.psa.point.hovertarget')
           .data(data)
         .enter().append('circle')
-          .attr('class', 'psa point')
+          .attr('class', 'psa point hovertarget')
           .attr('clip-path', 'url(#clip)')
-          .attr('r', 4)
-          .on('mouseenter', function(e) {
-                var offset = $('#root').offset(), // { left: 0, top: 0 }
-                      left = d3.select(this).attr('cx') + margin.left,
-                      top = d3.select(this).attr('cy') + (height * 0),
-                      formatter = d3.format('.04f');
-
-                  var content = '<h3>PSA: </h3>' +
-                                '<p>' +
-                                '<span class="value">' + e.close + '</span>' +
-                                '</p>';
-
-                  nvtooltip.show([left, top], content);
-                  d3.select(this).classed('hover',true);
-                })
-             .on('mouseleave', function(e) {
-                    nvtooltip.cleanup();
-                    d3.select(this).classed('hover',false);
-              });;
+          .attr('r', 10)
 
       this.graphSvg.append('line')
         .attr('class', 'graphseparator')

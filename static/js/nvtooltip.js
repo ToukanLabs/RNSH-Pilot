@@ -68,7 +68,7 @@
 
     setTimeout(function() {
       tooltips.remove()
-    }, 500);
+    }, 200);
   };
 
 })(jQuery);
