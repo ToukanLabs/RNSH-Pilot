@@ -199,13 +199,48 @@ export default class MultiGraph extends Component {
           .attr('transform', 'translate(0,' + (height + padding) + ')')
           .datum(data);
 
-      this.graphSvg.selectAll('.testosterone.point')
+      var _this = this;
+
+      var g = this.graphSvg.selectAll('.testosterone.hoverable')
+          .data(data)
+          .enter().append('g')
+          .attr('class', 'testosterone hoverable')
+          .on('mouseenter', function(e) {
+
+            var point = d3.select(this).select('.testosterone.point.data');
+
+            var offset = document.getElementById(_this.id).offsetTop, // { left: 0, top: 0 }
+                left = parseInt(point.attr('cx')) + parseInt(margin.left),
+                top = parseInt(point.attr('cy')) + parseInt(height * 1) + parseInt(offset);
+
+
+            var content = '<b>Testosterone: </b><span class="value">' + e.close + '</span><br/>' +
+                          '<b>Date: </b><span class="value">' + e.date.getDate() + '/' + e.date.getMonth() + '/' + e.date.getFullYear() + '</span>';
+
+            nvtooltip.show([left, top], content);
+          })
+          .on('mouseleave', function(e) {
+            nvtooltip.cleanup();
+          });
+
+      g.append('circle')
+          .attr('class', 'testosterone point data')
+          .attr('transform', 'translate(0,' + (height + padding) + ')')
+          .attr('clip-path', 'url(#clip)')
+          .attr('r', 2);
+
+      g.append('circle')
+          .attr('class', 'testosterone point hovertarget')
+          .attr('transform', 'translate(0,' + (height + padding) + ')')
+          .attr('clip-path', 'url(#clip)')
+          .attr('r', 10);
+
+      this.graphSvg.selectAll('.testosterone.point.hovertarget')
           .data(data)
         .enter().append('circle')
-          .attr('class', 'testosterone point')
+          .attr('class', 'testosterone point hovertarget')
           .attr('clip-path', 'url(#clip)')
-          .attr('transform', 'translate(0,' + (height + padding) + ')')
-          .attr('r', 4);
+          .attr('r', 10)
 
       this.graphSvg.append('line')
           .attr('class', 'graphseparator')
