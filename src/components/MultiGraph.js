@@ -62,10 +62,7 @@ export default class MultiGraph extends Component {
       .append('g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-
-
-
-
+    x.domain([new Date(2005, 1, 1), new Date(2016, 1, 1)]);
 
     d3.tsv('static/data/psa.tsv', function(error, data) {
       if (error) throw error;
@@ -94,14 +91,19 @@ export default class MultiGraph extends Component {
 
       this.graphSvg.append('path')
           .attr('class', 'psa line')
-          .datum(data);
-          //.attr('d', this.line);
+          .datum(data)
+          .attr('d', this.line);
 
-      this.draw();
+      this.graphSvg.selectAll('.dot')
+            .data(data)
+          .enter().append('circle')
+            //.attr('transform', 'translate(0,' + ((height*4) + padding) + ')')
+            .attr('class', 'dot')
+            .attr('r', 4)
+            .attr('cx', function(d) { return x(d.date); })
+            .attr('cy', function(d) { return y(d.close); });
 
     }.bind(this));
-
-    x.domain([new Date(2005, 1, 1), new Date(2016, 1, 1)]);
 
 
 
@@ -216,7 +218,7 @@ export default class MultiGraph extends Component {
   draw() {
     console.log(this);
     this.graphSvg.select('g.x.axis').call(this.xAxis);
-    this.graphSvg.select('path.psa.line').attr('d', this.line);
+    //this.graphSvg.select('path.psa.line').attr('d', this.line);
     this.graphSvg.select('path.testosterone.line').attr('d', this.line);
     this.graphSvg.select('path.androgen.bar').attr('d', this.line);
     this.graphSvg.select('path.radiotherapy.bar').attr('d', this.line);
