@@ -69,6 +69,8 @@ export default class MultiGraph extends Component {
       .append('g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
+    x.domain([new Date(2005, 1, 1), new Date(2016, 1, 1)]);
+
     d3.tsv('static/data/psa.tsv', function(error, data) {
       if (error) throw error;
 
@@ -102,9 +104,19 @@ export default class MultiGraph extends Component {
           .datum(data)
           .attr('class', 'line')
           .attr('d', line);
+
+      graphSvg.selectAll('.dot')
+            .data(data)
+          .enter().append('circle')
+            //.attr('transform', 'translate(0,' + ((height*4) + padding) + ')')
+            .attr('class', 'dot')
+            .attr('r', 4)
+            .attr('cx', function(d) { return x(d.date); })
+            .attr('cy', function(d) { return y(d.close); });
+
     });
 
-    x.domain([new Date(2005, 1, 1), new Date(2016, 1, 1)]);
+
 
     d3.tsv('static/data/testorone.tsv', function(error, data) {
 
