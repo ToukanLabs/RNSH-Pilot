@@ -4,393 +4,417 @@ var d3 = require('d3');
 
 let multiGraphId = 0;
 
-export default class MultiGraph extends Component {
+class Graph {
+  constructor() {
+    this.parseDate = d3.time.format('%d-%b-%y').parse;
+  }
+
+  getHeight() {
+    return this.height;
+  }
+}
+
+class LineGraph extends Graph {
+  constructor(name, displayName, data, yAxisLabel, offsetTop, x) {
+    super();
+    this.height = 120;
+
+    this.name = name;
+    this.displayName = displayName;
+    this.rawData = data;
+    this.yAxisLabel = yAxisLabel;
+    this.offsetTop = offsetTop;
+    this.x = x;
+  };
+
+  init(graphSvg) {
+    this.graphSvg = graphSvg;
+
+    var newData = []
+
+    this.rawData.forEach(function(d) {
+      console.log(d.date);
+      newData.push({
+        date: this.parseDate(d.date),
+        data: +d.data
+      });
+    }.bind(this));
+
+    this.data = newData;
+
+    this.y = d3.scale.linear()
+        .range([this.height, 0]);
+
+    this.y.domain(d3.extent(this.data, function(d) {
+      return d.data + ((d.data / 100) * 10);
+    }));
+
+    this.yaxis = d3.svg.axis()
+        .scale(this.y)
+        .orient('left')
+        .ticks(4);
+
+    this.line = d3.svg.line()
+        .x(function(d) { return this.x(d.date); }.bind(this))
+        .y(function(d) { return this.y(d.data); }.bind(this));
+
+    this.graphSvg.append('g')
+        .attr('class', this.name  + ' y axis')
+        .attr('transform', 'translate(30, ' + this.offsetTop + ')')
+        .call(this.yaxis)
+      .append('text')
+        .attr('transform', 'rotate(-90)')
+        .attr('y', 6)
+        .attr('x', -10)
+        .attr('dy', '.71em')
+        .style('text-anchor', 'end')
+        .text(this.yAxisLabel);
+
+    this.graphSvg.append('path')
+        .attr('class', this.name + ' line')
+        .attr('transform', 'translate(0,' + this.offsetTop + ')')
+        .attr('clip-path', 'url(#clip)')
+        .datum(this.data);
+
+    var thisLineGraph = this;
+
+    var g = this.graphSvg.selectAll('.' + this.name + '.hoverable')
+        .data(this.data)
+        .enter().append('g')
+        .attr('class', this.name + ' hoverable')
+        .on('mouseenter', function(e) {
+
+          var point = d3.select(this).select('.' + thisLineGraph.name + '.point.data');
+
+          var offset = document.getElementById(thisLineGraph.graphSvg.id).offsetTop,
+              left = parseInt(point.attr('cx')),
+              top = parseInt(point.attr('cy')) + parseInt(offset) + thisLineGraph.offsetTop;
+
+
+          var content = '<b>' + thisLineGraph.displayName + ': </b><span class="value">' + e.data + '</span><br/>' +
+                        '<b>Date: </b><span class="value">' + e.date.getDate() + '/' + e.date.getMonth() + '/' + e.date.getFullYear() + '</span>';
+
+          nvtooltip.show([left, top], content);
+        })
+        .on('mouseleave', function(e) {
+          nvtooltip.cleanup();
+        });
+
+    g.append('circle')
+        .attr('class', this.name + ' point data')
+        .attr('transform', 'translate(0,' + this.offsetTop + ')')
+        .attr('clip-path', 'url(#clip)')
+        .attr('r', 2);
+
+    g.append('circle')
+        .attr('class', this.name + ' point hovertarget')
+        .attr('transform', 'translate(0,' + this.offsetTop + ')')
+        .attr('clip-path', 'url(#clip)')
+        .attr('r', 10);
+
+    this.graphSvg.selectAll('.' + this.name + '.point.hovertarget')
+        .data(this.data)
+      .enter().append('circle')
+        .attr('class', this.name + ' point hovertarget')
+        .attr('clip-path', 'url(#clip)')
+        .attr('r', 10);
+  };
+
+  draw() {
+    this.graphSvg.select('path.' + this.name + '.line').attr('d', this.line);
+    this.graphSvg.selectAll('circle.' + this.name + '.point').attr('cx', function(d) { return this.x(d.date); }.bind(this));
+    this.graphSvg.selectAll('circle.' + this.name + '.point').attr('cy', function(d) { return this.y(d.data); }.bind(this));
+  };
+};
+
+
+
+
+
+
+
+
+class TimelineGraph extends Graph {
+  constructor(name, displayName, data, offsetTop, x) {
+    super();
+    this.height = 80;
+
+    this.name = name;
+    this.displayName = displayName;
+    this.rawData = data;
+    this.offsetTop = offsetTop;
+    this.x = x;
+  }
+
+  processData() {
+    var start = {
+      date: this.parseDate(this.rawData.start),
+      data: 1
+    };
+
+    var end = {
+      date: this.parseDate(this.rawData.end),
+      data: 1
+    };
+
+    this.data = [start, end];
+  }
+
+  init(graphSvg) {
+    this.graphSvg = graphSvg;
+
+    this.processData();
+
+    this.y = d3.scale.linear()
+      .range([this.height, 0]);
+
+    this.y.domain([0, 2]);
+
+    this.line = d3.svg.line()
+        .x(function(d) { return this.x(d.date); }.bind(this))
+        .y(function(d) { return this.y(d.data); }.bind(this));
+
+    this.graphSvg.append('path')
+        .attr('class', this.name + ' bar')
+        .attr('clip-path', 'url(#clip)')
+        .attr('transform', 'translate(0,' + this.offsetTop + ')')
+        .datum(this.data);
+  }
+
+  draw() {
+    this.graphSvg.select('path.' + this.name + '.bar').attr('d', this.line);
+  }
+};
+
+
+
+
+
+
+
+class PointGraph extends Graph {
+  constructor(name, displayName, data, offsetTop, x) {
+    super();
+    this.height = 80;
+
+    this.name = name;
+    this.displayName = displayName;
+    this.rawData = data;
+    this.offsetTop = offsetTop;
+    this.x = x;
+  }
+
+  processData() {
+    this.data = [{
+      date: this.parseDate(this.rawData.date),
+      data: 1
+    }];
+  }
+
+  init(graphSvg) {
+
+    this.graphSvg = graphSvg;
+
+    this.processData();
+
+    this.y = d3.scale.linear()
+      .range([this.height, 0]);
+
+    this.y.domain([0, 2]);
+
+    this.graphSvg.selectAll('.' + this.name + '.point')
+        .data(this.data)
+      .enter().append('circle')
+        .attr('class', this.name + ' point')
+        .attr('clip-path', 'url(#clip)')
+        .attr('transform', 'translate(0,' + this.offsetTop + ')')
+        .attr('r', 4);
+  }
+
+  draw() {
+    this.graphSvg.selectAll('circle.' + this.name + '.point').attr('cx', function(d) { return this.x(d.date); }.bind(this));
+    this.graphSvg.selectAll('circle.' + this.name + '.point').attr('cy', function(d) { return this.y(d.data); }.bind(this));
+  }
+}
+
+
+
+
+
+
+
+
+export default class MultiGraph2 extends Component {
   constructor() {
     super();
     this.render = this.render.bind(this);
-    this.state = { graphs: [] };
     this.id = this.getComponentId();
-  }
+    this.graphs = [];
 
-  componentDidMount() {
-    var thisComponent = this;
-    this.d3test2();
-    this.draw();
+    this.padding = 10;
+    this.height = 0;
+    this.width = 800;
   };
 
   getComponentId() {
     return 'multigraph' + multiGraphId++;
-  }
+  };
 
   createGraphSVG() {
     this.svg = d3.select('#' + this.id).append('svg');
-  }
+  };
 
-  d3test2() {
-    var margin = {top: 0, right: 0, bottom: 0, left: 0},
-        width = 800 - margin.left - margin.right,
-        height = 120 - margin.top - margin.bottom,
-        padding = 10,
-        graphCount = 5;
 
-    var parseDate = d3.time.format('%d-%b-%y').parse;
+  registerGraphs() {
+    console.log(this.props.graphs);
+    var cumulativeHeight = 0;
+    var counter = 0
 
-    this.x = d3.time.scale()
-        .range([0, width]);
+    var thisMultiGraph = this;
 
-    this.xAxis = d3.svg.axis()
-        .scale(this.x)
-        .orient('bottom');
+    this.props.graphs.forEach(function(d) {
+      let graph;
 
+      switch (d.type) {
+        case 'line':
+          graph = new LineGraph(
+            d.name,
+            d.displayName,
+            d.data,
+            d.yAxisLabel,
+            (cumulativeHeight + (thisMultiGraph.padding*counter++)),
+            thisMultiGraph.x
+          );
+          break;
+        case 'timeline':
+          graph = new TimelineGraph(
+            d.name,
+            d.displayName,
+            d.data[0],
+            (cumulativeHeight + (thisMultiGraph.padding*counter++)),
+            thisMultiGraph.x
+          );
+          break;
+        case 'point':
+          graph = new PointGraph(
+            d.name,
+            d.displayName,
+            d.data[0],
+            (cumulativeHeight + (thisMultiGraph.padding*counter++)),
+            thisMultiGraph.x
+          );
+          break;
+        default:
+          throw 'Unknown graph type';
+      }
+
+      thisMultiGraph.graphs.push(graph);
+      cumulativeHeight += graph.getHeight();
+    });
+
+    this.height = cumulativeHeight;
+    this.graphCount = counter;
+  };
+
+  initGraphs() {
+    var cumulativeHeight = 0;
+    var counter = 0
+    this.graphs.forEach(function(d) {
+      d.init(this.graphSvg);
+      cumulativeHeight += d.getHeight();
+
+      counter++;
+      this.graphSvg.append('line')
+          .attr('class', 'graphseparator')
+          .attr('x1', 0)
+          .attr('y1', cumulativeHeight + (this.padding * counter) - (this.padding / 2))
+          .attr('x2', this.width)
+          .attr('y2', cumulativeHeight + (this.padding * counter) - (this.padding / 2));
+
+    }.bind(this));
+  };
+
+  removeSvg() {
     d3.select('#' + this.id + ' svg').remove();
     this.graphSvg = undefined;
+  };
 
+  createSvg() {
     this.graphSvg = d3.select('#' + this.id).append('svg')
-        .attr('width', width + margin.left + margin.right)
-        .attr('height', (height*graphCount) + (padding * graphCount) + margin.top + margin.bottom + 25)
+        .attr('id', this.id + 'svg')
+        .attr('width', this.width)
+        .attr('height', this.height + (this.padding * this.graphCount) + 25)
         .attr('class', 'multigraph')
-      .append('g')
-        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+      .append('g');
 
-    this.x.domain([new Date(2005, 1, 1), new Date(2016, 1, 1)]);
+    this.graphSvg.id = this.id + 'svg';
+  };
 
+  createClipPath() {
     this.graphSvg.append('clipPath')
         .attr('id', 'clip')
       .append('rect')
         .attr('x', 30)
         .attr('y', 0)
-        .attr('width', width - 30)
-        .attr('height', (height * graphCount) + (padding * graphCount));
-
-    d3.tsv('static/data/psa.tsv', function(error, data) {
-      if (error) throw error;
-
-      data.forEach(function(d) {
-        d.date = parseDate(d.date);
-        d.close = +d.close;
-      });
-
-      this.graphSvg.append('g')
-          .attr('class', 'x axis')
-          .attr('transform', 'translate(0,' + ((height*graphCount) + (padding * graphCount) - (padding / 2)) + ')');
-
-      this.yPsa = d3.scale.linear()
-        .range([height, 0]);
-
-      this.yPsa.domain(d3.extent(data, function(d) { return d.close + ((d.close / 100) * 10); }));
-
-      var yAxisPsa = d3.svg.axis()
-          .scale(this.yPsa)
-          .orient('left')
-          .ticks(2);
-
-      this.linePsa = d3.svg.line()
-          .x(function(d) { return this.x(d.date); }.bind(this))
-          .y(function(d) { return this.yPsa(d.close); }.bind(this));
-
-      this.graphSvg.append('g')
-          .attr('class', 'psa y axis')
-          .attr('transform', 'translate(30, 0)')
-          .call(yAxisPsa)
-        .append('text')
-          .attr('transform', 'rotate(-90)')
-          .attr('y', 6)
-          .attr('x', -10)
-          .attr('dy', '.71em')
-          .style('text-anchor', 'end')
-          .text('ng / mL');
-
-      this.graphSvg.append('path')
-          .attr('class', 'psa line')
-          .attr('transform', 'translate(0,' + ((height*0) + (padding*0)) + ')')
-          .attr('clip-path', 'url(#clip)')
-          .datum(data);
-
-      var _this = this;
-
-      var g = this.graphSvg.selectAll('.psa.hoverable')
-          .data(data)
-          .enter().append('g')
-          .attr('class', 'psa hoverable')
-          .on('mouseenter', function(e) {
-
-            var point = d3.select(this).select('.psa.point.data');
-
-            var offset = document.getElementById(_this.id).offsetTop, // { left: 0, top: 0 }
-                left = parseInt(point.attr('cx')) + parseInt(margin.left),
-                top = parseInt(point.attr('cy')) + parseInt(offset);
-
-
-            var content = '<b>PSA: </b><span class="value">' + e.close + '</span><br/>' +
-                          '<b>Date: </b><span class="value">' + e.date.getDate() + '/' + e.date.getMonth() + '/' + e.date.getFullYear() + '</span>';
-
-            nvtooltip.show([left, top], content);
-          })
-          .on('mouseleave', function(e) {
-            nvtooltip.cleanup();
-          });
-
-      g.append('circle')
-          .attr('class', 'psa point data')
-          .attr('clip-path', 'url(#clip)')
-          .attr('r', 2);
-
-      g.append('circle')
-          .attr('class', 'psa point hovertarget')
-          .attr('clip-path', 'url(#clip)')
-          .attr('r', 10);
-
-      this.graphSvg.selectAll('.psa.point.hovertarget')
-          .data(data)
-        .enter().append('circle')
-          .attr('class', 'psa point hovertarget')
-          .attr('clip-path', 'url(#clip)')
-          .attr('r', 10)
-
-      this.graphSvg.append('line')
-        .attr('class', 'graphseparator')
-        .attr('x1', 0)
-        .attr('y1', height + (padding/2))
-        .attr('x2', width)
-        .attr('y2', height + (padding/2));
-
-      this.draw();
-
-    }.bind(this));
-
-    d3.tsv('static/data/testosterone.tsv', function(error, data) {
-
-      if (error) throw error;
-
-      data.forEach(function(d) {
-        d.date = parseDate(d.date);
-        d.close = +d.close;
-      });
-
-      this.yTestosterone = d3.scale.linear()
-        .range([height, 0]);
-
-      this.yTestosterone.domain(d3.extent(data, function(d) { return d.close + ((d.close / 100) * 10); }));
-
-      var yAxisTestosterone = d3.svg.axis()
-          .scale(this.yTestosterone)
-          .orient('left')
-          .ticks(2);
-
-      this.lineTestosterone = d3.svg.line()
-          .x(function(d) { return this.x(d.date); }.bind(this))
-          .y(function(d) { return this.yTestosterone(d.close); }.bind(this));
-
-      this.graphSvg.append('g')
-          .attr('transform', 'translate(30,' + (height + padding) + ')')
-          .attr('class', 'testosterone y axis')
-          .call(yAxisTestosterone)
-        .append('text')
-          .attr('transform', 'rotate(-90)')
-          .attr('y', 6)
-          .attr('x', -10)
-          .attr('dy', '.71em')
-          .style('text-anchor', 'end')
-          .text('nmol / L');
-
-      this.graphSvg.append('path')
-          .attr('class', 'testosterone line')
-          .attr('clip-path', 'url(#clip)')
-          .attr('transform', 'translate(0,' + (height + padding) + ')')
-          .datum(data);
-
-      var _this = this;
-
-      var g = this.graphSvg.selectAll('.testosterone.hoverable')
-          .data(data)
-          .enter().append('g')
-          .attr('class', 'testosterone hoverable')
-          .on('mouseenter', function(e) {
-
-            var point = d3.select(this).select('.testosterone.point.data');
-
-            var offset = document.getElementById(_this.id).offsetTop, // { left: 0, top: 0 }
-                left = parseInt(point.attr('cx')) + parseInt(margin.left),
-                top = parseInt(point.attr('cy')) + parseInt(height * 1) + parseInt(offset);
-
-
-            var content = '<b>Testosterone: </b><span class="value">' + e.close + '</span><br/>' +
-                          '<b>Date: </b><span class="value">' + e.date.getDate() + '/' + e.date.getMonth() + '/' + e.date.getFullYear() + '</span>';
-
-            nvtooltip.show([left, top], content);
-          })
-          .on('mouseleave', function(e) {
-            nvtooltip.cleanup();
-          });
-
-      g.append('circle')
-          .attr('class', 'testosterone point data')
-          .attr('transform', 'translate(0,' + (height + padding) + ')')
-          .attr('clip-path', 'url(#clip)')
-          .attr('r', 2);
-
-      g.append('circle')
-          .attr('class', 'testosterone point hovertarget')
-          .attr('transform', 'translate(0,' + (height + padding) + ')')
-          .attr('clip-path', 'url(#clip)')
-          .attr('r', 10);
-
-      this.graphSvg.selectAll('.testosterone.point.hovertarget')
-          .data(data)
-        .enter().append('circle')
-          .attr('class', 'testosterone point hovertarget')
-          .attr('clip-path', 'url(#clip)')
-          .attr('r', 10)
-
-      this.graphSvg.append('line')
-          .attr('class', 'graphseparator')
-          .attr('x1', 0)
-          .attr('y1', (height * 2) + (padding * 1) + (padding/2))
-          .attr('x2', width)
-          .attr('y2', (height * 2) + (padding * 1) + (padding/2));
-
-      this.draw();
-
-    }.bind(this));
-
-
-
-
-
-
-    var androgenData = [
-      { date: parseDate('24-Jul-12'), close: 1 },
-      { date: parseDate('24-Jan-13'), close: 1 }
-    ];
-
-    this.yAndrogen = d3.scale.linear()
-      .range([height, 0]);
-
-    this.yAndrogen.domain([0, 2]);
-
-    this.lineAndrogen = d3.svg.line()
-        .x(function(d) { return this.x(d.date); }.bind(this))
-        .y(function(d) { return this.yAndrogen(d.close); }.bind(this));
-
-    this.graphSvg.append('path')
-        .attr('class', 'androgen bar')
-        .attr('clip-path', 'url(#clip)')
-        .attr('transform', 'translate(0,' + ((height*2) + (padding*1)) + ')')
-        .datum(androgenData);
-
-    this.graphSvg.append('line')
-        .attr('class', 'graphseparator')
-        .attr('x1', 0)
-        .attr('y1', (height * 3) + (padding * 2) + (padding/2))
-        .attr('x2', width)
-        .attr('y2', (height * 3) + (padding * 2) + (padding/2));
-
-
-
-
-
-
-    var radiotherapyData = [
-      { date: parseDate('04-Sep-12'), close: 1 },
-      { date: parseDate('23-Nov-12'), close: 1 }
-    ];
-
-    this.yRadiotherapy = d3.scale.linear()
-      .range([height, 0]);
-
-    this.yRadiotherapy.domain([0, 2]);
-
-    this.lineRadiotherapy = d3.svg.line()
-        .x(function(d) { return this.x(d.date); }.bind(this))
-        .y(function(d) { return this.yRadiotherapy(d.close); }.bind(this));
-
-    this.graphSvg.append('path')
-        .attr('class', 'radiotherapy bar')
-        .attr('clip-path', 'url(#clip)')
-        .attr('transform', 'translate(0,' + ((height*3) + (padding*2)) + ')')
-        .datum(radiotherapyData);
-
-    this.graphSvg.append('line')
-        .attr('class', 'graphseparator')
-        .attr('x1', 0)
-        .attr('y1', (height * 4) + (padding * 3) + (padding/2))
-        .attr('x2', width)
-        .attr('y2', (height * 4) + (padding * 3) + (padding/2));
-
-
-
-
-
-
-    var surgeryData = [
-      { date: parseDate('14-May-12'), close: 1}
-    ]
-
-    this.ySurgery = d3.scale.linear()
-      .range([height, 0]);
-
-    this.ySurgery.domain([0, 2]);
-
-    this.graphSvg.selectAll('.point')
-        .data(surgeryData)
-      .enter().append('circle')
-        .attr('class', 'surgery point')
-        .attr('clip-path', 'url(#clip)')
-        .attr('transform', 'translate(0,' + ((height*4) + (padding*3)) + ')')
-        .attr('r', 4);
-
-    this.graphSvg.append('line')
-        .attr('class', 'graphseparator')
-        .attr('x1', 0)
-        .attr('y1', (height * 5) + (padding * 4) + (padding/2))
-        .attr('x2', width)
-        .attr('y2', (height * 5) + (padding * 4) + (padding/2));
-
-    var multiGraph = this;
-
+        .attr('width', this.width - 30)
+        .attr('height', this.height + (this.padding * this.graphCount));
+  };
+
+  enableZoom() {
     this.zoom = d3.behavior.zoom()
       .on('zoom', function()  {
-        multiGraph.draw.call(multiGraph);
-      });
+        this.draw();
+      }.bind(this));
 
     this.zoom.x(this.x);
 
     this.graphSvg.append('rect')
         .attr('class', 'scrollpane')
-        .attr('width', width)
-        .attr('height', (height * graphCount) + (padding * graphCount))
+        .attr('width', this.width)
+        .attr('height', this.height + (this.padding * this.graphCount))
         .call(this.zoom);
+  };
 
-    this.draw();
+  init() {
+    var height = 120,
+        padding = 10,
+        graphCount = 5;
+
+    this.x = d3.time.scale()
+        .range([0, this.width]);
+
+    this.xAxis = d3.svg.axis()
+        .scale(this.x)
+        .orient('bottom');
+
+    this.removeSvg();
+    this.registerGraphs();
+    this.createSvg(this.graphSvg);
+
+    this.graphSvg.append('g')
+        .attr('class', 'x axis')
+        .attr('transform', 'translate(0,' + (this.height + (this.padding * this.graphCount)) + ')');
+
+    this.x.domain([new Date(2005, 1, 1), new Date(2016, 1, 1)]);
+
+    this.createClipPath();
+    this.enableZoom();
+
+    this.initGraphs();
   };
 
   draw() {
     this.graphSvg.select('g.x.axis').call(this.xAxis);
-    this.graphSvg.select('path.psa.line').attr('d', this.linePsa);
-
-    this.graphSvg.selectAll('circle.psa.point').attr('cx', function(d) { return this.x(d.date); }.bind(this));
-    this.graphSvg.selectAll('circle.psa.point').attr('cy', function(d) { return this.yPsa(d.close); }.bind(this));
-
-    this.graphSvg.selectAll('circle.testosterone.point').attr('cx', function(d) { return this.x(d.date); }.bind(this));
-    this.graphSvg.selectAll('circle.testosterone.point').attr('cy', function(d) { return this.yTestosterone(d.close); }.bind(this));
-
-    this.graphSvg.select('path.testosterone.line').attr('d', this.lineTestosterone);
-    this.graphSvg.select('path.androgen.bar').attr('d', this.lineAndrogen);
-    this.graphSvg.select('path.radiotherapy.bar').attr('d', this.lineRadiotherapy);
-
-    this.graphSvg.selectAll('circle.surgery.point').attr('cx', function(d) { return this.x(d.date); }.bind(this));
-    this.graphSvg.selectAll('circle.surgery.point').attr('cy', function(d) { return this.ySurgery(d.close); }.bind(this));
+    this.graphs.forEach(function(d) {
+      d.draw();
+    }.bind(this));
   };
 
   render() {
-    var divStyle = {
-      height: '500px',
-      width: '500px'
-    };
-    this.d3test2();
+    this.init();
     this.draw();
     return (
-      <div id={this.id} style={divStyle}>
+      <div id={this.id}>
       </div>
     );
   }
