@@ -33,7 +33,6 @@ class LineGraph extends Graph {
     var newData = []
 
     this.rawData.forEach(function(d) {
-      console.log(d.date);
       newData.push({
         date: this.parseDate(d.date),
         data: +d.data
@@ -58,17 +57,25 @@ class LineGraph extends Graph {
         .x(function(d) { return this.x(d.date); }.bind(this))
         .y(function(d) { return this.y(d.data); }.bind(this));
 
-    this.graphSvg.append('g')
+    var gGraphInfo = this.graphSvg.append('g')
         .attr('class', this.name  + ' y axis')
-        .attr('transform', 'translate(30, ' + this.offsetTop + ')')
-        .call(this.yaxis)
-      .append('text')
+        .attr('transform', 'translate(60, ' + this.offsetTop + ')')
+        .call(this.yaxis);
+
+    gGraphInfo.append('text')
         .attr('transform', 'rotate(-90)')
-        .attr('y', 6)
+        .attr('y', -30)
         .attr('x', -10)
-        .attr('dy', '.71em')
         .style('text-anchor', 'end')
-        .text(this.yAxisLabel);
+        .text('(' + this.yAxisLabel + ')');
+
+    gGraphInfo.append('text')
+        .attr('class', 'graphtitle')
+        .attr('transform', 'rotate(-90)')
+        .attr('y', -45)
+        .attr('x', -10)
+        .style('text-anchor', 'end')
+        .text(this.displayName);
 
     this.graphSvg.append('path')
         .attr('class', this.name + ' line')
@@ -78,7 +85,7 @@ class LineGraph extends Graph {
 
     var thisLineGraph = this;
 
-    var g = this.graphSvg.selectAll('.' + this.name + '.hoverable')
+    var gPoint = this.graphSvg.selectAll('.' + this.name + '.hoverable')
         .data(this.data)
         .enter().append('g')
         .attr('class', this.name + ' hoverable')
@@ -100,13 +107,13 @@ class LineGraph extends Graph {
           nvtooltip.cleanup();
         });
 
-    g.append('circle')
+    gPoint.append('circle')
         .attr('class', this.name + ' point data')
         .attr('transform', 'translate(0,' + this.offsetTop + ')')
         .attr('clip-path', 'url(#clip)')
         .attr('r', 2);
 
-    g.append('circle')
+    gPoint.append('circle')
         .attr('class', this.name + ' point hovertarget')
         .attr('transform', 'translate(0,' + this.offsetTop + ')')
         .attr('clip-path', 'url(#clip)')
@@ -137,7 +144,7 @@ class LineGraph extends Graph {
 class TimelineGraph extends Graph {
   constructor(name, displayName, data, offsetTop, x) {
     super();
-    this.height = 80;
+    this.height = 90;
 
     this.name = name;
     this.displayName = displayName;
@@ -173,6 +180,18 @@ class TimelineGraph extends Graph {
     this.line = d3.svg.line()
         .x(function(d) { return this.x(d.date); }.bind(this))
         .y(function(d) { return this.y(d.data); }.bind(this));
+
+    var gGraphInfo = this.graphSvg.append('g')
+        .attr('class', this.name  + ' y axis')
+        .attr('transform', 'translate(60, ' + this.offsetTop + ')');
+
+    gGraphInfo.append('text')
+        .attr('class', 'graphtitle')
+        .attr('transform', 'rotate(-90)')
+        .attr('y', -45)
+        .attr('x', -0)
+        .style('text-anchor', 'end')
+        .text(this.displayName);
 
     this.graphSvg.append('path')
         .attr('class', this.name + ' bar')
@@ -222,6 +241,18 @@ class PointGraph extends Graph {
 
     this.y.domain([0, 2]);
 
+    var gGraphInfo = this.graphSvg.append('g')
+        .attr('class', this.name  + ' y axis')
+        .attr('transform', 'translate(60, ' + this.offsetTop + ')');
+
+    gGraphInfo.append('text')
+        .attr('class', 'graphtitle')
+        .attr('transform', 'rotate(-90)')
+        .attr('y', -45)
+        .attr('x', -10)
+        .style('text-anchor', 'end')
+        .text(this.displayName);
+
     this.graphSvg.selectAll('.' + this.name + '.point')
         .data(this.data)
       .enter().append('circle')
@@ -266,7 +297,6 @@ export default class MultiGraph2 extends Component {
 
 
   registerGraphs() {
-    console.log(this.props.graphs);
     var cumulativeHeight = 0;
     var counter = 0
 
@@ -354,9 +384,9 @@ export default class MultiGraph2 extends Component {
     this.graphSvg.append('clipPath')
         .attr('id', 'clip')
       .append('rect')
-        .attr('x', 30)
+        .attr('x', 60)
         .attr('y', 0)
-        .attr('width', this.width - 30)
+        .attr('width', this.width - 60)
         .attr('height', this.height + (this.padding * this.graphCount));
   };
 
@@ -393,9 +423,16 @@ export default class MultiGraph2 extends Component {
 
     this.graphSvg.append('g')
         .attr('class', 'x axis')
-        .attr('transform', 'translate(0,' + (this.height + (this.padding * this.graphCount)) + ')');
+        .attr('transform', 'translate(0,' + (this.height + (this.padding * this.graphCount) - (this.padding / 2)) + ')');
 
     this.x.domain([new Date(2005, 1, 1), new Date(2016, 1, 1)]);
+
+    this.graphSvg.append('line')
+        .attr('class', 'graphseparator')
+        .attr('x1', 60)
+        .attr('y1', 0)
+        .attr('x2', 60)
+        .attr('y2', this.height + (this.padding * this.graphCount) - (this.padding / 2));
 
     this.createClipPath();
     this.enableZoom();

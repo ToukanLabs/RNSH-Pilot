@@ -3,7 +3,7 @@ body {
 }
 
 .multigraph {
-  /*cursor: move;*/
+  cursor: all-scroll;
   border: 1px solid rgb(213, 213, 213);
 }
 
@@ -14,6 +14,10 @@ body {
 .graphseparator {
   stroke-width: 1px;
   stroke: rgb(213, 213, 213);
+}
+
+.graphtitle {
+  font-weight: bold;
 }
 
 .axis path,
@@ -27,7 +31,7 @@ body {
   stroke-width: 2px;
 }
 
-.line, .dot, .bar {
+.line, .bar {
   fill: none;
   stroke: steelblue;
 }
@@ -56,6 +60,7 @@ g.hoverable .point.hovertarget {
 }
 
 g.hoverable:hover {
+  cursor: default;
   stroke-opacity: 0.5;
 }
 

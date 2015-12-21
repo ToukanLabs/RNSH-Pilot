@@ -33,6 +33,7 @@
       },
       {
         "name": "androgen",
+        "displayName": "Androgen",
         "type": "timeline",
         "data": [
           { "start": "24-Jul-12", "end": "24-Jan-13" }
@@ -40,6 +41,7 @@
       },
       {
         "name": "radiotherapy",
+        "displayName": "Radiotherapy",
         "type": "timeline",
         "data": [
           { "start": "04-Sep-12", "end": "23-Nov-12" }
@@ -47,6 +49,7 @@
       },
       {
         "name": "surgery",
+        "displayName": "Surgery",
         "type": "point",
         "data": [
           { "date": "14-May-12" }
