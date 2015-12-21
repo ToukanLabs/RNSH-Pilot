@@ -111,7 +111,25 @@ export default class MultiGraph extends Component {
         .enter().append('circle')
           .attr('class', 'psa point')
           .attr('clip-path', 'url(#clip)')
-          .attr('r', 4);
+          .attr('r', 4)
+          .on('mouseenter', function(e) {
+                var offset = $('#root').offset(), // { left: 0, top: 0 }
+                      left = d3.select(this).attr('cx') + margin.left,
+                      top = d3.select(this).attr('cy') + (height * 0),
+                      formatter = d3.format('.04f');
+
+                  var content = '<h3>PSA: </h3>' +
+                                '<p>' +
+                                '<span class="value">' + e.close + '</span>' +
+                                '</p>';
+
+                  nvtooltip.show([left, top], content);
+                  d3.select(this).classed('hover',true);
+                })
+             .on('mouseleave', function(e) {
+                    nvtooltip.cleanup();
+                    d3.select(this).classed('hover',false);
+              });;
 
       this.graphSvg.append('line')
         .attr('class', 'graphseparator')
