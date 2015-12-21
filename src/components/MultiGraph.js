@@ -30,7 +30,7 @@ export default class MultiGraph extends Component {
     var margin = {top: 0, right: 0, bottom: 0, left: 0},
         width = 800 - margin.left - margin.right,
         height = 120 - margin.top - margin.bottom,
-        padding = 0,
+        padding = 10,
         graphCount = 5;
 
     var parseDate = d3.time.format('%d-%b-%y').parse;
@@ -72,12 +72,12 @@ export default class MultiGraph extends Component {
 
       this.graphSvg.append('g')
           .attr('class', 'x axis')
-          .attr('transform', 'translate(0,' + ((height*graphCount) + (padding * graphCount)) + ')');
+          .attr('transform', 'translate(0,' + ((height*graphCount) + (padding * graphCount) - (padding / 2)) + ')');
 
       this.yPsa = d3.scale.linear()
         .range([height, 0]);
 
-      this.yPsa.domain(d3.extent(data, function(d) { return d.close; }));
+      this.yPsa.domain(d3.extent(data, function(d) { return d.close + ((d.close / 100) * 10); }));
 
       var yAxisPsa = d3.svg.axis()
           .scale(this.yPsa)
@@ -150,9 +150,9 @@ export default class MultiGraph extends Component {
       this.graphSvg.append('line')
         .attr('class', 'graphseparator')
         .attr('x1', 0)
-        .attr('y1', height)
+        .attr('y1', height + (padding/2))
         .attr('x2', width)
-        .attr('y2', height);
+        .attr('y2', height + (padding/2));
 
       this.draw();
 
@@ -170,7 +170,7 @@ export default class MultiGraph extends Component {
       this.yTestosterone = d3.scale.linear()
         .range([height, 0]);
 
-      this.yTestosterone.domain(d3.extent(data, function(d) { return d.close; }));
+      this.yTestosterone.domain(d3.extent(data, function(d) { return d.close + ((d.close / 100) * 10); }));
 
       var yAxisTestosterone = d3.svg.axis()
           .scale(this.yTestosterone)
@@ -188,6 +188,7 @@ export default class MultiGraph extends Component {
         .append('text')
           .attr('transform', 'rotate(-90)')
           .attr('y', 6)
+          .attr('x', -10)
           .attr('dy', '.71em')
           .style('text-anchor', 'end')
           .text('nmol / L');
@@ -209,9 +210,9 @@ export default class MultiGraph extends Component {
       this.graphSvg.append('line')
           .attr('class', 'graphseparator')
           .attr('x1', 0)
-          .attr('y1', (height * 2) + (padding * 1))
+          .attr('y1', (height * 2) + (padding * 1) + (padding/2))
           .attr('x2', width)
-          .attr('y2', (height * 2) + (padding * 1));
+          .attr('y2', (height * 2) + (padding * 1) + (padding/2));
 
       this.draw();
 
@@ -245,9 +246,9 @@ export default class MultiGraph extends Component {
     this.graphSvg.append('line')
         .attr('class', 'graphseparator')
         .attr('x1', 0)
-        .attr('y1', (height * 3) + (padding * 2))
+        .attr('y1', (height * 3) + (padding * 2) + (padding/2))
         .attr('x2', width)
-        .attr('y2', (height * 3) + (padding * 2));
+        .attr('y2', (height * 3) + (padding * 2) + (padding/2));
 
 
 
@@ -277,9 +278,9 @@ export default class MultiGraph extends Component {
     this.graphSvg.append('line')
         .attr('class', 'graphseparator')
         .attr('x1', 0)
-        .attr('y1', (height * 4) + (padding * 3))
+        .attr('y1', (height * 4) + (padding * 3) + (padding/2))
         .attr('x2', width)
-        .attr('y2', (height * 4) + (padding * 3));
+        .attr('y2', (height * 4) + (padding * 3) + (padding/2));
 
 
 
@@ -306,9 +307,9 @@ export default class MultiGraph extends Component {
     this.graphSvg.append('line')
         .attr('class', 'graphseparator')
         .attr('x1', 0)
-        .attr('y1', (height * 5) + (padding * 4))
+        .attr('y1', (height * 5) + (padding * 4) + (padding/2))
         .attr('x2', width)
-        .attr('y2', (height * 5) + (padding * 4));
+        .attr('y2', (height * 5) + (padding * 4) + (padding/2));
 
     var multiGraph = this;
 
@@ -329,7 +330,6 @@ export default class MultiGraph extends Component {
   };
 
   draw() {
-    // console.log('zooming');
     this.graphSvg.select('g.x.axis').call(this.xAxis);
     this.graphSvg.select('path.psa.line').attr('d', this.linePsa);
 

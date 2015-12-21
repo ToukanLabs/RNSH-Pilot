@@ -23,10 +23,6 @@ body {
   shape-rendering: crispEdges;
 }
 
-.x.axis path {
-  /*display: none;*/
-}
-
 .line {
   stroke-width: 2px;
 }
@@ -59,6 +55,10 @@ g.hoverable .point.hovertarget {
   fill: transparent;
 }
 
+g.hoverable:hover {
+  stroke-opacity: 0.5;
+}
+
 g.hoverable:hover .point.hovertarget {
   stroke-width: 2px;
   stroke: steelblue;
@@ -72,7 +72,7 @@ g.hoverable:hover .point.data {
 .nvtooltip {
   position: absolute;
   background-color: rgba(255,255,255,1);
-  padding: 10px;
+  padding: 5px;
   border: 1px solid #ddd;
 
   font-family: Arial;
@@ -90,8 +90,8 @@ g.hoverable:hover .point.data {
   -webkit-box-shadow: 4px 4px 12px rgba(0,0,0,.5);
   box-shadow: 4px 4px 12px rgba(0,0,0,.5);
 
-  -moz-border-radius: 15px;
-  border-radius: 15px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
 
 .nvtooltip h3 {
