@@ -27,10 +27,10 @@ export default class MultiGraph extends Component {
   }
 
   d3test2() {
-    var margin = {top: 20, right: 20, bottom: 30, left: 50},
-        width = 500 - margin.left - margin.right,
-        height = 100 - margin.top - margin.bottom,
-        padding = 10,
+    var margin = {top: 0, right: 0, bottom: 0, left: 0},
+        width = 800 - margin.left - margin.right,
+        height = 120 - margin.top - margin.bottom,
+        padding = 0,
         graphCount = 5;
 
     var parseDate = d3.time.format('%d-%b-%y').parse;
@@ -47,11 +47,20 @@ export default class MultiGraph extends Component {
 
     this.graphSvg = d3.select('#' + this.id).append('svg')
         .attr('width', width + margin.left + margin.right)
-        .attr('height', (height*graphCount) + (padding * graphCount) + margin.top + margin.bottom)
+        .attr('height', (height*graphCount) + (padding * graphCount) + margin.top + margin.bottom + 25)
+        .attr('class', 'multigraph')
       .append('g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     this.x.domain([new Date(2005, 1, 1), new Date(2016, 1, 1)]);
+
+    this.graphSvg.append('clipPath')
+        .attr('id', 'clip')
+      .append('rect')
+        .attr('x', 30)
+        .attr('y', 0)
+        .attr('width', width - 30)
+        .attr('height', (height * graphCount) + (padding * graphCount));
 
     d3.tsv('static/data/psa.tsv', function(error, data) {
       if (error) throw error;
@@ -63,8 +72,7 @@ export default class MultiGraph extends Component {
 
       this.graphSvg.append('g')
           .attr('class', 'x axis')
-          .attr('transform', 'translate(0,' + ((height*graphCount) + (padding * graphCount)) + ')')
-          .call(this.xAxis);
+          .attr('transform', 'translate(0,' + ((height*graphCount) + (padding * graphCount)) + ')');
 
       this.yPsa = d3.scale.linear()
         .range([height, 0]);
@@ -73,7 +81,8 @@ export default class MultiGraph extends Component {
 
       var yAxisPsa = d3.svg.axis()
           .scale(this.yPsa)
-          .orient('left');
+          .orient('left')
+          .ticks(2);
 
       this.linePsa = d3.svg.line()
           .x(function(d) { return this.x(d.date); }.bind(this))
@@ -81,10 +90,12 @@ export default class MultiGraph extends Component {
 
       this.graphSvg.append('g')
           .attr('class', 'psa y axis')
+          .attr('transform', 'translate(30, 0)')
           .call(yAxisPsa)
         .append('text')
           .attr('transform', 'rotate(-90)')
           .attr('y', 6)
+          .attr('x', -10)
           .attr('dy', '.71em')
           .style('text-anchor', 'end')
           .text('ng / mL');
@@ -92,15 +103,24 @@ export default class MultiGraph extends Component {
       this.graphSvg.append('path')
           .attr('class', 'psa line')
           .attr('transform', 'translate(0,' + ((height*0) + (padding*0)) + ')')
+          .attr('clip-path', 'url(#clip)')
           .datum(data);
 
-      this.graphSvg.selectAll('.point')
-            .data(data)
-          .enter().append('circle')
-            .attr('class', 'psa point')
-            .attr('r', 4)
-            .attr('cx', function(d) { return this.x(d.date); }.bind(this))
-            .attr('cy', function(d) { return this.yPsa(d.close); }.bind(this));
+      this.graphSvg.selectAll('.psa.point')
+          .data(data)
+        .enter().append('circle')
+          .attr('class', 'psa point')
+          .attr('clip-path', 'url(#clip)')
+          .attr('r', 4);
+
+      this.graphSvg.append('line')
+        .attr('class', 'graphseparator')
+        .attr('x1', 0)
+        .attr('y1', height)
+        .attr('x2', width)
+        .attr('y2', height);
+
+      this.draw();
 
     }.bind(this));
 
@@ -120,14 +140,15 @@ export default class MultiGraph extends Component {
 
       var yAxisTestosterone = d3.svg.axis()
           .scale(this.yTestosterone)
-          .orient('left');
+          .orient('left')
+          .ticks(2);
 
       this.lineTestosterone = d3.svg.line()
           .x(function(d) { return this.x(d.date); }.bind(this))
           .y(function(d) { return this.yTestosterone(d.close); }.bind(this));
 
       this.graphSvg.append('g')
-          .attr('transform', 'translate(0,' + (height + padding) + ')')
+          .attr('transform', 'translate(30,' + (height + padding) + ')')
           .attr('class', 'testosterone y axis')
           .call(yAxisTestosterone)
         .append('text')
@@ -139,8 +160,24 @@ export default class MultiGraph extends Component {
 
       this.graphSvg.append('path')
           .attr('class', 'testosterone line')
+          .attr('clip-path', 'url(#clip)')
           .attr('transform', 'translate(0,' + (height + padding) + ')')
           .datum(data);
+
+      this.graphSvg.selectAll('.testosterone.point')
+          .data(data)
+        .enter().append('circle')
+          .attr('class', 'testosterone point')
+          .attr('clip-path', 'url(#clip)')
+          .attr('transform', 'translate(0,' + (height + padding) + ')')
+          .attr('r', 4);
+
+      this.graphSvg.append('line')
+          .attr('class', 'graphseparator')
+          .attr('x1', 0)
+          .attr('y1', (height * 2) + (padding * 1))
+          .attr('x2', width)
+          .attr('y2', (height * 2) + (padding * 1));
 
       this.draw();
 
@@ -159,7 +196,7 @@ export default class MultiGraph extends Component {
     this.yAndrogen = d3.scale.linear()
       .range([height, 0]);
 
-    this.yAndrogen.domain(d3.extent(androgenData, function(d) { return d.close; }));
+    this.yAndrogen.domain([0, 2]);
 
     this.lineAndrogen = d3.svg.line()
         .x(function(d) { return this.x(d.date); }.bind(this))
@@ -167,8 +204,16 @@ export default class MultiGraph extends Component {
 
     this.graphSvg.append('path')
         .attr('class', 'androgen bar')
-        .attr('transform', 'translate(0,' + ((height*2) + padding) + ')')
+        .attr('clip-path', 'url(#clip)')
+        .attr('transform', 'translate(0,' + ((height*2) + (padding*1)) + ')')
         .datum(androgenData);
+
+    this.graphSvg.append('line')
+        .attr('class', 'graphseparator')
+        .attr('x1', 0)
+        .attr('y1', (height * 3) + (padding * 2))
+        .attr('x2', width)
+        .attr('y2', (height * 3) + (padding * 2));
 
 
 
@@ -183,7 +228,7 @@ export default class MultiGraph extends Component {
     this.yRadiotherapy = d3.scale.linear()
       .range([height, 0]);
 
-    this.yRadiotherapy.domain(d3.extent(radiotherapyData, function(d) { return d.close; }));
+    this.yRadiotherapy.domain([0, 2]);
 
     this.lineRadiotherapy = d3.svg.line()
         .x(function(d) { return this.x(d.date); }.bind(this))
@@ -191,8 +236,16 @@ export default class MultiGraph extends Component {
 
     this.graphSvg.append('path')
         .attr('class', 'radiotherapy bar')
-        .attr('transform', 'translate(0,' + ((height*3) + padding) + ')')
+        .attr('clip-path', 'url(#clip)')
+        .attr('transform', 'translate(0,' + ((height*3) + (padding*2)) + ')')
         .datum(radiotherapyData);
+
+    this.graphSvg.append('line')
+        .attr('class', 'graphseparator')
+        .attr('x1', 0)
+        .attr('y1', (height * 4) + (padding * 3))
+        .attr('x2', width)
+        .attr('y2', (height * 4) + (padding * 3));
 
 
 
@@ -206,48 +259,58 @@ export default class MultiGraph extends Component {
     this.ySurgery = d3.scale.linear()
       .range([height, 0]);
 
-    this.ySurgery.domain(d3.extent(surgeryData, function(d) { return d.close; }));
-
-    this.lineSurgery = d3.svg.line()
-        .x(function(d) { return this.x(d.date); }.bind(this))
-        .y(function(d) { return this.ySurgery(d.close); }.bind(this));
+    this.ySurgery.domain([0, 2]);
 
     this.graphSvg.selectAll('.point')
         .data(surgeryData)
       .enter().append('circle')
-        .attr('transform', 'translate(0,' + ((height*4) + padding) + ')')
         .attr('class', 'surgery point')
-        .attr('r', 4)
-        .attr('cx', function(d) { return this.x(d.date); }.bind(this))
-        .attr('cy', function(d) { return this.ySurgery(d.close); }.bind(this));
+        .attr('clip-path', 'url(#clip)')
+        .attr('transform', 'translate(0,' + ((height*4) + (padding*3)) + ')')
+        .attr('r', 4);
+
+    this.graphSvg.append('line')
+        .attr('class', 'graphseparator')
+        .attr('x1', 0)
+        .attr('y1', (height * 5) + (padding * 4))
+        .attr('x2', width)
+        .attr('y2', (height * 5) + (padding * 4));
 
     var multiGraph = this;
 
     this.zoom = d3.behavior.zoom()
       .on('zoom', function()  {
-        multiGraph.draw.call(this);
+        multiGraph.draw.call(multiGraph);
       });
 
+    this.zoom.x(this.x);
 
-
-    // this.graphSvg.append('rect')
-    //     .attr('class', 'pane')
-    //     .attr('width', width)
-    //     .attr('height', height * graphCount)
-    //     .call(this.zoom);
+    this.graphSvg.append('rect')
+        .attr('class', 'scrollpane')
+        .attr('width', width)
+        .attr('height', (height * graphCount) + (padding * graphCount))
+        .call(this.zoom);
 
     this.draw();
   };
 
   draw() {
-    console.log(this);
+    // console.log('zooming');
     this.graphSvg.select('g.x.axis').call(this.xAxis);
     this.graphSvg.select('path.psa.line').attr('d', this.linePsa);
-    this.graphSvg.select('path.psa.point').attr('d', this.linePsa);
+
+    this.graphSvg.selectAll('circle.psa.point').attr('cx', function(d) { return this.x(d.date); }.bind(this));
+    this.graphSvg.selectAll('circle.psa.point').attr('cy', function(d) { return this.yPsa(d.close); }.bind(this));
+
+    this.graphSvg.selectAll('circle.testosterone.point').attr('cx', function(d) { return this.x(d.date); }.bind(this));
+    this.graphSvg.selectAll('circle.testosterone.point').attr('cy', function(d) { return this.yTestosterone(d.close); }.bind(this));
+
     this.graphSvg.select('path.testosterone.line').attr('d', this.lineTestosterone);
     this.graphSvg.select('path.androgen.bar').attr('d', this.lineAndrogen);
     this.graphSvg.select('path.radiotherapy.bar').attr('d', this.lineRadiotherapy);
-    this.graphSvg.select('path.surgery.point').attr('d', this.lineSurgery);
+
+    this.graphSvg.selectAll('circle.surgery.point').attr('cx', function(d) { return this.x(d.date); }.bind(this));
+    this.graphSvg.selectAll('circle.surgery.point').attr('cy', function(d) { return this.ySurgery(d.close); }.bind(this));
   };
 
   render() {

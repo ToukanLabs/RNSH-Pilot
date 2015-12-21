@@ -11,6 +11,11 @@ body {
   font-size: 1.4em;
 }
 
+.graphseparator {
+  stroke-width: 1px;
+  stroke: rgb(213, 213, 213);
+}
+
 .axis path,
 .axis line {
   fill: none;
