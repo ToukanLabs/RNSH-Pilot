@@ -3,6 +3,7 @@ import cssnano from 'cssnano';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import config from '../../config';
 import _debug from 'debug';
+import path from 'path';
 
 const paths = config.utils_paths;
 const debug = _debug('app:webpack:_base');
@@ -22,7 +23,8 @@ const webpackConfig = {
   target: 'web',
   entry: {
     app: [
-      paths.base(config.dir_client) + '/app.js'
+      path.resolve(__dirname, '../../src/app.js') // ,
+      // paths.base(config.dir_client) + '/app.js'
     ],
     vendor: config.compiler_vendor
   },
