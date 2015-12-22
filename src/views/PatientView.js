@@ -1,5 +1,6 @@
 import React from 'react';
 import SideMenu from 'components/SideMenu';
+import PatientHeadContainer from 'components/PatientHeadContainer';
 import { connect } from 'react-redux';
 import { actions as uiActions } from 'redux/modules/ui';
 
@@ -12,6 +13,7 @@ export default class PatientView extends React.Component {
   render () {
     return (
       <div>
+        <PatientHeadContainer/>
         <SideMenu
           routerPath={this.props.routerPath}
           patientId={parseInt(this.props.params.id, 10)}

@@ -35,5 +35,5 @@ SideMenuItem.propTypes = {
   text: React.PropTypes.string,
   linkTo: React.PropTypes.string,
   currentRouterPath: React.PropTypes.string,
-  showText: React.PropTypes.boolean
+  showText: React.PropTypes.bool
 };
