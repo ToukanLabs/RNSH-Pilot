@@ -1,0 +1,46 @@
+.sm-expanded {
+  width: 200px;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  height: 100%;
+  position: absolute;
+}
+
+.sm-collapsed {
+  width: 30px;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  height: 100%;
+  position: absolute;
+}
+
+.sm-header {
+  background-color: #999999;
+  border: 3px solid black;
+  position: relative;
+}
+
+.sm-content {
+  background-color: #cccccc;
+  border: 3px solid black;
+}
+
+.sm-collapsed .sm-header h3 {
+  display: none;
+}
+
+.sm-header h3 {
+  display: inline-block;
+}
+
+.sm-collapsed .hide-menu-icon {
+  position: relative;
+  margin-left: 10px;
+}
+
+.hide-menu-icon {
+  right: 5px;
+  position: absolute;
+}
+
+.hide-menu-icon:hover {
+  cursor: pointer;
+}

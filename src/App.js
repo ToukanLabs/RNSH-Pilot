@@ -7,6 +7,9 @@ import Root from './containers/Root';
 import configureStore from './redux/configureStore';
 
 window.__INITIAL_STATE__ = {
+  ui: {
+    sidemenuVisibility: 'expanded'
+  },
   patients: [],
   graphs: [
     {
