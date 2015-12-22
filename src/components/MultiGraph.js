@@ -471,5 +471,5 @@ export default class MultiGraph extends Component {
 }
 
 MultiGraph.propTypes = {
-  graphs: React.PropTypes.object
+  graphs: React.PropTypes.array
 };
