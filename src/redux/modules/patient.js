@@ -3,28 +3,31 @@ import { createAction, handleActions } from 'redux-actions';
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const SET_GRAPH_STATE = 'SET_GRAPH_STATE';
+export const CREATE_PATIENT = 'CREATE_PATIENT';
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const setGraphState = createAction(
-  SET_GRAPH_STATE,
-  (state) => {
-    return state;
+export const createPatient = createAction(
+  CREATE_PATIENT,
+  (patientName) => {
+    return {patientName};
   }
 );
 
 export const actions = {
-  setGraphState
+  createPatient
 };
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
 export default handleActions({
-  [SET_GRAPH_STATE]: (state, action) => {
-    console.log(action);
-    return state;
+  [CREATE_PATIENT]: (state, action) => {
+    console.log(action.payload.patientName);
+    return [
+      ...state,
+      { name: action.payload.patientName }
+    ];
   }
 }, 1);

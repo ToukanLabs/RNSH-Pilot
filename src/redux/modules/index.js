@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { routeReducer } from 'redux-simple-router';
-import counter from './counter';
 import graph from './graph';
+import patient from './patient';
 
 export default combineReducers({
-  counter,
+  graphs: graph,
   router: routeReducer,
-  graphs: graph
+  patients: patient
 });

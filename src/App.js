@@ -7,6 +7,7 @@ import Root from './containers/Root';
 import configureStore from './redux/configureStore';
 
 window.__INITIAL_STATE__ = {
+  patients: [],
   graphs: [
     {
       'name': 'psa',
