@@ -194,11 +194,29 @@ class TimelineGraph extends Graph {
         .style('text-anchor', 'end')
         .text(this.displayName);
 
-    this.graphSvg.append('path')
+    var thisTimeGraph = this;
+
+    var myPath = this.graphSvg.append('path')
         .attr('class', this.name + ' bar')
         .attr('clip-path', 'url(#clip)')
         .attr('transform', 'translate(0,' + this.offsetTop + ')')
-        .datum(this.data);
+        .datum(this.data)
+        .on('mouseenter', function(e) {
+          var point = d3.select(this).select('.' + thisTimeGraph.name + '.point.data');
+
+          var offset = document.getElementById(thisTimeGraph.graphSvg.id).offsetTop,
+              left = this.getPointAtLength(0).x,
+              top = parseInt(this.getPointAtLength(0).y) + parseInt(offset) + thisTimeGraph.offsetTop;
+
+          var content = '<h3>' + thisTimeGraph.displayName + ': </h3> ' +
+                        '<b>Start: </b><span class="value">' + thisTimeGraph.data[0].date.getDate() + '/' + thisTimeGraph.data[0].date.getMonth() + '/' + thisTimeGraph.data[0].date.getFullYear() + '</span><br/>' +
+                        '<b>End: </b><span class="value">' + thisTimeGraph.data[1].date.getDate() + '/' + thisTimeGraph.data[1].date.getMonth() + '/' + thisTimeGraph.data[1].date.getFullYear() + '</span>';
+
+          nvtooltip.show([left, top], content);
+        })
+        .on('mouseleave', function(e) {
+          nvtooltip.cleanup();
+        });
   }
 
   draw() {
@@ -227,7 +245,8 @@ class PointGraph extends Graph {
   processData() {
     this.data = [{
       date: this.parseDate(this.rawData.date),
-      data: 1
+      data: 1,
+      hoverTitle: this.rawData.hoverTitle,
     }];
   }
 
@@ -254,13 +273,32 @@ class PointGraph extends Graph {
         .style('text-anchor', 'end')
         .text(this.displayName);
 
+    var thisPointGraph = this;
+
     this.graphSvg.selectAll('.' + this.name + '.point')
         .data(this.data)
       .enter().append('circle')
         .attr('class', this.name + ' point')
         .attr('clip-path', 'url(#clip)')
         .attr('transform', 'translate(0,' + this.offsetTop + ')')
-        .attr('r', 4);
+        .attr('r', 4)
+        .on('mouseenter', function(e) {
+
+          var point = d3.select(this);
+
+          var offset = document.getElementById(thisPointGraph.graphSvg.id).offsetTop,
+              left = parseInt(point.attr('cx')),
+              top = parseInt(point.attr('cy')) + parseInt(offset) + thisPointGraph.offsetTop;
+
+
+          var content = '<h3>' + thisPointGraph.data[0].hoverTitle + '</h3>' +
+                        '<b>Date: </b><span class="value">' + thisPointGraph.data[0].date.getDate() + '/' + thisPointGraph.data[0].date.getMonth() + '/' + thisPointGraph.data[0].date.getFullYear() + '</span>';
+
+          nvtooltip.show([left, top], content);
+        })
+        .on('mouseleave', function(e) {
+          nvtooltip.cleanup();
+        });
   }
 
   draw() {

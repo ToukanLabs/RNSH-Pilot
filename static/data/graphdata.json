@@ -52,7 +52,8 @@
         "displayName": "Surgery",
         "type": "point",
         "data": [
-          { "date": "14-May-12" }
+          { "date": "14-May-12" ,
+            "hoverTitle": "Prostatectomy"}
         ]
       }
     ]
