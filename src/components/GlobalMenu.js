@@ -5,7 +5,7 @@ export default class GlobalMenu extends Component {
   render () {
     return <div>
       <select className={styles['gm-bar']}>
-        <option value='volvo' selected>Main Navigation Menu</option>
+        <option value='volvo'>Main Navigation Menu</option>
       </select>
     </div>;
   };

@@ -7,7 +7,7 @@ export default class UserMenu extends Component {
     return <div>
       <FontAwesome name={this.props.icon} className={styles['um-icon']}/>
       <select className={styles['um-bar']}>
-        <option value='DRJi' selected>Dr John Doe</option>
+        <option value='DRJi'>Dr John Doe</option>
       </select>
     </div>;
   };
