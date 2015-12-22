@@ -63,6 +63,7 @@ class LineGraph extends Graph {
         .call(this.yaxis);
 
     gGraphInfo.append('text')
+        .attr('class', this.name + ' y axis label')
         .attr('transform', 'rotate(-90)')
         .attr('y', -30)
         .attr('x', -10)
@@ -70,7 +71,7 @@ class LineGraph extends Graph {
         .text('(' + this.yAxisLabel + ')');
 
     gGraphInfo.append('text')
-        .attr('class', 'graphtitle')
+        .attr('class', this.name + ' graphtitle')
         .attr('transform', 'rotate(-90)')
         .attr('y', -45)
         .attr('x', -10)
@@ -186,7 +187,7 @@ class TimelineGraph extends Graph {
         .attr('transform', 'translate(60, ' + this.offsetTop + ')');
 
     gGraphInfo.append('text')
-        .attr('class', 'graphtitle')
+        .attr('class', this.name + ' graphtitle')
         .attr('transform', 'rotate(-90)')
         .attr('y', -45)
         .attr('x', -0)
@@ -246,7 +247,7 @@ class PointGraph extends Graph {
         .attr('transform', 'translate(60, ' + this.offsetTop + ')');
 
     gGraphInfo.append('text')
-        .attr('class', 'graphtitle')
+        .attr('class', this.name + ' graphtitle')
         .attr('transform', 'rotate(-90)')
         .attr('y', -45)
         .attr('x', -10)

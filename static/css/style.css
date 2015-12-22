@@ -20,6 +20,10 @@ body {
   font-weight: bold;
 }
 
+.y.axis.label {
+  font-size: 1.1em;
+}
+
 .axis path,
 .axis line {
   fill: none;
@@ -66,12 +70,10 @@ g.hoverable:hover {
 
 g.hoverable:hover .point.hovertarget {
   stroke-width: 2px;
-  stroke: steelblue;
 }
 
 g.hoverable:hover .point.data {
   stroke-width: 2px;
-  stroke: steelblue;
 }
 
 .nvtooltip {
@@ -114,4 +116,55 @@ g.hoverable:hover .point.data {
 .nvtooltip span {
   display: inline-block;
   margin: 2px 0;
+}
+
+.psa.graphtitle {
+  fill: rgb(255, 127, 14);
+}
+
+.psa.line {
+  stroke: rgb(255, 127, 14);
+}
+
+.psa.point {
+  stroke: rgb(255, 127, 14);
+  fill: rgb(255, 127, 14);
+}
+
+.testosterone.graphtitle {
+  fill: rgb(31, 119, 180);
+}
+
+.testosterone.line {
+  stroke: rgb(31, 119, 180);
+}
+
+.testosterone.point {
+  stroke: rgb(31, 119, 180);
+  fill: rgb(31, 119, 180);
+}
+
+.androgen.graphtitle {
+  fill: rgb(44, 160, 44);
+}
+
+.androgen.bar {
+  stroke: rgb(44, 160, 44);
+}
+
+.radiotherapy.graphtitle {
+  fill: rgb(92, 30, 179);
+}
+
+.radiotherapy.bar {
+  stroke: rgb(92, 30, 179);
+}
+
+.surgery.graphtitle {
+  fill: rgb(214, 39, 40);
+}
+
+.surgery.point {
+  stroke: rgb(214, 39, 40);
+  fill: rgb(214, 39, 40);
 }
