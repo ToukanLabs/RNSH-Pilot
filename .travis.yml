@@ -10,7 +10,9 @@ cache:
 install:
   - npm install
 
-script: bash ./scripts/deploy-gh-pages.sh
+script:
+  - NODE_ENV=production npm run compile
+  - bash ./scripts/deploy-gh-pages.sh
 
 env:
   global:
