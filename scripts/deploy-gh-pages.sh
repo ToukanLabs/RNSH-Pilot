@@ -1,12 +1,6 @@
 #!/bin/bash
 set -e # exit with nonzero exit code if anything fails
 
-# clear the dist directory
-rm -rf dist || exit 0;
-
-# run our compile script, discussed above
-./scripts/compile.sh
-
 # go to the dist directory and create a *new* Git repo
 cd dist
 git init
