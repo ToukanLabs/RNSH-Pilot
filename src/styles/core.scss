@@ -1,5 +1,6 @@
 @import 'base';
 @import 'vendor/normalize';
+@import 'colors';
 
 // Some best-practice CSS that's useful for most apps
 // Just remove them if they're not what you want
@@ -18,4 +19,10 @@ body {
 *:before,
 *:after {
   box-sizing: inherit;
+}
+
+input, select {
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-color: $field-back-color;
 }
