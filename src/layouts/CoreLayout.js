@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/core.scss';
+import GlobalHeader from 'components/GlobalHeader';
 
 // Note: Stateless/function components *will not* hot reload!
 // react-transform *only* works on component classes.
@@ -13,6 +14,9 @@ import '../styles/core.scss';
 function CoreLayout ({ children }) {
   return (
     <div className='page-container'>
+      <div className='app-menu'>
+        <GlobalHeader/>
+      </div>
       <div className='view-container'>
         {children}
       </div>

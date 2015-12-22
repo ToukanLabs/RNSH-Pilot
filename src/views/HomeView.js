@@ -95,6 +95,7 @@ export class HomeView extends React.Component {
         </button>
         <hr />
         <Link to='/about'>Go To About View...</Link>
+        <Link to='/patient/7'>Patients Niggazz!...</Link>
         <br/>
         <MultiGraph graphs={graphs} />
       </div>
