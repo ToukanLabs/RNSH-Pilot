@@ -8,9 +8,11 @@ import { Route, IndexRoute } from 'react-router';
 // your current file is.
 import CoreLayout from 'layouts/CoreLayout';
 import HomeView from 'views/HomeView';
+import PatientView from 'views/PatientView';
 
 export default (
   <Route path='/' component={CoreLayout}>
     <IndexRoute component={HomeView} />
+    <Route path='/patient/:id' component={PatientView}/>
   </Route>
 );

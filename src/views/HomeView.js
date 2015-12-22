@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { actions as patientActions } from '../redux/modules/patient';
+// import styles from './HomeView.scss';
 import MultiGraph from '../components/MultiGraph';
 // import CreatePatient from '../components/CreatePatient';
 
