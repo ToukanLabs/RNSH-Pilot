@@ -24,7 +24,6 @@ export const actions = {
 // ------------------------------------
 export default handleActions({
   [CREATE_PATIENT]: (state, action) => {
-    console.log(action.payload.patientName);
     return [
       ...state,
       { name: action.payload.patientName }
