@@ -14,19 +14,19 @@ import UnderMaintenanceView from 'views/UnderMaintenanceView';
 export default (
   <Route path='/' component={CoreLayout}>
     <IndexRoute component={HomeView} />
-    <Route path='/patient/:id' component={PatientView}>
-      <Route path='/patient/:id/background-history' component={UnderMaintenanceView} />
-      <Route path='/patient/:id/pathology' component={UnderMaintenanceView} />
-      <Route path='/patient/:id/imaging' component={UnderMaintenanceView} />
-      <Route path='/patient/:id/mdt' component={UnderMaintenanceView} />
-      <Route path='/patient/:id/blood-test' component={UnderMaintenanceView} />
-      <Route path='/patient/:id/surgery' component={UnderMaintenanceView} />
-      <Route path='/patient/:id/chemotherapy' component={UnderMaintenanceView} />
-      <Route path='/patient/:id/radiotherapy' component={UnderMaintenanceView} />
-      <Route path='/patient/:id/follow-up' component={UnderMaintenanceView} />
-      <Route path='/patient/:id/questionnaires' component={UnderMaintenanceView} />
-      <Route path='/patient/:id/vte' component={UnderMaintenanceView} />
-      <Route path='/patient/:id/bevacizumab' component={UnderMaintenanceView} />
+    <Route path='patient/:id' component={PatientView}>
+      <Route path='background-history' component={UnderMaintenanceView} />
+      <Route path='pathology' component={UnderMaintenanceView} />
+      <Route path='imaging' component={UnderMaintenanceView} />
+      <Route path='mdt' component={UnderMaintenanceView} />
+      <Route path='blood-test' component={UnderMaintenanceView} />
+      <Route path='surgery' component={UnderMaintenanceView} />
+      <Route path='chemotherapy' component={UnderMaintenanceView} />
+      <Route path='radiotherapy' component={UnderMaintenanceView} />
+      <Route path='follow-up' component={UnderMaintenanceView} />
+      <Route path='questionnaires' component={UnderMaintenanceView} />
+      <Route path='vte' component={UnderMaintenanceView} />
+      <Route path='bevacizumab' component={UnderMaintenanceView} />
     </Route>
   </Route>
 );
