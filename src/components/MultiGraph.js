@@ -83,26 +83,28 @@ class LineGraph extends Graph {
         .attr('clip-path', 'url(#clip)')
         .datum(this.data);
 
-    // var thisLineGraph = this;
+    var thisLineGraph = this;
 
     var gPoint = this.graphSvg.selectAll('.' + this.name + '.hoverable')
         .data(this.data)
         .enter().append('g')
-        .attr('class', this.name + ' hoverable');
-        // .on('mouseenter', function (e) {
-        //   var point = d3.select(this).select('.' + thisLineGraph.name + '.point.data');
-        //   var offset = document.getElementById(thisLineGraph.graphSvg.id).offsetTop;
-        //   var left = parseInt(point.attr('cx'), 10);
-        //   var top = parseInt(point.attr('cy'), 10) + parseInt(offset, 10) + thisLineGraph.offsetTop;
-        //
-        //   var content = '<b>' + thisLineGraph.displayName + ': </b><span class="value">' + e.data + '</span><br/>' +
-        //                 '<b>Date: </b><span class="value">' + e.date.getDate() + '/' + e.date.getMonth() + '/' + e.date.getFullYear() + '</span>';
-        //
-        //   nvtooltip.show([left, top], content);
-        // })
-        // .on('mouseleave', function (e) {
-        //   nvtooltip.cleanup();
-        // });
+        .attr('class', this.name + ' hoverable')
+        .on('mouseenter', function (e) {
+          var point = d3.select(this).select('.' + thisLineGraph.name + '.point.data');
+          var offset = document.getElementById(thisLineGraph.graphSvg.id).offsetTop;
+          var left = parseInt(point.attr('cx'), 10);
+          var top = parseInt(point.attr('cy'), 10) + parseInt(offset, 10) + thisLineGraph.offsetTop;
+
+          var content = '<b>' + thisLineGraph.displayName + ': </b><span class="value">' + e.data + '</span><br/>' +
+                        '<b>Date: </b><span class="value">' + e.date.getDate() + '/' + e.date.getMonth() + '/' + e.date.getFullYear() + '</span>';
+
+          thisLineGraph.tooltip = new Tooltip();
+          thisLineGraph.tooltip.show([left, top], content);
+        })
+        .on('mouseleave', function (e) {
+          thisLineGraph.tooltip.cleanup();
+          thisLineGraph.tooltip = undefined;
+        });
 
     gPoint.append('circle')
         .attr('class', this.name + ' point data')
@@ -183,29 +185,31 @@ class TimelineGraph extends Graph {
         .style('text-anchor', 'end')
         .text(this.displayName);
 
-    // var thisTimeGraph = this;
+    var thisTimeGraph = this;
 
     this.graphSvg.append('path')
         .attr('class', this.name + ' bar')
         .attr('clip-path', 'url(#clip)')
         .attr('transform', 'translate(0,' + this.offsetTop + ')')
-        .datum(this.data);
-        // .on('mouseenter', function (e) {
-        //   d3.select(this).select('.' + thisTimeGraph.name + '.point.data');
-        //
-        //   var offset = document.getElementById(thisTimeGraph.graphSvg.id).offsetTop;
-        //   var left = this.getPointAtLength(0).x;
-        //   var top = parseInt(this.getPointAtLength(0).y, 10) + parseInt(offset, 10) + thisTimeGraph.offsetTop;
-        //
-        //   var content = '<h3>' + thisTimeGraph.displayName + ': </h3> ' +
-        //                 '<b>Start: </b><span class="value">' + thisTimeGraph.data[0].date.getDate() + '/' + thisTimeGraph.data[0].date.getMonth() + '/' + thisTimeGraph.data[0].date.getFullYear() + '</span><br/>' +
-        //                 '<b>End: </b><span class="value">' + thisTimeGraph.data[1].date.getDate() + '/' + thisTimeGraph.data[1].date.getMonth() + '/' + thisTimeGraph.data[1].date.getFullYear() + '</span>';
-        //
-        //   nvtooltip.show([left, top], content);
-        // })
-        // .on('mouseleave', function (e) {
-        //   nvtooltip.cleanup();
-        // });
+        .datum(this.data)
+        .on('mouseenter', function (e) {
+          d3.select(this).select('.' + thisTimeGraph.name + '.point.data');
+
+          var offset = document.getElementById(thisTimeGraph.graphSvg.id).offsetTop;
+          var left = this.getPointAtLength(0).x;
+          var top = parseInt(this.getPointAtLength(0).y, 10) + parseInt(offset, 10) + thisTimeGraph.offsetTop;
+
+          var content = '<h3>' + thisTimeGraph.displayName + ': </h3> ' +
+                        '<b>Start: </b><span class="value">' + thisTimeGraph.data[0].date.getDate() + '/' + thisTimeGraph.data[0].date.getMonth() + '/' + thisTimeGraph.data[0].date.getFullYear() + '</span><br/>' +
+                        '<b>End: </b><span class="value">' + thisTimeGraph.data[1].date.getDate() + '/' + thisTimeGraph.data[1].date.getMonth() + '/' + thisTimeGraph.data[1].date.getFullYear() + '</span>';
+
+          thisTimeGraph.tooltip = new Tooltip();
+          thisTimeGraph.tooltip.show([left, top], content);
+        })
+        .on('mouseleave', function (e) {
+          thisTimeGraph.tooltip.cleanup();
+          thisTimeGraph.tooltip = undefined;
+        });
   }
 
   draw () {
@@ -238,8 +242,6 @@ class PointGraph extends Graph {
 
     this.processData();
 
-    console.log('ionit');
-
     this.y = d3.scale.linear()
       .range([this.height, 0]);
 
@@ -257,7 +259,7 @@ class PointGraph extends Graph {
         .style('text-anchor', 'end')
         .text(this.displayName);
 
-    // var thisPointGraph = this;
+    var thisPointGraph = this;
 
     this.graphSvg.selectAll('.' + this.name + '.point')
         .data(this.data)
@@ -265,29 +267,121 @@ class PointGraph extends Graph {
         .attr('class', this.name + ' point')
         .attr('clip-path', 'url(#clip)')
         .attr('transform', 'translate(0,' + this.offsetTop + ')')
-        .attr('r', 4);
-        // .on('mouseenter', function (e) {
-        //   var point = d3.select(this);
-        //
-        //   var offset = document.getElementById(thisPointGraph.graphSvg.id).offsetTop;
-        //   var left = parseInt(point.attr('cx'), 10);
-        //   var top = parseInt(point.attr('cy'), 10) + parseInt(offset, 10) + thisPointGraph.offsetTop;
-        //
-        //   var content = '<h3>' + thisPointGraph.data[0].hoverTitle + '</h3>' +
-        //                 '<b>Date: </b><span class="value">' + thisPointGraph.data[0].date.getDate() + '/' + thisPointGraph.data[0].date.getMonth() + '/' + thisPointGraph.data[0].date.getFullYear() + '</span>';
-        //
-        //   nvtooltip.show([left, top], content);
-        // })
-        // .on('mouseleave', function (e) {
-        //   nvtooltip.cleanup();
-        // });
-  }
+        .attr('r', 4)
+        .on('mouseenter', function (e) {
+          var point = d3.select(this);
+
+          var offset = document.getElementById(thisPointGraph.graphSvg.id).offsetTop;
+          var left = parseInt(point.attr('cx'), 10);
+          var top = parseInt(point.attr('cy'), 10) + parseInt(offset, 10) + thisPointGraph.offsetTop;
+
+          var content = '<h3>' + thisPointGraph.data[0].hoverTitle + '</h3>' +
+                        '<b>Date: </b><span class="value">' + thisPointGraph.data[0].date.getDate() + '/' + thisPointGraph.data[0].date.getMonth() + '/' + thisPointGraph.data[0].date.getFullYear() + '</span>';
+
+          thisPointGraph.tooltip = new Tooltip();
+          thisPointGraph.tooltip.show([left, top], content);
+        })
+        .on('mouseleave', function (e) {
+          thisPointGraph.tooltip.cleanup();
+          thisPointGraph.tooltip = undefined;
+        });
+  };
 
   draw () {
     this.graphSvg.selectAll('circle.' + this.name + '.point').attr('cx', function (d) { return this.x(d.date); }.bind(this));
     this.graphSvg.selectAll('circle.' + this.name + '.point').attr('cy', function (d) { return this.y(d.data); }.bind(this));
   }
 }
+
+class Tooltip {
+
+  getWidth (elem) {
+    return window.getComputedStyle(elem).width.replace('px', '');
+  };
+
+  getHeight (elem) {
+    return window.getComputedStyle(elem).height.replace('px', '');
+  };
+
+  getPaddingTop (elem) {
+    return window.getComputedStyle(elem).paddingTop.replace('px', '');
+  };
+
+  getPaddingRight (elem) {
+    return window.getComputedStyle(elem).paddingRight.replace('px', '');
+  };
+
+  getPaddingBottom (elem) {
+    return window.getComputedStyle(elem).paddingBottom.replace('px', '');
+  };
+
+  getPaddingLeft (elem) {
+    return window.getComputedStyle(elem).paddingLeft.replace('px', '');
+  };
+
+  show (pos, content, gravity, dist) {
+    var container = document.createElement('div');
+    container.classList.add('nvtooltip');
+
+    gravity = gravity || 's';
+    dist = dist || 20;
+
+    container.innerHTML = content;
+    container.style.left = '-1000px';
+    container.style.top = '-1000px';
+    container.style.opacity = 0;
+    document.body.appendChild(container);
+
+    var height = this.getHeight(container) +
+        parseInt(this.getPaddingTop(container), 10) +
+        parseInt(this.getPaddingBottom(container), 10);
+    var width = this.getWidth(container) +
+        parseInt(this.getPaddingLeft(container), 10) +
+        parseInt(this.getPaddingRight(container), 10);
+    var windowWidth = window.innerWidth;
+    var windowHeight = window.innerHeight;
+    var scrollTop = document.body.scrollTop; // TODO: also adjust horizontal scroll
+    let left, top;
+
+    console.log('---');
+    console.log(container.width);
+
+    // TODO: implement other gravities
+    switch (gravity) {
+      case 'e':
+      case 'w':
+      case 'n':
+        left = pos[0] - (width / 2);
+        top = pos[1] + dist;
+        if (left < 0) left = 5;
+        if (left + width > windowWidth) left = windowWidth - width - 5;
+        if (scrollTop + windowHeight < top + height) top = pos[1] - height - dist;
+        break;
+      case 's':
+        left = pos[0] - (width / 2);
+        top = pos[1] - height - dist;
+        if (left < 0) left = 5;
+        if (left + width > windowWidth) left = windowWidth - width - 5;
+        if (scrollTop > top) top = pos[1] + dist;
+        break;
+    }
+
+    container.style.left = '' + parseInt(left, 10) + 'px';
+    container.style.top = '' + parseInt(top, 10) + 'px';
+    container.style.opacity = 1;
+
+    this.container = container;
+  };
+
+  cleanup () {
+    var tooltip = this.container;
+    tooltip.style.opacity = 0;
+
+    setTimeout(function () {
+      tooltip.remove();
+    }, 200);
+  };
+};
 
 export default class MultiGraph extends Component {
   constructor () {
@@ -471,5 +565,5 @@ export default class MultiGraph extends Component {
 }
 
 MultiGraph.propTypes = {
-  graphs: React.PropTypes.object
+  graphs: React.PropTypes.array
 };
