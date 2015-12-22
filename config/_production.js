@@ -7,5 +7,6 @@ export default (config) => ({
     chunks : true,
     chunkModules : true,
     colors : true
-  }
+  },
+  compiler_public_path     : 'https://fiviumaustralia.github.io/RNSH-Pilot/'
 });
