@@ -343,9 +343,6 @@ class Tooltip {
     var scrollTop = document.body.scrollTop; // TODO: also adjust horizontal scroll
     let left, top;
 
-    console.log('---');
-    console.log(container.width);
-
     // TODO: implement other gravities
     switch (gravity) {
       case 'e':
