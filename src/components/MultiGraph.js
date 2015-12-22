@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-import fetch from 'isomorphic-fetch';
 var d3 = require('d3');
 
 let multiGraphId = 0;
 
 class Graph {
-  constructor() {
+  constructor () {
     this.parseDate = d3.time.format('%d-%b-%y').parse;
   }
 
-  getHeight() {
+  getHeight () {
     return this.height;
   }
 }
 
 class LineGraph extends Graph {
-  constructor(name, displayName, data, yAxisLabel, offsetTop, x) {
+  constructor (name, displayName, data, yAxisLabel, offsetTop, x) {
     super();
     this.height = 120;
 
@@ -27,12 +26,12 @@ class LineGraph extends Graph {
     this.x = x;
   };
 
-  init(graphSvg) {
+  init (graphSvg) {
     this.graphSvg = graphSvg;
 
-    var newData = []
+    var newData = [];
 
-    this.rawData.forEach(function(d) {
+    this.rawData.forEach(function (d) {
       newData.push({
         date: this.parseDate(d.date),
         data: +d.data
@@ -44,7 +43,7 @@ class LineGraph extends Graph {
     this.y = d3.scale.linear()
         .range([this.height, 0]);
 
-    this.y.domain(d3.extent(this.data, function(d) {
+    this.y.domain(d3.extent(this.data, function (d) {
       return d.data + ((d.data / 100) * 10);
     }));
 
@@ -54,11 +53,11 @@ class LineGraph extends Graph {
         .ticks(4);
 
     this.line = d3.svg.line()
-        .x(function(d) { return this.x(d.date); }.bind(this))
-        .y(function(d) { return this.y(d.data); }.bind(this));
+        .x(function (d) { return this.x(d.date); }.bind(this))
+        .y(function (d) { return this.y(d.data); }.bind(this));
 
     var gGraphInfo = this.graphSvg.append('g')
-        .attr('class', this.name  + ' y axis')
+        .attr('class', this.name + ' y axis')
         .attr('transform', 'translate(60, ' + this.offsetTop + ')')
         .call(this.yaxis);
 
@@ -84,29 +83,26 @@ class LineGraph extends Graph {
         .attr('clip-path', 'url(#clip)')
         .datum(this.data);
 
-    var thisLineGraph = this;
+    // var thisLineGraph = this;
 
     var gPoint = this.graphSvg.selectAll('.' + this.name + '.hoverable')
         .data(this.data)
         .enter().append('g')
-        .attr('class', this.name + ' hoverable')
-        .on('mouseenter', function(e) {
-
-          var point = d3.select(this).select('.' + thisLineGraph.name + '.point.data');
-
-          var offset = document.getElementById(thisLineGraph.graphSvg.id).offsetTop,
-              left = parseInt(point.attr('cx')),
-              top = parseInt(point.attr('cy')) + parseInt(offset) + thisLineGraph.offsetTop;
-
-
-          var content = '<b>' + thisLineGraph.displayName + ': </b><span class="value">' + e.data + '</span><br/>' +
-                        '<b>Date: </b><span class="value">' + e.date.getDate() + '/' + e.date.getMonth() + '/' + e.date.getFullYear() + '</span>';
-
-          nvtooltip.show([left, top], content);
-        })
-        .on('mouseleave', function(e) {
-          nvtooltip.cleanup();
-        });
+        .attr('class', this.name + ' hoverable');
+        // .on('mouseenter', function (e) {
+        //   var point = d3.select(this).select('.' + thisLineGraph.name + '.point.data');
+        //   var offset = document.getElementById(thisLineGraph.graphSvg.id).offsetTop;
+        //   var left = parseInt(point.attr('cx'), 10);
+        //   var top = parseInt(point.attr('cy'), 10) + parseInt(offset, 10) + thisLineGraph.offsetTop;
+        //
+        //   var content = '<b>' + thisLineGraph.displayName + ': </b><span class="value">' + e.data + '</span><br/>' +
+        //                 '<b>Date: </b><span class="value">' + e.date.getDate() + '/' + e.date.getMonth() + '/' + e.date.getFullYear() + '</span>';
+        //
+        //   nvtooltip.show([left, top], content);
+        // })
+        // .on('mouseleave', function (e) {
+        //   nvtooltip.cleanup();
+        // });
 
     gPoint.append('circle')
         .attr('class', this.name + ' point data')
@@ -128,22 +124,15 @@ class LineGraph extends Graph {
         .attr('r', 10);
   };
 
-  draw() {
+  draw () {
     this.graphSvg.select('path.' + this.name + '.line').attr('d', this.line);
-    this.graphSvg.selectAll('circle.' + this.name + '.point').attr('cx', function(d) { return this.x(d.date); }.bind(this));
-    this.graphSvg.selectAll('circle.' + this.name + '.point').attr('cy', function(d) { return this.y(d.data); }.bind(this));
+    this.graphSvg.selectAll('circle.' + this.name + '.point').attr('cx', function (d) { return this.x(d.date); }.bind(this));
+    this.graphSvg.selectAll('circle.' + this.name + '.point').attr('cy', function (d) { return this.y(d.data); }.bind(this));
   };
 };
 
-
-
-
-
-
-
-
 class TimelineGraph extends Graph {
-  constructor(name, displayName, data, offsetTop, x) {
+  constructor (name, displayName, data, offsetTop, x) {
     super();
     this.height = 90;
 
@@ -154,7 +143,7 @@ class TimelineGraph extends Graph {
     this.x = x;
   }
 
-  processData() {
+  processData () {
     var start = {
       date: this.parseDate(this.rawData.start),
       data: 1
@@ -168,7 +157,7 @@ class TimelineGraph extends Graph {
     this.data = [start, end];
   }
 
-  init(graphSvg) {
+  init (graphSvg) {
     this.graphSvg = graphSvg;
 
     this.processData();
@@ -179,11 +168,11 @@ class TimelineGraph extends Graph {
     this.y.domain([0, 2]);
 
     this.line = d3.svg.line()
-        .x(function(d) { return this.x(d.date); }.bind(this))
-        .y(function(d) { return this.y(d.data); }.bind(this));
+        .x(function (d) { return this.x(d.date); }.bind(this))
+        .y(function (d) { return this.y(d.data); }.bind(this));
 
     var gGraphInfo = this.graphSvg.append('g')
-        .attr('class', this.name  + ' y axis')
+        .attr('class', this.name + ' y axis')
         .attr('transform', 'translate(60, ' + this.offsetTop + ')');
 
     gGraphInfo.append('text')
@@ -194,44 +183,38 @@ class TimelineGraph extends Graph {
         .style('text-anchor', 'end')
         .text(this.displayName);
 
-    var thisTimeGraph = this;
+    // var thisTimeGraph = this;
 
-    var myPath = this.graphSvg.append('path')
+    this.graphSvg.append('path')
         .attr('class', this.name + ' bar')
         .attr('clip-path', 'url(#clip)')
         .attr('transform', 'translate(0,' + this.offsetTop + ')')
-        .datum(this.data)
-        .on('mouseenter', function(e) {
-          var point = d3.select(this).select('.' + thisTimeGraph.name + '.point.data');
-
-          var offset = document.getElementById(thisTimeGraph.graphSvg.id).offsetTop,
-              left = this.getPointAtLength(0).x,
-              top = parseInt(this.getPointAtLength(0).y) + parseInt(offset) + thisTimeGraph.offsetTop;
-
-          var content = '<h3>' + thisTimeGraph.displayName + ': </h3> ' +
-                        '<b>Start: </b><span class="value">' + thisTimeGraph.data[0].date.getDate() + '/' + thisTimeGraph.data[0].date.getMonth() + '/' + thisTimeGraph.data[0].date.getFullYear() + '</span><br/>' +
-                        '<b>End: </b><span class="value">' + thisTimeGraph.data[1].date.getDate() + '/' + thisTimeGraph.data[1].date.getMonth() + '/' + thisTimeGraph.data[1].date.getFullYear() + '</span>';
-
-          nvtooltip.show([left, top], content);
-        })
-        .on('mouseleave', function(e) {
-          nvtooltip.cleanup();
-        });
+        .datum(this.data);
+        // .on('mouseenter', function (e) {
+        //   d3.select(this).select('.' + thisTimeGraph.name + '.point.data');
+        //
+        //   var offset = document.getElementById(thisTimeGraph.graphSvg.id).offsetTop;
+        //   var left = this.getPointAtLength(0).x;
+        //   var top = parseInt(this.getPointAtLength(0).y, 10) + parseInt(offset, 10) + thisTimeGraph.offsetTop;
+        //
+        //   var content = '<h3>' + thisTimeGraph.displayName + ': </h3> ' +
+        //                 '<b>Start: </b><span class="value">' + thisTimeGraph.data[0].date.getDate() + '/' + thisTimeGraph.data[0].date.getMonth() + '/' + thisTimeGraph.data[0].date.getFullYear() + '</span><br/>' +
+        //                 '<b>End: </b><span class="value">' + thisTimeGraph.data[1].date.getDate() + '/' + thisTimeGraph.data[1].date.getMonth() + '/' + thisTimeGraph.data[1].date.getFullYear() + '</span>';
+        //
+        //   nvtooltip.show([left, top], content);
+        // })
+        // .on('mouseleave', function (e) {
+        //   nvtooltip.cleanup();
+        // });
   }
 
-  draw() {
+  draw () {
     this.graphSvg.select('path.' + this.name + '.bar').attr('d', this.line);
   }
 };
 
-
-
-
-
-
-
 class PointGraph extends Graph {
-  constructor(name, displayName, data, offsetTop, x) {
+  constructor (name, displayName, data, offsetTop, x) {
     super();
     this.height = 80;
 
@@ -242,19 +225,20 @@ class PointGraph extends Graph {
     this.x = x;
   }
 
-  processData() {
+  processData () {
     this.data = [{
       date: this.parseDate(this.rawData.date),
       data: 1,
-      hoverTitle: this.rawData.hoverTitle,
+      hoverTitle: this.rawData.hoverTitle
     }];
   }
 
-  init(graphSvg) {
-
+  init (graphSvg) {
     this.graphSvg = graphSvg;
 
     this.processData();
+
+    console.log('ionit');
 
     this.y = d3.scale.linear()
       .range([this.height, 0]);
@@ -262,7 +246,7 @@ class PointGraph extends Graph {
     this.y.domain([0, 2]);
 
     var gGraphInfo = this.graphSvg.append('g')
-        .attr('class', this.name  + ' y axis')
+        .attr('class', this.name + ' y axis')
         .attr('transform', 'translate(60, ' + this.offsetTop + ')');
 
     gGraphInfo.append('text')
@@ -273,7 +257,7 @@ class PointGraph extends Graph {
         .style('text-anchor', 'end')
         .text(this.displayName);
 
-    var thisPointGraph = this;
+    // var thisPointGraph = this;
 
     this.graphSvg.selectAll('.' + this.name + '.point')
         .data(this.data)
@@ -281,41 +265,32 @@ class PointGraph extends Graph {
         .attr('class', this.name + ' point')
         .attr('clip-path', 'url(#clip)')
         .attr('transform', 'translate(0,' + this.offsetTop + ')')
-        .attr('r', 4)
-        .on('mouseenter', function(e) {
-
-          var point = d3.select(this);
-
-          var offset = document.getElementById(thisPointGraph.graphSvg.id).offsetTop,
-              left = parseInt(point.attr('cx')),
-              top = parseInt(point.attr('cy')) + parseInt(offset) + thisPointGraph.offsetTop;
-
-
-          var content = '<h3>' + thisPointGraph.data[0].hoverTitle + '</h3>' +
-                        '<b>Date: </b><span class="value">' + thisPointGraph.data[0].date.getDate() + '/' + thisPointGraph.data[0].date.getMonth() + '/' + thisPointGraph.data[0].date.getFullYear() + '</span>';
-
-          nvtooltip.show([left, top], content);
-        })
-        .on('mouseleave', function(e) {
-          nvtooltip.cleanup();
-        });
+        .attr('r', 4);
+        // .on('mouseenter', function (e) {
+        //   var point = d3.select(this);
+        //
+        //   var offset = document.getElementById(thisPointGraph.graphSvg.id).offsetTop;
+        //   var left = parseInt(point.attr('cx'), 10);
+        //   var top = parseInt(point.attr('cy'), 10) + parseInt(offset, 10) + thisPointGraph.offsetTop;
+        //
+        //   var content = '<h3>' + thisPointGraph.data[0].hoverTitle + '</h3>' +
+        //                 '<b>Date: </b><span class="value">' + thisPointGraph.data[0].date.getDate() + '/' + thisPointGraph.data[0].date.getMonth() + '/' + thisPointGraph.data[0].date.getFullYear() + '</span>';
+        //
+        //   nvtooltip.show([left, top], content);
+        // })
+        // .on('mouseleave', function (e) {
+        //   nvtooltip.cleanup();
+        // });
   }
 
-  draw() {
-    this.graphSvg.selectAll('circle.' + this.name + '.point').attr('cx', function(d) { return this.x(d.date); }.bind(this));
-    this.graphSvg.selectAll('circle.' + this.name + '.point').attr('cy', function(d) { return this.y(d.data); }.bind(this));
+  draw () {
+    this.graphSvg.selectAll('circle.' + this.name + '.point').attr('cx', function (d) { return this.x(d.date); }.bind(this));
+    this.graphSvg.selectAll('circle.' + this.name + '.point').attr('cy', function (d) { return this.y(d.data); }.bind(this));
   }
 }
 
-
-
-
-
-
-
-
-export default class MultiGraph2 extends Component {
-  constructor() {
+export default class MultiGraph extends Component {
+  constructor () {
     super();
     this.render = this.render.bind(this);
     this.id = this.getComponentId();
@@ -326,22 +301,26 @@ export default class MultiGraph2 extends Component {
     this.width = 800;
   };
 
-  getComponentId() {
+  componentDidMount () {
+    this.init();
+    this.draw();
+  };
+
+  getComponentId () {
     return 'multigraph' + multiGraphId++;
   };
 
-  createGraphSVG() {
+  createGraphSVG () {
     this.svg = d3.select('#' + this.id).append('svg');
   };
 
-
-  registerGraphs() {
+  registerGraphs () {
     var cumulativeHeight = 0;
-    var counter = 0
-
+    var counter = 0;
     var thisMultiGraph = this;
+    var graphs = this.props.graphs;
 
-    this.props.graphs.forEach(function(d) {
+    graphs.forEach(function (d) {
       let graph;
 
       switch (d.type) {
@@ -351,7 +330,7 @@ export default class MultiGraph2 extends Component {
             d.displayName,
             d.data,
             d.yAxisLabel,
-            (cumulativeHeight + (thisMultiGraph.padding*counter++)),
+            (cumulativeHeight + (thisMultiGraph.padding * counter++)),
             thisMultiGraph.x
           );
           break;
@@ -360,7 +339,7 @@ export default class MultiGraph2 extends Component {
             d.name,
             d.displayName,
             d.data[0],
-            (cumulativeHeight + (thisMultiGraph.padding*counter++)),
+            (cumulativeHeight + (thisMultiGraph.padding * counter++)),
             thisMultiGraph.x
           );
           break;
@@ -369,12 +348,12 @@ export default class MultiGraph2 extends Component {
             d.name,
             d.displayName,
             d.data[0],
-            (cumulativeHeight + (thisMultiGraph.padding*counter++)),
+            (cumulativeHeight + (thisMultiGraph.padding * counter++)),
             thisMultiGraph.x
           );
           break;
         default:
-          throw 'Unknown graph type';
+          throw new Error('Unknown graph type');
       }
 
       thisMultiGraph.graphs.push(graph);
@@ -385,10 +364,10 @@ export default class MultiGraph2 extends Component {
     this.graphCount = counter;
   };
 
-  initGraphs() {
+  initGraphs () {
     var cumulativeHeight = 0;
-    var counter = 0
-    this.graphs.forEach(function(d) {
+    var counter = 0;
+    this.graphs.forEach(function (d) {
       d.init(this.graphSvg);
       cumulativeHeight += d.getHeight();
 
@@ -399,16 +378,15 @@ export default class MultiGraph2 extends Component {
           .attr('y1', cumulativeHeight + (this.padding * counter) - (this.padding / 2))
           .attr('x2', this.width)
           .attr('y2', cumulativeHeight + (this.padding * counter) - (this.padding / 2));
-
     }.bind(this));
   };
 
-  removeSvg() {
+  removeSvg () {
     d3.select('#' + this.id + ' svg').remove();
     this.graphSvg = undefined;
   };
 
-  createSvg() {
+  createSvg () {
     this.graphSvg = d3.select('#' + this.id).append('svg')
         .attr('id', this.id + 'svg')
         .attr('width', this.width)
@@ -419,7 +397,7 @@ export default class MultiGraph2 extends Component {
     this.graphSvg.id = this.id + 'svg';
   };
 
-  createClipPath() {
+  createClipPath () {
     this.graphSvg.append('clipPath')
         .attr('id', 'clip')
       .append('rect')
@@ -429,9 +407,9 @@ export default class MultiGraph2 extends Component {
         .attr('height', this.height + (this.padding * this.graphCount));
   };
 
-  enableZoom() {
+  enableZoom () {
     this.zoom = d3.behavior.zoom()
-      .on('zoom', function()  {
+      .on('zoom', function () {
         this.draw();
       }.bind(this));
 
@@ -444,11 +422,7 @@ export default class MultiGraph2 extends Component {
         .call(this.zoom);
   };
 
-  init() {
-    var height = 120,
-        padding = 10,
-        graphCount = 5;
-
+  init () {
     this.x = d3.time.scale()
         .range([0, this.width]);
 
@@ -479,14 +453,14 @@ export default class MultiGraph2 extends Component {
     this.initGraphs();
   };
 
-  draw() {
+  draw () {
     this.graphSvg.select('g.x.axis').call(this.xAxis);
-    this.graphs.forEach(function(d) {
+    this.graphs.forEach(function (d) {
       d.draw();
-    }.bind(this));
+    });
   };
 
-  render() {
+  render () {
     this.init();
     this.draw();
     return (
@@ -495,3 +469,7 @@ export default class MultiGraph2 extends Component {
     );
   }
 }
+
+MultiGraph.propTypes = {
+  graphs: React.PropTypes.object
+};

@@ -1,38 +1,18 @@
-import React, { Component } from 'react';
-import fetch from 'isomorphic-fetch';
-import MultiGraph from './components/MultiGraph';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
+import { syncReduxAndRouter } from 'redux-simple-router';
+import routes from './routes';
+import Root from './containers/Root';
+import configureStore from './redux/configureStore';
 
-export default class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      graphs: []
-    };
-  }
+const history = createBrowserHistory();
+const store = configureStore(window.__INITIAL_STATE__);
 
+syncReduxAndRouter(history, store, (state) => state.router);
 
-  componentDidMount() {
-    var thisApp = this;
-    fetch('static/data/graphdata.json')
-      .then(function(response) {
-        if (response.status >= 400) {
-          throw new Error('Bad response from server');
-        }
-        return response.json();
-      })
-      .then(function(graphData) {
-        thisApp.setState({
-          graphs: graphData.graphData.graphs
-        });
-      });
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>RNSH Pilot</h1>
-        <MultiGraph graphs={this.state.graphs} />
-      </div>
-    );
-  }
-}
+// Render the React application to the DOM
+ReactDOM.render(
+  <Root history={history} routes={routes} store={store} />,
+  document.getElementById('root')
+);
