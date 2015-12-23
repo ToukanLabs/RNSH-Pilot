@@ -1,0 +1,20 @@
+@import '../styles/colors';
+
+.phc-container {
+  background-color: $patient-heading-colour;
+}
+
+.phc-detail-down-icon {
+  background-color: $patient-heading-colour;
+  display: inline-block;
+  width: 1%;
+  position: absolute;
+  border: solid 1px;
+  height: 16px;
+}
+
+
+
+.phc-details {
+  height:16px; //TODO fix up this
+}

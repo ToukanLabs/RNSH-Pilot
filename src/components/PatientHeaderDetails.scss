@@ -1,0 +1,21 @@
+@import '../styles/colors';
+
+.phd-container {
+  background-color: $patient-heading-colour;
+  display: inline-block;
+  border: solid 1px;
+  width: 19.8%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 2px;
+  font-size: 0.7em;
+}
+
+.phd-header-data {
+  font-weight: bold;
+
+}
+.phd-header-label {
+  font-style: italic;
+}
