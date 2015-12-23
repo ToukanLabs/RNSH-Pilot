@@ -21,7 +21,7 @@ export class HomeView extends React.Component {
     var patientList = () => {
       return this.props.patients.map((p) => {
         return (
-          <div>
+          <div key={p.id}>
             <Link to={'/patient/' + p.id}>{p.name}</Link>
             <br/>
           </div>
