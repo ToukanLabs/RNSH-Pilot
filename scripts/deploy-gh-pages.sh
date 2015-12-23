@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e # exit with nonzero exit code if anything fails
 
+cp -R dist/RNSH-Pilot/* dist
+rm -rf dist/RNSH-Pilot/
+
 # go to the dist directory and create a *new* Git repo
 cd dist
 git init
