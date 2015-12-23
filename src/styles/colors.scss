@@ -1,6 +1,8 @@
-$heading-colour: #f08e33;
+$text-color: rgb(71, 88, 96);
 
-$patient-heading-colour: #ec9f57;
-
+$heading-colour: #eeb886;
+$patient-heading-colour: darken($heading-colour, 10);
+$patient-sidemenu-colour: lighten($heading-colour, 15);
+$patient-sidemenu-link-colour: darken($heading-colour, 30);
 
 $field-back-color: lighten($heading-colour,35);

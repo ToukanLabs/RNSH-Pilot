@@ -7,7 +7,6 @@
 .ph-big-field {
   font-size: 2em;
   font-weight: bold;
-  width: 200px;
   display: inline-block;
   margin-top: 5px;
   margin-left: 10px;
@@ -15,9 +14,15 @@
 }
 
 .ph-field {
-  width: 250px;
+  width: 200px;
   display: inline-block;
   margin-left: 10px;
+  float: right;
+  padding-top: 0.9em;
+}
+
+.ph-field label {
+  font-weight: normal;
 }
 
 .ph-data {

@@ -14,7 +14,8 @@ export const initialState = {
       TYALGUM NSW 2484`,
         phone: '(02) 9372 4355',
         email: 'raphael.trueman@rnsh.pilot.com',
-        gender: 'M'
+        gender: 'M',
+        tumorType: 'Prosate'
       },
       {
         id: 2,
@@ -25,7 +26,8 @@ export const initialState = {
       COWANGIE VIC 3506`,
         phone: '(02) 9372 6785',
         email: 'jon.ingram@rnsh.pilot.com',
-        gender: 'M'
+        gender: 'M',
+        tumorType: 'Prostate'
       },
       {
         id: 3,
@@ -36,7 +38,8 @@ export const initialState = {
       KOOYONG VIC 3144`,
         phone: '(02) 9372 2342',
         email: 'anabelle.elliott@rnsh.pilot.com',
-        gender: 'F'
+        gender: 'F',
+        tumorType: 'CNS'
       },
       {
         id: 4,
@@ -47,7 +50,8 @@ export const initialState = {
       CUMBOOGLE NSW 2830`,
         phone: '(02) 9372 4567',
         email: 'gary.earl@rnsh.pilot.com',
-        gender: 'M'
+        gender: 'M',
+        tumorType: 'CNS'
       },
       {
         id: 5,
@@ -58,7 +62,8 @@ export const initialState = {
       PASTORIA VIC 3444`,
         phone: '(02) 9372 6234',
         email: 'madonna.dawson@rnsh.pilot.com',
-        gender: 'F'
+        gender: 'F',
+        tumorType: 'CNS'
       },
       {
         id: 6,
@@ -69,7 +74,8 @@ export const initialState = {
       PATONGA NSW 2256`,
         phone: '(02) 9372 5555',
         email: 'felix.sudworth@rnsh.pilot.com',
-        gender: 'M'
+        gender: 'M',
+        tumorType: 'CNS'
       },
       {
         id: 7,
@@ -80,7 +86,8 @@ export const initialState = {
       JURIEN BAY WA 6516`,
         phone: '(02) 9372 3335',
         email: 'bill.snoogie@rnsh.pilot.com',
-        gender: 'M'
+        gender: 'M',
+        tumorType: 'Prostate'
       },
       {
         id: 8,
@@ -91,7 +98,8 @@ export const initialState = {
       HOME HILL QLD 4806`,
         phone: '(02) 9372 9000',
         email: 'lenora.christians@rnsh.pilot.com',
-        gender: 'F'
+        gender: 'F',
+        tumorType: 'CNS'
       },
       {
         id: 9,
@@ -102,7 +110,8 @@ export const initialState = {
       PARKINSON QLD 4115`,
         phone: '(02) 9372 0078',
         email: 'karlene.cotterill@rnsh.pilot.com',
-        gender: 'F'
+        gender: 'F',
+        tumorType: 'CNS'
       },
       {
         id: 10,
@@ -113,7 +122,8 @@ export const initialState = {
       FLINDERS VIEW QLD 4305`,
         phone: '(02) 9372 6745',
         email: 'kelcey.walker@rnsh.pilot.com',
-        gender: 'F'
+        gender: 'F',
+        tumorType: 'CNS'
       }
     ]
   },

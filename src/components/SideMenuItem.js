@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
+import styles from './SideMenuItem.scss';
 
 export default class SideMenuItem extends Component {
   render () {
@@ -12,16 +13,16 @@ export default class SideMenuItem extends Component {
 
     if (this.props.linkTo === this.props.currentRouterPath) {
       return (
-        <li>
-          <FontAwesome name={this.props.icon}/>
+        <li className={styles['smi-menu-item']}>
+          <FontAwesome name={this.props.icon} className={styles['smi-icon']}/>
           {displayText()}
         </li>
       );
     } else {
       return (
-        <li>
+        <li className={styles['smi-menu-item']}>
           <Link to={this.props.linkTo}>
-            <FontAwesome name={this.props.icon}/>
+            <FontAwesome name={this.props.icon} className={styles['smi-icon']}/>
             {displayText()}
           </Link>
         </li>

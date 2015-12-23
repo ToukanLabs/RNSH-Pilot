@@ -1,8 +1,46 @@
 @import '../styles/colors';
+@import '../styles/measures';
 
-.gh-border {
+.gh-header {
+  height: $global-header-height;
   border-bottom: solid;
   border-bottom-color:  darken($heading-colour, 20);
   padding-bottom: 5px;
   background-color: $heading-colour;
+}
+
+.gh-home-img {
+  display: inline-block;
+  padding: 6px 0 0 2px;
+  float: left;
+  margin-right: 0.5em;
+}
+
+.gh-header-content {
+  position: relative;
+  display: inline-block;
+  padding-top: 25px;
+  width: 94%;
+}
+
+.gh-menu-container,
+.gh-search-container,
+.gh-user-container {
+  display: inline;
+  margin: 0 10px 0 10px;
+}
+
+.gh-user-container {
+  right: 0;
+  position: absolute;
+}
+
+.gh-search-container input {
+  width: 650px;
+}
+
+.gh-header-content input,
+.gh-header-content select,
+.gh-header-content .fa {
+  font-size: 1.3em;
 }

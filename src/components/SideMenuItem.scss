@@ -1,0 +1,17 @@
+@import '../styles/colors';
+
+.smi-menu-item {
+  padding: 0.3em;
+}
+
+.smi-icon {
+  margin-right: 0.3em;
+}
+
+.smi-menu-item a {
+  color: $patient-sidemenu-link-colour;
+}
+
+.smi-menu-item a:hover {
+  color: darken($patient-sidemenu-link-colour, 20);
+}

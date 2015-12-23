@@ -4,9 +4,18 @@ import styles from './GlobalSearch.scss';
 
 export default class GlobalSearch extends Component {
   render () {
-    return <div>
-    <FontAwesome name={this.props.icon} className={styles['gs-icon']}/><input placeholder={this.props.placeholder} className={styles['gs-input']}/>
-    </div>;
+    return (
+      <span>
+        <FontAwesome
+          name={this.props.icon}
+          className={styles['gs-icon']}
+          />
+        <input
+          placeholder={this.props.placeholder}
+          className={styles['gs-input']}
+          />
+      </span>
+    );
   };
 };
 

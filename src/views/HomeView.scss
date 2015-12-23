@@ -1,8 +1,32 @@
-.counter {
+.hv-patient-list {
+  text-align: center;
+}
+
+.hv-patient-search-results h2 {
+  font-size: 2.3125rem;
+  margin-bottom: 0.2em;
+}
+
+.hv-patient-search-result {
+  margin: 0 0 20px 0;
+}
+
+.hv-gender {
+  margin-left: 0.4em;
+  font-size: 0.7em;
+}
+
+.hv-label {
+  display: inline;
   font-weight: bold;
 }
 
-.counter--green {
-  composes: counter;
-  color: rgb(25,200,25);
+.hv-value {
+  margin-right: 10px;
+}
+
+.hv-tumortype {
+  display: block;
+  font-weight: bold;
+  font-style: italic;
 }

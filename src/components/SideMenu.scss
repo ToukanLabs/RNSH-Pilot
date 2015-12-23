@@ -1,28 +1,32 @@
 @import '../styles/measures';
+@import '../styles/colors';
+
+.sm-expanded,
+.sm-collapsed {
+  height: 100%;
+  float: left;
+  background-color: $patient-sidemenu-colour;
+  padding: 0.2em;
+}
 
 .sm-expanded {
   width: $patient-sidemenu-width-expanded;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-  height: 100%;
-  float: left;
 }
 
 .sm-collapsed {
   width: $patient-sidemenu-width-collapsed;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-  height: 100%;
-  float: left;
 }
 
 .sm-header {
-  background-color: #999999;
-  border: 3px solid black;
+  font-size: 1.3em;
   position: relative;
+  padding: 0.2em;
+  border-bottom: 1px solid rgb(194, 194, 194);
+  margin-bottom: 0.4em;
 }
 
 .sm-content {
-  background-color: #cccccc;
-  border: 3px solid black;
+  padding: 0.2em;
 }
 
 .sm-collapsed .sm-header h3 {

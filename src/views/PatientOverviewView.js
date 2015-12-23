@@ -9,7 +9,11 @@ const mapStateToProps = (state) => ({
 export default class PatientOverviewView extends Component {
   render () {
     return (
-      <MultiGraph graphs={this.props.graphs} />
+      <div>
+        <h1>Patient Overview</h1>
+        <MultiGraph graphs={this.props.graphs} />
+      </div>
+
     );
   }
 }

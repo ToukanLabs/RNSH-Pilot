@@ -1,5 +1,9 @@
 @import '../styles/measures';
 
+.pv-patient-content {
+  padding: 1em;
+}
+
 .pv-patient-content.pv-expanded {
   margin-left: $patient-sidemenu-width-expanded;
   width: calc(99% - $patient-sidemenu-width-expanded);
