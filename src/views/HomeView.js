@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { actions as patientActions } from '../redux/modules/patient';
 // import styles from './HomeView.scss';
-import MultiGraph from '../components/MultiGraph';
+// import MultiGraph from '../components/MultiGraph';
 // import CreatePatient from '../components/CreatePatient';
 
 // We define mapStateToProps where we'd normally use
@@ -12,19 +12,30 @@ import MultiGraph from '../components/MultiGraph';
 // the component can be tested w/ and w/o being connected.
 // See: http://rackt.github.io/redux/docs/recipes/WritingTests.html
 const mapStateToProps = (state) => ({
-  graphs: state.graphs
+  graphs: state.graphs,
+  patients: state.patients.searchResults
 });
 
 export class HomeView extends React.Component {
   render () {
+    var patientList = () => {
+      return this.props.patients.map((p) => {
+        return (
+          <div>
+            <Link to={'/patient/' + p.id}>{p.name}</Link>
+            <br/>
+          </div>
+        );
+      });
+    };
+
     return (
       <div className='container text-center'>
-        <Link to='/patient/7'>Patients ...</Link>
+        <h1>Patients</h1>
+        {patientList()}
         {
-          // <CreatePatient handleSave={this.props.createPatient} />
+          // <MultiGraph graphs={this.props.graphs} />
         }
-        <br/>
-        <MultiGraph graphs={this.props.graphs} />
       </div>
     );
   }
@@ -34,5 +45,6 @@ export default connect(mapStateToProps, patientActions)(HomeView);
 
 HomeView.propTypes = {
   createPatient: React.PropTypes.func,
-  graphs: React.PropTypes.array
+  graphs: React.PropTypes.array,
+  patients: React.PropTypes.array
 };
