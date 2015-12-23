@@ -1,0 +1,167 @@
+.multigraph {
+  font-size: 10px;
+  cursor: all-scroll;
+  border: 1px solid rgb(213, 213, 213);
+}
+
+.multigraph text {
+  font-size: 1.4em;
+}
+
+.graphseparator {
+  stroke-width: 1px;
+  stroke: rgb(213, 213, 213);
+}
+
+.graphtitle {
+  font-weight: bold;
+}
+
+.y.axis.label {
+  font-size: 1.1em;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.line {
+  stroke-width: 2px;
+}
+
+.line, .bar {
+  fill: none;
+  stroke: steelblue;
+}
+
+.bar {
+  stroke-width: 10px;
+}
+
+.point {
+  stroke-width: 4px;
+  stroke: steelblue;
+  fill: steelblue;
+}
+
+.graph {
+  border: 1px solid grey;
+}
+
+.scrollpane {
+  fill: transparent;
+}
+
+g.hoverable .point.hovertarget {
+  stroke-width: 0;
+  fill: transparent;
+}
+
+g.hoverable:hover {
+  cursor: default;
+  stroke-opacity: 0.5;
+}
+
+g.hoverable:hover .point.hovertarget {
+  stroke-width: 2px;
+}
+
+g.hoverable:hover .point.data {
+  stroke-width: 2px;
+}
+
+.nvtooltip {
+  position: absolute;
+  background-color: rgba(255,255,255,1);
+  padding: 5px;
+  border: 1px solid #ddd;
+
+  font-family: Arial;
+  font-size: 13px;
+
+  transition: opacity 200ms linear;
+  -moz-transition: opacity 200ms linear;
+  -webkit-transition: opacity 200ms linear;
+
+  transition-delay: 200ms;
+  -moz-transition-delay: 200ms;
+  -webkit-transition-delay: 200ms;
+
+  -moz-box-shadow: 4px 4px 12px rgba(0,0,0,.5);
+  -webkit-box-shadow: 4px 4px 12px rgba(0,0,0,.5);
+  box-shadow: 4px 4px 12px rgba(0,0,0,.5);
+
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.nvtooltip h3 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  }
+
+.nvtooltip p {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.nvtooltip span {
+  display: inline-block;
+  margin: 2px 0;
+}
+
+.psa.graphtitle {
+  fill: rgb(255, 127, 14);
+}
+
+.psa.line {
+  stroke: rgb(255, 127, 14);
+}
+
+.psa.point {
+  stroke: rgb(255, 127, 14);
+  fill: rgb(255, 127, 14);
+}
+
+.testosterone.graphtitle {
+  fill: rgb(31, 119, 180);
+}
+
+.testosterone.line {
+  stroke: rgb(31, 119, 180);
+}
+
+.testosterone.point {
+  stroke: rgb(31, 119, 180);
+  fill: rgb(31, 119, 180);
+}
+
+.androgen.graphtitle {
+  fill: rgb(44, 160, 44);
+}
+
+.androgen.bar {
+  stroke: rgb(44, 160, 44);
+}
+
+.radiotherapy.graphtitle {
+  fill: rgb(92, 30, 179);
+}
+
+.radiotherapy.bar {
+  stroke: rgb(92, 30, 179);
+}
+
+.surgery.graphtitle {
+  fill: rgb(214, 39, 40);
+}
+
+.surgery.point {
+  stroke: rgb(214, 39, 40);
+  fill: rgb(214, 39, 40);
+}
