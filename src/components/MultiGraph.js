@@ -409,7 +409,7 @@ export default class MultiGraph extends Component {
   };
 
   registerGraphs () {
-    var cumulativeHeight = 0;
+    var cumulativeHeight = (this.padding / 2);
     var counter = 0;
     var thisMultiGraph = this;
     var graphs = this.props.graphs;
@@ -459,7 +459,7 @@ export default class MultiGraph extends Component {
   };
 
   initGraphs () {
-    var cumulativeHeight = 0;
+    var cumulativeHeight = (this.padding / 2);
     var counter = 0;
     this.graphs.forEach(function (d) {
       d.init(this.graphSvg);
