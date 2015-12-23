@@ -1,0 +1,25 @@
+@import '../styles/colors';
+
+.ph-container {
+  background-color: $patient-heading-colour;
+}
+
+.ph-big-field {
+  font-size: 2em;
+  font-weight: bold;
+  width: 200px;
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.ph-field {
+  width: 250px;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.ph-data {
+  font-weight: bold;
+}
