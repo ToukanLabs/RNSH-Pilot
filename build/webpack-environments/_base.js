@@ -38,7 +38,7 @@ const webpackConfig = {
     new HtmlWebpackPlugin({
       template: paths.client('index.html'),
       hash: false,
-      favicon: paths.client('static/RNSH-Pilot/img/favicon.png'),
+      favicon: paths.client('static/img/favicon.png'),
       filename: 'index.html',
       inject: 'body',
       minify: {

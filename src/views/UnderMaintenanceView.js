@@ -20,7 +20,7 @@ export default class PatientView extends React.Component {
     return (
       <div style={divStyle}>
         <img
-          src={'/RNSH-Pilot/img/um_0' + parseInt((((Math.random() * 100) % 5) + 1), 10) + '.png'}
+          src={'/img/um_0' + parseInt((((Math.random() * 100) % 5) + 1), 10) + '.png'}
           style={imgStyle}
           />
         <h1 style={h1Style}>Under Construction</h1>
