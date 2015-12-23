@@ -91,9 +91,10 @@ class LineGraph extends Graph {
         .attr('class', this.name + ' hoverable')
         .on('mouseenter', function (e) {
           var point = d3.select(this).select('.' + thisLineGraph.name + '.point.data');
-          var offset = document.getElementById(thisLineGraph.graphSvg.id).offsetTop;
-          var left = parseInt(point.attr('cx'), 10);
-          var top = parseInt(point.attr('cy'), 10) + parseInt(offset, 10) + thisLineGraph.offsetTop;
+          var offsetTop = document.getElementById(thisLineGraph.graphSvg.id).offsetTop;
+          var offsetLeft = document.getElementById(thisLineGraph.graphSvg.id).offsetLeft;
+          var left = parseInt(point.attr('cx'), 10) + parseInt(offsetLeft, 10);
+          var top = parseInt(point.attr('cy'), 10) + parseInt(offsetTop, 10) + thisLineGraph.offsetTop;
 
           var content = '<b>' + thisLineGraph.displayName + ': </b><span class="value">' + e.data + '</span><br/>' +
                         '<b>Date: </b><span class="value">' + e.date.getDate() + '/' + e.date.getMonth() + '/' + e.date.getFullYear() + '</span>';
@@ -195,9 +196,10 @@ class TimelineGraph extends Graph {
         .on('mouseenter', function (e) {
           d3.select(this).select('.' + thisTimeGraph.name + '.point.data');
 
-          var offset = document.getElementById(thisTimeGraph.graphSvg.id).offsetTop;
-          var left = this.getPointAtLength(0).x;
-          var top = parseInt(this.getPointAtLength(0).y, 10) + parseInt(offset, 10) + thisTimeGraph.offsetTop;
+          var offsetTop = document.getElementById(thisTimeGraph.graphSvg.id).offsetTop;
+          var offsetLeft = document.getElementById(thisTimeGraph.graphSvg.id).offsetLeft;
+          var left = this.getPointAtLength(0).x + parseInt(offsetLeft, 10);
+          var top = parseInt(this.getPointAtLength(0).y, 10) + parseInt(offsetTop, 10) + thisTimeGraph.offsetTop;
 
           var content = '<h3>' + thisTimeGraph.displayName + ': </h3> ' +
                         '<b>Start: </b><span class="value">' + thisTimeGraph.data[0].date.getDate() + '/' + thisTimeGraph.data[0].date.getMonth() + '/' + thisTimeGraph.data[0].date.getFullYear() + '</span><br/>' +
@@ -271,9 +273,10 @@ class PointGraph extends Graph {
         .on('mouseenter', function (e) {
           var point = d3.select(this);
 
-          var offset = document.getElementById(thisPointGraph.graphSvg.id).offsetTop;
-          var left = parseInt(point.attr('cx'), 10);
-          var top = parseInt(point.attr('cy'), 10) + parseInt(offset, 10) + thisPointGraph.offsetTop;
+          var offsetTop = document.getElementById(thisPointGraph.graphSvg.id).offsetTop;
+          var offsetLeft = document.getElementById(thisPointGraph.graphSvg.id).offsetLeft;
+          var left = parseInt(point.attr('cx'), 10) + parseInt(offsetLeft, 10);
+          var top = parseInt(point.attr('cy'), 10) + parseInt(offsetTop, 10) + thisPointGraph.offsetTop;
 
           var content = '<h3>' + thisPointGraph.data[0].hoverTitle + '</h3>' +
                         '<b>Date: </b><span class="value">' + thisPointGraph.data[0].date.getDate() + '/' + thisPointGraph.data[0].date.getMonth() + '/' + thisPointGraph.data[0].date.getFullYear() + '</span>';
