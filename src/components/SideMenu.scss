@@ -1,15 +1,17 @@
+@import '../styles/measures';
+
 .sm-expanded {
-  width: 200px;
+  width: $patient-sidemenu-width-expanded;
   font-family: "Comic Sans MS", "Comic Sans", cursive;
   height: 100%;
-  position: absolute;
+  float: left;
 }
 
 .sm-collapsed {
-  width: 30px;
+  width: $patient-sidemenu-width-collapsed;
   font-family: "Comic Sans MS", "Comic Sans", cursive;
   height: 100%;
-  position: absolute;
+  float: left;
 }
 
 .sm-header {

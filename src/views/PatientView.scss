@@ -1,0 +1,10 @@
+@import '../styles/measures';
+
+.pv-patient-content.pv-expanded {
+  margin-left: $patient-sidemenu-width-expanded;
+  width: calc(99% - $patient-sidemenu-width-expanded);
+}
+
+.pv-patient-content.pv-collapsed {
+  margin-left: $patient-sidemenu-width-collapsed;
+}

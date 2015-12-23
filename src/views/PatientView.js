@@ -4,6 +4,7 @@ import PatientHeadContainer from 'components/PatientHeadContainer';
 import { connect } from 'react-redux';
 import { actions as uiActions } from 'redux/modules/ui';
 import { actions as patientActions } from 'redux/modules/patient';
+import styles from './PatientView.scss';
 
 const mapStateToProps = (state) => ({
   routerPath: state.router.path,
@@ -17,6 +18,14 @@ export default class PatientView extends React.Component {
   };
 
   render () {
+    var getContentClass = () => {
+      if (this.props.sidemenuVisibility === 'expanded') {
+        return styles['pv-patient-content'] + ' ' + styles['pv-expanded'];
+      } else {
+        return styles['pv-patient-content'] + ' ' + styles['pv-collapsed'];
+      }
+    };
+
     return (
       <div>
         <PatientHeadContainer patient={this.props.activePatient}/>
@@ -27,7 +36,10 @@ export default class PatientView extends React.Component {
           showSideMenu={this.props.showSideMenu}
           sidemenuVisibility={this.props.sidemenuVisibility}
           />
-        {this.props.children}
+        <div className={getContentClass()}>
+          {this.props.children}
+        </div>
+
       </div>
     );
   };
