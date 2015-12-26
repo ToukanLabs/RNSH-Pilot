@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-starter-kit",
-  "version": "1.0.0",
-  "description": "Get started with React, Redux, and React-Router!",
+  "name": "RNSH-Pilot",
+  "version": "0.0.1",
+  "description": "Pilot clinical research database for Royal North Shore Hospital.",
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf dist",
@@ -18,10 +18,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davezuko/react-redux-starter-kit.git"
+    "url": "git+https://github.com/FiviumAustralia/RNSH-Pilot"
   },
-  "author": "David Zukowski <david@zuko.me> (http://zuko.me)",
-  "license": "MIT",
+  "author": {
+    "name": "Fivium Pty. Ltd.",
+    "email": "code.management.aus@fivium.co.uk",
+    "url": "https://www.fivium.com.au"
+  },
+  "license": "BSD-3-Clause",
   "dependencies": {
     "d3": "^3.5.12",
     "debug": "^2.2.0",
