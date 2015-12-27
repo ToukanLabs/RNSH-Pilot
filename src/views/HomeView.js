@@ -23,7 +23,7 @@ export class HomeView extends React.Component {
         return (
           <li className={styles['hv-patient-search-result']} key={p.id}>
             <h2>
-              <Link to={'/patient/' + p.id}>{p.name}</Link>
+              <Link to={`/patient/${p.id}`}>{p.name}</Link>
               <span className={styles['hv-gender']}>({p.gender})</span>
             </h2>
             <label htmlFor='patient-dob' className={styles['hv-label']}>DOB: </label>
