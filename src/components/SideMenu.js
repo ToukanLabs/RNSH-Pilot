@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from 'components/SideMenu.scss';
 import SideMenuItem from 'components/SideMenuItem';
-import FontAwesome from 'react-fontawesome';
+import Icon from './Icon';
 
 export default class SideMenu extends Component {
   render (visibility) {
@@ -11,7 +11,7 @@ export default class SideMenu extends Component {
           <div className={styles['sm-header']}>
             <h3>Menu</h3>
             <span className={styles['hide-menu-icon']} onClick={this.props.hideSideMenu}>
-              <FontAwesome name='angle-double-left' />
+              <Icon name='angle-double-left' />
             </span>
           </div>
         );
@@ -20,7 +20,7 @@ export default class SideMenu extends Component {
           <div className={styles['sm-header']}>
             <h3>Menu</h3>
             <span className={styles['hide-menu-icon']} onClick={this.props.showSideMenu}>
-              <FontAwesome name='angle-double-right' />
+              <Icon name='angle-double-right' />
             </span>
           </div>
         );

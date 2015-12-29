@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import PatientHeader from 'components/PatientHeader';
 import PatientHeaderDetails from 'components/PatientHeaderDetails';
+import Icon from './Icon';
 import styles from './PatientHeadContainer.scss';
-import FontAwesome from 'react-fontawesome';
 
 export default class PatientHeadContainer extends Component {
   render () {
@@ -26,7 +26,7 @@ export default class PatientHeadContainer extends Component {
           <PatientHeaderDetails/>
           <PatientHeaderDetails/>
           <div className={styles['phc-detail-down-icon']}>
-            <FontAwesome
+            <Icon
               name='angle-double-down'
               />
           </div>

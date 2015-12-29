@@ -24,7 +24,7 @@ export default class GlobalHeader extends Component {
             <GlobalSearch icon='search' placeholder='Global Search'/>
           </div>
           <div className={styles['gh-user-container']}>
-            <UserMenu icon='fa fa-smile-o'/>
+            <UserMenu icon='smile-o'/>
           </div>
         </div>
       </div>

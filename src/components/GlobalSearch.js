@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import FontAwesome from 'react-fontawesome';
+import Icon from './Icon';
 import styles from './GlobalSearch.scss';
 
 export default class GlobalSearch extends Component {
   render () {
     return (
       <span>
-        <FontAwesome
+        <Icon
           name={this.props.icon}
           className={styles['gs-icon']}
           />
