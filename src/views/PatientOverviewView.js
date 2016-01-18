@@ -6,7 +6,7 @@ const mapStateToProps = (state) => ({
   graphs: state.graphs
 });
 
-export default class PatientOverviewView extends Component {
+export class PatientOverviewView extends Component {
   render () {
     return (
       <div>
