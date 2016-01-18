@@ -4,19 +4,29 @@
   margin-top: 0;
 }
 
+.sm-collapsed .smi-menu-item {
+  height: 28px;
+  line-height: 1px;
+  padding-left: 10px;
+}
+
 .smi-menu-item {
   padding: 0.3em;
-  border-left: 3px solid $patient-sm-item-bar;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  border-left: 5px solid $patient-sm-item-bar;
+  margin: 8px 0;
+  font-size: 0.9em;
 }
 
 .smi-icon {
   margin-right: 0.3em;
+  font-size: 1.3em !important;
+  width: 24px;
 }
 
 .smi-menu-item a {
   color: $patient-sidemenu-link-colour;
+  text-transform: uppercase;
+  display: block;
 }
 
 .smi-menu-item a:hover {
@@ -26,4 +36,5 @@
 .smi-active {
   background-color: $patient-sm-current-selection;
   color: $patient-sm-curr-selection-font;
+  text-transform: uppercase;
 }

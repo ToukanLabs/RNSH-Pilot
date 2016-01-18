@@ -10,7 +10,6 @@ export class PatientOverviewView extends Component {
   render () {
     return (
       <div>
-        <h1>Patient Overview</h1>
         <MultiGraph graphs={this.props.graphs} />
       </div>
 

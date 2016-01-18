@@ -8,7 +8,7 @@ export const initialState = {
       {
         id: 1,
         mrn: 2345237,
-        dob: '12/02/1964',
+        dob: '1964-02-12T00:00Z',
         name: 'Raphael Trueman',
         address: `95 Wallum Court
       TYALGUM NSW 2484`,
@@ -20,7 +20,7 @@ export const initialState = {
       {
         id: 2,
         mrn: 2349675,
-        dob: '12/02/1964',
+        dob: '1964-02-12T00:00Z',
         name: 'Jon Ingram',
         address: `89 Larissa Court
       COWANGIE VIC 3506`,
@@ -32,7 +32,7 @@ export const initialState = {
       {
         id: 3,
         mrn: 9876345,
-        dob: '12/02/1964',
+        dob: '1964-02-12T00:00Z',
         name: 'Anabelle Elliott',
         address: `35 Patton Street
       KOOYONG VIC 3144`,
@@ -44,7 +44,7 @@ export const initialState = {
       {
         id: 4,
         mrn: 3456234,
-        dob: '12/02/1964',
+        dob: '1964-02-12T00:00Z',
         name: 'Gary Earl',
         address: `15 Mendooran Road
       CUMBOOGLE NSW 2830`,
@@ -56,7 +56,7 @@ export const initialState = {
       {
         id: 5,
         mrn: 1276543,
-        dob: '12/02/1964',
+        dob: '1964-02-12T00:00Z',
         name: 'Madonna Dawson',
         address: `83 Inglewood Court
       PASTORIA VIC 3444`,
@@ -68,7 +68,7 @@ export const initialState = {
       {
         id: 6,
         mrn: 3456734,
-        dob: '12/02/1964',
+        dob: '1964-02-12T00:00Z',
         name: 'Felix Sudworth',
         address: `10 Carolina Park Road
       PATONGA NSW 2256`,
@@ -80,7 +80,7 @@ export const initialState = {
       {
         id: 7,
         mrn: 3334526,
-        dob: '12/02/1964',
+        dob: '1964-02-12T00:00Z',
         name: 'Bill Snoogie',
         address: `45 Farrar Parade
       JURIEN BAY WA 6516`,
@@ -92,7 +92,7 @@ export const initialState = {
       {
         id: 8,
         mrn: 3452777,
-        dob: '12/02/1964',
+        dob: '1964-02-12T00:00Z',
         name: 'Lenora Christians',
         address: `61 Eungella Road
       HOME HILL QLD 4806`,
@@ -104,7 +104,7 @@ export const initialState = {
       {
         id: 9,
         mrn: 3334521,
-        dob: '12/02/1964',
+        dob: '1964-02-12T00:00Z',
         name: 'Karlene Cotterill',
         address: `51 Savages Road
       PARKINSON QLD 4115`,
@@ -116,7 +116,7 @@ export const initialState = {
       {
         id: 10,
         mrn: 9878776,
-        dob: '12/02/1964',
+        dob: '1964-02-12T00:00Z',
         name: 'Kelcey Walker',
         address: `85 Zipfs Road
       FLINDERS VIEW QLD 4305`,

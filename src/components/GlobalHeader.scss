@@ -3,6 +3,7 @@
 
 .gh-header {
   height: $global-header-height;
+  padding-top: 20px;
   padding-bottom: 5px;
   background-color: $heading-colour;
 }
@@ -17,20 +18,35 @@
 .gh-header-content {
   position: relative;
   display: inline-block;
-  padding-top: 25px;
-  width: 94%;
+  width: 100%;
 }
 
 .gh-menu-container,
 .gh-search-container,
 .gh-user-container {
-  display: inline;
-  margin: 0 10px 0 10px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.gh-menu-container {
+  width: 20%;
+}
+
+.gh-search-container {
+  width: 55%;
+  text-align: center;
 }
 
 .gh-user-container {
-  right: 0;
-  position: absolute;
+  width: 20%;
+}
+
+.gh-menu-container,
+.gh-search-container,
+.gh-user-container {
+  display: inline-block;
+  margin: 0 10px 0 10px;
 }
 
 .gh-search-container input {

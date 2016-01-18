@@ -10,8 +10,11 @@ export default class SideMenu extends Component {
         return (
           <div className={styles['sm-header']}>
             <h3>Menu</h3>
-            <span className={styles['hide-menu-icon']} onClick={this.props.hideSideMenu}>
-              <Icon name='angle-double-left' />
+            <span
+              className={styles['hide-menu-icon']}
+              onClick={this.props.hideSideMenu}
+              >
+              Hide
             </span>
           </div>
         );
@@ -19,8 +22,11 @@ export default class SideMenu extends Component {
         return (
           <div className={styles['sm-header']}>
             <h3>Menu</h3>
-            <span className={styles['hide-menu-icon']} onClick={this.props.showSideMenu}>
-              <Icon name='angle-double-right' />
+            <span
+              className={styles['hide-menu-icon']}
+              onClick={this.props.showSideMenu}
+              >
+              Show
             </span>
           </div>
         );

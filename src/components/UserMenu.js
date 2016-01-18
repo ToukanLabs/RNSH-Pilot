@@ -7,7 +7,6 @@ export default class UserMenu extends Component {
   render () {
     return (
       <div className={styles['user-drop-wrapper']}>
-        <div className={styles['user-icon-container']}><Icon name={this.props.icon} /></div>
         <Dropdown>
           <DropdownTrigger>
             <span className={styles['trigger-span']}>{this.props.username} </span>

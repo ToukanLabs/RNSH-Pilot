@@ -16,7 +16,8 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family:'Open Sans','Helvetica','Arial',sans-serif;
+  font-size: 14px;
   font-size: 1em;
 }
 
@@ -48,16 +49,17 @@ a:hover {
 }
 
 input, select {
-    border: 1px solid;
-    border-color: $gh-box-color;
-    background-color: $field-back-color;
+  border: 2px solid $gh-box-color;
+  background-color: $field-back-color;
 }
 
 .dropdown-generic {
   background-color: $field-back-color;
-  border: 1px, solid;
-  border-color: $gh-box-color;
+  border: 2px solid $gh-box-color;
   min-width: 150px;
+  min-height: 35px;
+  width: 100%;
+  position: relative;
 }
 
 .dropdown__trigger {
@@ -65,16 +67,18 @@ input, select {
   text-transform: uppercase;
   font-size: 0.8em;
   min-width: 150px;
-  padding: 6px;
+  width: 100%;
+  display: block;
 }
 
 .dropdown__trigger::after {
   background-color: $gh-box-fill-color;
   display: inline-block;
   font-family: FontAwesome;
+  font-size: 1.4em;
   color: white;
   content: "\f0d7";
-  padding: 6px;
+  padding: 7px 14px;
   float:right;
 }
 
@@ -88,11 +92,11 @@ input, select {
   width: 100%;
   box-sizing: border-box;
   color: $react-dropdown-font;
-  padding: 3px 3px 3px 10px;
-  position: relative !important;
-  -webkit-box-shadow: -2px 6px 11px 3px rgba(194,184,194,1);
-  -moz-box-shadow: -2px 6px 11px 3px rgba(194,184,194,1);
-  box-shadow: -2px 6px 11px 3px rgba(194,184,194,1);
+  padding: 5px;
+  float: left;
+  -webkit-box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
+  -moz-box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
+  box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
 }
 
 .dropdown__content ul:not(:first-child) {
@@ -104,16 +108,35 @@ input, select {
 }
 
 .dropdown__content li {
-  padding-top: 3px;
+  line-height: 1.5em;
+}
+
+.dropdown__content a {
+  display: block;
+}
+
+.panel {
+  background-color: $table-background;
+  border-top: 1px solid $gh-box-fill-color;
+  padding: 6px 10px;
+  font-size: 0.9em;
+}
+
+.panel h2 {
+  line-height: 1.6em;
+  font-size: 1.3em;
+  padding: 1px 0px;
+  box-sizing: border-box;
 }
 
 table {
   text-align: left;
   background-color: $table-background;
+  font-size: 0.9em;
 }
 
 table thead {
-  border-top: 2px solid $gh-box-fill-color;
+  border-top: 1px solid $gh-box-fill-color;
   background-color: $table-heading-background;
   line-height: 1.8em;
   font-size: 1.3em;

@@ -26,20 +26,27 @@ export default class PatientView extends React.Component {
       }
     };
 
+    if (this.props.activePatient === undefined) {
+      return (
+        <h2>Loading...</h2>
+      );
+    }
+
     return (
       <div>
         <PatientHeadContainer patient={this.props.activePatient}/>
-        <SideMenu
-          routerPath={this.props.routerPath}
-          patientId={parseInt(this.props.params.id, 10)}
-          hideSideMenu={this.props.hideSideMenu}
-          showSideMenu={this.props.showSideMenu}
-          sidemenuVisibility={this.props.sidemenuVisibility}
-          />
-        <div className={getContentClass()}>
-          {this.props.children}
+        <div className={styles['pv-content-wrapper']}>
+          <SideMenu
+            routerPath={this.props.routerPath}
+            patientId={parseInt(this.props.params.id, 10)}
+            hideSideMenu={this.props.hideSideMenu}
+            showSideMenu={this.props.showSideMenu}
+            sidemenuVisibility={this.props.sidemenuVisibility}
+            />
+          <div className={getContentClass()}>
+            {this.props.children}
+          </div>
         </div>
-
       </div>
     );
   };

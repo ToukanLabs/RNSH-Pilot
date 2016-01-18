@@ -2,21 +2,22 @@
 @import '../styles/core';
 
 .dropdown {
-    @extend .dropdown-generic;
-    display: inline-block;
+  @extend .dropdown-generic;
+  display: inline-block;
 }
 
 .menu-drop-wrapper{
   display: inline-block;
+  width: 100%;
 }
 
 .dropdown__content {
-    display: none;
-    position: absolute;
+  display: none;
+  position: absolute;
 }
 
 .dropdown--active .dropdown__content {
-    display: block;
+  display: block;
 }
 
 .dropdown__content ul li {
@@ -24,6 +25,7 @@
 }
 
 .trigger-span {
+  line-height: 20px;
   display: inline-block;
   padding: 6px;
 }

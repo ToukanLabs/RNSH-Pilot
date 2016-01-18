@@ -8,6 +8,8 @@ export default class SideMenuItem extends Component {
     var displayText = () => {
       if (this.props.showText) {
         return this.props.text;
+      } else {
+        return ' ';
       }
     };
 

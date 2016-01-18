@@ -6,7 +6,6 @@
   height: 100%;
   float: left;
   background-color: $patient-sidemenu-colour;
-  padding: 0.2em 0.2em 0.2em 0;
 }
 
 .sm-expanded {
@@ -18,15 +17,13 @@
 }
 
 .sm-header {
-  font-size: 1.3em;
+  font-size: 1.1em;
   position: relative;
-  padding-top: 0.8em;
-  padding-bottom: 0.8em;
-  padding-left: 0.2em;
-  border-bottom: 1px solid rgb(194, 194, 194);
-  //margin-bottom: 0.4em;
+  height: 30px;
   background-color: $patient-sm-header;
   color: $patient-sm-header-font;
+  line-height: 30px;
+  padding-left: 8px;
 }
 
 .sm-content {
@@ -34,24 +31,42 @@
   background-color: $patient-sm-background;
 }
 
+.sm-collapsed .sm-header {
+  padding: 0;
+}
+
 .sm-collapsed .sm-header h3 {
   display: none;
 }
 
 .sm-header h3 {
+  font-weight: normal;
   display: inline-block;
 }
 
 .sm-collapsed .hide-menu-icon {
-  position: relative;
-  margin-left: 10px;
+  margin-left: 0;
+  padding: 0 2px;
+  left: 4px;
+  top: 4px;
+  position: absolute;
 }
 
 .hide-menu-icon {
+  background-color: #16918c;
+  color: #f6f4f4;
+  display: inline-block;
+  font-size: 0.7em;
+  line-height: 1.8em;
+  text-transform: uppercase;
+  padding: 0 10px;
+  font-weight: bold;
   right: 5px;
+  top: 4px;
   position: absolute;
 }
 
 .hide-menu-icon:hover {
   cursor: pointer;
+  background-color: $patient-sm-background;
 }

@@ -1,7 +1,7 @@
 @import '../styles/measures';
 
 .pv-patient-content {
-  padding: 1.4em;
+  padding: 0 1em;
 }
 
 .pv-patient-content.pv-expanded {
@@ -11,4 +11,8 @@
 
 .pv-patient-content.pv-collapsed {
   margin-left: $patient-sidemenu-width-collapsed;
+}
+
+.pv-content-wrapper {
+  margin-top: 5px;
 }

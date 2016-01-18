@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { FormattedTime } from 'react-intl';
+import { FormattedTime, FormattedRelative } from 'react-intl';
 import QuestionnaireQuestion from './QuestionnaireQuestion';
+import styles from './QuestionnaireDetail.scss';
+import corestyles from '../styles/core.scss';
 
 const CATEGORY_KEY_MAP = {
   'rad_onc': 'Radiation Oncologist',
@@ -35,7 +37,12 @@ export default class QuestionnaireDetail extends Component {
       let current_title = '';
       for (var property in QUESTION_KEY_MAP) {
         if (QUESTION_KEY_MAP.hasOwnProperty(property)) {
+          // User the substring of the object property to indicate the section,
+          // that is, everything up to the first slash.
           let this_title = property.substring(0, property.indexOf('/'));
+          // If the current section (substring) does not match that of the
+          // previous iteration then add a new h3 to the list of components
+          // with the title of the new section in it.
           if (current_title !== this_title) {
             question_responses.push(
               <h3>{CATEGORY_KEY_MAP[this_title]}</h3>
@@ -45,6 +52,7 @@ export default class QuestionnaireDetail extends Component {
 
           question_responses.push(
             <QuestionnaireQuestion
+              key={property}
               question={QUESTION_KEY_MAP[property]}
               answer={this.props.data[property]} />
           );
@@ -52,10 +60,13 @@ export default class QuestionnaireDetail extends Component {
       }
 
       return (
-        <div>
+        <div className={corestyles['panel']}>
           <h2>
             Breast Patient Follow-Up Questionnaire - <FormattedTime value={Date.parse(this.props.data._submission_time)} />
           </h2>
+          <div className={styles['qd-relative-time']}>
+            <FormattedRelative value={Date.parse(this.props.data._submission_time)} />
+          </div>
           {question_responses}
         </div>
       );

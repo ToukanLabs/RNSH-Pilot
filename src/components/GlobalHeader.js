@@ -13,7 +13,7 @@ export default class GlobalHeader extends Component {
             <GlobalMenu />
           </div>
           <div className={styles['gh-search-container']}>
-            <GlobalSearch icon='search' placeholder='GLOBAL SEARCH'/>
+            <GlobalSearch icon='search' placeholder='Global Search'/>
           </div>
           <div className={styles['gh-user-container']}>
             <UserMenu icon='user' username='Thilo Schuler'/>
