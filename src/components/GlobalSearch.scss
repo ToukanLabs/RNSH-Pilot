@@ -1,1 +1,15 @@
 @import '../styles/colors';
+
+.gs-input{
+  position: absolute;
+}
+
+.gs_input::after {
+  background-color: $gh-box-color;
+  display: inline-block;
+  font-family: FontAwesome;
+  color: white;
+  content: "\f0d7";
+  padding: 6px;
+  float:right;
+}

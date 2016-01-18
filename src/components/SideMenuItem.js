@@ -13,7 +13,7 @@ export default class SideMenuItem extends Component {
 
     if (this.props.linkTo === this.props.currentRouterPath) {
       return (
-        <li className={styles['smi-menu-item']}>
+        <li className={styles['smi-menu-item'] + ' ' + styles['smi-active']}>
           <Icon name={this.props.icon} className={styles['smi-icon']}/>
           {displayText()}
         </li>

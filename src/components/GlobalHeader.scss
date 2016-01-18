@@ -3,8 +3,6 @@
 
 .gh-header {
   height: $global-header-height;
-  border-bottom: solid;
-  border-bottom-color:  darken($heading-colour, 20);
   padding-bottom: 5px;
   background-color: $heading-colour;
 }

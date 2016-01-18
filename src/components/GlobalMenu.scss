@@ -1,1 +1,29 @@
 @import '../styles/colors';
+@import '../styles/core';
+
+.dropdown {
+    @extend .dropdown-generic;
+    display: inline-block;
+}
+
+.menu-drop-wrapper{
+  display: inline-block;
+}
+
+.dropdown__content {
+    display: none;
+    position: absolute;
+}
+
+.dropdown--active .dropdown__content {
+    display: block;
+}
+
+.dropdown__content ul li {
+  list-style-type: none;
+}
+
+.trigger-span {
+  display: inline-block;
+  padding: 6px;
+}

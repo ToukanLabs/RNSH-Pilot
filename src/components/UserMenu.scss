@@ -1,1 +1,38 @@
 @import '../styles/colors';
+@import '../styles/core';
+
+.dropdown {
+    @extend .dropdown-generic;
+    display: inline-block;
+}
+
+.user-drop-wrapper{
+  display: inline-block;
+}
+
+.dropdown__content {
+    display: none;
+    position: absolute;
+}
+
+.dropdown--active .dropdown__content {
+    display: block;
+}
+
+.dropdown__content ul li {
+  list-style-type: none;
+}
+
+.um-icon {
+  background-color: $gh-box-fill-color;
+}
+
+.user-icon-container{
+  float: left;
+  margin-right: 3px;
+}
+
+.trigger-span {
+  display: inline-block;
+  padding: 6px;
+}

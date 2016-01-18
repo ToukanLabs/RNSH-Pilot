@@ -6,7 +6,7 @@
   height: 100%;
   float: left;
   background-color: $patient-sidemenu-colour;
-  padding: 0.2em;
+  padding: 0.2em 0.2em 0.2em 0;
 }
 
 .sm-expanded {
@@ -20,13 +20,16 @@
 .sm-header {
   font-size: 1.3em;
   position: relative;
-  padding: 0.2em;
+  padding: 0.8em 0.8em 0.8em 0.8em;
   border-bottom: 1px solid rgb(194, 194, 194);
   margin-bottom: 0.4em;
+  background-color: $patient-sm-header;
+  color: $patient-sm-header-font;
 }
 
 .sm-content {
-  padding: 0.2em;
+  padding: 0;
+  background-color: $patient-sm-background;
 }
 
 .sm-collapsed .sm-header h3 {
