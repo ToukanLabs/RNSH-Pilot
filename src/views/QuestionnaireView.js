@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { actions as patientActions } from '../redux/modules/patient';
 import QuestionnaireList from 'components/QuestionnaireList';
 import QuestionnaireDetail from 'components/QuestionnaireDetail';
+import Icon from 'components/Icon';
 import styles from './QuestionnaireView.scss';
 
 const mapStateToProps = (state) => ({
@@ -34,6 +35,10 @@ export class QuestionnaireView extends Component {
       if (parseInt(d[QUESTIONNAIRE_MRN_KEY], 10) === activePatientMrn) {
         return d;
       }
+    });
+
+    activePatientForms.sort((a, b) => {
+      return Date.parse(b._submission_time) - Date.parse(a._submission_time);
     });
 
     this.props.setQuestionnaireResponses(activePatientForms);
@@ -80,7 +85,11 @@ export class QuestionnaireView extends Component {
     const questionnaireResponses = activePatient.questionnaireResponses;
     if (questionnaireResponses === undefined) {
       return (
-        <h3>Loading...</h3>
+        <h2>
+          <Icon name='refresh' spin />
+          {' '}
+          Loading from KoBo Toolbox...
+        </h2>
       );
     } else if (questionnaireResponses.length === 0) {
       return (
