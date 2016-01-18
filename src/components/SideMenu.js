@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styles from 'components/SideMenu.scss';
 import SideMenuItem from 'components/SideMenuItem';
-import Icon from './Icon';
 
 export default class SideMenu extends Component {
   render (visibility) {
