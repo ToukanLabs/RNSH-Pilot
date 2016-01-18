@@ -11,10 +11,18 @@ class Graph {
   getHeight () {
     return this.height;
   }
+
+  getAxisPosition () {
+    return this.axisPosition;
+  }
+
+  getName () {
+    return this.name;
+  }
 }
 
 class LineGraph extends Graph {
-  constructor (name, displayName, data, yAxisLabel, offsetTop, x) {
+  constructor (name, displayName, data, yAxisLabel, offsetTop, x, axisPosition) {
     super();
     this.height = 120;
 
@@ -24,6 +32,7 @@ class LineGraph extends Graph {
     this.yAxisLabel = yAxisLabel;
     this.offsetTop = offsetTop;
     this.x = x;
+    this.axisPosition = axisPosition;
   };
 
   init (graphSvg) {
@@ -49,33 +58,61 @@ class LineGraph extends Graph {
 
     this.yaxis = d3.svg.axis()
         .scale(this.y)
-        .orient('left')
+        .orient(this.axisPosition)
         .ticks(4);
 
     this.line = d3.svg.line()
         .x(function (d) { return this.x(d.date); }.bind(this))
         .y(function (d) { return this.y(d.data); }.bind(this));
 
-    var gGraphInfo = this.graphSvg.append('g')
-        .attr('class', this.name + ' y axis')
-        .attr('transform', 'translate(60, ' + this.offsetTop + ')')
-        .call(this.yaxis);
+    let gGraphInfo;
+    if (this.getAxisPosition() === 'left') {
+      gGraphInfo = this.graphSvg.append('g')
+          .attr('class', this.name + ' y axis')
+          .attr('transform', 'translate(60, ' + this.offsetTop + ')')
+          .call(this.yaxis);
 
-    gGraphInfo.append('text')
-        .attr('class', this.name + ' y axis label')
-        .attr('transform', 'rotate(-90)')
-        .attr('y', -30)
-        .attr('x', -10)
-        .style('text-anchor', 'end')
-        .text('(' + this.yAxisLabel + ')');
+      // y-axis label (e.g. nmol / L).
+      gGraphInfo.append('text')
+          .attr('class', this.name + ' y axis label')
+          .attr('transform', 'rotate(-90)')
+          .attr('y', -30)
+          .attr('x', -10)
+          .style('text-anchor', 'end')
+          .text('(' + this.yAxisLabel + ')');
 
-    gGraphInfo.append('text')
-        .attr('class', this.name + ' graphtitle')
-        .attr('transform', 'rotate(-90)')
-        .attr('y', -45)
-        .attr('x', -10)
-        .style('text-anchor', 'end')
-        .text(this.displayName);
+      // Graph displayname (e.g. Testosterone).
+      gGraphInfo.append('text')
+          .attr('class', this.name + ' graphtitle')
+          .attr('transform', 'rotate(-90)')
+          .attr('y', -45)
+          .attr('x', -10)
+          .style('text-anchor', 'end')
+          .text(this.displayName);
+    } else {
+      gGraphInfo = this.graphSvg.append('g')
+          .attr('class', this.name + ' y axis')
+          .attr('transform', 'translate(' + (this.graphSvg.width - 70) + ', ' + this.offsetTop + ')')
+          .call(this.yaxis);
+
+      // y-axis label (e.g. nmol / L).
+      gGraphInfo.append('text')
+          .attr('class', this.name + ' y axis label')
+          .attr('transform', 'rotate(-90)')
+          .attr('y', 35)
+          .attr('x', -10)
+          .style('text-anchor', 'end')
+          .text('(' + this.yAxisLabel + ')');
+
+      // Graph displayname (e.g. Testosterone).
+      gGraphInfo.append('text')
+          .attr('class', this.name + ' graphtitle')
+          .attr('transform', 'rotate(-90)')
+          .attr('y', 50)
+          .attr('x', -10)
+          .style('text-anchor', 'end')
+          .text(this.displayName);
+    }
 
     this.graphSvg.append('path')
         .attr('class', this.name + ' line')
@@ -135,7 +172,7 @@ class LineGraph extends Graph {
 };
 
 class TimelineGraph extends Graph {
-  constructor (name, displayName, data, offsetTop, x) {
+  constructor (name, displayName, data, offsetTop, x, axisPosition) {
     super();
     this.height = 90;
 
@@ -144,6 +181,7 @@ class TimelineGraph extends Graph {
     this.rawData = data;
     this.offsetTop = offsetTop;
     this.x = x;
+    this.axisPosition = axisPosition;
   }
 
   processData () {
@@ -220,7 +258,7 @@ class TimelineGraph extends Graph {
 };
 
 class PointGraph extends Graph {
-  constructor (name, displayName, data, offsetTop, x) {
+  constructor (name, displayName, data, offsetTop, x, axisPosition) {
     super();
     this.height = 80;
 
@@ -229,6 +267,7 @@ class PointGraph extends Graph {
     this.rawData = data;
     this.offsetTop = offsetTop;
     this.x = x;
+    this.axisPosition = axisPosition;
   }
 
   processData () {
@@ -415,57 +454,92 @@ export default class MultiGraph extends Component {
     var graphs = this.props.graphs;
 
     graphs.forEach(function (d) {
-      let graph;
-
-      switch (d.type) {
-        case 'line':
-          graph = new LineGraph(
-            d.name,
-            d.displayName,
-            d.data,
-            d.yAxisLabel,
-            (cumulativeHeight + (thisMultiGraph.padding * counter++)),
-            thisMultiGraph.x
-          );
-          break;
-        case 'timeline':
-          graph = new TimelineGraph(
-            d.name,
-            d.displayName,
-            d.data[0],
-            (cumulativeHeight + (thisMultiGraph.padding * counter++)),
-            thisMultiGraph.x
-          );
-          break;
-        case 'point':
-          graph = new PointGraph(
-            d.name,
-            d.displayName,
-            d.data[0],
-            (cumulativeHeight + (thisMultiGraph.padding * counter++)),
-            thisMultiGraph.x
-          );
-          break;
-        default:
-          throw new Error('Unknown graph type');
-      }
-
-      thisMultiGraph.graphs.push(graph);
+      let graph = this.createGraph(d, thisMultiGraph, cumulativeHeight, counter++, 'left');
       cumulativeHeight += graph.getHeight();
-    });
+    }.bind(this));
 
     this.height = cumulativeHeight;
     this.graphCount = counter;
   };
+
+  createGraph (d, parentGraph, cumulativeHeight, idx, axisPosition) {
+    let graph;
+
+    let graphsWithSameName = parentGraph.graphs.filter((g) => {
+      if (g.getName() === d.name) {
+        return g;
+      }
+    });
+
+    if (graphsWithSameName.length > 1) {
+      console.error(`Graph name '${d.name}' is not unique and will not be rendered correctly.`);
+    }
+
+    switch (d.type) {
+      case 'dual-plot':
+        let left = this.createGraph(
+          d.left,
+          parentGraph,
+          cumulativeHeight,
+          idx,
+          'left'
+        );
+        this.createGraph(
+          d.right,
+          parentGraph,
+          cumulativeHeight,
+          idx,
+          'right'
+        );
+        return left;
+      case 'line':
+        graph = new LineGraph(
+          d.name,
+          d.displayName,
+          d.data,
+          d.yAxisLabel,
+          (cumulativeHeight + (parentGraph.padding * idx)),
+          parentGraph.x,
+          axisPosition
+        );
+        break;
+      case 'timeline':
+        graph = new TimelineGraph(
+          d.name,
+          d.displayName,
+          d.data[0],
+          (cumulativeHeight + (parentGraph.padding * idx)),
+          parentGraph.x,
+          axisPosition
+        );
+        break;
+      case 'point':
+        graph = new PointGraph(
+          d.name,
+          d.displayName,
+          d.data[0],
+          (cumulativeHeight + (parentGraph.padding * idx)),
+          parentGraph.x,
+          axisPosition
+        );
+        break;
+      default:
+        throw new Error('Unknown graph type');
+    }
+
+    parentGraph.graphs.push(graph);
+    return graph;
+  }
 
   initGraphs () {
     var cumulativeHeight = (this.padding / 2);
     var counter = 0;
     this.graphs.forEach(function (d) {
       d.init(this.graphSvg);
-      cumulativeHeight += d.getHeight();
-
-      counter++;
+      if (d.getAxisPosition() === 'left') {
+        cumulativeHeight += d.getHeight();
+        counter++;
+      }
       this.graphSvg.append('line')
           .attr('class', 'graphseparator')
           .attr('x1', 0)
@@ -488,6 +562,8 @@ export default class MultiGraph extends Component {
         .attr('class', 'multigraph')
       .append('g');
 
+    this.graphSvg['width'] = this.width;
+
     this.graphSvg.id = this.id + 'svg';
   };
 
@@ -497,7 +573,7 @@ export default class MultiGraph extends Component {
       .append('rect')
         .attr('x', 60)
         .attr('y', 0)
-        .attr('width', this.width - 60)
+        .attr('width', this.width - 60 - 60)
         .attr('height', this.height + (this.padding * this.graphCount));
   };
 
@@ -532,13 +608,22 @@ export default class MultiGraph extends Component {
         .attr('class', 'x axis')
         .attr('transform', 'translate(0,' + (this.height + (this.padding * this.graphCount) - (this.padding / 2)) + ')');
 
-    this.x.domain([new Date(2005, 1, 1), new Date(2016, 1, 1)]);
+    this.x.domain([new Date(2005, 1, 1), new Date(2017, 1, 1)]);
 
+    // Vertical line on left separating axis labels from graph content
     this.graphSvg.append('line')
         .attr('class', 'graphseparator')
         .attr('x1', 60)
         .attr('y1', 0)
         .attr('x2', 60)
+        .attr('y2', this.height + (this.padding * this.graphCount) - (this.padding / 2));
+
+    // Vertical line on right separating axis labels from graph content
+    this.graphSvg.append('line')
+        .attr('class', 'graphseparator')
+        .attr('x1', this.width - 70)
+        .attr('y1', 0)
+        .attr('x2', this.width - 70)
         .attr('y2', this.height + (this.padding * this.graphCount) - (this.padding / 2));
 
     this.createClipPath();
