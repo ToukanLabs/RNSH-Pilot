@@ -4,6 +4,7 @@ import { actions as patientActions } from '../redux/modules/patient';
 import QuestionnaireList from 'components/QuestionnaireList';
 import QuestionnaireDetail from 'components/QuestionnaireDetail';
 import Icon from 'components/Icon';
+import { Link } from 'react-router';
 import styles from './QuestionnaireView.scss';
 
 const mapStateToProps = (state) => ({
@@ -62,6 +63,7 @@ export class QuestionnaireView extends Component {
   componentWillUnmount () {
     document.getElementById('kobotoolbox-jsonp').remove();
     this.props.removeQuestionnaireResponses();
+    window['callback'] = undefined;
   };
 
   handleDetailViewClick (id) {
@@ -93,7 +95,15 @@ export class QuestionnaireView extends Component {
       );
     } else if (questionnaireResponses.length === 0) {
       return (
-        <h3>No questionnaires have been submitted for this patient.</h3>
+        <div>
+          <h3>No questionnaires have been submitted for this patient.</h3>
+          <br/>
+          <Link to='https://kc.kobotoolbox.org/fivium/forms/Breast_FU_V1_1/enter-data' target='_blank'>
+            Enter data in a new questionnaire
+            {' '}
+            <Icon name='external-link' />
+          </Link>
+        </div>
       );
     } else {
       return (
@@ -104,6 +114,12 @@ export class QuestionnaireView extends Component {
               selectedQuestionnaireId={activePatient.questionnaireDetailViewId}
               handleDetailViewClick={this.handleDetailViewClick}
               />
+            <br/>
+            <Link to='https://kc.kobotoolbox.org/fivium/forms/Breast_FU_V1_1/enter-data' target='_blank'>
+              Enter data in a new questionnaire
+              {' '}
+              <Icon name='external-link' />
+            </Link>
           </div>
           <div className={styles['qv-questionnaire-detail']}>
             <QuestionnaireDetail data={this.getQuestionnaireDetailData()} />
