@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../styles/core.scss';
 import GlobalHeader from 'components/GlobalHeader';
+var pjson = require('../../package.json');
 
 // Note: Stateless/function components *will not* hot reload!
 // react-transform *only* works on component classes.
@@ -20,6 +21,7 @@ function CoreLayout ({ children }) {
       <div className={styles['view-container']}>
         {children}
       </div>
+      <span style={{position: 'fixed', right: 2, bottom: 2, color: '#aaa', fontSize: '0.7em'}}>v{pjson.version}</span>
     </div>
   );
 }
