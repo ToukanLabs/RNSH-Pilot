@@ -106,3 +106,32 @@ input, select {
 .dropdown__content li {
   padding-top: 3px;
 }
+
+table {
+  text-align: left;
+  background-color: $table-background;
+}
+
+table thead {
+  border-top: 2px solid $gh-box-fill-color;
+  background-color: $table-heading-background;
+  line-height: 1.8em;
+  font-size: 1.3em;
+  text-align: left;
+}
+
+table tr:first-child {
+  border-top: none;
+}
+
+table tr {
+  border-top: 1px solid $gh-box-fill-color;
+}
+
+table th {
+  padding: 6px 10px;
+}
+
+table td {
+  padding: 10px;
+}

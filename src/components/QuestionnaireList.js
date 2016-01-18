@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { FormattedTime, FormattedRelative } from 'react-intl';
+import { FormattedDate, FormattedTime, FormattedRelative } from 'react-intl';
+import styles from './QuestionnaireList.scss';
 
 export default class QuestionnaireList extends Component {
 
@@ -14,17 +15,27 @@ export default class QuestionnaireList extends Component {
       );
     } else if (this.props.data !== undefined) {
       const questionnaire_rows = this.props.data.map((r) => {
+        let rowClass;
+        if (r._id === this.props.selectedQuestionnaireId) {
+          rowClass = styles['ql-active'];
+        }
+
         return (
-          <tr key={r._id}>
+          <tr key={r._id} className={rowClass}>
             <td>Breast Patient Follow-Up Questionnaire</td>
             <td>
+              <FormattedDate
+                value={Date.parse(r._submission_time)}
+                />
+              {' '}
               <FormattedTime
                 value={Date.parse(r._submission_time)}
                 hour='numeric'
                 minute='numeric'
                 />
-              <br/>
-              <FormattedRelative value={Date.parse(r._submission_time)} />
+              <div className={styles['ql-relative-time']}>
+                <FormattedRelative value={Date.parse(r._submission_time)} />
+              </div>
             </td>
             <td>
               <a
@@ -63,4 +74,5 @@ export default class QuestionnaireList extends Component {
 QuestionnaireList.propTypes = {
   data: React.PropTypes.array,
   handleDetailViewClick: React.PropTypes.func,
+  selectedQuestionnaireId: React.PropTypes.number,
 };

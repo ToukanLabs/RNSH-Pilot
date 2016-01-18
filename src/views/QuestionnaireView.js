@@ -76,7 +76,8 @@ export class QuestionnaireView extends Component {
   }
 
   render () {
-    const questionnaireResponses = this.props.activePatient.questionnaireResponses;
+    const activePatient = this.props.activePatient;
+    const questionnaireResponses = activePatient.questionnaireResponses;
     if (questionnaireResponses === undefined) {
       return (
         <h3>Loading...</h3>
@@ -91,6 +92,7 @@ export class QuestionnaireView extends Component {
           <div className={styles['qv-questionnaire-list']}>
             <QuestionnaireList
               data={questionnaireResponses}
+              selectedQuestionnaireId={activePatient.questionnaireDetailViewId}
               handleDetailViewClick={this.handleDetailViewClick}
               />
           </div>

@@ -1,4 +1,5 @@
 $text-color: rgb(71, 88, 96);
+$secondary-text-color: lighten($text-color, 20);
 
 $heading-colour: #ECECEC;
 $gh-box-fill-color: #1AC3CE;
@@ -19,3 +20,6 @@ $patient-sm-item-bar: #16A085;
 $field-back-color: lighten($heading-colour,35);
 
 $react-dropdown-font: #9C9B9B;
+
+$table-heading-background: #f6f4f4;
+$table-background: #f5eeee;

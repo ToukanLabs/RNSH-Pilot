@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/core.scss';
+import styles from '../styles/core.scss';
 import GlobalHeader from 'components/GlobalHeader';
 
 // Note: Stateless/function components *will not* hot reload!
@@ -13,11 +13,11 @@ import GlobalHeader from 'components/GlobalHeader';
 // define it with a plain javascript function...
 function CoreLayout ({ children }) {
   return (
-    <div className='page-container'>
-      <div className='app-menu'>
+    <div className={styles['page-container']}>
+      <div className={styles['app-menu']}>
         <GlobalHeader/>
       </div>
-      <div className='view-container'>
+      <div className={styles['view-container']}>
         {children}
       </div>
     </div>
