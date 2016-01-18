@@ -2,10 +2,16 @@
 
 .gs-input{
   position: absolute;
+  font-size: 0.8em !important;
+  padding: 6px;
+}
+
+.gs-input::-webkit-input-placeholder {
+    font-size: 0.95em;
 }
 
 .gs_input::after {
-  background-color: $gh-box-color;
+  background-color: $gh-box-fill-color;
   display: inline-block;
   font-family: FontAwesome;
   color: white;

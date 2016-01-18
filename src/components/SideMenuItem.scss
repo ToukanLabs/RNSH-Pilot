@@ -1,5 +1,9 @@
 @import '../styles/colors';
 
+.smi-menu-item:first-child {
+  margin-top: 0;
+}
+
 .smi-menu-item {
   padding: 0.3em;
   border-left: 3px solid $patient-sm-item-bar;

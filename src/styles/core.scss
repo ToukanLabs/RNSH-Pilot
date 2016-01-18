@@ -69,7 +69,7 @@ input, select {
 }
 
 .dropdown__trigger::after {
-  background-color: $gh-box-color;
+  background-color: $gh-box-fill-color;
   display: inline-block;
   font-family: FontAwesome;
   color: white;

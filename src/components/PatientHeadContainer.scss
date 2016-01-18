@@ -5,16 +5,16 @@
 }
 
 .phc-detail-down-icon {
-  background-color: $patient-heading-colour;
+  background-color: $patient-subheading-color;
   display: inline-block;
   width: 1%;
   position: absolute;
-  border: solid 1px;
-  height: 16px;
+  height: 31px;
+  color: $patient-subheading-font-color;
 }
 
 
 
 .phc-details {
-  height:16px; //TODO fix up this
+  height: 31px;
 }
