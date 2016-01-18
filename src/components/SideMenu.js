@@ -42,6 +42,7 @@ export default class SideMenu extends Component {
         {menuHeader()}
         <div className={styles['sm-content']}>
           <ul>
+            <li className={styles['sm-spacer']} />
             <SideMenuItem
               text='Patient Overview'
               icon='eye'
@@ -133,6 +134,7 @@ export default class SideMenu extends Component {
               currentRouterPath={this.props.routerPath}
               showText={showText()}
               />
+            <li className={styles['sm-spacer']} />
           </ul>
         </div>
       </div>
