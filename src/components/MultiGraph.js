@@ -573,7 +573,7 @@ export default class MultiGraph extends Component {
       .append('rect')
         .attr('x', 60)
         .attr('y', 0)
-        .attr('width', this.width - 60 - 60)
+        .attr('width', this.width - 60 - 70) // 60 is left margin with titles, etc. 70 is right.
         .attr('height', this.height + (this.padding * this.graphCount));
   };
 
