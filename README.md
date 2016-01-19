@@ -1,5 +1,9 @@
 View online at: [http://rnshpilot.fiviumdev.com/](http://rnshpilot.fiviumdev.com/).
 
+Pilot clinical research database for Royal North Shore Hospital, Sydney.
+
+[![Build Status](https://travis-ci.org/FiviumAustralia/RNSH-Pilot.svg?branch=master)](https://travis-ci.org/FiviumAustralia/RNSH-Pilot)
+
 # Development
 
 ## Setup
