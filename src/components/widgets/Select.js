@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import corestyles from '../../styles/core.scss';
-import widgetstyles from './widgets.scss';
 
 export default class Select extends Component {
   constructor () {

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import corestyles from '../../styles/core.scss';
-import widgetstyles from './widgets.scss';
 
 export default class Input extends Component {
   componentWillMount () {
