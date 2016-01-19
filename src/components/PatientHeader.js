@@ -38,6 +38,12 @@ export default class PatientHeader extends Component {
             <span className={styles['ph-data']}>{this.props.patient.mrn}</span>
           </label>
         </div>
+        <div className={styles['ph-field']}>
+          <label className={styles['ph-label']}>
+            Stream:&nbsp;
+            <span className={styles['ph-data']}>{this.props.patient.tumorType}</span>
+          </label>
+        </div>
       </div>
     );
   };
