@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
+import { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
+import Dropdown from './Dropdown';
 import styles from './GlobalMenu.scss';
 import { Link } from 'react-router';
 

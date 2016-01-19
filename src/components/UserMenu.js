@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
+import { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
+import Dropdown from './Dropdown';
 import Icon from './Icon';
 import styles from './UserMenu.scss';
 
