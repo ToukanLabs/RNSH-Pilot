@@ -1,3 +1,11 @@
+@import '../../styles/colors';
+
 .inline-widget-group label, .inline-widget-group .widget-wrapper {
   display: inline-block;
+}
+
+input[disabled] {
+  background-color: $widget-disabled-bg-color;
+  color: $widget-disabled-color;
+  cursor: not-allowed;
 }

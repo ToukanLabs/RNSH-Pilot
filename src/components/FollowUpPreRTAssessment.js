@@ -21,7 +21,13 @@ export default class PreRTAssessment extends Component {
 
         <Select
           label='Daytime Freq.'
-          options={[]}
+          options={[
+            {key: 'Hourly', value: 'Hourly'},
+            {key: '2nd Hour', value: '2nd Hour'},
+            {key: '3rd Hour', value: '3rd Hour'},
+            {key: '4th Hour', value: '4th Hour'},
+            {key: '> 4th Hour', value: '> 4th Hour'},
+          ]}
           />
         <Input
           type='text'

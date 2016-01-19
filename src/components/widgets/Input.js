@@ -1,7 +1,20 @@
 import React, {Component} from 'react';
 import corestyles from '../../styles/core.scss';
+import widgetstyles from './widgets.scss';
 
 export default class Input extends Component {
+  componentWillMount () {
+    this.name = this.props.ref + 'Input';
+  }
+
+  getValue () {
+    return this.refs[this.name].value;
+  }
+
+  setValue (value) {
+    this.refs[this.name].value = value;
+  }
+
   isMandatory () {
     return this.props.mandatory;
   }
@@ -27,8 +40,11 @@ export default class Input extends Component {
           {this.props.label}
           {this.getMandatoryIndicator()}:
           <input
+            ref={this.name}
+            name={this.name}
             type={this.props.type}
             placeholder={this.props.placeholder}
+            disabled={this.props.disabled}
             />
           {this.getUnitLabel()}
         </label>
@@ -37,8 +53,11 @@ export default class Input extends Component {
       return (
         <span className={corestyles['widget-wrapper']}>
           <input
+            ref={this.name}
+            name={this.name}
             type={this.props.type}
             placeholder={this.props.placeholder}
+            disabled={this.props.disabled}
             />
           {this.getUnitLabel()}
         </span>
@@ -48,9 +67,11 @@ export default class Input extends Component {
 };
 
 Input.propTypes = {
+  ref: React.PropTypes.string,
   type: React.PropTypes.string.isRequired,
   label: React.PropTypes.string,
   unitLabel: React.PropTypes.string,
   placeholder: React.PropTypes.string,
   mandatory: React.PropTypes.bool,
+  disabled: React.PropTypes.bool,
 };

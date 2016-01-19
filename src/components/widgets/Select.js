@@ -1,7 +1,21 @@
 import React, {Component} from 'react';
 import corestyles from '../../styles/core.scss';
+import widgetstyles from './widgets.scss';
 
 export default class Select extends Component {
+  constructor () {
+    super();
+    this.handleOnChange = this.handleOnChange.bind(this);
+  }
+
+  componentWillMount () {
+    this.name = this.props.ref + 'Select';
+  }
+
+  getValue () {
+    return this.refs[this.name].value;
+  }
+
   isMandatory () {
     return this.props.mandatory;
   }
@@ -13,8 +27,14 @@ export default class Select extends Component {
   }
 
   getOptions () {
-    return this.props.options.map((o) => {
-      return (
+    const options = [];
+
+    if (!this.props.mandatory) {
+      options.push(<option key='null' value=''></option>);
+    }
+
+    this.props.options.map((o) => {
+      options.push(
         <option
           key={o.value}
           value={o.value}
@@ -23,6 +43,14 @@ export default class Select extends Component {
         </option>
       );
     });
+
+    return options;
+  }
+
+  handleOnChange () {
+    if (this.props.onChange) {
+      this.props.onChange();
+    }
   }
 
   render () {
@@ -31,7 +59,12 @@ export default class Select extends Component {
         <label>
           {this.props.label}
           {this.getMandatoryIndicator()}:
-          <select>
+          <select
+            name={this.name}
+            ref={this.name}
+            onChange={this.handleOnChange}
+            disabled={this.props.disabled}
+            >
             {this.getOptions()}
           </select>
         </label>
@@ -39,7 +72,12 @@ export default class Select extends Component {
     } else {
       return (
         <span className={corestyles['widget-wrapper']}>
-          <select>
+          <select
+            name={this.name}
+            ref={this.name}
+            onChange={this.handleOnChange}
+            disabled={this.props.disabled}
+            >
             {this.getOptions()}
           </select>
         </span>
@@ -49,8 +87,11 @@ export default class Select extends Component {
 };
 
 Select.propTypes = {
+  ref: React.PropTypes.string,
   label: React.PropTypes.string,
   options: React.PropTypes.array.isRequired,
   placeholder: React.PropTypes.string,
   mandatory: React.PropTypes.bool,
+  disabled: React.PropTypes.bool,
+  onChange: React.PropTypes.func,
 };

@@ -8,7 +8,12 @@ export default class FollowUpIntent extends Component {
       <Panel title='Intent' >
         <Select
           options={[
-            {key: 'Prostate SBRT', value: 'Prostate SBRT'}
+            {key: 'Adjuvant', value: 'Adjuvant'},
+            {key: 'Salvage', value: 'Salvage'},
+            {key: 'Observation', value: 'Observation'},
+            {key: 'Oligomets', value: 'Oligomets'},
+            {key: 'Palliative', value: 'Palliative'},
+            {key: 'Other', value: 'Other'},
           ]}
           />
       </Panel>
