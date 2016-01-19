@@ -32,3 +32,8 @@
 .gs-input::-webkit-input-placeholder {
   text-transform: uppercase;
 }
+
+.gs-result-container {
+  border: solid 1px $gh-box-fill-color;
+  height: 100px;
+}
