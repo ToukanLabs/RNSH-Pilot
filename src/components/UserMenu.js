@@ -15,25 +15,25 @@ export default class UserMenu extends Component {
             <span className={styles['trigger-span']}>{this.props.username} </span>
           </DropdownTrigger>
           <DropdownContent className={styles['dropdown__content']}>
-             <ul>
-                 <li>
-                     <a href='#'>
-                         Profile
-                     </a>
-                 </li>
-                 <li>
-                     <a href='#'>
-                         Change Password
-                     </a>
-                 </li>
-             </ul>
-             <ul>
-                 <li>
-                     <a href='#'>
-                         Log out
-                     </a>
-                 </li>
-             </ul>
+            <ul>
+              <li>
+                <a href='#'>
+                  Profile
+                </a>
+              </li>
+              <li>
+                <a href='#'>
+                  Change Password
+                </a>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <a href='#'>
+                  Log out
+                </a>
+              </li>
+            </ul>
           </DropdownContent>
         </Dropdown>
       </div>
