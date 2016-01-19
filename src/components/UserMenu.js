@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
+import Icon from './Icon';
 import styles from './UserMenu.scss';
 
 export default class UserMenu extends Component {
   render () {
     return (
       <div className={styles['user-drop-wrapper']}>
-        <Dropdown>
+        <span className={styles['um-icon-container']}>
+          <Icon name='user' className={styles['um-icon']} />
+        </span>
+        <Dropdown className={styles['user-menu-dropdown']}>
           <DropdownTrigger>
             <span className={styles['trigger-span']}>{this.props.username} </span>
           </DropdownTrigger>

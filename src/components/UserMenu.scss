@@ -6,7 +6,7 @@
   display: inline-block;
 }
 
-.user-drop-wrapper{
+.user-drop-wrapper {
   display: inline-block;
   width: 100%;
 }
@@ -14,6 +14,7 @@
 .dropdown__content {
   display: none;
   position: absolute;
+  min-width: 200px;
 }
 
 .dropdown--active .dropdown__content {
@@ -24,17 +25,26 @@
   list-style-type: none;
 }
 
-.um-icon {
-  background-color: $gh-box-fill-color;
+.um-icon-container {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 20px;
 }
 
-.user-icon-container{
-  float: left;
-  margin-right: 3px;
+.um-icon {
+  font-size: 1.8em !important;
+  color: $gh-box-fill-color;
+  margin-right: 4px;
+  position: absolute;
 }
 
 .trigger-span {
   line-height: 20px;
   display: inline-block;
   padding: 6px;
+}
+
+.user-menu-dropdown {
+  width: calc(100% - 30px);
 }
