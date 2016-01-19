@@ -633,14 +633,15 @@ export default class MultiGraph extends Component {
   };
 
   draw () {
-    this.graphSvg.select('g.x.axis').call(this.xAxis);
-    this.graphs.forEach(function (d) {
-      d.draw();
-    });
+    if (this.graphSvg) {
+      this.graphSvg.select('g.x.axis').call(this.xAxis);
+      this.graphs.forEach(function (d) {
+        d.draw();
+      });
+    }
   };
 
   render () {
-    this.init();
     this.draw();
     return (
       <div id={this.id}>
