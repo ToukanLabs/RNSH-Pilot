@@ -92,7 +92,7 @@ class LineGraph extends Graph {
     } else {
       gGraphInfo = this.graphSvg.append('g')
           .attr('class', this.name + ' y axis')
-          .attr('transform', 'translate(' + (this.graphSvg.width - 70) + ', ' + this.offsetTop + ')')
+          .attr('transform', 'translate(' + (this.graphSvg.width - 60) + ', ' + this.offsetTop + ')')
           .call(this.yaxis);
 
       // y-axis label (e.g. nmol / L).
@@ -174,7 +174,7 @@ class LineGraph extends Graph {
 class TimelineGraph extends Graph {
   constructor (name, displayName, data, offsetTop, x, axisPosition) {
     super();
-    this.height = 90;
+    this.height = 30;
 
     this.name = name;
     this.displayName = displayName;
@@ -218,10 +218,8 @@ class TimelineGraph extends Graph {
 
     gGraphInfo.append('text')
         .attr('class', this.name + ' graphtitle')
-        .attr('transform', 'rotate(-90)')
-        .attr('y', -45)
-        .attr('x', -0)
-        .style('text-anchor', 'end')
+        .attr('y', 8)
+        .attr('x', -55) // 60 is the width of the left margin.
         .text(this.displayName);
 
     var thisTimeGraph = this;
@@ -260,7 +258,7 @@ class TimelineGraph extends Graph {
 class PointGraph extends Graph {
   constructor (name, displayName, data, offsetTop, x, axisPosition) {
     super();
-    this.height = 80;
+    this.height = 30;
 
     this.name = name;
     this.displayName = displayName;
@@ -294,10 +292,8 @@ class PointGraph extends Graph {
 
     gGraphInfo.append('text')
         .attr('class', this.name + ' graphtitle')
-        .attr('transform', 'rotate(-90)')
-        .attr('y', -45)
-        .attr('x', -10)
-        .style('text-anchor', 'end')
+        .attr('y', 8)
+        .attr('x', -55) // 60 is the width of the left margin.
         .text(this.displayName);
 
     var thisPointGraph = this;
@@ -431,7 +427,6 @@ export default class MultiGraph extends Component {
 
     this.padding = 10;
     this.height = 0;
-    this.width = 800;
   };
 
   componentDidMount () {
@@ -441,10 +436,6 @@ export default class MultiGraph extends Component {
 
   getComponentId () {
     return 'multigraph' + multiGraphId++;
-  };
-
-  createGraphSVG () {
-    this.svg = d3.select('#' + this.id).append('svg');
   };
 
   registerGraphs () {
@@ -555,17 +546,25 @@ export default class MultiGraph extends Component {
   };
 
   createSvg () {
+    const containerWidth = document.getElementById(this.id).offsetWidth;
+
     this.graphSvg = d3.select('#' + this.id).append('svg')
         .attr('id', this.id + 'svg')
-        .attr('width', this.width)
-        .attr('height', this.height + (this.padding * this.graphCount) + 25)
+        .attr('width', containerWidth)
+        .attr('height', 100)
         .attr('class', 'multigraph')
       .append('g');
 
-    this.graphSvg['width'] = this.width;
+    this.width = containerWidth;
+    this.graphSvg['width'] = containerWidth;
 
     this.graphSvg.id = this.id + 'svg';
   };
+
+  setSvgHeight () {
+    d3.select('#' + this.id + 'svg')
+        .attr('height', this.height + (this.padding * this.graphCount) + 25);
+  }
 
   createClipPath () {
     this.graphSvg.append('clipPath')
@@ -573,7 +572,7 @@ export default class MultiGraph extends Component {
       .append('rect')
         .attr('x', 60)
         .attr('y', 0)
-        .attr('width', this.width - 60 - 70) // 60 is left margin with titles, etc. 70 is right.
+        .attr('width', this.width - 60 - 60) // 60 is left margin with titles, etc. 60 is right.
         .attr('height', this.height + (this.padding * this.graphCount));
   };
 
@@ -593,6 +592,9 @@ export default class MultiGraph extends Component {
   };
 
   init () {
+    this.removeSvg();
+    this.createSvg(this.graphSvg);
+
     this.x = d3.time.scale()
         .range([0, this.width]);
 
@@ -600,9 +602,9 @@ export default class MultiGraph extends Component {
         .scale(this.x)
         .orient('bottom');
 
-    this.removeSvg();
     this.registerGraphs();
-    this.createSvg(this.graphSvg);
+
+    this.setSvgHeight();
 
     this.graphSvg.append('g')
         .attr('class', 'x axis')
@@ -613,17 +615,17 @@ export default class MultiGraph extends Component {
     // Vertical line on left separating axis labels from graph content
     this.graphSvg.append('line')
         .attr('class', 'graphseparator')
-        .attr('x1', 60)
+        .attr('x1', 60) // 60 is the width of the left margin
         .attr('y1', 0)
-        .attr('x2', 60)
+        .attr('x2', 60) // 60 is the width of the left margin
         .attr('y2', this.height + (this.padding * this.graphCount) - (this.padding / 2));
 
     // Vertical line on right separating axis labels from graph content
     this.graphSvg.append('line')
         .attr('class', 'graphseparator')
-        .attr('x1', this.width - 70)
+        .attr('x1', this.width - 60) // 60 is the width of the right margin
         .attr('y1', 0)
-        .attr('x2', this.width - 70)
+        .attr('x2', this.width - 60) // 60 is the width of the right margin
         .attr('y2', this.height + (this.padding * this.graphCount) - (this.padding / 2));
 
     this.createClipPath();

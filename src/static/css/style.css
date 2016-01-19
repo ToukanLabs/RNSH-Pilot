@@ -2,6 +2,7 @@
   font-size: 10px;
   cursor: all-scroll;
   border: 1px solid rgb(213, 213, 213);
+  background-color: white;
 }
 
 .multigraph text {
@@ -142,6 +143,7 @@ g.hoverable:hover .point.data {
 }
 
 .androgen.graphtitle {
+  font-size: 1.2em;
   fill: rgb(44, 160, 44);
 }
 
@@ -150,6 +152,7 @@ g.hoverable:hover .point.data {
 }
 
 .radiotherapy.graphtitle {
+  font-size: 1.2em;
   fill: rgb(92, 30, 179);
 }
 
@@ -158,6 +161,7 @@ g.hoverable:hover .point.data {
 }
 
 .surgery.graphtitle {
+  font-size: 1.2em;
   fill: rgb(214, 39, 40);
 }
 
