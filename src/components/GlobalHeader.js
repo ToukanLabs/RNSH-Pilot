@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GlobalSearch from 'components/GlobalSearch';
+import GlobalSearchContainer from 'components/GlobalSearchContainer';
 import GlobalMenu from 'components/GlobalMenu';
 import UserMenu from 'components/UserMenu';
 import styles from './GlobalHeader.scss';
@@ -13,7 +13,7 @@ export default class GlobalHeader extends Component {
             <GlobalMenu />
           </div>
           <div className={styles['gh-search-container']}>
-            <GlobalSearch icon='search' placeholder='Global Search'/>
+            <GlobalSearchContainer icon='search' placeholder='Global Search'/>
           </div>
           <div className={styles['gh-user-container']}>
             <UserMenu icon='user' username='Thilo Schuler'/>

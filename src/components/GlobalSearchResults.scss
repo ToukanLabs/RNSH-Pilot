@@ -1,0 +1,56 @@
+@import '../styles/colors';
+
+.gs-result-container {
+  border: solid 1px $gh-box-fill-color;
+  height: 500px;
+  background-color: $gs-results-background;
+  position: absolute;
+  width: 100%;
+  overflow: scroll;
+  -webkit-box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
+  -moz-box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
+  box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
+  text-align: left;
+}
+
+.gs-patient-search-results h2 {
+  font-size: 1.2em;
+  margin-bottom: 0.2em;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.gs-patient-search-result {
+  margin: 5px 0 5px 0;
+}
+
+.gs-gender {
+  margin-left: 0.4em;
+  font-size: 0.7em;
+}
+
+.gs-label {
+  display: inline;
+  margin-left: 30px;
+  font-size: 0.75em;
+}
+
+.gs-value {
+  margin-right: 10px;
+  font-size: 0.75em;
+  font-style: italic;
+}
+
+.gs-tumortype {
+  display: inline;
+  font-weight: bold;
+  font-style: italic;
+  margin-left: 5px;
+  font-size: 0.6em;
+}
+/*
+.gs-patient-search-results li.nth-child(odd) {
+  //background-color: $table-row-highlight;
+  background-color: blue;
+}
+*/

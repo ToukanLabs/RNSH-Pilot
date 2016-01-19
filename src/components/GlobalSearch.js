@@ -4,38 +4,32 @@ import styles from './GlobalSearch.scss';
 export default class GlobalSearch extends Component {
   constructor () {
     super();
-    this.somefield = 'hello';
-
-    this.handleOnBlur = this.handleOnBlur.bind(this);
+    this.modifySearchString = this.modifySearchString.bind(this);
   }
 
-  handleOnBlur () {
-    console.log('left search input');
-    // alert(this.somefield);
-  }
+  modifySearchString (value) {
+    this.props.updateSearchString(value);
+  };
 
   render () {
     return (
-      <div className={styles['gs-input-wrapper']}>
-        <input
-          placeholder={this.props.placeholder}
-          className={styles['gs-input']}
-          onKeyPress={() => {
-          //  alert('poo');\
-            console.log('typing');
-          }
+      <input
+        ref='searchBox'
+        placeholder={this.props.placeholder}
+        className={styles['gs-input']}
+        onKeyUp={() => {
+          this.modifySearchString(this.refs.searchBox.value);
         }
-          onBlur={this.handleOnBlur}
-        />
-        <div className={styles['gs-result-container']}>
-        </div>
-      </div>
+      }
+        onFocus={this.props.showSearchResults}
+      />
     );
   };
 };
 
 GlobalSearch.propTypes = {
-  icon: React.PropTypes.string,
   placeholder: React.PropTypes.string,
+  showSearchResults: React.PropTypes.func.isRequired,
+  updateSearchString: React.PropTypes.func.isRequired,
   styles: React.PropTypes.object
 };

@@ -1,26 +1,5 @@
 @import '../styles/colors';
 
-.gs-input-wrapper {
-  display: inline-block;
-  width: 100%;
-  padding: 0;
-  position: relative;
-}
-
-.gs-input-wrapper::after {
-  background-color: $gh-box-fill-color;
-  display: inline-block;
-  font-family: FontAwesome;
-  color: white;
-  content: "\f002";
-  padding: 8px 13px;
-  height: 37px !important;
-  top: 0;
-  position: relative;
-  border: 2px solid $gh-box-color;
-  border-left: none;
-}
-
 .gs-input {
   font-size: 0.8em !important;
   width: 100%;
@@ -31,9 +10,4 @@
 
 .gs-input::-webkit-input-placeholder {
   text-transform: uppercase;
-}
-
-.gs-result-container {
-  border: solid 1px $gh-box-fill-color;
-  height: 100px;
 }
