@@ -12,6 +12,7 @@ import PatientView from 'views/PatientView';
 import PatientOverviewView from 'views/PatientOverviewView';
 import UnderMaintenanceView from 'views/UnderMaintenanceView';
 import QuestionnaireView from 'views/QuestionnaireView';
+import FollowUpView from 'views/FollowUpView';
 
 export default (
   <Route path='/' component={CoreLayout}>
@@ -26,7 +27,7 @@ export default (
       <Route path='surgery' component={UnderMaintenanceView} />
       <Route path='chemotherapy' component={UnderMaintenanceView} />
       <Route path='radiotherapy' component={UnderMaintenanceView} />
-      <Route path='follow-up' component={UnderMaintenanceView} />
+      <Route path='follow-up' component={FollowUpView} />
       <Route path='questionnaires' component={QuestionnaireView} />
       <Route path='vte' component={UnderMaintenanceView} />
       <Route path='bevacizumab' component={UnderMaintenanceView} />

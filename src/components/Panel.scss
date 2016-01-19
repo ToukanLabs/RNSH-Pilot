@@ -1,0 +1,19 @@
+@import '../styles/colors';
+
+.panel {
+  background-color: $table-background;
+  border-top: 1px solid $gh-box-fill-color;
+  padding: 6px 10px;
+  font-size: 0.9em;
+}
+
+.panel h2 {
+  line-height: 1.6em;
+  font-size: 1.3em;
+  padding: 1px 0px;
+  box-sizing: border-box;
+}
+
+.panel label, .panel .widget-wrapper {
+  margin: 5px 0 5px 0;
+}

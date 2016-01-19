@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { FormattedTime, FormattedRelative } from 'react-intl';
+import { FormattedRelative } from 'react-intl';
 import QuestionnaireQuestion from './QuestionnaireQuestion';
+import Panel from 'components/Panel';
 import styles from './QuestionnaireDetail.scss';
-import corestyles from '../styles/core.scss';
 
 const CATEGORY_KEY_MAP = {
   'rad_onc': 'Radiation Oncologist',
@@ -60,15 +60,15 @@ export default class QuestionnaireDetail extends Component {
       }
 
       return (
-        <div className={corestyles['panel']}>
-          <h2>
-            Breast Patient Follow-Up Questionnaire - <FormattedTime value={Date.parse(this.props.data._submission_time)} />
-          </h2>
+        <Panel title='Breast Patient FollowUp Questionnaire'>
+          {
+            // Breast Patient Follow-Up Questionnaire - <FormattedTime value={Date.parse(this.props.data._submission_time)} />
+          }
           <div className={styles['qd-relative-time']}>
             <FormattedRelative value={Date.parse(this.props.data._submission_time)} />
           </div>
           {question_responses}
-        </div>
+        </Panel>
       );
     } else {
       return (
