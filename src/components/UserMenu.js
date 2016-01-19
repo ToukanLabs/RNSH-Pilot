@@ -17,19 +17,19 @@ export default class UserMenu extends Component {
           <DropdownContent className={styles['dropdown__content']}>
             <ul>
               <li>
-                <a href='#'>
+                <a>
                   Profile
                 </a>
               </li>
               <li>
-                <a href='#'>
+                <a>
                   Change Password
                 </a>
               </li>
             </ul>
             <ul>
               <li>
-                <a href='#'>
+                <a>
                   Log out
                 </a>
               </li>
