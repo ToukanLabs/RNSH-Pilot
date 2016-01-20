@@ -128,8 +128,8 @@ class LineGraph extends Graph {
         .attr('class', this.name + ' hoverable')
         .on('mouseenter', function (e) {
           var point = d3.select(this).select('.' + thisLineGraph.name + '.point.data');
-          var offsetTop = document.getElementById(thisLineGraph.graphSvg.id).offsetTop;
-          var offsetLeft = document.getElementById(thisLineGraph.graphSvg.id).offsetLeft;
+          var offsetTop = document.getElementById(thisLineGraph.graphSvg.id).parentElement.offsetTop;
+          var offsetLeft = document.getElementById(thisLineGraph.graphSvg.id).parentElement.offsetLeft;
           var left = parseInt(point.attr('cx'), 10) + parseInt(offsetLeft, 10);
           var top = parseInt(point.attr('cy'), 10) + parseInt(offsetTop, 10) + thisLineGraph.offsetTop;
 
@@ -232,8 +232,8 @@ class TimelineGraph extends Graph {
         .on('mouseenter', function (e) {
           d3.select(this).select('.' + thisTimeGraph.name + '.point.data');
 
-          var offsetTop = document.getElementById(thisTimeGraph.graphSvg.id).offsetTop;
-          var offsetLeft = document.getElementById(thisTimeGraph.graphSvg.id).offsetLeft;
+          var offsetTop = document.getElementById(thisTimeGraph.graphSvg.id).parentElement.offsetTop;
+          var offsetLeft = document.getElementById(thisTimeGraph.graphSvg.id).parentElement.offsetLeft;
           var left = this.getPointAtLength(0).x + parseInt(offsetLeft, 10);
           var top = parseInt(this.getPointAtLength(0).y, 10) + parseInt(offsetTop, 10) + thisTimeGraph.offsetTop;
 
@@ -308,8 +308,8 @@ class PointGraph extends Graph {
         .on('mouseenter', function (e) {
           var point = d3.select(this);
 
-          var offsetTop = document.getElementById(thisPointGraph.graphSvg.id).offsetTop;
-          var offsetLeft = document.getElementById(thisPointGraph.graphSvg.id).offsetLeft;
+          var offsetTop = document.getElementById(thisPointGraph.graphSvg.id).parentElement.offsetTop;
+          var offsetLeft = document.getElementById(thisPointGraph.graphSvg.id).parentElement.offsetLeft;
           var left = parseInt(point.attr('cx'), 10) + parseInt(offsetLeft, 10);
           var top = parseInt(point.attr('cy'), 10) + parseInt(offsetTop, 10) + thisPointGraph.offsetTop;
 
@@ -370,12 +370,13 @@ class Tooltip {
     container.style.opacity = 0;
     document.body.appendChild(container);
 
-    var height = this.getHeight(container) +
+    let height = parseInt(this.getHeight(container), 10) +
         parseInt(this.getPaddingTop(container), 10) +
         parseInt(this.getPaddingBottom(container), 10);
-    var width = this.getWidth(container) +
+    let width = parseInt(this.getWidth(container), 10) +
         parseInt(this.getPaddingLeft(container), 10) +
         parseInt(this.getPaddingRight(container), 10);
+
     var windowWidth = window.innerWidth;
     var windowHeight = window.innerHeight;
     var scrollTop = document.body.scrollTop; // TODO: also adjust horizontal scroll
