@@ -1,8 +1,8 @@
 import _DateTimeInput from './DateTimeInput';
 export { _DateTimeInput as DateTimeInput };
 
-import _Input from './Input';
-export { _Input as Input };
+import _TextInput from './TextInput';
+export { _TextInput as TextInput };
 
 import _Select from './Select';
 export { _Select as Select };

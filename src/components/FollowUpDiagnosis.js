@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { findDOMNode } from 'react-dom';
 import Panel from './Panel';
-import { DateTimeInput, Select, Input, InlineWidgetGroup } from './widgets';
+import { DateTimeInput, Select, TextInput, InlineWidgetGroup } from './widgets';
 
 export default class FollowUpDiagnosis extends Component {
   constructor () {
@@ -85,15 +85,15 @@ export default class FollowUpDiagnosis extends Component {
             onChange={this.calculateGliesonScore}
             />
           =
-          <Input
+          <TextInput
             ref='gsCalculated'
             type='text' />
         </InlineWidgetGroup>
 
-        <Input
+        <TextInput
           type='text'
           label='Cores Biopsied' />
-        <Input
+        <TextInput
           type='text'
           label='Cores Involved' />
         <Select
@@ -120,7 +120,7 @@ export default class FollowUpDiagnosis extends Component {
             {key: 'M. Wines', value: 'M. Wines'},
           ]}
           />
-        <Input
+        <TextInput
           type='text'
           label='Referring LMO' />
       </Panel>

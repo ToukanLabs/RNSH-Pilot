@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import corestyles from '../../styles/core.scss';
 
-export default class Input extends Component {
+export default class TextInput extends Component {
   componentWillMount () {
     this.name = this.props.ref + 'Input';
   }
@@ -65,7 +65,7 @@ export default class Input extends Component {
   }
 };
 
-Input.propTypes = {
+TextInput.propTypes = {
   ref: React.PropTypes.string,
   type: React.PropTypes.string.isRequired,
   label: React.PropTypes.string,

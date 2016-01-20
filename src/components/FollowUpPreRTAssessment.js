@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import Panel from './Panel';
-import { Select, Input, InlineWidgetGroup } from './widgets';
+import { Select, TextInput, InlineWidgetGroup } from './widgets';
 
 export default class PreRTAssessment extends Component {
   render () {
     return (
       <Panel title='Pre-RT Assessment' >
         <InlineWidgetGroup>
-          <Input
+          <TextInput
             type='text'
             label='IPSS' />
           +
-          <Input
+          <TextInput
             type='text' />
-          <Input
+          <TextInput
             type='text'
             label='Nocturia'
             unitLabel='time(s)' />
@@ -29,11 +29,11 @@ export default class PreRTAssessment extends Component {
             {key: '> 4th Hour', value: '> 4th Hour'},
           ]}
           />
-        <Input
+        <TextInput
           type='text'
           label='Bowel Freq.'
           unitLabel='time(s) / day' />
-        <Input
+        <TextInput
           type='text'
           label='Incontinence' />
       </Panel>
