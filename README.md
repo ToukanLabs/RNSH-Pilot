@@ -14,6 +14,13 @@ Pilot clinical research database for Royal North Shore Hospital, Sydney.
 4. To start the dev server run `npm start`
 5. Point your browser to `http://localhost:3000`.
 
+### Troubleshooting
+
+If you have issues getting things to run on widows, specifically errors relating to `libsass`, try the following:
+
+1. `npm install config-chain`
+2. `npm rebuild node-sass`
+
 # Manual Deployment
 
 1. Change `NODE_ENV` in .env to `production`
