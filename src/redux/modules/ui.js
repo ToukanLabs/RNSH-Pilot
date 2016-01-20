@@ -8,6 +8,7 @@ export const SHOW_SIDEMENU = 'SHOW_SIDEMENU';
 export const HIDE_SEARCH_RESULTS = 'HIDE_SEARCH_RESULTS';
 export const SHOW_SEARCH_RESULTS = 'SHOW_SEARCH_RESULTS';
 export const UPDATE_SEARCH_STRING = 'UPDATE_SEARCH_STRING';
+export const TOGGLE_TUMOR_FILTER = 'TOGGLE_TUMOR_FILTER';
 
 // ------------------------------------
 // Actions
@@ -35,12 +36,20 @@ export const updateSearchString = createAction(
   }
 );
 
+export const toggleTumorFilter = createAction(
+  TOGGLE_TUMOR_FILTER,
+  (value) => {
+    return {value};
+  }
+);
+
 export const actions = {
   hideSideMenu,
   showSideMenu,
   hideSearchResults,
   showSearchResults,
-  updateSearchString
+  updateSearchString,
+  toggleTumorFilter
 };
 
 // ------------------------------------
@@ -61,5 +70,9 @@ export default handleActions({
   },
   [UPDATE_SEARCH_STRING]: (state, action) => {
     return {...state, searchString: action.payload.searchString};
+  },
+  [TOGGLE_TUMOR_FILTER]: (state, action) => {
+    var value = state.tumorFilter === action.payload.value ? '' : action.payload.value;
+    return {...state, tumorFilter: value};
   }
 }, 1);

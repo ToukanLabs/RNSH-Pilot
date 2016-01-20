@@ -11,14 +11,16 @@ export default class GlobalSearchResults extends Component {
   };
 
   filterPatients (value) {
-    var key = this.props.searchString.toUpperCase();
+    var key = this.props.searchString ? this.props.searchString.toUpperCase() : '';
     var name = value.name.toUpperCase();
     var mrn = value.mrn.toString();
-    return name.indexOf(key) >= 0 || mrn.indexOf(key) >= 0;
+    console.log('vag');
+    return (this.props.tumorFilter === undefined || this.props.tumorFilter === '' || value.tumorType === this.props.tumorFilter) &&
+      (name.indexOf(key) >= 0 || mrn.indexOf(key) >= 0);
   }
 
   sortPatients (a, b) {
-    var key = this.props.searchString.toUpperCase();
+    var key = this.props.searchString ? this.props.searchString.toUpperCase() : '';
     var x = a.name.toUpperCase();
     var y = b.name.toUpperCase();
     return x.indexOf(key) - y.indexOf(key);
@@ -27,12 +29,16 @@ export default class GlobalSearchResults extends Component {
   render () {
     if (this.props.searchResultsVisibility === 'expanded') {
       var patientResults;
-      if (this.props.searchString === undefined || this.props.searchString === '') {
+      if ((this.props.searchString === undefined || this.props.searchString === '') && !this.props.tumorFilter) {
         patientResults = this.props.patients;
       } else {
         patientResults = this.props.patients.filter(this.filterPatients);
         patientResults = patientResults.sort(this.sortPatients);
       }
+      console.log(this.props.tumorFilter);
+      var prostateFilterClass = this.props.tumorFilter === 'Prostate' ? 'gs-tumor-filter-selected' : '';
+      var cnsFilterClass = this.props.tumorFilter === 'CNS' ? 'gs-tumor-filter-selected' : '';
+      var breastFilterClass = this.props.tumorFilter === 'Breast' ? 'gs-tumor-filter-selected' : '';
       var patientList = () => {
         return patientResults.map((p) => {
           return (
@@ -60,10 +66,42 @@ export default class GlobalSearchResults extends Component {
       };
       return (
         <div className={styles['gs-result-container']}>
-          <div></div>
-          <ul className={styles['gs-patient-search-results']}>
-            {patientList()}
-          </ul>
+          <div className={styles['gs-result-filters']}>
+            <h2>Quick Filters</h2>
+            <h3>Tumor Type</h3>
+            <ul>
+              <li className={styles[prostateFilterClass]}>
+                <a
+                  href='#'
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.preventDefault();
+                    this.props.toggleTumorFilter('Prostate');
+                  }}>Prostate</a>
+              </li>
+              <li className={styles[cnsFilterClass]}>
+                <a
+                  href='#'
+                  onClick={(e) => {
+                    e.preventDefault();
+                    this.props.toggleTumorFilter('CNS');
+                  }}>CNS</a>
+              </li>
+              <li className={styles[breastFilterClass]}>
+                <a
+                  href='#'
+                  onClick={(e) => {
+                    e.preventDefault();
+                    this.props.toggleTumorFilter('Breast');
+                  }}>Breast</a>
+              </li>
+            </ul>
+          </div>
+          <div className={styles['gs-results']}>
+            <ul className={styles['gs-patient-search-results']}>
+              {patientList()}
+            </ul>
+          </div>
         </div>
       );
     } else {
@@ -76,6 +114,8 @@ GlobalSearchResults.propTypes = {
   searchResultsVisibility: React.PropTypes.string,
   searchString: React.PropTypes.string,
   hideSearchResults: React.PropTypes.func.isRequired,
+  toggleTumorFilter: React.PropTypes.func.isRequired,
   patients: React.PropTypes.array,
+  tumorFilter: React.PropTypes.string,
   styles: React.PropTypes.object
 };

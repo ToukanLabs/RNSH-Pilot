@@ -6,11 +6,16 @@
   background-color: $gs-results-background;
   position: absolute;
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   -webkit-box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
   -moz-box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
   box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
   text-align: left;
+  z-index: 100;
+  ul {
+    list-style-type: none;
+  }
 }
 
 .gs-patient-search-results h2 {
@@ -47,6 +52,41 @@
   font-style: italic;
   margin-left: 5px;
   font-size: 0.6em;
+}
+
+.gs-result-filters {
+  position: relative;
+  display: inline-block;
+  float: left;
+  background-color: $table-background;
+  height: 100%;
+  h2 {
+    font-weight: bold;
+    margin: 5px 5px 2px 5px;
+    font-size: 0.8em;
+    padding-right: 20px;
+  }
+  h3 {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 0.7em;
+    margin: 5px 0 2px 9px;
+  }
+  ul {
+    margin: 5px 0 2px 15px;
+    font-size: 0.8em;
+  }
+  li {
+    margin-bottom: 5px;
+  }
+}
+
+.gs-results {
+  float: left;
+}
+
+.gs-tumor-filter-selected{
+  background-color: darken($table-background, 10);
 }
 /*
 .gs-patient-search-results li.nth-child(odd) {

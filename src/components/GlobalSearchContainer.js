@@ -11,7 +11,8 @@ import styles from './GlobalSearchContainer.scss';
 const mapStateToProps = (state) => ({
   searchResultsVisibility: state.ui.searchResultsVisibility,
   searchString: state.ui.searchString,
-  patients: state.patients.searchResults
+  patients: state.patients.searchResults,
+  tumorFilter: state.ui.tumorFilter
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -52,8 +53,10 @@ export default class GlobalSearchContainer extends Component {
         <GlobalSearchResults
           searchResultsVisibility = {this.props.searchResultsVisibility}
           hideSearchResults = { this.props.uiActions.hideSearchResults }
+          toggleTumorFilter = {this.props.uiActions.toggleTumorFilter}
           searchString = {this.props.searchString}
           patients = {this.props.patients}
+          tumorFilter = {this.props.tumorFilter}
         />
       </div>
     );
@@ -68,5 +71,6 @@ GlobalSearchContainer.propTypes = {
   uiActions: React.PropTypes.object,
   searchString: React.PropTypes.string,
   patients: React.PropTypes.array,
+  tumorFilter: React.PropTypes.string,
   styles: React.PropTypes.object
 };
