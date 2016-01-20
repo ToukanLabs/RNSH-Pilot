@@ -1,6 +1,6 @@
 export const initialState = {
   ui: {
-    sidemenuVisibility: 'expanded'
+    sidemenuVisibility: 'collapsed'
   },
   patients: {
     activePatient: {},
@@ -15,7 +15,8 @@ export const initialState = {
         phone: '(02) 9372 4355',
         email: 'raphael.trueman@rnsh.pilot.com',
         gender: 'M',
-        tumorType: 'Prostate'
+        tumorType: 'Prostate',
+        surgical: 'Y'
       },
       {
         id: 2,
@@ -27,7 +28,8 @@ export const initialState = {
         phone: '(02) 9372 6785',
         email: 'jon.ingram@rnsh.pilot.com',
         gender: 'M',
-        tumorType: 'Prostate'
+        tumorType: 'Prostate',
+        surgical: 'N'
       },
       {
         id: 3,
@@ -39,7 +41,8 @@ export const initialState = {
         phone: '(02) 9372 2342',
         email: 'anabelle.elliott@rnsh.pilot.com',
         gender: 'F',
-        tumorType: 'CNS'
+        tumorType: 'CNS',
+        surgical: 'Y'
       },
       {
         id: 4,
@@ -51,7 +54,8 @@ export const initialState = {
         phone: '(02) 9372 4567',
         email: 'gary.earl@rnsh.pilot.com',
         gender: 'M',
-        tumorType: 'CNS'
+        tumorType: 'CNS',
+        surgical: 'Y'
       },
       {
         id: 5,
@@ -63,7 +67,8 @@ export const initialState = {
         phone: '(02) 9372 6234',
         email: 'madonna.dawson@rnsh.pilot.com',
         gender: 'F',
-        tumorType: 'CNS'
+        tumorType: 'CNS',
+        surgical: 'N'
       },
       {
         id: 6,
@@ -75,7 +80,8 @@ export const initialState = {
         phone: '(02) 9372 5555',
         email: 'felix.sudworth@rnsh.pilot.com',
         gender: 'M',
-        tumorType: 'CNS'
+        tumorType: 'CNS',
+        surgical: 'Y'
       },
       {
         id: 7,
@@ -87,7 +93,8 @@ export const initialState = {
         phone: '(02) 9372 3335',
         email: 'bill.snoogie@rnsh.pilot.com',
         gender: 'M',
-        tumorType: 'Prostate'
+        tumorType: 'Prostate',
+        surgical: 'N'
       },
       {
         id: 8,
@@ -99,7 +106,8 @@ export const initialState = {
         phone: '(02) 9372 9000',
         email: 'lenora.christians@rnsh.pilot.com',
         gender: 'F',
-        tumorType: 'CNS'
+        tumorType: 'CNS',
+        surgical: 'Y'
       },
       {
         id: 9,
@@ -111,7 +119,8 @@ export const initialState = {
         phone: '(02) 9372 0078',
         email: 'karlene.cotterill@rnsh.pilot.com',
         gender: 'F',
-        tumorType: 'CNS'
+        tumorType: 'CNS',
+        surgical: 'Y'
       },
       {
         id: 10,
@@ -123,7 +132,8 @@ export const initialState = {
         phone: '(02) 9372 6745',
         email: 'kelcey.walker@rnsh.pilot.com',
         gender: 'F',
-        tumorType: 'CNS'
+        tumorType: 'CNS',
+        surgical: 'Y'
       }
     ]
   },
