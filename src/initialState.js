@@ -15,7 +15,7 @@ export const initialState = {
         phone: '(02) 9372 4355',
         email: 'raphael.trueman@rnsh.pilot.com',
         gender: 'M',
-        tumorType: 'Prosate'
+        tumorType: 'Prostate'
       },
       {
         id: 2,
