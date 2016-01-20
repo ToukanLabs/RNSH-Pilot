@@ -16,10 +16,18 @@ Pilot clinical research database for Royal North Shore Hospital, Sydney.
 
 # Manual Deployment
 
-1. Run `npm run compile`
-2. Deploy all files in `./dist` to your apache html directory.
-3. Ensure apache mod_rewrite is installed: `a2enmod rewrite`
-4. Add the following to `<Directory /> ...` in apache2.conf:
+1. Change `NODE_ENV` in .env to `production`
+2. Bump version in `package.json`
+3. Tag build.
+4. Run `npm run clean`
+5. Run `npm run compile`
+6. Remove all files in your apache html directory (/var/www/html)
+7. Deploy all files in `./dist` to your apache html directory.
+
+# Server Config
+
+1. Ensure apache mod_rewrite is installed: `a2enmod rewrite`
+2. Add the following to `<Directory /> ...` in apache2.conf:
   ```
   RewriteEngine On
   RewriteBase /
