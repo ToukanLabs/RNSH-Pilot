@@ -42,32 +42,34 @@ export default class GlobalSearchResults extends Component {
       var patientList = () => {
         return patientResults.map((p) => {
           return (
-            <li className={styles['gs-patient-search-result']} key={p.id}>
-              <h2>
-                <Link to={`/patient/${p.id}`}>{p.name}</Link>
-                <span className={styles['gs-tumortype']}>({p.tumorType})</span>
-              </h2>
-              <label htmlFor='patient-mrn' className={styles['gs-label']}>MRN: </label>
-              <span id='patient-mrn' className={styles['gs-value']}>{p.mrn}</span>
-              <label htmlFor='patient-dob' className={styles['gs-label']}>DOB: </label>
-              <span id='patient-dob' className={styles['gs-value']}>
-                <FormattedDate
-                  value={Date.parse(p.dob)}
-                  day='numeric'
-                  month='short'
-                  year='numeric'
-                  />
-              </span>
-              <label htmlFor='patient-gender' className={styles['gs-label']}>Gender: </label>
-              <span id='patient-gender' className={styles['gs-value']}>{p.gender}</span>
-            </li>
+            <Link to={`/patient/${p.id}`}>
+              <li className={styles['gs-patient-search-result']} key={p.id}>
+                <h2>
+                  {p.name}
+                  <span className={styles['gs-tumortype']}>({p.tumorType})</span>
+                </h2>
+                <label htmlFor='patient-mrn' className={styles['gs-label']}>MRN: </label>
+                <span id='patient-mrn' className={styles['gs-value']}>{p.mrn}</span>
+                <label htmlFor='patient-dob' className={styles['gs-label']}>DOB: </label>
+                <span id='patient-dob' className={styles['gs-value']}>
+                  <FormattedDate
+                    value={Date.parse(p.dob)}
+                    day='numeric'
+                    month='short'
+                    year='numeric'
+                    />
+                </span>
+                <label htmlFor='patient-gender' className={styles['gs-label']}>Gender: </label>
+                <span id='patient-gender' className={styles['gs-value']}>{p.gender}</span>
+              </li>
+            </Link>
           );
         });
       };
       return (
         <div className={styles['gs-result-container']}>
           <div className={styles['gs-result-filters']}>
-            <h2>Quick Filters</h2>
+            <h2>QUICK FILTERS</h2>
             <h3>Tumor Type</h3>
             <ul>
               <li className={styles[prostateFilterClass]}>
