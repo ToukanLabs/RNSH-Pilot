@@ -237,7 +237,7 @@ class TimelineGraph extends Graph {
           var left = this.getPointAtLength(0).x + parseInt(offsetLeft, 10);
           var top = parseInt(this.getPointAtLength(0).y, 10) + parseInt(offsetTop, 10) + thisTimeGraph.offsetTop;
 
-          var content = '<h3>' + thisTimeGraph.displayName + ': </h3> ' +
+          var content = '<h3>' + thisTimeGraph.displayName + '</h3> ' +
                         '<b>Start: </b><span class="value">' + thisTimeGraph.data[0].date.getDate() + '/' + thisTimeGraph.data[0].date.getMonth() + '/' + thisTimeGraph.data[0].date.getFullYear() + '</span><br/>' +
                         '<b>End: </b><span class="value">' + thisTimeGraph.data[1].date.getDate() + '/' + thisTimeGraph.data[1].date.getMonth() + '/' + thisTimeGraph.data[1].date.getFullYear() + '</span>';
 

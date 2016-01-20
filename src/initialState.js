@@ -164,7 +164,7 @@ export const initialState = {
     },
     {
       'name': 'androgen',
-      'displayName': 'Androgen',
+      'displayName': 'ADT',
       'type': 'timeline',
       'data': [
         { 'start': '24-Jul-12', 'end': '24-Jan-13' }

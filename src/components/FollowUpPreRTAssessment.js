@@ -15,7 +15,7 @@ export default class PreRTAssessment extends Component {
             type='text' />
           <Input
             type='text'
-            label='Nocturis'
+            label='Nocturia'
             unitLabel='time(s)' />
         </InlineWidgetGroup>
 

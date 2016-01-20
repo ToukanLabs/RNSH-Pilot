@@ -120,16 +120,9 @@ export default class SideMenu extends Component {
               showText={showText()}
               />
             <SideMenuItem
-              text='VTE'
+              text='Clinical Trials'
               icon='cubes'
-              linkTo={`/patient/${this.props.patientId}/vte`}
-              currentRouterPath={this.props.routerPath}
-              showText={showText()}
-              />
-            <SideMenuItem
-              text='Bevacizumab'
-              icon='bug'
-              linkTo={`/patient/${this.props.patientId}/bevacizumab`}
+              linkTo={`/patient/${this.props.patientId}/clinical-trials`}
               currentRouterPath={this.props.routerPath}
               showText={showText()}
               />

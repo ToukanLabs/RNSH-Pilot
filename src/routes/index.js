@@ -28,8 +28,7 @@ export default (
       <Route path='radiotherapy' component={UnderMaintenanceView} />
       <Route path='follow-up' component={FollowUpView} />
       <Route path='questionnaires' component={QuestionnaireView} />
-      <Route path='vte' component={UnderMaintenanceView} />
-      <Route path='bevacizumab' component={UnderMaintenanceView} />
+      <Route path='clinical-trials' component={UnderMaintenanceView} />
     </Route>
   </Route>
 );

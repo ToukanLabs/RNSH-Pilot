@@ -28,7 +28,7 @@ export default class FollowUpDiagnosis extends Component {
         <DateTimeInput label='Date of Dx' noTime mandatory />
         <InlineWidgetGroup>
           <Select
-            label='Stage'
+            label='TNM'
             options={[
               {key: 'pT2', value: 'pT2'},
               {key: 'pT3a', value: 'pT3a'},
