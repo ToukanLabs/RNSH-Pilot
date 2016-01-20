@@ -15,8 +15,8 @@ export default class FollowUpDiagnosis extends Component {
 
     // Explicit use of undefined below as 0 tests as false which is an allowed
     // value.
-    if (gsPattern1Val !== undefined && gsPattern1Val !== '' && gsPattern2Val !== undefined && gsPattern2Val !== '') {
-      this.refs.gsCalculated.setValue(gsPattern1Val + gsPattern2Val);
+    if (!isNaN(parseInt(gsPattern1Val, 10)) && !isNaN(parseInt(gsPattern2Val, 10))) {
+      this.refs.gsCalculated.setValue(parseInt(gsPattern1Val, 10) + parseInt(gsPattern2Val, 10));
     } else {
       this.refs.gsCalculated.setValue('');
     }
