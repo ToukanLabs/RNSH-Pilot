@@ -55,6 +55,10 @@ input, select {
   height: 24px;
 }
 
+input[type='date'], input[type='time'] {
+  font-family:'Open Sans','Helvetica','Arial',sans-serif;
+}
+
 label, .widget-wrapper {
   display: block;
 }
