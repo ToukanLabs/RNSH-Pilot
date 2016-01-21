@@ -54,8 +54,12 @@ export class HomeView extends React.Component {
       <div className={styles['as-container']}>
         <div className={styles['as-search-container']}>
           <h2>Patient Search</h2>
-
+          <label>MRN:</label>
+          <input/>
+          <label>Patient Name</label>
+          <input/>
         </div>
+        <h2>Search Results</h2>
         <GlobalSearchFilters
           toggleTumorFilter={this.props.uiActions.toggleTumorFilter}
           tumorFilter={this.props.tumorFilter}
