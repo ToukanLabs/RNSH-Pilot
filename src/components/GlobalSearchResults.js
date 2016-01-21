@@ -48,6 +48,8 @@ export default class GlobalSearchResults extends Component {
           <GlobalSearchFilters
             toggleTumorFilter={this.props.toggleTumorFilter}
             tumorFilter={this.props.tumorFilter}
+            mainClass='gs-result-filters'
+            selectedClass='gs-tumor-filter-selected'
           />
           <div className={styles['gs-results']}>
             <ul className={styles['gs-patient-search-results']}>

@@ -61,11 +61,14 @@ export class HomeView extends React.Component {
         </div>
         <h2>Search Results</h2>
         <GlobalSearchFilters
+          className={styles['hv-search-filters']}
           toggleTumorFilter={this.props.uiActions.toggleTumorFilter}
           tumorFilter={this.props.tumorFilter}
+          mainClass='hv-result-filters'
+          selectedClass='hv-tumor-filter-selected'
         />
-        <div className={styles['gs-results']}>
-          <ul className={styles['gs-patient-search-results']}>
+        <div className={styles['hv-results']}>
+          <ul className={styles['hv-patient-search-results']}>
             {patientList()}
           </ul>
         </div>

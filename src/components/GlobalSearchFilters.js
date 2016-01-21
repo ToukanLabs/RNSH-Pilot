@@ -4,12 +4,12 @@ import styles from './GlobalSearchFilters.scss';
 export default class GlobalSearchFilters extends Component {
 
   render () {
-    var prostateFilterClass = this.props.tumorFilter === 'Prostate' ? 'gs-tumor-filter-selected' : '';
-    var cnsFilterClass = this.props.tumorFilter === 'CNS' ? 'gs-tumor-filter-selected' : '';
-    var breastFilterClass = this.props.tumorFilter === 'Breast' ? 'gs-tumor-filter-selected' : '';
-    var allFilterClass = !this.props.tumorFilter ? 'gs-tumor-filter-selected' : '';
+    var prostateFilterClass = this.props.tumorFilter === 'Prostate' ? this.props.selectedClass : '';
+    var cnsFilterClass = this.props.tumorFilter === 'CNS' ? this.props.selectedClass : '';
+    var breastFilterClass = this.props.tumorFilter === 'Breast' ? this.props.selectedClass : '';
+    var allFilterClass = !this.props.tumorFilter ? this.props.selectedClass : '';
     return (
-      <div className={styles['gs-result-filters']}>
+      <div className={this.props.mainClass}>
         <h2>QUICK FILTERS</h2>
         <h3>Tumor Type</h3>
         <ul>
@@ -56,5 +56,7 @@ export default class GlobalSearchFilters extends Component {
 GlobalSearchFilters.propTypes = {
   toggleTumorFilter: React.PropTypes.func.isRequired,
   tumorFilter: React.PropTypes.string,
+  mainClass: React.PropTypes.string,
+  selectedClass: React.PropTypes.string,
   styles: React.PropTypes.object
 };
