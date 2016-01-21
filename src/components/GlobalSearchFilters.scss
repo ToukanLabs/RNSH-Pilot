@@ -1,0 +1,38 @@
+@import '../styles/colors';
+
+.gs-result-filters {
+  position: relative;
+  display: inline-block;
+  float: left;
+  background-color: $patient-subheading-color;
+  color: $patient-subheading-font-color;
+  height: 100%;
+  width: 20%;
+  h2 {
+    font-weight: normal;
+    margin: 5px 5px 10px 5px;
+    font-size: 0.8em;
+    padding-right: 20px;
+  }
+  h3 {
+    font-weight: bold;
+    font-size: 0.7em;
+    margin: 5px 0 2px 9px;
+  }
+  ul {
+    margin: 5px 0 2px 15px;
+    font-size: 0.8em;
+  }
+  li {
+    margin-bottom: 5px;
+    padding: 3px;
+    margin-right: 20px;
+    a {
+      color: $patient-subheading-font-color;
+    }
+  }
+}
+
+.gs-tumor-filter-selected{
+  background-color: darken($patient-subheading-color, 8);
+}

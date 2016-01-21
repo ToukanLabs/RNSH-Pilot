@@ -134,6 +134,45 @@ export const initialState = {
         gender: 'F',
         tumorType: 'CNS',
         surgical: 'Y'
+      },
+      {
+        id: 11,
+        mrn: 9874521,
+        dob: '1964-02-12T00:00Z',
+        name: 'Frederick Corkhill',
+        address: `23 Bread Road
+      EVERTON QLD 4115`,
+        phone: '(02) 2342 0078',
+        email: 'frederick.corkhill@rnsh.pilot.com',
+        gender: 'F',
+        tumorType: 'Breast',
+        surgical: 'Y'
+      },
+      {
+        id: 12,
+        mrn: 8454521,
+        dob: '1964-02-12T00:00Z',
+        name: 'Simone Redic',
+        address: `51 Savages Road
+      PARKINSON QLD 4115`,
+        phone: '(02) 9372 0078',
+        email: 'timothy.redick@rnsh.pilot.com',
+        gender: 'F',
+        tumorType: 'Breast',
+        surgical: 'Y'
+      },
+      {
+        id: 13,
+        mrn: 6574521,
+        dob: '1964-02-12T00:00Z',
+        name: 'Loise Gregory',
+        address: `51 Savages Road
+      PARKINSON QLD 4115`,
+        phone: '(02) 9372 0078',
+        email: 'loise.gg@rnsh.pilot.com',
+        gender: 'F',
+        tumorType: 'Breast',
+        surgical: 'Y'
       }
     ]
   },

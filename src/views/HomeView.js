@@ -1,7 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { actions as patientActions } from '../redux/modules/patient';
+import { bindActionCreators } from 'redux';
+import { actions as uiActions } from 'redux/modules/ui';
+import { actions as patientActions } from 'redux/modules/patient';
+import GlobalSearchFilters from 'components/GlobalSearchFilters';
+import SearchResultRow from 'components/SearchResultRow';
 import styles from './HomeView.scss';
 // import MultiGraph from '../components/MultiGraph';
 // import CreatePatient from '../components/CreatePatient';
@@ -13,11 +17,59 @@ import styles from './HomeView.scss';
 // See: http://rackt.github.io/redux/docs/recipes/WritingTests.html
 const mapStateToProps = (state) => ({
   graphs: state.graphs,
-  patients: state.patients.searchResults
+  patients: state.patients.searchResults,
+  tumorFilter: state.ui.tumorFilter
 });
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    uiActions: bindActionCreators(uiActions, dispatch),
+    patientActions: bindActionCreators(patientActions, dispatch),
+  };
+};
+
 export class HomeView extends React.Component {
+
+  componentWillMount () {
+    this.props.uiActions.hideSearchResults();
+  }
+
   render () {
+    var patientResults;
+  //  if ((this.props.searchString === undefined || this.props.searchString === '') && !this.props.tumorFilter) {
+    patientResults = this.props.patients;
+  /*  } else {
+      patientResults = this.props.patients.filter(this.filterPatients);
+      patientResults = patientResults.sort(this.sortPatients);
+    }
+*/
+    var patientList = () => {
+      return patientResults.map((p) => {
+        return (
+          <SearchResultRow patient={p}/>
+        );
+      });
+    };
+    return (
+      <div className={styles['as-container']}>
+        <div className={styles['as-search-container']}>
+          <h2>Patient Search</h2>
+
+        </div>
+        <GlobalSearchFilters
+          toggleTumorFilter={this.props.uiActions.toggleTumorFilter}
+          tumorFilter={this.props.tumorFilter}
+        />
+        <div className={styles['gs-results']}>
+          <ul className={styles['gs-patient-search-results']}>
+            {patientList()}
+          </ul>
+        </div>
+      </div>
+    );
+  };
+
+  renderOLDONE () {
     var patientList = () => {
       return this.props.patients.map((p) => {
         return (
@@ -49,10 +101,12 @@ export class HomeView extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, patientActions)(HomeView);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeView);
 
 HomeView.propTypes = {
   createPatient: React.PropTypes.func,
   graphs: React.PropTypes.array,
-  patients: React.PropTypes.array
+  uiActions: React.PropTypes.object,
+  patients: React.PropTypes.array,
+  tumorFilter: React.PropTypes.string
 };

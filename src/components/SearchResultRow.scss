@@ -1,0 +1,30 @@
+@import '../styles/colors';
+
+.sr-gender {
+  margin-left: 0.4em;
+  font-size: 0.7em;
+}
+
+.sr-label {
+  display: inline;
+  margin-left: 30px;
+  font-size: 0.75em;
+  color: black;
+  cursor: pointer;
+}
+
+.sr-value {
+  margin-right: 10px;
+  font-size: 0.75em;
+  font-style: italic;
+  color: black;
+}
+
+.sr-tumortype {
+  display: inline;
+  font-weight: bold;
+  font-style: italic;
+  margin-left: 5px;
+  font-size: 0.6em;
+  color: black;
+}

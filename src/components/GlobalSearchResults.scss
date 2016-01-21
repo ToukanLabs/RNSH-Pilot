@@ -1,5 +1,8 @@
 @import '../styles/colors';
 
+$left-percentage: 20%;
+$right-percentage: 80%;
+
 .gs-result-container {
   border: solid 1px $gh-box-fill-color;
   height: 500px;
@@ -40,72 +43,30 @@
   }
 }
 
-.gs-gender {
-  margin-left: 0.4em;
+.gs-results {
+  float: left;
+  width: $right-percentage;
+  height: 90%;
+}
+
+.gs-results-footer {
+  border-top: solid 1px $patient-subheading-color;
+  position: absolute;
+  bottom: 0;
+  left: $left-percentage;
+  width: 100% - $left-percentage;
+  padding: 3px;
   font-size: 0.7em;
 }
 
-.gs-label {
-  display: inline;
-  margin-left: 30px;
-  font-size: 0.75em;
-  color: black;
+.gs-advanced-search {
+  float: right;
 }
 
-.gs-value {
-  margin-right: 10px;
-  font-size: 0.75em;
-  font-style: italic;
-  color: black;
-}
-
-.gs-tumortype {
-  display: inline;
-  font-weight: bold;
-  font-style: italic;
-  margin-left: 5px;
-  font-size: 0.6em;
-  color: black;
-}
-
-.gs-result-filters {
-  position: relative;
+.gs-advanced-search::before {
   display: inline-block;
-  float: left;
-  background-color: $patient-subheading-color;
-  color: $patient-subheading-font-color;
-  height: 100%;
-  width: 20%;
-  h2 {
-    font-weight: normal;
-    margin: 5px 5px 10px 5px;
-    font-size: 0.8em;
-    padding-right: 20px;
-  }
-  h3 {
-    font-weight: bold;
-    font-size: 0.7em;
-    margin: 5px 0 2px 9px;
-  }
-  ul {
-    margin: 5px 0 2px 15px;
-    font-size: 0.8em;
-  }
-  li {
-    margin-bottom: 5px;
-    padding: 3px;
-    margin-right: 20px;
-    a {
-      color: $patient-subheading-font-color;
-    }
-  }
-}
-
-.gs-results {
-  float: left;
-  width: 80%;
-}
-
-.gs-tumor-filter-selected{
-  background-color: darken($patient-subheading-color, 8);
+  font-family: FontAwesome;
+  content: "\f002";
+  padding-right:2px;
+  position: relative;
 }
