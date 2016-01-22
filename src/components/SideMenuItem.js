@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Icon from './Icon';
 import { Link } from 'react-router';
+import ReactTooltip from 'react-tooltip';
 import styles from './SideMenuItem.scss';
 
 export default class SideMenuItem extends Component {
@@ -20,13 +21,28 @@ export default class SideMenuItem extends Component {
           {displayText()}
         </li>
       );
-    } else {
+    } else if (this.props.showText) {
       return (
         <li className={styles['smi-menu-item']}>
           <Link to={this.props.linkTo}>
             <Icon name={this.props.icon} className={styles['smi-icon']}/>
             {displayText()}
           </Link>
+        </li>
+      );
+    } else {
+      return (
+        <li className={styles['smi-menu-item']}>
+          <Link data-tip data-for={`tt-${this.props.text}`} to={this.props.linkTo}>
+            <Icon name={this.props.icon} className={styles['smi-icon']}/>
+            {displayText()}
+          </Link>
+          <ReactTooltip
+            id={`tt-${this.props.text}`}
+            effect='solid'
+            place='right'>
+            <span>{this.props.text}</span>
+          </ReactTooltip>
         </li>
       );
     }
