@@ -10,7 +10,7 @@ export default class SearchResultRow extends Component {
       <Link to={`/patient/${this.props.patient.id}`}>
         <li className={styles['gs-patient-search-result']} key={this.props.patient.id}>
           <h2>
-            {this.props.patient.name}
+            {this.props.patient.firstname + ' ' + this.props.patient.surname}
             <span className={styles['sr-tumortype']}>({this.props.patient.tumorType})</span>
           </h2>
           <label htmlFor='patient-mrn' className={styles['sr-label']}>MRN: </label>

@@ -9,7 +9,8 @@ export const initialState = {
         id: 1,
         mrn: 2345237,
         dob: '1964-02-12T00:00Z',
-        name: 'Raphael Trueman',
+        firstname: 'Raphael',
+        surname: 'Trueman',
         address: `95 Wallum Court
       TYALGUM NSW 2484`,
         phone: '(02) 9372 4355',
@@ -22,7 +23,8 @@ export const initialState = {
         id: 2,
         mrn: 2349675,
         dob: '1964-02-12T00:00Z',
-        name: 'Jon Ingram',
+        firstname: 'Jon',
+        surname: 'Ingram',
         address: `89 Larissa Court
       COWANGIE VIC 3506`,
         phone: '(02) 9372 6785',
@@ -35,7 +37,8 @@ export const initialState = {
         id: 3,
         mrn: 9876345,
         dob: '1964-02-12T00:00Z',
-        name: 'Anabelle Elliott',
+        firstname: 'Anabelle',
+        surname: 'Elliott',
         address: `35 Patton Street
       KOOYONG VIC 3144`,
         phone: '(02) 9372 2342',
@@ -48,7 +51,8 @@ export const initialState = {
         id: 4,
         mrn: 3456234,
         dob: '1964-02-12T00:00Z',
-        name: 'Gary Earl',
+        firstname: 'Gary',
+        surname: 'Earl',
         address: `15 Mendooran Road
       CUMBOOGLE NSW 2830`,
         phone: '(02) 9372 4567',
@@ -61,7 +65,8 @@ export const initialState = {
         id: 5,
         mrn: 1276543,
         dob: '1964-02-12T00:00Z',
-        name: 'Madonna Dawson',
+        firstname: 'Madonna',
+        surname: 'Dawson',
         address: `83 Inglewood Court
       PASTORIA VIC 3444`,
         phone: '(02) 9372 6234',
@@ -74,7 +79,8 @@ export const initialState = {
         id: 6,
         mrn: 3456734,
         dob: '1964-02-12T00:00Z',
-        name: 'Felix Sudworth',
+        firstname: 'Felix',
+        surname: 'Sudworth',
         address: `10 Carolina Park Road
       PATONGA NSW 2256`,
         phone: '(02) 9372 5555',
@@ -87,7 +93,8 @@ export const initialState = {
         id: 7,
         mrn: 3334526,
         dob: '1964-02-12T00:00Z',
-        name: 'Bill Snoogie',
+        firstname: 'Bill',
+        surname: 'Snoogie',
         address: `45 Farrar Parade
       JURIEN BAY WA 6516`,
         phone: '(02) 9372 3335',
@@ -100,7 +107,8 @@ export const initialState = {
         id: 8,
         mrn: 3452777,
         dob: '1964-02-12T00:00Z',
-        name: 'Lenora Christians',
+        firstname: 'Lenora',
+        surname: 'Christians',
         address: `61 Eungella Road
       HOME HILL QLD 4806`,
         phone: '(02) 9372 9000',
@@ -113,7 +121,8 @@ export const initialState = {
         id: 9,
         mrn: 3334521,
         dob: '1964-02-12T00:00Z',
-        name: 'Karlene Cotterill',
+        firstname: 'Karlene',
+        surname: 'Cotterill',
         address: `51 Savages Road
       PARKINSON QLD 4115`,
         phone: '(02) 9372 0078',
@@ -126,7 +135,8 @@ export const initialState = {
         id: 10,
         mrn: 9878776,
         dob: '1964-02-12T00:00Z',
-        name: 'Kelcey Walker',
+        firstname: 'Kelcey',
+        surname: 'Walker',
         address: `85 Zipfs Road
       FLINDERS VIEW QLD 4305`,
         phone: '(02) 9372 6745',
@@ -139,7 +149,8 @@ export const initialState = {
         id: 11,
         mrn: 9874521,
         dob: '1964-02-12T00:00Z',
-        name: 'Frederick Corkhill',
+        firstname: 'Frederick',
+        surname: 'Corkhill',
         address: `23 Bread Road
       EVERTON QLD 4115`,
         phone: '(02) 2342 0078',
@@ -152,7 +163,8 @@ export const initialState = {
         id: 12,
         mrn: 8454521,
         dob: '1964-02-12T00:00Z',
-        name: 'Simone Redic',
+        firstname: 'Simone',
+        surname: 'Redic',
         address: `51 Savages Road
       PARKINSON QLD 4115`,
         phone: '(02) 9372 0078',
@@ -165,11 +177,12 @@ export const initialState = {
         id: 13,
         mrn: 6574521,
         dob: '1964-02-12T00:00Z',
-        name: 'Loise Gregory',
+        firstname: 'Louise',
+        surname: 'Gregory',
         address: `51 Savages Road
       PARKINSON QLD 4115`,
         phone: '(02) 9372 0078',
-        email: 'loise.gg@rnsh.pilot.com',
+        email: 'louise.gg@rnsh.pilot.com',
         gender: 'F',
         tumorType: 'Breast',
         surgical: 'Y'

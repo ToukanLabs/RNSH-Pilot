@@ -13,7 +13,7 @@ export default class GlobalSearchResults extends Component {
 
   filterPatients (value) {
     var key = this.props.searchString ? this.props.searchString.toUpperCase() : '';
-    var name = value.name.toUpperCase();
+    var name = value.firstname.toUpperCase() + ' ' + value.surname.toUpperCase();
     var mrn = value.mrn.toString();
     return (this.props.tumorFilter === undefined || this.props.tumorFilter === '' || value.tumorType === this.props.tumorFilter) &&
       (name.indexOf(key) >= 0 || mrn.indexOf(key) >= 0);
@@ -21,8 +21,8 @@ export default class GlobalSearchResults extends Component {
 
   sortPatients (a, b) {
     var key = this.props.searchString ? this.props.searchString.toUpperCase() : '';
-    var x = a.name.toUpperCase();
-    var y = b.name.toUpperCase();
+    var x = a.firstname.toUpperCase() + ' ' + a.surname.toUpperCase();
+    var y = b.firstname.toUpperCase() + ' ' + b.surname.toUpperCase();
     return x.indexOf(key) - y.indexOf(key);
   }
 

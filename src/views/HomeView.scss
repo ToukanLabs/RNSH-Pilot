@@ -1,9 +1,24 @@
 @import '../styles/colors';
 
 .as-container {
+  position: relative;
+  height: 100%;
   h2 {
     font-size: 1.2em;
+    padding: 10px;
   }
+}
+
+.as-s-field-container {
+  margin: 10px 0 0 180px;
+  label {
+    font-size: 0.9em;
+    font-weight: bold;
+  }
+}
+
+.as-result-container {
+  height: 100%;
 }
 
 .hv-patient-search-results h2 {
@@ -21,7 +36,7 @@
 
 .hv-patient-search-results {
   margin: 5px 0 5px 0;
-  width: 100%;
+  width: 80%;
   position: absolute;
   float: right;
   list-style-type: none;
@@ -75,8 +90,4 @@
   ul {
     list-style-type: none;
   }
-}
-
-.hv-tumor-filter-selected {
-  background-color: darken($patient-subheading-color, 8);
 }

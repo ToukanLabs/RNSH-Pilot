@@ -54,59 +54,35 @@ export class HomeView extends React.Component {
       <div className={styles['as-container']}>
         <div className={styles['as-search-container']}>
           <h2>Patient Search</h2>
-          <label>MRN:</label>
-          <input/>
-          <label>Patient Name</label>
-          <input/>
+          <div className={styles['as-s-field-container']}>
+            <label>MRN:</label>
+            <input/>
+            <label>First Name:</label>
+            <input/>
+            <label>Surname:</label>
+            <input/>
+            <button>Search</button>
+          </div>
         </div>
-        <h2>Search Results</h2>
-        <GlobalSearchFilters
-          className={styles['hv-search-filters']}
-          toggleTumorFilter={this.props.uiActions.toggleTumorFilter}
-          tumorFilter={this.props.tumorFilter}
-          mainClass='hv-result-filters'
-          selectedClass='hv-tumor-filter-selected'
-        />
-        <div className={styles['hv-results']}>
-          <ul className={styles['hv-patient-search-results']}>
-            {patientList()}
-          </ul>
+        <div className={styles['as-result-container']}>
+          <h2>Search Results</h2>
+          <GlobalSearchFilters
+            className={styles['hv-search-filters']}
+            toggleTumorFilter={this.props.uiActions.toggleTumorFilter}
+            tumorFilter={this.props.tumorFilter}
+            mainClass='hv-result-filters'
+            selectedClass='gs-tumor-filter-selected'
+          />
+          <div className={styles['hv-results']}>
+            <ul className={styles['hv-patient-search-results']}>
+              {patientList()}
+            </ul>
+          </div>
         </div>
       </div>
     );
   };
-
-  renderOLDONE () {
-    var patientList = () => {
-      return this.props.patients.map((p) => {
-        return (
-          <li className={styles['hv-patient-search-result']} key={p.id}>
-            <h2>
-              <Link to={`/patient/${p.id}`}>{p.name}</Link>
-              <span className={styles['hv-gender']}>({p.gender})</span>
-            </h2>
-            <label htmlFor='patient-dob' className={styles['hv-label']}>DOB: </label>
-            <span id='patient-dob' className={styles['hv-value']}>{p.dob}</span>
-            <label htmlFor='patient-mrn' className={styles['hv-label']}>MRN: </label>
-            <span id='patient-mrn' className={styles['hv-value']}>{p.mrn}</span>
-            <span className={styles['hv-tumortype']}>{p.tumorType}</span>
-          </li>
-        );
-      });
-    };
-
-    return (
-      <div className='container text-center'>
-        <div className={styles['hv-patient-list']}>
-          <h1>Patients</h1>
-          <ul className={styles['hv-patient-search-results']}>
-            {patientList()}
-          </ul>
-        </div>
-      </div>
-    );
-  }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeView);
 
