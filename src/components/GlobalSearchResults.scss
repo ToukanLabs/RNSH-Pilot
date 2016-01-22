@@ -45,8 +45,8 @@ $right-percentage: 80%;
   float: left;
   width: $right-percentage;
   height: 475px;
-  overflow-y: auto;
-  //overflow-x: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .gs-results-footer {
@@ -69,4 +69,11 @@ $right-percentage: 80%;
   content: "\f002";
   padding-right:2px;
   position: relative;
+}
+
+.chrome-workaround {
+  // This is required in version 47 of chrome to wrap the scrolling div when
+  // displaying results from a scrollable search result set to one without scroll
+  // without this div the results magically disappear until you hover over them
+  height: 100%;
 }
