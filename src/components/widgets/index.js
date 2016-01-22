@@ -7,5 +7,8 @@ export { _TextInput as TextInput };
 import _Select from './Select';
 export { _Select as Select };
 
+import _TextArea from './TextArea';
+export { _TextArea as TextArea };
+
 import _InlineWidgetGroup from './InlineWidgetGroup';
 export { _InlineWidgetGroup as InlineWidgetGroup };
