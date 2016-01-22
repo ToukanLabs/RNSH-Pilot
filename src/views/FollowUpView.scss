@@ -3,62 +3,60 @@
   width: 100%;
 }
 
-.fuv-diagnosis-container {
-  width: 50%;
-  display: table-cell;
-  padding: 2px;
-  vertical-align: top;
-}
-
-.fuv-graph-container {
-  width: 50%;
-  display: table-cell;
-  padding: 2px;
-  vertical-align: middle;
-}
-
-.fuv-prertassess-container {
-  width: 50%;
-  display: table-cell;
-  padding: 2px;
-  vertical-align: top;
-}
-
-.fuv-row-two-right-container {
-  width: 50%;
-  display: table-cell;
-  padding: 2px;
-  vertical-align: top;
-}
-
-.fuv-followup-container {
-  width: 100%;
-  display: inline-block;;
-  padding: 2px;
-  vertical-align: top;
-}
-
-.fuv-intent-container {
-  padding: 2px;
-  padding-top: 0;
-}
-
-.fuv-status-container {
-  padding: 2px;
-}
-
-
 .fuv-row-one {
   vertical-align: top;
   height: 290px;
   display: table-row;
 }
 
+.fuv-diagnosis-container {
+  width: 30%;
+  display: table-cell;
+  padding: 2px;
+  vertical-align: top;
+}
+
+.fuv-intent-status-container {
+  width: 30%;
+  display: table-cell;
+  padding: 2px;
+  vertical-align: top;
+}
+
+.fuv-status-container {
+  margin-top: 3px;
+}
+
+.fuv-graph-container {
+  width: 40%;
+  display: table-cell;
+  padding: 2px;
+  vertical-align: top;
+  min-width: 500px;
+}
+
 .fuv-row-two {
-  height: 160px;
-  display: table-row;
+  display: block;
+}
+
+.fuv-prertassess-container {
+  width: 100%;
+  display: inline-block;
+  padding: 2px;
+  vertical-align: top;
 }
 
 .fuv-row-three {
   display: block;
+}
+
+.fuv-followup-container {
+  width: 100%;
+  display: inline-block;
+  padding: 2px;
+  vertical-align: top;
+}
+
+input {
+  text-align: center;
 }

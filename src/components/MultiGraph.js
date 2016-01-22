@@ -24,7 +24,7 @@ class Graph {
 class LineGraph extends Graph {
   constructor (name, displayName, data, yAxisLabel, offsetTop, x, axisPosition) {
     super();
-    this.height = 120;
+    this.height = 80;
 
     this.name = name;
     this.displayName = displayName;
@@ -77,7 +77,7 @@ class LineGraph extends Graph {
           .attr('class', this.name + ' y axis label')
           .attr('transform', 'rotate(-90)')
           .attr('y', -30)
-          .attr('x', -10)
+          .attr('x', -2)
           .style('text-anchor', 'end')
           .text('(' + this.yAxisLabel + ')');
 
@@ -86,7 +86,7 @@ class LineGraph extends Graph {
           .attr('class', this.name + ' graphtitle')
           .attr('transform', 'rotate(-90)')
           .attr('y', -45)
-          .attr('x', -10)
+          .attr('x', -2)
           .style('text-anchor', 'end')
           .text(this.displayName);
     } else {
@@ -100,7 +100,7 @@ class LineGraph extends Graph {
           .attr('class', this.name + ' y axis label')
           .attr('transform', 'rotate(-90)')
           .attr('y', 35)
-          .attr('x', -10)
+          .attr('x', -2)
           .style('text-anchor', 'end')
           .text('(' + this.yAxisLabel + ')');
 
@@ -109,7 +109,7 @@ class LineGraph extends Graph {
           .attr('class', this.name + ' graphtitle')
           .attr('transform', 'rotate(-90)')
           .attr('y', 50)
-          .attr('x', -10)
+          .attr('x', -2)
           .style('text-anchor', 'end')
           .text(this.displayName);
     }
@@ -174,7 +174,7 @@ class LineGraph extends Graph {
 class TimelineGraph extends Graph {
   constructor (name, displayName, data, offsetTop, x, axisPosition) {
     super();
-    this.height = 30;
+    this.height = 20;
 
     this.name = name;
     this.displayName = displayName;
@@ -258,7 +258,7 @@ class TimelineGraph extends Graph {
 class PointGraph extends Graph {
   constructor (name, displayName, data, offsetTop, x, axisPosition) {
     super();
-    this.height = 30;
+    this.height = 20;
 
     this.name = name;
     this.displayName = displayName;

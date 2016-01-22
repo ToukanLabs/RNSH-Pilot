@@ -1,19 +1,8 @@
 import React, {Component} from 'react';
 import corestyles from '../../styles/core.scss';
+import styles from './widgets.scss';
 
 export default class TextInput extends Component {
-  componentWillMount () {
-    this.name = this.props.ref + 'Input';
-  }
-
-  getValue () {
-    return this.refs[this.name].value;
-  }
-
-  setValue (value) {
-    this.refs[this.name].value = value;
-  }
-
   isMandatory () {
     return this.props.mandatory;
   }
@@ -27,23 +16,30 @@ export default class TextInput extends Component {
   getUnitLabel () {
     if (this.props.unitLabel) {
       return (
-        <span>{this.props.unitLabel}</span>
+        <span className={styles['unit-label']}>
+          {this.props.unitLabel}
+        </span>
       );
     }
   }
 
   render () {
+    const className = (this.props.className) ? this.props.className : null;
+    const labelClassName = (this.props.labelClassName) ? this.props.labelClassName : null;
+
     if (this.props.label) {
       return (
-        <label>
+        <label
+          className={labelClassName}
+          >
           {this.props.label}
           {this.getMandatoryIndicator()}:
           <input
-            ref={this.name}
-            name={this.name}
-            type={this.props.type}
+            className={className}
+            type='text'
             placeholder={this.props.placeholder}
             disabled={this.props.disabled}
+            value={this.props.value}
             />
           {this.getUnitLabel()}
         </label>
@@ -52,11 +48,11 @@ export default class TextInput extends Component {
       return (
         <span className={corestyles['widget-wrapper']}>
           <input
-            ref={this.name}
-            name={this.name}
-            type={this.props.type}
+            className={className}
+            type='text'
             placeholder={this.props.placeholder}
             disabled={this.props.disabled}
+            value={this.props.value}
             />
           {this.getUnitLabel()}
         </span>
@@ -67,8 +63,10 @@ export default class TextInput extends Component {
 
 TextInput.propTypes = {
   ref: React.PropTypes.string,
-  type: React.PropTypes.string.isRequired,
+  className: React.PropTypes.string,
+  labelClassName: React.PropTypes.string,
   label: React.PropTypes.string,
+  value: React.PropTypes.string,
   unitLabel: React.PropTypes.string,
   placeholder: React.PropTypes.string,
   mandatory: React.PropTypes.bool,

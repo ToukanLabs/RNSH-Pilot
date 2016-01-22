@@ -7,14 +7,6 @@ export default class Select extends Component {
     this.handleOnChange = this.handleOnChange.bind(this);
   }
 
-  componentWillMount () {
-    this.name = this.props.ref + 'Select';
-  }
-
-  getValue () {
-    return this.refs[this.name].value;
-  }
-
   isMandatory () {
     return this.props.mandatory;
   }
@@ -46,21 +38,22 @@ export default class Select extends Component {
     return options;
   }
 
-  handleOnChange () {
+  handleOnChange (event) {
     if (this.props.onChange) {
-      this.props.onChange();
+      this.props.onChange(event);
     }
   }
 
   render () {
+    const className = (this.props.className) ? this.props.className : null;
+
     if (this.props.label) {
       return (
         <label>
           {this.props.label}
           {this.getMandatoryIndicator()}:
           <select
-            name={this.name}
-            ref={this.name}
+            className={className}
             onChange={this.handleOnChange}
             disabled={this.props.disabled}
             >
@@ -72,8 +65,7 @@ export default class Select extends Component {
       return (
         <span className={corestyles['widget-wrapper']}>
           <select
-            name={this.name}
-            ref={this.name}
+            className={className}
             onChange={this.handleOnChange}
             disabled={this.props.disabled}
             >
@@ -86,7 +78,7 @@ export default class Select extends Component {
 };
 
 Select.propTypes = {
-  ref: React.PropTypes.string,
+  className: React.PropTypes.string,
   label: React.PropTypes.string,
   options: React.PropTypes.array.isRequired,
   placeholder: React.PropTypes.string,

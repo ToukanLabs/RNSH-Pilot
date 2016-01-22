@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Panel from './Panel';
 import { Select } from './widgets';
+import styles from './FollowUpIntent.scss';
 
 export default class FollowUpIntent extends Component {
   render () {
@@ -15,6 +16,7 @@ export default class FollowUpIntent extends Component {
             {key: 'Palliative', value: 'Palliative'},
             {key: 'Other', value: 'Other'},
           ]}
+          className={styles['fui-intent']}
           />
       </Panel>
     );

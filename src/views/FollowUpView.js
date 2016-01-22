@@ -4,6 +4,7 @@ import FollowUpDiagnosis from 'components/FollowUpDiagnosis';
 import FollowUpIntent from 'components/FollowUpIntent';
 import FollowUpPreRTAssessment from 'components/FollowUpPreRTAssessment';
 import FollowUpStatus from 'components/FollowUpStatus';
+import FollowUpFollowUp from 'components/FollowUpFollowUp';
 import Panel from 'components/Panel';
 import MultiGraph from 'components/MultiGraph';
 import styles from './FollowUpView.scss';
@@ -17,9 +18,18 @@ export class FollowUpView extends Component {
     return (
       <div>
         <div className={styles['fuv-container-table']}>
+
           <div className={styles['fuv-row-one']}>
             <div className={styles['fuv-diagnosis-container']}>
               <FollowUpDiagnosis />
+            </div>
+            <div className={styles['fuv-intent-status-container']}>
+              <div className={styles['fuv-intent-container']}>
+                <FollowUpIntent />
+              </div>
+              <div className={styles['fuv-status-container']}>
+                <FollowUpStatus />
+              </div>
             </div>
             <div className={styles['fuv-graph-container']}>
               <Panel>
@@ -27,31 +37,20 @@ export class FollowUpView extends Component {
               </Panel>
             </div>
           </div>
+        </div>
 
-          <div className={styles['fuv-row-two']}>
-            <div className={styles['fuv-prertassess-container']}>
-              <FollowUpPreRTAssessment />
-            </div>
-
-            <div className='fuv-row-two-right-container'>
-              <div className={styles['fuv-intent-container']}>
-                <FollowUpIntent />
-              </div>
-
-              <div className={styles['fuv-status-container']}>
-                <FollowUpStatus />
-              </div>
-            </div>
-
+        <div className={styles['fuv-row-two']}>
+          <div className={styles['fuv-prertassess-container']}>
+            <FollowUpPreRTAssessment />
           </div>
         </div>
+
         <div className={styles['fuv-row-three']}>
           <div className={styles['fuv-followup-container']}>
-            <Panel title='Follow Up'>
-              <h3>Follow up fields (todo)...</h3>
-            </Panel>
+            <FollowUpFollowUp />
           </div>
         </div>
+
       </div>
     );
   }

@@ -1,6 +1,6 @@
 export const initialState = {
   ui: {
-    sidemenuVisibility: 'expanded'
+    sidemenuVisibility: 'collapsed'
   },
   patients: {
     activePatient: {},

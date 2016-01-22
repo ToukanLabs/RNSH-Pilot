@@ -1,26 +1,49 @@
 import React, { Component } from 'react';
-// import { findDOMNode } from 'react-dom';
 import Panel from './Panel';
 import { DateTimeInput, Select, TextInput, InlineWidgetGroup } from './widgets';
+import styles from './FollowUpDiagnosis.scss';
 
 export default class FollowUpDiagnosis extends Component {
   constructor () {
     super();
-    this.calculateGliesonScore = this.calculateGliesonScore.bind(this);
+    console.log('constructor');
+    this.state = {
+      gsPatternOne: NaN,
+      gsPatternTwo: NaN,
+      gleasonScore: null,
+    };
   }
 
-  calculateGliesonScore () {
-    const gsPattern1Val = parseInt(this.refs.gsPatternOne.getValue(), 10);
-    const gsPattern2Val = parseInt(this.refs.gsPatternTwo.getValue(), 10);
+  setGSPatternOne = (e) => {
+    const gsPattern1Val = parseInt(e.target.value, 10);
+    const gsResult = this.calculateGS(gsPattern1Val, this.state.gsPatternTwo);
+    this.setState({
+      ...this.state,
+      gsPatternOne: gsPattern1Val,
+      gleasonScore: gsResult,
+    });
+  };
 
-    // Explicit use of undefined below as 0 tests as false which is an allowed
-    // value.
-    if (!isNaN(parseInt(gsPattern1Val, 10)) && !isNaN(parseInt(gsPattern2Val, 10))) {
-      this.refs.gsCalculated.setValue(parseInt(gsPattern1Val, 10) + parseInt(gsPattern2Val, 10));
+  setGSPatternTwo = (e) => {
+    const gsPattern2Val = parseInt(e.target.value, 10);
+    const gsResult = this.calculateGS(this.state.gsPatternOne, gsPattern2Val);
+    this.setState({
+      ...this.state,
+      gsPatternTwo: gsPattern2Val,
+      gleasonScore: gsResult,
+    });
+  };
+
+  calculateGS = (patternOne, patternTwo) => {
+    let gleasonScore;
+    if (!isNaN(patternOne) && !isNaN(patternTwo)) {
+      gleasonScore = patternOne + patternTwo;
     } else {
-      this.refs.gsCalculated.setValue('');
+      gleasonScore = null;
     }
-  }
+
+    return gleasonScore;
+  };
 
   render () {
     return (
@@ -69,7 +92,7 @@ export default class FollowUpDiagnosis extends Component {
               {key: '4', value: '4'},
               {key: '5', value: '5'},
             ]}
-            onChange={this.calculateGliesonScore}
+            onChange={this.setGSPatternOne}
             />
           +
           <Select
@@ -82,20 +105,27 @@ export default class FollowUpDiagnosis extends Component {
               {key: '4', value: '4'},
               {key: '5', value: '5'},
             ]}
-            onChange={this.calculateGliesonScore}
+            onChange={this.setGSPatternTwo}
             />
           =
           <TextInput
             ref='gsCalculated'
-            type='text' />
+            type='text'
+            value={this.state.gleasonScore}
+            className={styles['fud-gs-result']}
+            />
         </InlineWidgetGroup>
 
         <TextInput
           type='text'
-          label='Cores Biopsied' />
+          label='Cores Biopsied'
+          className={styles['fud-cores']}
+          />
         <TextInput
           type='text'
-          label='Cores Involved' />
+          label='Cores Involved'
+          className={styles['fud-cores']}
+          />
         <Select
           label='RadOnc'
           options={[

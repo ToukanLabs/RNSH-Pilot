@@ -13,8 +13,12 @@ export default class Panel extends Component {
   }
 
   render () {
+    const className = (this.props.className)
+        ? `${styles['panel']} ${this.props.className}`
+        : styles['panel'];
+
     return (
-      <div className={styles['panel'] + ' ' + this.props.className}>
+      <div className={className}>
         {this.getTitle()}
         {this.props.children}
       </div>

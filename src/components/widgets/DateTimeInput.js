@@ -2,19 +2,6 @@ import React, {Component} from 'react';
 import corestyles from '../../styles/core.scss';
 
 export default class DateTimeInput extends Component {
-  componentWillMount () {
-    this.name = this.props.ref;
-  }
-
-  // TODO: Implement functions to get the date and time properly.
-  // getValue () {
-  //   return this.refs[this.name].value;
-  // }
-  //
-  // setValue (value) {
-  //   this.refs[this.name].value = value;
-  // }
-
   renderDateWidget () {
     if (!this.props.noDate) {
       return (
@@ -73,7 +60,6 @@ export default class DateTimeInput extends Component {
 };
 
 DateTimeInput.propTypes = {
-  ref: React.PropTypes.string,
   noTime: React.PropTypes.bool,
   noDate: React.PropTypes.bool,
   label: React.PropTypes.string,

@@ -6,7 +6,7 @@
 }
 
 .multigraph text {
-  font-size: 1.4em;
+  font-size: 1.2em;
 }
 
 .graphseparator {
@@ -117,47 +117,47 @@ g.hoverable:hover .point.data {
 }
 
 .psa.graphtitle {
-  fill: rgb(255, 127, 14);
+  fill: #18A29C;
 }
 
 .psa.line {
-  stroke: rgb(255, 127, 14);
+  stroke: #18A29C;
 }
 
 .psa.point {
-  stroke: rgb(255, 127, 14);
-  fill: rgb(255, 127, 14);
+  stroke: #18A29C;
+  fill: #18A29C;
 }
 
 .testosterone.graphtitle {
-  fill: rgb(31, 119, 180);
+  fill: #3F4144;
 }
 
 .testosterone.line {
-  stroke: rgb(31, 119, 180);
+  stroke: #3F4144;
 }
 
 .testosterone.point {
-  stroke: rgb(31, 119, 180);
-  fill: rgb(31, 119, 180);
+  stroke: #3F4144;
+  fill: #3F4144;
 }
 
 .androgen.graphtitle {
   font-size: 1.2em;
-  fill: rgb(44, 160, 44);
+  fill: #18a21e;
 }
 
 .androgen.bar {
-  stroke: rgb(44, 160, 44);
+  stroke: #18a21e;
 }
 
 .radiotherapy.graphtitle {
   font-size: 1.2em;
-  fill: rgb(92, 30, 179);
+  fill: #7218a2;
 }
 
 .radiotherapy.bar {
-  stroke: rgb(92, 30, 179);
+  stroke: #7218a2;
 }
 
 .surgery.graphtitle {

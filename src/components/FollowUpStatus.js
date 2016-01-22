@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import Panel from './Panel';
 import { Select, DateTimeInput } from './widgets';
+// import styles from './FollowUpStatus.scss';
 
 export default class FollowUpStatus extends Component {
   constructor () {
     super();
-    this.handleStatusChange = this.handleStatusChange.bind(this);
     this.state = {
-      deceased: false
+      deceased: false,
     };
   }
 
-  handleStatusChange () {
-    const status = this.refs.patientStatus.getValue();
+  handleStatusChange = (e) => {
+    const status = e.target.value;
     this.setState({
       deceased: (status === 'Deceased')
     });
-  }
+  };
 
   render () {
     return (
@@ -33,7 +33,7 @@ export default class FollowUpStatus extends Component {
         <DateTimeInput
           label='Date of Death'
           noTime
-          disabled={this.state.deceased}
+          disabled={!this.state.deceased}
           />
       </Panel>
     );

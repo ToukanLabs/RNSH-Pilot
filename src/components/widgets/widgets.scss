@@ -9,3 +9,9 @@ input[disabled] {
   color: $widget-disabled-color;
   cursor: not-allowed;
 }
+
+.unit-label {
+  font-style: italic;
+  color: lighten($text-color, 25);
+  font-size: 0.9em;
+}
