@@ -51,7 +51,6 @@ export default class PreRTAssessment extends Component {
             />
         </InlineWidgetGroup>
 
-
       </Panel>
     );
   };
