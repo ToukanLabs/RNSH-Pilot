@@ -2,6 +2,11 @@ export const initialState = {
   ui: {
     sidemenuVisibility: 'collapsed'
   },
+  advancedSearch: {
+    mrn: '',
+    firstname: '',
+    surname: '',
+  },
   patients: {
     activePatient: {},
     searchResults: [

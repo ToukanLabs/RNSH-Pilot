@@ -91,3 +91,25 @@
     list-style-type: none;
   }
 }
+
+.as-label {
+  display: inline-block;
+  margin-right: 2px;
+}
+
+.as-input {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.search-icon {
+  background-color: #16918c;
+  color: #f6f4f4;
+  display: inline-block;
+  font-size: 0.7em;
+  line-height: 1.8em;
+  text-transform: uppercase;
+  padding: 0 10px;
+  font-weight: bold;
+  position: absolute;
+}
