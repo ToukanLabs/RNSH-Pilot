@@ -39,9 +39,13 @@ export default class DateTimeInput extends Component {
   }
 
   render () {
+    const labelClassName = (this.props.labelClassName) ? this.props.labelClassName : null;
+
     if (this.props.label) {
       return (
-        <label>
+        <label
+          className={labelClassName}
+          >
           {this.props.label}
           {this.getMandatoryIndicator()}:
           {this.renderDateWidget()}
@@ -63,6 +67,7 @@ DateTimeInput.propTypes = {
   noTime: React.PropTypes.bool,
   noDate: React.PropTypes.bool,
   label: React.PropTypes.string,
+  labelClassName: React.PropTypes.string,
   mandatory: React.PropTypes.bool,
   disabled: React.PropTypes.bool,
 };

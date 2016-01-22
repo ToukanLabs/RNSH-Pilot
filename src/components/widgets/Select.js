@@ -46,10 +46,13 @@ export default class Select extends Component {
 
   render () {
     const className = (this.props.className) ? this.props.className : null;
+    const labelClassName = (this.props.labelClassName) ? this.props.labelClassName : null;
 
     if (this.props.label) {
       return (
-        <label>
+        <label
+          className={labelClassName}
+          >
           {this.props.label}
           {this.getMandatoryIndicator()}:
           <select
@@ -80,6 +83,7 @@ export default class Select extends Component {
 Select.propTypes = {
   className: React.PropTypes.string,
   label: React.PropTypes.string,
+  labelClassName: React.PropTypes.string,
   options: React.PropTypes.array.isRequired,
   placeholder: React.PropTypes.string,
   mandatory: React.PropTypes.bool,

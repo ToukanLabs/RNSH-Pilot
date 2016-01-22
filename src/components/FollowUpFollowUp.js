@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import Panel from './Panel';
 import FollowUpDoctorSelect from './FollowUpDoctorSelect';
-import { DateTimeInput, TextInput, Select, InlineWidgetGroup } from './widgets';
+import {
+  DateTimeInput,
+  TextInput,
+  Select,
+  InlineWidgetGroup,
+  TextArea,
+} from './widgets';
 import styles from './FollowUpFollowUp.scss';
 
 export default class FollowUpFollowUp extends Component {
@@ -64,63 +70,67 @@ export default class FollowUpFollowUp extends Component {
                 ]}
                 />
             </InlineWidgetGroup>
-            <Select
-              label='Current Follow-Up'
-              options={[
-                {key: 'Phone', value: 'Phone'},
-                {key: 'In-Person', value: 'In-Person'},
-              ]}
-              />
-            <FollowUpDoctorSelect
-              label='Doctor'
-              />
-            <Select
-              label='Nocturia'
-              options={[
-                {key: '0', value: '0'},
-                {key: '1', value: '1'},
-                {key: '2', value: '2'},
-                {key: '3', value: '3'},
-                {key: '4', value: '4'},
-                {key: '5', value: '5'},
-                {key: '6', value: '6'},
-                {key: '>=6', value: '>=6'},
-                {key: 'NA', value: 'NA'},
-              ]}
-              />
-            <InlineWidgetGroup>
+            <div className={styles['fufu-sub-panel-one']}>
               <Select
-                label='Biochemical Failure'
+                label='Current Follow-Up'
                 options={[
-                  {key: 'Yes', value: 'Yes'},
-                  {key: 'No', value: 'No'},
-                  {key: 'UKN', value: 'UKN'},
+                  {key: 'Phone', value: 'Phone'},
+                  {key: 'In-Person', value: 'In-Person'},
                 ]}
                 />
+              <FollowUpDoctorSelect
+                label='Doctor'
+                />
               <Select
-                label='Metastases'
+                label='Nocturia'
                 options={[
-                  {key: 'Yes', value: 'Yes'},
-                  {key: 'No', value: 'No'},
+                  {key: '0', value: '0'},
+                  {key: '1', value: '1'},
+                  {key: '2', value: '2'},
+                  {key: '3', value: '3'},
+                  {key: '4', value: '4'},
+                  {key: '5', value: '5'},
+                  {key: '6', value: '6'},
+                  {key: '>=6', value: '>=6'},
+                  {key: 'NA', value: 'NA'},
                 ]}
                 />
-            </InlineWidgetGroup>
-            <DateTimeInput
-              label='Date of BF'
-              noTime
-              />
-            <Select
-              label='Site'
-              options={[]}
-              />
-            <DateTimeInput
-              label='Date'
-              noTime
-              />
+            </div>
+            <div className={styles['fufu-sub-panel-two']}>
+              <InlineWidgetGroup>
+                <Select
+                  label='Biochemical Failure'
+                  options={[
+                    {key: 'Yes', value: 'Yes'},
+                    {key: 'No', value: 'No'},
+                    {key: 'UKN', value: 'UKN'},
+                  ]}
+                  />
+                <Select
+                  label='Metastases'
+                  options={[
+                    {key: 'Yes', value: 'Yes'},
+                    {key: 'No', value: 'No'},
+                  ]}
+                  />
+              </InlineWidgetGroup>
+              <DateTimeInput
+                label='Date of BF'
+                noTime
+                />
+              <Select
+                label='Site'
+                options={[]}
+                />
+              <DateTimeInput
+                label='Date'
+                noTime
+                />
+            </div>
           </div>
 
           <div className={styles['fufu-top-middle-container']}>
-            <h3>Quality of Life</h3>
+            <h3 className={styles['fufu-sub-heading-top']}>Quality of Life</h3>
             <Select
               label='EPIC Completed'
               options={[
@@ -171,25 +181,31 @@ export default class FollowUpFollowUp extends Component {
           </div>
 
           <div className={styles['fufu-top-right-container']}>
-            <h3>Toxicity Assessment</h3>
+            <h3 className={styles['fufu-sub-heading-top']}>Toxicity Assessment</h3>
             <button>Open Assessment Form</button>
             <button>Check All Assessments</button>
           </div>
         </div>
-        <div className={styles['fufu-row-two']}>
-          <TextInput
-            label='Comments'
-            />
-          <Select
-            label='2md Cancer'
-            options={[
-              {key: 'Yes', value: 'Yes'},
-              {key: 'No', value: 'No'},
-            ]}
-            />
-          <TextInput
-            label='Date/Histology'
-            />
+        <div className={styles['fufu-row-two-container']}>
+          <div className={styles['fufu-row-two']}>
+            <div className={styles['fufu-comments-container']}>
+              <TextArea
+                label='Comments'
+                />
+            </div>
+            <div className={styles['fufu-second-cancer-container']}>
+              <Select
+                label='2nd Cancer'
+                options={[
+                  {key: 'Yes', value: 'Yes'},
+                  {key: 'No', value: 'No'},
+                ]}
+                />
+              <TextInput
+                label='Date/Histology'
+                />
+            </div>
+          </div>
         </div>
       </Panel>
     );

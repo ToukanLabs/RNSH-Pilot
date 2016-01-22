@@ -6,7 +6,6 @@ import styles from './FollowUpDiagnosis.scss';
 export default class FollowUpDiagnosis extends Component {
   constructor () {
     super();
-    console.log('constructor');
     this.state = {
       gsPatternOne: NaN,
       gsPatternTwo: NaN,
@@ -116,16 +115,18 @@ export default class FollowUpDiagnosis extends Component {
             />
         </InlineWidgetGroup>
 
-        <TextInput
-          type='text'
-          label='Cores Biopsied'
-          className={styles['fud-cores']}
-          />
-        <TextInput
-          type='text'
-          label='Cores Involved'
-          className={styles['fud-cores']}
-          />
+        <InlineWidgetGroup>
+          <TextInput
+            type='text'
+            label='Cores Biopsied'
+            className={styles['fud-cores']}
+            />
+          <TextInput
+            type='text'
+            label='Cores Involved'
+            className={styles['fud-cores']}
+            />
+        </InlineWidgetGroup>
         <Select
           label='RadOnc'
           options={[

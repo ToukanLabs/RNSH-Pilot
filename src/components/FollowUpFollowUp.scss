@@ -1,14 +1,55 @@
 .fufu-top-left-container {
-  width: 40%;
-  display: inline-block;
+  width: 36%;
+  display: table-cell;
 }
 
 .fufu-top-middle-container {
-  width: 40%;
-  display: inline-block;
+  width: 36%;
+  display: table-cell;
 }
 
 .fufu-top-right-container {
-  width: 10%;
+  width: 13%;
+  display: table-cell;
+}
+
+.fufu-top-right-container button {
+  width: 100%;
+}
+
+.fufu-sub-panel-one,
+.fufu-sub-panel-two {
   display: inline-block;
+  width: 50%;
+}
+
+.fufu-sub-heading-top {
+  margin-top: -15px
+}
+
+.fufu-row-two-container {
+  display: table;
+  width: 100%;
+}
+
+.fufu-row-two {
+  display: table-row;
+  width: 100%;
+}
+
+.fufu-comments-container {
+  width: 75%;
+  display: table-cell;
+}
+
+.fufu-comments-container textarea {
+  display: block;
+  margin-left: 0;
+  width: 98%;
+  height: 120px;
+}
+
+.fufu-second-cancer-container {
+  width: 25%;
+  display: table-cell;
 }

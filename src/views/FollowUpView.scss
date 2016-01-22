@@ -5,7 +5,6 @@
 
 .fuv-row-one {
   vertical-align: top;
-  height: 290px;
   display: table-row;
 }
 
@@ -47,12 +46,12 @@
 }
 
 .fuv-row-three {
-  display: block;
+  display: table;
 }
 
 .fuv-followup-container {
   width: 100%;
-  display: inline-block;
+  display: table-row;
   padding: 2px;
   vertical-align: top;
 }

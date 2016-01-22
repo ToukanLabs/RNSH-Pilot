@@ -40,12 +40,14 @@ export default class PreRTAssessment extends Component {
             type='text'
             label='Bowel Freq.'
             unitLabel='time(s) / day'
-            className={styles['fuprts-bowel-freq']}
+            className={styles['fuprts-bowel-freq-input']}
+            labelClassName={styles['fuprts-bowel-freq']}
             />
           <TextInput
             type='text'
             label='Incontinence'
-            className={styles['fuprts-incontinence']}
+            className={styles['fuprts-incontinence-input']}
+            labelClassName={styles['fuprts-incontinence']}
             />
         </InlineWidgetGroup>
 
