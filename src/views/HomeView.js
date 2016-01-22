@@ -56,7 +56,7 @@ export class HomeView extends React.Component {
 
   render () {
     var patientResults;
-    if (this.props.mrn || this.props.firstname || this.props.surname) {
+    if (this.props.mrn || this.props.firstname || this.props.surname || this.props.tumorFilter) {
       patientResults = this.props.patients.filter(this.filterPatients);
     } else {
       patientResults = this.props.patients;
