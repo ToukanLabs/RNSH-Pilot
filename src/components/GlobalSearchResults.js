@@ -52,9 +52,11 @@ export default class GlobalSearchResults extends Component {
             selectedClass='gs-tumor-filter-selected'
           />
           <div className={styles['gs-results']}>
-            <ul className={styles['gs-patient-search-results']}>
-              {patientList()}
-            </ul>
+            <div className={styles['chrome-workaround']}>
+              <ul className={styles['gs-patient-search-results']}>
+                {patientList()}
+              </ul>
+            </div>
           </div>
           <div className={styles['gs-results-footer']}>
             <Link
