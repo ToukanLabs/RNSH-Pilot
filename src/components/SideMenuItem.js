@@ -17,8 +17,19 @@ export default class SideMenuItem extends Component {
     if (this.props.linkTo === this.props.currentRouterPath) {
       return (
         <li className={styles['smi-menu-item'] + ' ' + styles['smi-active']}>
-          <Icon name={this.props.icon} className={styles['smi-icon']}/>
+          <Icon
+              data-tip
+              data-for={`tt-${this.props.text}`}
+              name={this.props.icon}
+              className={styles['smi-icon']}
+              />
           {displayText()}
+          <ReactTooltip
+            id={`tt-${this.props.text}`}
+            effect='solid'
+            place='right'>
+            <span>{this.props.text}</span>
+          </ReactTooltip>
         </li>
       );
     } else if (this.props.showText) {
