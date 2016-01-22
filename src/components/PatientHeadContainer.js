@@ -6,6 +6,7 @@ import styles from './PatientHeadContainer.scss';
 
 export default class PatientHeadContainer extends Component {
   render () {
+    var surgical = this.props.patient.surgical === 'Y' ? 'Surgical' : 'Non-Surgical';
     return (
       <div>
         <div>
@@ -24,7 +25,11 @@ export default class PatientHeadContainer extends Component {
           />
           <PatientHeaderDetails/>
           <PatientHeaderDetails/>
-          <PatientHeaderDetails/>
+          <PatientHeaderDetails
+            phdLabel='Status'
+            phdHeaderData={surgical}
+            phdDetails={this.props.patient}
+          />
           <div className={styles['phc-detail-down-icon']}>
             <Icon
               name='angle-double-down'

@@ -1,5 +1,24 @@
-.hv-patient-list {
-  text-align: center;
+@import '../styles/colors';
+
+.as-container {
+  position: relative;
+  height: 100%;
+  h2 {
+    font-size: 1.2em;
+    padding: 10px;
+  }
+}
+
+.as-s-field-container {
+  margin: 10px 0 0 180px;
+  label {
+    font-size: 0.9em;
+    font-weight: bold;
+  }
+}
+
+.as-result-container {
+  height: 100%;
 }
 
 .hv-patient-search-results h2 {
@@ -7,26 +26,90 @@
   margin-bottom: 0.2em;
 }
 
-.hv-patient-search-result {
-  margin: 0 0 20px 0;
+.hv-patient-search-results h2 {
+  font-size: 1.2em;
+  margin-bottom: 0.2em;
+  text-align: left;
+  margin-left: 10px;
+  color: $patient-subheading-color;
 }
 
-.hv-gender {
-  margin-left: 0.4em;
-  font-size: 0.7em;
+.hv-patient-search-results {
+  margin: 5px 0 5px 0;
+  width: 80%;
+  position: absolute;
+  float: right;
+  list-style-type: none;
+  a li {
+    padding-bottom: 5px;
+  }
+  a li:hover {
+    background-color: lighten($patient-subheading-color,55) !important;
+  }
+  a:nth-child(even) li {
+    background-color: lighten($search-results-base,45);
+  }
 }
 
-.hv-label {
-  display: inline;
-  font-weight: bold;
+.hv-results {
+  float: right;
+  width: 85%;
 }
 
-.hv-value {
+.hv-result-filters {
+  position: relative;
+  display: inline-block;
+  float: left;
+  background-color: $patient-subheading-color;
+  color: $patient-subheading-font-color;
+  height: 100%;
+  width: 15%;
+  h2 {
+    font-weight: normal;
+    margin: 5px 5px 10px 5px;
+    font-size: 0.8em;
+    padding-right: 20px;
+  }
+  h3 {
+    font-weight: bold;
+    font-size: 0.7em;
+    margin: 5px 0 2px 9px;
+  }
+  ul {
+    margin: 5px 0 2px 15px;
+    font-size: 0.8em;
+  }
+  li {
+    margin-bottom: 5px;
+    padding: 3px;
+    margin-right: 20px;
+    a {
+      color: $patient-subheading-font-color;
+    }
+  }
+  ul {
+    list-style-type: none;
+  }
+}
+
+.as-label {
+  display: inline-block;
+  margin-right: 2px;
+}
+
+.as-input {
+  display: inline-block;
   margin-right: 10px;
 }
 
-.hv-tumortype {
-  display: block;
+.search-icon {
+  background-color: #16918c;
+  color: #f6f4f4;
+  display: inline-block;
+  font-size: 0.7em;
+  line-height: 1.8em;
+  text-transform: uppercase;
+  padding: 0 10px;
   font-weight: bold;
-  font-style: italic;
+  position: absolute;
 }

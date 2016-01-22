@@ -1,7 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import { actions as patientActions } from '../redux/modules/patient';
+import { bindActionCreators } from 'redux';
+import { actions as uiActions } from 'redux/modules/ui';
+import { actions as patientActions } from 'redux/modules/patient';
+import { actions as advancedSearchActions } from 'redux/modules/advancedSearch';
+import GlobalSearchFilters from 'components/GlobalSearchFilters';
+import SearchResultRow from 'components/SearchResultRow';
 import styles from './HomeView.scss';
 // import MultiGraph from '../components/MultiGraph';
 // import CreatePatient from '../components/CreatePatient';
@@ -13,46 +17,123 @@ import styles from './HomeView.scss';
 // See: http://rackt.github.io/redux/docs/recipes/WritingTests.html
 const mapStateToProps = (state) => ({
   graphs: state.graphs,
-  patients: state.patients.searchResults
+  patients: state.patients.searchResults,
+  tumorFilter: state.ui.tumorFilter,
+  mrn: state.advancedSearch.mrn,
+  firstname: state.advancedSearch.firstname,
+  surname: state.advancedSearch.surname
 });
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    uiActions: bindActionCreators(uiActions, dispatch),
+    patientActions: bindActionCreators(patientActions, dispatch),
+    advancedSearchActions: bindActionCreators(advancedSearchActions, dispatch),
+  };
+};
+
 export class HomeView extends React.Component {
+
+  componentWillMount () {
+    this.props.uiActions.hideSearchResults();
+    this.props.advancedSearchActions.resetSearchFields();
+  }
+
+  filterPatients = (value) => {
+    var searchMRN = this.props.mrn ? this.props.mrn.toUpperCase() : '';
+    var searchFirstname = this.props.firstname ? this.props.firstname.toUpperCase() : '';
+    var searchSurname = this.props.surname ? this.props.surname.toUpperCase() : '';
+    var firstname = value.firstname.toUpperCase();
+    var surname = value.surname.toUpperCase();
+    var mrn = value.mrn.toString();
+    return (
+      (searchMRN === '' || mrn.indexOf(searchMRN) >= 0) &&
+      (searchFirstname === '' || firstname.indexOf(searchFirstname) >= 0) &&
+      (searchSurname === '' || surname.indexOf(searchSurname) >= 0) &&
+      (this.props.tumorFilter === undefined || this.props.tumorFilter === '' || value.tumorType === this.props.tumorFilter)
+    );
+  };
+
   render () {
+    var patientResults;
+    if (this.props.mrn || this.props.firstname || this.props.surname) {
+      patientResults = this.props.patients.filter(this.filterPatients);
+    } else {
+      patientResults = this.props.patients;
+    }
+
     var patientList = () => {
-      return this.props.patients.map((p) => {
+      return patientResults.map((p) => {
         return (
-          <li className={styles['hv-patient-search-result']} key={p.id}>
-            <h2>
-              <Link to={`/patient/${p.id}`}>{p.name}</Link>
-              <span className={styles['hv-gender']}>({p.gender})</span>
-            </h2>
-            <label htmlFor='patient-dob' className={styles['hv-label']}>DOB: </label>
-            <span id='patient-dob' className={styles['hv-value']}>{p.dob}</span>
-            <label htmlFor='patient-mrn' className={styles['hv-label']}>MRN: </label>
-            <span id='patient-mrn' className={styles['hv-value']}>{p.mrn}</span>
-            <span className={styles['hv-tumortype']}>{p.tumorType}</span>
-          </li>
+          <SearchResultRow patient={p}/>
         );
       });
     };
-
     return (
-      <div className='container text-center'>
-        <div className={styles['hv-patient-list']}>
-          <h1>Patients</h1>
-          <ul className={styles['hv-patient-search-results']}>
-            {patientList()}
-          </ul>
+      <div className={styles['as-container']}>
+        <div className={styles['as-search-container']}>
+          <h2>Patient Search</h2>
+          <div className={styles['as-s-field-container']}>
+            <label className={styles['as-label']}>MRN:</label>
+            <input
+              ref='searchMRN'
+              className={styles['as-input']}
+            />
+            <label className={styles['as-label']}>First Name:</label>
+              <input
+                ref='searchFirstname'
+                className={styles['as-input']}
+              />
+            <label className={styles['as-label']}>Surname:</label>
+              <input
+                ref='searchSurname'
+                className={styles['as-input']}
+              />
+            <span
+              className={styles['search-icon']}
+              onClick={() => {
+                this.props.advancedSearchActions.setSearchFields(
+                  this.refs.searchMRN.value,
+                  this.refs.searchFirstname.value,
+                  this.refs.searchSurname.value
+                );
+              }
+            }
+              >
+              Search
+            </span>
+          </div>
+        </div>
+        <div className={styles['as-result-container']}>
+          <h2>Search Results</h2>
+          <GlobalSearchFilters
+            className={styles['hv-search-filters']}
+            toggleTumorFilter={this.props.uiActions.toggleTumorFilter}
+            tumorFilter={this.props.tumorFilter}
+            mainClass='hv-result-filters'
+            selectedClass='gs-tumor-filter-selected'
+          />
+          <div className={styles['hv-results']}>
+            <ul className={styles['hv-patient-search-results']}>
+              {patientList()}
+            </ul>
+          </div>
         </div>
       </div>
     );
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, patientActions)(HomeView);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeView);
 
 HomeView.propTypes = {
   createPatient: React.PropTypes.func,
   graphs: React.PropTypes.array,
-  patients: React.PropTypes.array
+  uiActions: React.PropTypes.object,
+  advancedSearchActions: React.PropTypes.object,
+  patients: React.PropTypes.array,
+  mrn: React.PropTypes.string,
+  firstname: React.PropTypes.string,
+  surname: React.PropTypes.string,
+  tumorFilter: React.PropTypes.string
 };

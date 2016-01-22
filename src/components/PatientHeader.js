@@ -9,7 +9,7 @@ export default class PatientHeader extends Component {
     return (
       <div className={styles['ph-container']}>
         <div className={styles['ph-big-field']}>
-          {this.props.patient.name}
+          {this.props.patient.firstname + ' ' + this.props.patient.surname}
         </div>
         <div className={styles['ph-field']}>
           <label className={styles['ph-label']}>
