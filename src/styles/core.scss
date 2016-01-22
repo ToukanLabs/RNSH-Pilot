@@ -63,7 +63,9 @@ label, .widget-wrapper {
   display: block;
 }
 
-button {
+button,
+input[type='button'],
+input[type='submit'] {
   background-color: #16918c;
   color: #f6f4f4;
   padding: 5px;

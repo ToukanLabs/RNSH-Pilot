@@ -74,34 +74,35 @@ export class HomeView extends React.Component {
         <div className={styles['as-search-container']}>
           <h2>Patient Search</h2>
           <div className={styles['as-s-field-container']}>
-            <label className={styles['as-label']}>MRN:</label>
-            <input
-              ref='searchMRN'
-              className={styles['as-input']}
-            />
-            <label className={styles['as-label']}>First Name:</label>
-              <input
-                ref='searchFirstname'
-                className={styles['as-input']}
-              />
-            <label className={styles['as-label']}>Surname:</label>
-              <input
-                ref='searchSurname'
-                className={styles['as-input']}
-              />
-            <span
-              className={styles['search-icon']}
-              onClick={() => {
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
                 this.props.advancedSearchActions.setSearchFields(
                   this.refs.searchMRN.value,
                   this.refs.searchFirstname.value,
                   this.refs.searchSurname.value
                 );
-              }
-            }
-              >
-              Search
-            </span>
+              }}>
+              <label className={styles['as-label']}>MRN:</label>
+              <input
+                ref='searchMRN'
+                className={styles['as-input']}
+              />
+              <label className={styles['as-label']}>First Name:</label>
+                <input
+                  ref='searchFirstname'
+                  className={styles['as-input']}
+                />
+              <label className={styles['as-label']}>Surname:</label>
+                <input
+                  ref='searchSurname'
+                  className={styles['as-input']}
+                />
+              <input
+                type='submit'
+                value='Search'
+                />
+            </form>
           </div>
         </div>
         <div className={styles['as-result-container']}>
