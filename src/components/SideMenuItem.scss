@@ -15,6 +15,7 @@
   border-left: 5px solid $patient-sm-item-bar;
   margin: 8px 0;
   font-size: 0.9em;
+  text-transform: uppercase;
 }
 
 .smi-icon {
@@ -25,7 +26,6 @@
 
 .smi-menu-item a {
   color: $patient-sidemenu-link-colour;
-  text-transform: uppercase;
   display: block;
 }
 
