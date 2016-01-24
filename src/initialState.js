@@ -252,6 +252,14 @@ export const initialState = {
       'data': [
         { 'date': '14-May-12', 'hoverTitle': 'Prostatectomy' }
       ]
+    },
+    {
+      'name': 'imaging',
+      'displayName': 'Imaging',
+      'type': 'point',
+      'data': [
+        { 'date': '11-Feb-12', 'hoverTitle': 'MRI' }
+      ]
     }
   ]
 };
