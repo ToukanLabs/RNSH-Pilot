@@ -12,12 +12,13 @@ import PatientView from 'views/PatientView';
 import UnderMaintenanceView from 'views/UnderMaintenanceView';
 import QuestionnaireView from 'views/QuestionnaireView';
 import FollowUpView from 'views/FollowUpView';
+import PatientOverview from 'views/PatientOverview';
 
 export default (
   <Route path='/' component={CoreLayout}>
     <IndexRoute component={HomeView} />
     <Route path='patient/:id' component={PatientView}>
-      <IndexRoute component={UnderMaintenanceView} />
+      <IndexRoute component={PatientOverview} />
       <Route path='background-history' component={UnderMaintenanceView} />
       <Route path='pathology' component={UnderMaintenanceView} />
       <Route path='imaging' component={UnderMaintenanceView} />
