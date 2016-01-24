@@ -13,6 +13,13 @@
   display: table-cell;
 }
 
+.fufu-tlc-one,
+.fufu-tlc-two {
+  display: table-cell;
+  width: 50%;
+
+}
+
 .fufu-top-right-container button {
   width: 100%;
 }
@@ -21,6 +28,10 @@
 .fufu-sub-panel-two {
   display: inline-block;
   width: 50%;
+}
+
+.fufu-sub-panel-two {
+  vertical-align: top;
 }
 
 .fufu-sub-heading-top {
@@ -52,4 +63,8 @@
 .fufu-second-cancer-container {
   width: 25%;
   display: table-cell;
+}
+
+.fufu-alpha-blocker-label {
+  display: inline !important;
 }

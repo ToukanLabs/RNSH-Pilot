@@ -11,17 +11,147 @@ import {
 import styles from './FollowUpFollowUp.scss';
 
 export default class FollowUpFollowUp extends Component {
+  constructor () {
+    super();
+
+    this.state = {
+      alphaBlocker: false,
+      biochemicalFailure: false,
+      metastases: false,
+    };
+  }
+
+  handleAlphaBlockerChange = (e) => {
+    const alphaBlockerVal = e.target.value;
+    let newVal = false;
+    if (alphaBlockerVal === 'Yes') {
+      newVal = true;
+    }
+    this.setState({
+      alphaBlocker: newVal,
+      biochemicalFailure: this.state.biochemicalFailure,
+      metastases: this.state.metastases,
+    });
+  };
+
+  handleBiochemicalFailureChange = (e) => {
+    const biochemicalFailureVal = e.target.value;
+    let newVal = false;
+    let metastasesNewVal;
+    if (biochemicalFailureVal === 'Yes') {
+      newVal = true;
+      metastasesNewVal = this.state.metastases;
+    } else {
+      metastasesNewVal = false;
+    }
+    this.setState({
+      alphaBlocker: this.state.alphaBlocker,
+      biochemicalFailure: newVal,
+      metastases: metastasesNewVal,
+    });
+  };
+
+  handleMetastasesChange = (e) => {
+    const metastasesVal = e.target.value;
+    let newVal = false;
+    if (metastasesVal === 'Yes') {
+      newVal = true;
+    }
+    this.setState({
+      alphaBlocker: this.state.alphaBlocker,
+      biochemicalFailure: this.state.biochemicalFailure,
+      metastases: newVal,
+    });
+  };
+
   render () {
+    const metastasesWidget = () => {
+      if (this.state.biochemicalFailure) {
+        return (
+          <Select
+            label='Metastases'
+            options={[
+              {key: 'Yes', value: 'Yes'},
+              {key: 'No', value: 'No'},
+            ]}
+            onChange={this.handleMetastasesChange}
+            />
+        );
+      } else {
+        return null;
+      }
+    };
+
+    const anticholinergicWidget = () => {
+      // if (this.state.alphaBlocker) {
+      return (
+        <Select
+          options={[
+            {key: '0', value: '0'},
+            {key: '1', value: '1'},
+            {key: '2', value: '2'},
+            {key: '3', value: '3'},
+          ]}
+          disabled={!this.state.alphaBlocker}
+          />
+      );
+      // } else {
+        // return null;
+      // }
+    };
+
+    const dateOfBFWidget = () => {
+      if (this.state.biochemicalFailure) {
+        return (
+          <DateTimeInput
+            label='Date of BF'
+            noTime
+            />
+        );
+      } else {
+        return null;
+      }
+    };
+
+    const metastasesSiteAndDateWidgets = () => {
+      if (this.state.metastases) {
+        return (
+          <span>
+            <Select
+              label='Site'
+              options={[]}
+              />
+            <DateTimeInput
+              label='Date'
+              noTime
+              />
+          </span>
+        );
+      } else {
+        return null;
+      }
+    };
+
     return (
       <Panel title='Follow Up'>
         <div className={styles['fufu-row-one']}>
           <div className={styles['fufu-top-left-container']}>
-            <InlineWidgetGroup>
+            <div className={styles['fufu-tlc-one']}>
               <DateTimeInput
                 label='FU Date'
                 mandatory
                 noTime
                 />
+              <TextInput
+                label='Time from Prostate RT Finished'
+                unitLabel='months'
+                />
+              <TextInput
+                label='Time from Last Course of RT'
+                unitLabel='months'
+                />
+            </div>
+            <div className={styles['fufu-tlc-two']}>
               <Select
                 label='Current hormones'
                 options={[
@@ -30,12 +160,6 @@ export default class FollowUpFollowUp extends Component {
                   {key: 'Relapse', value: 'Relapse'},
                   {key: 'UKN', value: 'UKN'},
                 ]}
-                />
-            </InlineWidgetGroup>
-            <InlineWidgetGroup>
-              <TextInput
-                label='Time from Prostate RT Finished'
-                unitLabel='months'
                 />
               <Select
                 label='Current Systemic Therapy'
@@ -47,29 +171,22 @@ export default class FollowUpFollowUp extends Component {
                   {key: 'Other', value: 'Other'},
                 ]}
                 />
-            </InlineWidgetGroup>
-            <InlineWidgetGroup>
-              <TextInput
-                label='Time from Last Course of RT'
-                unitLabel='months'
-                />
-              <Select
-                label='Alpha Blocker / Anticholinergic'
-                options={[
-                  {key: 'Yes', value: 'Yes'},
-                  {key: 'No', value: 'No'},
-                ]}
-                />
-              -
-              <Select
-                options={[
-                  {key: '0', value: '0'},
-                  {key: '1', value: '1'},
-                  {key: '2', value: '2'},
-                  {key: '3', value: '3'},
-                ]}
-                />
-            </InlineWidgetGroup>
+              <InlineWidgetGroup>
+
+                <Select
+                  label='Alpha Blocker / Anticholinergic'
+                  labelClassName={styles['fufu-alpha-blocker-label']}
+                  options={[
+                    {key: 'Yes', value: 'Yes'},
+                    {key: 'No', value: 'No'},
+                  ]}
+                  onChange={this.handleAlphaBlockerChange}
+                  />
+                -
+                {anticholinergicWidget()}
+              </InlineWidgetGroup>
+            </div>
+
             <div className={styles['fufu-sub-panel-one']}>
               <Select
                 label='Current Follow-Up'
@@ -97,35 +214,19 @@ export default class FollowUpFollowUp extends Component {
                 />
             </div>
             <div className={styles['fufu-sub-panel-two']}>
-              <InlineWidgetGroup>
-                <Select
-                  label='Biochemical Failure'
-                  options={[
-                    {key: 'Yes', value: 'Yes'},
-                    {key: 'No', value: 'No'},
-                    {key: 'UKN', value: 'UKN'},
-                  ]}
-                  />
-                <Select
-                  label='Metastases'
-                  options={[
-                    {key: 'Yes', value: 'Yes'},
-                    {key: 'No', value: 'No'},
-                  ]}
-                  />
-              </InlineWidgetGroup>
-              <DateTimeInput
-                label='Date of BF'
-                noTime
-                />
               <Select
-                label='Site'
-                options={[]}
+                label='Biochemical Failure'
+                options={[
+                  {key: 'Yes', value: 'Yes'},
+                  {key: 'No', value: 'No'},
+                  {key: 'UKN', value: 'UKN'},
+                ]}
+                onChange={this.handleBiochemicalFailureChange}
                 />
-              <DateTimeInput
-                label='Date'
-                noTime
-                />
+              {dateOfBFWidget()}
+              {metastasesWidget()}
+
+              {metastasesSiteAndDateWidgets()}
             </div>
           </div>
 
