@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, findDOMNode } from 'react';
 import styles from './GlobalSearch.scss';
 
 export default class GlobalSearch extends Component {
@@ -11,6 +11,9 @@ export default class GlobalSearch extends Component {
         onChange={this.props.onChange}
         onKeyUp={this.props.onKeyUp}
         onFocus={this.props.onFocus}
+        onClick={() => {
+          findDOMNode(this).select();
+        }}
       />
     );
   };
