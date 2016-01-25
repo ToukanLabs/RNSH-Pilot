@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Select, TextInput, InlineWidgetGroup } from './widgets';
+import { Select, TextInput } from './widgets';
 import { FormattedDate } from 'react-intl';
 import styles from './RTDetail.scss';
 
