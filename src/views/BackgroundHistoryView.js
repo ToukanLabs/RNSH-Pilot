@@ -266,11 +266,18 @@ export class BackgroundHistoryView extends Component {
       );
     } else {
       return (
-        <h2>
-          <Icon name='refresh' spin />
-          {' '}
-          Loading from KoBo Toolbox...
-        </h2>
+        <div>
+          <h2>
+            <Icon name='refresh' spin />
+            {' '}
+            Loading from KoBo Toolbox...
+          </h2>
+          <Link to='https://kc.kobotoolbox.org/fivium/forms/New_Pt_V1_0/enter-data' target='_blank'>
+            Enter data in a new questionnaire
+            {' '}
+            <Icon name='external-link' />
+          </Link>
+        </div>
       );
     }
   };
