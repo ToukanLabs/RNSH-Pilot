@@ -14,6 +14,9 @@ export const REMOVE_NEW_PATIENT_RESPONSES = 'REMOVE_NEW_PATIENT_RESPONSES';
 export const UPDATE_BACKGROUND_HISTORY = 'UPDATE_BACKGROUND_HISTORY';
 export const SAVE_BACKGROUND_HISTORY = 'SAVE_BACKGROUND_HISTORY';
 
+export const BACKGROUND_HISTORY_CHANGE_DIABETES = 'BACKGROUND_HISTORY_CHANGE_DIABETES';
+export const BACKGROUND_HISTORY_CHANGE_HYPERTENSION = 'BACKGROUND_HISTORY_CHANGE_HYPERTENSION';
+export const BACKGROUND_HISTORY_CHANGE_HYPERCHOLESTEROLEMIA = 'BACKGROUND_HISTORY_CHANGE_HYPERCHOLESTEROLEMIA';
 export const BACKGROUND_HISTORY_CHANGE_ALLERGIES = 'BACKGROUND_HISTORY_CHANGE_ALLERGIES';
 
 // ------------------------------------
@@ -71,19 +74,42 @@ export const removeNewPatientResponses = createAction(
 
 export const updateBackgroundHistory = createAction(
   UPDATE_BACKGROUND_HISTORY,
-  (diabetes, diabetesControl, hypertension, hypercholesterolemia, background) => {
+  (diabetes, diabetesControl, hypertension, hypercholesterolemia, background, allergies, bloodThinners) => {
     return {
       diabetes: diabetes,
       diabetesControl: diabetesControl,
       hypertension: hypertension,
       hypercholesterolemia: hypercholesterolemia,
       background: background,
+      allergies: allergies,
+      bloodThinners: bloodThinners,
     };
   }
 );
 
 export const saveBackgroundHistory = createAction(
   SAVE_BACKGROUND_HISTORY
+);
+
+export const backgroundHistoryChangeDiabetes = createAction(
+  BACKGROUND_HISTORY_CHANGE_DIABETES,
+  (diabetes) => {
+    return {diabetes: diabetes};
+  }
+);
+
+export const backgroundHistoryChangeHypertension = createAction(
+  BACKGROUND_HISTORY_CHANGE_HYPERTENSION,
+  (hypertension) => {
+    return {hypertension: hypertension};
+  }
+);
+
+export const backgroundHistoryChangeHypercholesterolemia = createAction(
+  BACKGROUND_HISTORY_CHANGE_HYPERCHOLESTEROLEMIA,
+  (hypercholesterolemia) => {
+    return {hypercholesterolemia: hypercholesterolemia};
+  }
 );
 
 export const backgroundHistoryChangeAllergies = createAction(
@@ -104,6 +130,9 @@ export const actions = {
   removeNewPatientResponses,
   updateBackgroundHistory,
   saveBackgroundHistory,
+  backgroundHistoryChangeDiabetes,
+  backgroundHistoryChangeHypertension,
+  backgroundHistoryChangeHypercholesterolemia,
   backgroundHistoryChangeAllergies,
 };
 
@@ -128,12 +157,13 @@ export default handleActions({
       searchResults: state.searchResults
     };
     patient.activePatient['backgroundHistory'] = {
-      diabetes: false,
+      diabetes: null,
       diabetesControl: null,
-      hypertension: false,
-      hypercholesterolemia: false,
+      hypertension: null,
+      hypercholesterolemia: null,
       background: '',
-      allergies: false,
+      allergies: null,
+      bloodThinners: null,
       saved: false,
     };
     return patient;
@@ -205,6 +235,7 @@ export default handleActions({
       hypercholesterolemia: payload.hypercholesterolemia,
       background: payload.background,
       allergies: payload.allergies,
+      bloodThinners: payload.bloodThinners,
       saved: currentBackgroundHistory.saved,
     };
 
@@ -228,6 +259,42 @@ export default handleActions({
       }
     };
   },
+  [BACKGROUND_HISTORY_CHANGE_DIABETES]: (state, actions) => {
+    return {
+      ...state,
+      activePatient: {
+        ...state.activePatient,
+        backgroundHistory: {
+          ...state.activePatient.backgroundHistory,
+          diabetes: actions.payload.diabetes
+        }
+      }
+    };
+  },
+  [BACKGROUND_HISTORY_CHANGE_HYPERTENSION]: (state, actions) => {
+    return {
+      ...state,
+      activePatient: {
+        ...state.activePatient,
+        backgroundHistory: {
+          ...state.activePatient.backgroundHistory,
+          hypertension: actions.payload.hypertension
+        }
+      }
+    };
+  },
+  [BACKGROUND_HISTORY_CHANGE_HYPERCHOLESTEROLEMIA]: (state, actions) => {
+    return {
+      ...state,
+      activePatient: {
+        ...state.activePatient,
+        backgroundHistory: {
+          ...state.activePatient.backgroundHistory,
+          hypertension: actions.payload.hypercholesterolemia
+        }
+      }
+    };
+  },
   [BACKGROUND_HISTORY_CHANGE_ALLERGIES]: (state, actions) => {
     return {
       ...state,
@@ -239,5 +306,6 @@ export default handleActions({
         }
       }
     };
-  }
+  },
+
 }, 1);
