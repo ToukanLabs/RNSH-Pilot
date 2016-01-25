@@ -39,7 +39,6 @@ export default class GlobalSearchContainer extends Component {
     if (this.props.searchResultsVisibility === 'expanded') {
       const dropdown_element = findDOMNode(this);
       if (event.target !== dropdown_element && !dropdown_element.contains(event.target)) {
-        // this.hide();
         this.props.uiActions.hideSearchResults();
       }
     }

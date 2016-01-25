@@ -24,8 +24,8 @@ export default class PatientView extends React.Component {
   componentWillReceiveProps (newProps) {
     if (newProps.params.id !== this.props.params.id) {
       this.props.patientActions.fetchPatient(newProps.params.id);
+      this.props.uiActions.hideSearchResults();
     }
-    this.props.uiActions.hideSearchResults();
   };
 
   componentWillMount () {
