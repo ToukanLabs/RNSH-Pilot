@@ -1,0 +1,19 @@
+.radiotherapy-rt-list, .radiotherapy-rt-detail {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.radiotherapy-rt-list {
+  width: 35%;
+}
+
+.radiotherapy-rt-detail {
+  width: 65%;
+  padding-left: 1em;
+  box-sizing: border-box;
+}
+
+.radiotherapy-rt-detail h3 {
+  font-size: 1.2em;
+  margin: 15px 0;
+}

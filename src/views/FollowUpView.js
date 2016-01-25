@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { actions as patientActions } from '../redux/modules/patient';
 import FollowUpDiagnosis from 'components/FollowUpDiagnosis';
 import FollowUpIntent from 'components/FollowUpIntent';
 import FollowUpPreRTAssessment from 'components/FollowUpPreRTAssessment';
@@ -10,10 +11,16 @@ import MultiGraph from 'components/MultiGraph';
 import styles from './FollowUpView.scss';
 
 const mapStateToProps = (state) => ({
-  graphs: state.graphs
+  graphs: state.graphs,
+  activePatient: state.patients.activePatient
 });
 
 export class FollowUpView extends Component {
+
+  handleDetailViewClick = (id) => {
+    this.props.setRTDetailViewId(id);
+  };
+
   render () {
     return (
       <div>
@@ -33,7 +40,11 @@ export class FollowUpView extends Component {
             </div>
             <div className={styles['fuv-graph-container']}>
               <Panel>
-                <MultiGraph graphs={this.props.graphs} />
+                <MultiGraph
+                  graphs={this.props.graphs}
+                  patientId={this.props.activePatient.id}
+                  handleDetailViewClick={this.handleDetailViewClick}
+                />
               </Panel>
             </div>
           </div>
@@ -56,8 +67,10 @@ export class FollowUpView extends Component {
   }
 }
 
-export default connect(mapStateToProps)(FollowUpView);
+export default connect(mapStateToProps, patientActions)(FollowUpView);
 
 FollowUpView.propTypes = {
-  graphs: React.PropTypes.array
+  graphs: React.PropTypes.array,
+  activePatient: React.PropTypes.object,
+  setRTDetailViewId: React.PropTypes.func
 };

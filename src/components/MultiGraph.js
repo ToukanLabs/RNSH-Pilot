@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 var d3 = require('d3');
 
 let multiGraphId = 0;
@@ -172,7 +173,7 @@ class LineGraph extends Graph {
 };
 
 class TimelineGraph extends Graph {
-  constructor (name, displayName, data, offsetTop, x, axisPosition) {
+  constructor (name, displayName, data, offsetTop, x, axisPosition, patientId, handleDetailViewClick) {
     super();
     this.height = 20;
 
@@ -182,6 +183,8 @@ class TimelineGraph extends Graph {
     this.offsetTop = offsetTop;
     this.x = x;
     this.axisPosition = axisPosition;
+    this.patientId = patientId;
+    this.handleDetailViewClick = handleDetailViewClick;
   }
 
   processData () {
@@ -246,7 +249,8 @@ class TimelineGraph extends Graph {
         })
         .on('click', function (e) {
           if (thisTimeGraph.name === 'radiotherapy') {
-            alert(thisTimeGraph.name);
+            thisTimeGraph.handleDetailViewClick(thisTimeGraph.rawData.id);
+            browserHistory.push(`/patient/${thisTimeGraph.patientId}/radiotherapy`);
           };
         })
         .on('mouseleave', function (e) {
@@ -507,7 +511,9 @@ export default class MultiGraph extends Component {
           d.data[0],
           (cumulativeHeight + (parentGraph.padding * idx)),
           parentGraph.x,
-          axisPosition
+          axisPosition,
+          this.props.patientId,
+          this.props.handleDetailViewClick
         );
         break;
       case 'point':
@@ -659,5 +665,7 @@ export default class MultiGraph extends Component {
 }
 
 MultiGraph.propTypes = {
-  graphs: React.PropTypes.array
+  graphs: React.PropTypes.array,
+  patientId: React.PropTypes.string,
+  handleDetailViewClick: React.PropTypes.func
 };

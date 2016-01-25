@@ -13,8 +13,15 @@ const mapStateToProps = (state) => ({
 
 export class RadiotherapyView extends Component {
 
+  rtData = undefined;
+
   getRTDetailData = () => {
-    return 0;
+    var rec = this.rtData.filter((r) => {
+      if (r.id === this.props.activePatient.RTDetailViewId) {
+        return r;
+      }
+    });
+    return rec[0];
   };
 
   getRTList = () => {
@@ -23,8 +30,8 @@ export class RadiotherapyView extends Component {
         return g;
       }
     });
-
-    return r[0].data;
+    this.rtData = r[0].data;
+    return this.rtData;
   };
 
   handleDetailViewClick = (id) => {
@@ -43,7 +50,10 @@ export class RadiotherapyView extends Component {
             />
         </div>
         <div className={styles['radiotherapy-rt-detail']}>
-          <RTDetail data={this.getRTDetailData()} />
+          <RTDetail
+            data={this.getRTDetailData()}
+            RTDetailViewId={this.props.activePatient.RTDetailViewId}
+          />
         </div>
       </div>
     );
