@@ -1,17 +1,15 @@
 import React, {Component} from 'react';
 import { Select, TextInput } from './widgets';
 import { FormattedDate } from 'react-intl';
+import Panel from './Panel';
 import styles from './RTDetail.scss';
 
 export default class RTDetail extends Component {
 
   render () {
-    console.log('detail here');
-    console.log(this.props.data);
     if (this.props.RTDetailViewId) {
       return (
-        <div>
-          <h3>Radiotherapy Treatment Period</h3>
+        <Panel title='Radiotherapy Treatement Period'>
           <div className={styles['rt-timeframe']}>
             from <FormattedDate
               value={Date.parse(this.props.data.start)}
@@ -58,7 +56,7 @@ export default class RTDetail extends Component {
                 {key: 'No', value: 'N'},
               ]}
               />
-        </div>
+          </Panel>
       );
     } else {
       return (
