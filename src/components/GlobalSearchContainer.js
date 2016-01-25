@@ -3,7 +3,6 @@ import { findDOMNode } from 'react-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actions as uiActions } from 'redux/modules/ui';
-
 import GlobalSearch from 'components/GlobalSearch';
 import GlobalSearchResults from 'components/GlobalSearchResults';
 import styles from './GlobalSearchContainer.scss';
@@ -12,7 +11,7 @@ const mapStateToProps = (state) => ({
   searchResultsVisibility: state.ui.searchResultsVisibility,
   searchString: state.ui.searchString,
   patients: state.patients.searchResults,
-  tumorFilter: state.ui.tumorFilter
+  tumorFilter: state.ui.tumorFilter,
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -44,20 +43,50 @@ export default class GlobalSearchContainer extends Component {
     }
   };
 
+  onSearchChange = (e) => {
+    const searchString = e.target.value;
+    this.props.uiActions.updateSearchString(searchString);
+  };
+
+  filterPatients = (value) => {
+    var key = this.props.searchString ? this.props.searchString.toUpperCase() : '';
+    var name = value.firstname.toUpperCase() + ' ' + value.surname.toUpperCase();
+    var mrn = value.mrn.toString();
+    return (this.props.tumorFilter === undefined || this.props.tumorFilter === '' || value.tumorType === this.props.tumorFilter) &&
+      (name.indexOf(key) >= 0 || mrn.indexOf(key) >= 0);
+  };
+
+  sortPatients = (a, b) => {
+    var key = this.props.searchString ? this.props.searchString.toUpperCase() : '';
+    var x = a.firstname.toUpperCase() + ' ' + a.surname.toUpperCase();
+    var y = b.firstname.toUpperCase() + ' ' + b.surname.toUpperCase();
+    return x.indexOf(key) - y.indexOf(key);
+  };
+
+  getSearchResults = () => {
+    var patientResults;
+    if ((this.props.searchString === undefined || this.props.searchString === '') && !this.props.tumorFilter) {
+      patientResults = this.props.patients;
+    } else {
+      patientResults = this.props.patients.filter(this.filterPatients);
+      patientResults = patientResults.sort(this.sortPatients);
+    }
+    return patientResults;
+  };
+
   render () {
     return (
       <div className={styles['gs-input-wrapper']}>
         <GlobalSearch
-          showSearchResults = { this.props.uiActions.showSearchResults }
-          updateSearchString = {this.props.uiActions.updateSearchString}
+          onFocus={this.props.uiActions.showSearchResults}
+          onChange={this.onSearchChange}
         />
         <GlobalSearchResults
-          searchResultsVisibility = {this.props.searchResultsVisibility}
-          hideSearchResults = { this.props.uiActions.hideSearchResults }
-          toggleTumorFilter = {this.props.uiActions.toggleTumorFilter}
-          searchString = {this.props.searchString}
-          patients = {this.props.patients}
-          tumorFilter = {this.props.tumorFilter}
+          searchResultsVisibility={this.props.searchResultsVisibility}
+          hideSearchResults={this.props.uiActions.hideSearchResults}
+          toggleTumorFilter={this.props.uiActions.toggleTumorFilter}
+          tumorFilter={this.props.tumorFilter}
+          results={this.getSearchResults()}
         />
       </div>
     );

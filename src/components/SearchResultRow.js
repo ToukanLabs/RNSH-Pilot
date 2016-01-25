@@ -33,6 +33,6 @@ export default class SearchResultRow extends Component {
 };
 
 SearchResultRow.propTypes = {
-  patient: React.PropTypes.array,
+  patient: React.PropTypes.object.isRequired,
   styles: React.PropTypes.object
 };
