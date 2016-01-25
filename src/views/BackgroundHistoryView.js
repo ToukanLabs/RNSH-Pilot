@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { actions as patientActions } from '../redux/modules/patient';
 import Panel from 'components/Panel';
 import Icon from 'components/Icon';
-import { TextInput, TextArea, Select } from 'components/widgets';
+import { TextArea, Select } from 'components/widgets';
 import { Link } from 'react-router';
 import styles from './BackgroundHistoryView.scss';
 
