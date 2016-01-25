@@ -8,6 +8,7 @@ export const FETCH_PATIENT = 'FETCH_PATIENT';
 export const SET_QUESTIONNAIRE_RESPONSES = 'SET_QUESTIONNAIRE_RESPONSES';
 export const REMOVE_QUESTIONNAIRE_RESPONSES = 'REMOVE_QUESTIONNAIRE_RESPONSES';
 export const SET_QUESTIONNAIRE_DETAIL_VIEW_ID = 'SET_QUESTIONNAIRE_DETAIL_VIEW_ID';
+export const SET_RT_DETAIL_VIEW_ID = 'SET_RT_DETAIL_VIEW_ID';
 
 // ------------------------------------
 // Actions
@@ -44,12 +45,20 @@ export const setQuestionnaireDetailViewId = createAction(
   }
 );
 
+export const setRTDetailViewId = createAction(
+  SET_RT_DETAIL_VIEW_ID,
+  (rtId) => {
+    return {rtId};
+  }
+);
+
 export const actions = {
   createPatient,
   fetchPatient,
   setQuestionnaireResponses,
   removeQuestionnaireResponses,
   setQuestionnaireDetailViewId,
+  setRTDetailViewId
 };
 
 // ------------------------------------
@@ -97,6 +106,15 @@ export default handleActions({
       activePatient: {
         ...state.activePatient,
         questionnaireDetailViewId: action.payload.questionnaireId
+      },
+      searchResults: state.searchResults
+    };
+  },
+  [SET_RT_DETAIL_VIEW_ID]: (state, action) => {
+    return {
+      activePatient: {
+        ...state.activePatient,
+        RTDetailViewId: action.payload.rtId
       },
       searchResults: state.searchResults
     };

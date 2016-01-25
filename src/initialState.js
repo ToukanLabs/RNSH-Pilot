@@ -242,7 +242,28 @@ export const initialState = {
       'displayName': 'Radiotherapy',
       'type': 'timeline',
       'data': [
-        { 'start': '04-Sep-12', 'end': '23-Nov-12' }
+        {
+          'id': 1,
+          'start': '04-Sep-12',
+          'end': '23-Nov-12',
+          'dose': 6800,
+          'fractions': 34,
+          'localisation': 'Bony',
+          'lymphNodesTreated': 'Y',
+          'LNdose': 5800,
+          'LNFractions': 23
+        },
+        {
+          'id': 2,
+          'start': '14-Jun-11',
+          'end': '12-Sep-11',
+          'dose': 5300,
+          'fractions': 24,
+          'localisation': 'Bony',
+          'lymphNodesTreated': 'N',
+          'LNdose': '',
+          'LNFractions': 0
+        }
       ]
     },
     {

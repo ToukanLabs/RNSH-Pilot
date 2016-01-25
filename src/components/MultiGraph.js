@@ -244,6 +244,11 @@ class TimelineGraph extends Graph {
           thisTimeGraph.tooltip = new Tooltip();
           thisTimeGraph.tooltip.show([left, top], content);
         })
+        .on('click', function (e) {
+          if (thisTimeGraph.name === 'radiotherapy') {
+            alert(thisTimeGraph.name);
+          };
+        })
         .on('mouseleave', function (e) {
           thisTimeGraph.tooltip.cleanup();
           thisTimeGraph.tooltip = undefined;

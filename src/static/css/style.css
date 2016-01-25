@@ -160,6 +160,10 @@ g.hoverable:hover .point.data {
   stroke: #7218a2;
 }
 
+.radiotherapy.bar:hover {
+  cursor: pointer;;
+}
+
 .surgery.graphtitle {
   font-size: 1.2em;
   fill: rgb(214, 39, 40);
