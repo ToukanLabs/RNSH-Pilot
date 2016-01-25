@@ -59,6 +59,7 @@ export default class Select extends Component {
             className={className}
             onChange={this.handleOnChange}
             disabled={this.props.disabled}
+            value={this.props.value}
             >
             {this.getOptions()}
           </select>
@@ -71,6 +72,7 @@ export default class Select extends Component {
             className={className}
             onChange={this.handleOnChange}
             disabled={this.props.disabled}
+            value={this.props.value}
             >
             {this.getOptions()}
           </select>
@@ -85,6 +87,7 @@ Select.propTypes = {
   label: React.PropTypes.string,
   labelClassName: React.PropTypes.string,
   options: React.PropTypes.array.isRequired,
+  value: React.PropTypes.string,
   placeholder: React.PropTypes.string,
   mandatory: React.PropTypes.bool,
   disabled: React.PropTypes.bool,

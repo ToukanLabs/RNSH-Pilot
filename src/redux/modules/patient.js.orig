@@ -8,13 +8,16 @@ export const FETCH_PATIENT = 'FETCH_PATIENT';
 export const SET_QUESTIONNAIRE_RESPONSES = 'SET_QUESTIONNAIRE_RESPONSES';
 export const REMOVE_QUESTIONNAIRE_RESPONSES = 'REMOVE_QUESTIONNAIRE_RESPONSES';
 export const SET_QUESTIONNAIRE_DETAIL_VIEW_ID = 'SET_QUESTIONNAIRE_DETAIL_VIEW_ID';
+<<<<<<< HEAD
 export const SET_RT_DETAIL_VIEW_ID = 'SET_RT_DETAIL_VIEW_ID';
+=======
 export const SET_NEW_PATIENT_RESPONSES = 'SET_NEW_PATIENT_RESPONSES';
 export const REMOVE_NEW_PATIENT_RESPONSES = 'REMOVE_NEW_PATIENT_RESPONSES';
 export const UPDATE_BACKGROUND_HISTORY = 'UPDATE_BACKGROUND_HISTORY';
 export const SAVE_BACKGROUND_HISTORY = 'SAVE_BACKGROUND_HISTORY';
 
 export const BACKGROUND_HISTORY_CHANGE_ALLERGIES = 'BACKGROUND_HISTORY_CHANGE_ALLERGIES';
+>>>>>>> Initial revision of background history screen.
 
 // ------------------------------------
 // Actions
@@ -51,13 +54,12 @@ export const setQuestionnaireDetailViewId = createAction(
   }
 );
 
+<<<<<<< HEAD
 export const setRTDetailViewId = createAction(
   SET_RT_DETAIL_VIEW_ID,
   (rtId) => {
     return {rtId};
-  }
-);
-
+=======
 export const setNewPatientResponses = createAction(
   SET_NEW_PATIENT_RESPONSES,
   (newPatientResponseData) => {
@@ -90,6 +92,7 @@ export const backgroundHistoryChangeAllergies = createAction(
   BACKGROUND_HISTORY_CHANGE_ALLERGIES,
   (allergies) => {
     return {allergies: allergies};
+>>>>>>> Initial revision of background history screen.
   }
 );
 
@@ -99,12 +102,15 @@ export const actions = {
   setQuestionnaireResponses,
   removeQuestionnaireResponses,
   setQuestionnaireDetailViewId,
-  setRTDetailViewId,
+<<<<<<< HEAD
+  setRTDetailViewId
+=======
   setNewPatientResponses,
   removeNewPatientResponses,
   updateBackgroundHistory,
   saveBackgroundHistory,
   backgroundHistoryChangeAllergies,
+>>>>>>> Initial revision of background history screen.
 };
 
 // ------------------------------------
@@ -167,6 +173,7 @@ export default handleActions({
       searchResults: state.searchResults
     };
   },
+<<<<<<< HEAD
   [SET_RT_DETAIL_VIEW_ID]: (state, action) => {
     return {
       activePatient: {
@@ -175,7 +182,7 @@ export default handleActions({
       },
       searchResults: state.searchResults
     };
-  },
+=======
   [SET_NEW_PATIENT_RESPONSES]: (state, action) => {
     return {
       activePatient: {
@@ -239,5 +246,6 @@ export default handleActions({
         }
       }
     };
+>>>>>>> Initial revision of background history screen.
   }
 }, 1);

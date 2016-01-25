@@ -13,8 +13,11 @@ import UnderMaintenanceView from 'views/UnderMaintenanceView';
 import QuestionnaireView from 'views/QuestionnaireView';
 import FollowUpView from 'views/FollowUpView';
 import PatientOverview from 'views/PatientOverview';
+<<<<<<< HEAD
 import RadiotherapyView from 'views/RadiotherapyView';
+=======
 import BackgroundHistoryView from 'views/BackgroundHistoryView';
+>>>>>>> Initial revision of background history screen.
 
 export default (
   <Route path='/' component={CoreLayout}>

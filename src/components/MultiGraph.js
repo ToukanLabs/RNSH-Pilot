@@ -272,17 +272,20 @@ class PointGraph extends Graph {
     this.name = name;
     this.displayName = displayName;
     this.rawData = data;
+    this.data = [];
     this.offsetTop = offsetTop;
     this.x = x;
     this.axisPosition = axisPosition;
   }
 
   processData () {
-    this.data = [{
-      date: this.parseDate(this.rawData.date),
-      data: 1,
-      hoverTitle: this.rawData.hoverTitle
-    }];
+    for (var i in this.rawData) {
+      this.data[i] = {
+        date: this.parseDate(this.rawData[i].date),
+        data: 1,
+        hoverTitle: this.rawData[i].hoverTitle
+      };
+    }
   }
 
   init (graphSvg) {
@@ -520,7 +523,7 @@ export default class MultiGraph extends Component {
         graph = new PointGraph(
           d.name,
           d.displayName,
-          d.data[0],
+          d.data,
           (cumulativeHeight + (parentGraph.padding * idx)),
           parentGraph.x,
           axisPosition
