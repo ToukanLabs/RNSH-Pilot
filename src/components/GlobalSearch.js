@@ -9,6 +9,7 @@ export default class GlobalSearch extends Component {
         placeholder={this.props.placeholder}
         className={styles['gs-input']}
         onChange={this.props.onChange}
+        onKeyUp={this.props.onKeyUp}
         onFocus={this.props.onFocus}
       />
     );
@@ -19,5 +20,6 @@ GlobalSearch.propTypes = {
   placeholder: React.PropTypes.string,
   onFocus: React.PropTypes.func.isRequired,
   onChange: React.PropTypes.func.isRequired,
+  onKeyUp: React.PropTypes.func.isRequired,
   styles: React.PropTypes.object
 };

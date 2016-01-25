@@ -3,6 +3,7 @@ import { findDOMNode } from 'react-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actions as uiActions } from 'redux/modules/ui';
+import { browserHistory } from 'react-router';
 import GlobalSearch from 'components/GlobalSearch';
 import GlobalSearchResults from 'components/GlobalSearchResults';
 import styles from './GlobalSearchContainer.scss';
@@ -43,9 +44,19 @@ export default class GlobalSearchContainer extends Component {
     }
   };
 
-  onSearchChange = (e) => {
+  handleSearchOnChange = (e) => {
     const searchString = e.target.value;
     this.props.uiActions.updateSearchString(searchString);
+  };
+
+  handleSearchOnKeyUp = (e) => {
+    if (e.keyCode === 13) {
+      const results = this.getSearchResults();
+      if (results.length === 1) {
+        const patientId = results[0].id;
+        browserHistory.push(`/patient/${patientId}`);
+      }
+    }
   };
 
   filterPatients = (value) => {
@@ -79,7 +90,8 @@ export default class GlobalSearchContainer extends Component {
       <div className={styles['gs-input-wrapper']}>
         <GlobalSearch
           onFocus={this.props.uiActions.showSearchResults}
-          onChange={this.onSearchChange}
+          onChange={this.handleSearchOnChange}
+          onKeyUp={this.handleSearchOnKeyUp}
         />
         <GlobalSearchResults
           searchResultsVisibility={this.props.searchResultsVisibility}
