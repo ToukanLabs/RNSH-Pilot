@@ -105,7 +105,7 @@ export class BackgroundHistoryView extends Component {
     } else {
       return ' ';
     }
-  }
+  };
 
   verify = (e) => {
     e.preventDefault();
