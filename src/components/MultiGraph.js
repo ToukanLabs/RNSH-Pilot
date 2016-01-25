@@ -250,6 +250,8 @@ class TimelineGraph extends Graph {
         .on('click', function (e) {
           if (thisTimeGraph.name === 'radiotherapy') {
             thisTimeGraph.handleDetailViewClick(thisTimeGraph.rawData.id);
+            thisTimeGraph.tooltip.cleanup();
+            thisTimeGraph.tooltip = undefined;
             browserHistory.push(`/patient/${thisTimeGraph.patientId}/radiotherapy`);
           };
         })

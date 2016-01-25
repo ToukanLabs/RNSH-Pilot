@@ -41,7 +41,6 @@ export class RadiotherapyView extends Component {
   render () {
     return (
       <div>
-        <h2>Radiotherapy</h2>
         <div className={styles['radiotherapy-rt-list']}>
           <RTList
             data={this.getRTList()}
