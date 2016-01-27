@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import PatientOverviewDemographics from 'components/PatientOverviewDemographics';
+import PatientOverviewDiagnosis from 'components/PatientOverviewDiagnosis';
+import PatientOverviewTreatment from 'components/PatientOverviewTreatment';
 
 const mapStateToProps = (state) => ({
   patients: state.patients
@@ -10,8 +13,9 @@ export class PatientOverview extends Component {
   render () {
     return (
       <div>
-        <h2>Patient Overview</h2>
-        <div>Fields to do ....</div>
+        <PatientOverviewDemographics/>
+        <PatientOverviewDiagnosis/>
+        <PatientOverviewTreatment/>
       </div>
     );
   };
