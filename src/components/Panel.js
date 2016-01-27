@@ -1,29 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styles from './Panel.scss';
 
-export default class Panel extends Component {
-  getTitle () {
-    if (this.props.title) {
-      return (
-        <h2>
-          {this.props.title}
-        </h2>
-      );
-    }
-  }
+const Panel = ({title, className, children}) => {
+  const componentClassName = (className)
+      ? `${styles['panel']} ${className}`
+      : styles['panel'];
 
-  render () {
-    const className = (this.props.className)
-        ? `${styles['panel']} ${this.props.className}`
-        : styles['panel'];
+  const componentTitle = (title)
+      ? (<h2>{title}</h2>)
+      : null;
 
-    return (
-      <div className={className}>
-        {this.getTitle()}
-        {this.props.children}
-      </div>
-    );
-  };
+  return (
+    <div className={componentClassName}>
+      {componentTitle}
+      {children}
+    </div>
+  );
 };
 
 Panel.propTypes = {
@@ -31,3 +23,5 @@ Panel.propTypes = {
   className: React.PropTypes.string,
   children: React.PropTypes.array,
 };
+
+export default Panel;
