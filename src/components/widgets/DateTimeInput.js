@@ -1,31 +1,18 @@
 import React, {Component} from 'react';
+import Datetime from 'react-datetime';
 import corestyles from '../../styles/core.scss';
 
 export default class DateTimeInput extends Component {
-  renderDateWidget () {
-    if (!this.props.noDate) {
-      return (
-        <input
-          ref={`${this.name}DateInput`}
-          name={`${this.name}DateInput`}
-          type='date'
-          disabled={this.props.disabled}
-          />
-      );
-    }
-  }
-
-  renderTimeWidget () {
-    if (!this.props.noTime) {
-      return (
-        <input
-          ref={`${this.name}TimeInput`}
-          name={`${this.name}TimeInput`}
-          type='time'
-          disabled={this.props.disabled}
-          />
-      );
-    }
+  renderWidget () {
+    const dateFormat = (this.props.noDate) ? false : 'DD/MM/YYYY';
+    const timeFormat = (this.props.noTime) ? false : 'HH:MM';
+    return (
+      <Datetime
+        dateFormat={dateFormat}
+        timeFormat={timeFormat}
+        disabled={this.props.disabled}
+        />
+    );
   }
 
   isMandatory () {
@@ -48,15 +35,13 @@ export default class DateTimeInput extends Component {
           >
           {this.props.label}
           {this.getMandatoryIndicator()}:
-          {this.renderDateWidget()}
-          {this.renderTimeWidget()}
+          {this.renderWidget()}
         </label>
       );
     } else {
       return (
         <span className={corestyles['widget-wrapper']}>
-          {this.renderDateWidget()}
-          {this.renderTimeWidget()}
+          {this.renderWidget()}
         </span>
       );
     }

@@ -1,5 +1,6 @@
 @import 'base';
 @import 'vendor/reset';
+@import 'vendor/ReactDatetimeWidget';
 @import 'colors';
 $fa-font-path: '../../node_modules/font-awesome/fonts/';
 @import '../../node_modules/font-awesome/scss/font-awesome';
@@ -66,7 +67,7 @@ label, .widget-wrapper {
 button,
 input[type='button'],
 input[type='submit'] {
-  background-color: #16918c;
+  background-color: $button-color;
   color: #f6f4f4;
   padding: 5px;
   margin: 2px;
@@ -76,7 +77,7 @@ input[type='submit'] {
 
 button:hover {
   cursor: pointer;
-  background-color: $patient-sm-background;
+  background-color: $button-hover-color;
 }
 
 .dropdown-generic {
