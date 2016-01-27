@@ -12,13 +12,13 @@ export default class RTDetail extends Component {
         <Panel title='Radiotherapy Treatement Period'>
           <div className={styles['rt-timeframe']}>
             from <FormattedDate
-              value={Date.parse(this.props.data.start)}
+              value={Date(this.props.data.start)}
               day='numeric'
               month='short'
               year='numeric'
             /> &nbsp;
             to <FormattedDate
-              value={Date.parse(this.props.data.end)}
+              value={Date(this.props.data.end)}
               day='numeric'
               month='short'
               year='numeric'

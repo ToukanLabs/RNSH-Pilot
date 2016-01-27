@@ -12,7 +12,7 @@ export default class RTList extends Component {
         <tr key={r.id} className={styles[rowClass]}>
           <td>
             <FormattedDate
-              value={Date.parse(r.start)}
+              value={Date(r.start)}
               day='numeric'
               month='short'
               year='numeric'
@@ -20,7 +20,7 @@ export default class RTList extends Component {
           </td>
           <td>
             <FormattedDate
-              value={Date.parse(r.end)}
+              value={Date(r.end)}
               day='numeric'
               month='short'
               year='numeric'
