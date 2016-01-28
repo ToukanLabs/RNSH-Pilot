@@ -53,7 +53,13 @@ export default class PatientHeaderDetails extends Component {
 
 PatientHeaderDetails.propTypes = {
   phdLabel: React.PropTypes.string,
-  phdHeaderData: React.PropTypes.string,
-  phdDetails: React.PropTypes.object,
+  phdHeaderData: React.PropTypes.oneOfType([
+    React.PropTypes.object,
+    React.PropTypes.string,
+  ]),
+  phdDetails: React.PropTypes.oneOfType([
+    React.PropTypes.object,
+    React.PropTypes.string,
+  ]),
   visibility: React.PropTypes.string,
 };

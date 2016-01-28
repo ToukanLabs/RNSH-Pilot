@@ -21,7 +21,11 @@ const Panel = ({title, className, children}) => {
 Panel.propTypes = {
   title: React.PropTypes.string,
   className: React.PropTypes.string,
-  children: React.PropTypes.array,
+  children: React.PropTypes.oneOfType([
+    React.PropTypes.array,
+    React.PropTypes.object,
+    React.PropTypes.string,
+  ]),
 };
 
 export default Panel;

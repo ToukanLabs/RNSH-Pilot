@@ -135,7 +135,7 @@ export class BackgroundHistoryView extends Component {
       for (var property in COMORBILITIES_QUESTION_KEY_MAP) {
         if (COMORBILITIES_QUESTION_KEY_MAP.hasOwnProperty(property)) {
           question_responses.push(
-            <tr>
+            <tr key={COMORBILITIES_QUESTION_KEY_MAP[property]}>
               <td>
                 <b>{COMORBILITIES_QUESTION_KEY_MAP[property]}</b>
                 {' '}

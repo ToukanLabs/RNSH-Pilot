@@ -671,6 +671,6 @@ export default class MultiGraph extends Component {
 
 MultiGraph.propTypes = {
   graphs: React.PropTypes.array,
-  patientId: React.PropTypes.string,
+  patientId: React.PropTypes.number,
   handleDetailViewClick: React.PropTypes.func
 };
