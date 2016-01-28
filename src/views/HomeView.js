@@ -54,12 +54,21 @@ export class HomeView extends React.Component {
     );
   };
 
+  sortPatients = (a, b) => {
+    const x = `${a.surname.toLowerCase()} ${a.firstname.toLowerCase()}`;
+    const y = `${b.surname.toLowerCase()} ${b.firstname.toLowerCase()}`;
+
+    return x < y ? -1 : x > y ? 1 : 0;
+  };
+
   render () {
     var patientResults;
     if (this.props.mrn || this.props.firstname || this.props.surname || this.props.tumorFilter) {
       patientResults = this.props.patients.filter(this.filterPatients);
+      patientResults = patientResults.sort(this.sortPatients);
     } else {
       patientResults = this.props.patients;
+      patientResults = patientResults.sort(this.sortPatients);
     }
 
     var patientList = () => {
