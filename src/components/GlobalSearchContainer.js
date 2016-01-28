@@ -92,7 +92,7 @@ export default class GlobalSearchContainer extends Component {
 
   render () {
     return (
-      <div className={styles['gs-input-wrapper']}>
+      <div className={styles['gsc-input-wrapper']}>
         <GlobalSearch
           onFocus={this.props.uiActions.showSearchResults}
           onChange={this.handleSearchOnChange}

@@ -139,6 +139,22 @@ button:hover {
   -webkit-box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
   -moz-box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
   box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
+  display: none;
+  position: absolute;
+  min-width: 200px;
+}
+
+.dropdown__content a {
+  color: $react-dropdown-font;
+}
+
+.dropdown__content a:hover {
+  color: darken($react-dropdown-font, 30);
+}
+
+.dropdown--active .dropdown__content {
+  display: block;
+  z-index: 99999;
 }
 
 .dropdown__content ul:not(:first-child) {
@@ -149,8 +165,10 @@ button:hover {
   padding-bottom: 3px;
 }
 
-.dropdown__content li {
+.dropdown__content ul li {
+  list-style-type: none;
   line-height: 2.2em;
+  font-size: 0.9em;
 }
 
 .dropdown__content a {

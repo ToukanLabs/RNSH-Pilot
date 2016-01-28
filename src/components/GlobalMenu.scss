@@ -10,18 +10,3 @@
   display: inline-block;
   width: 100%;
 }
-
-.dropdown__content {
-  display: none;
-  position: absolute;
-  min-width: 200px;
-}
-
-.dropdown--active .dropdown__content {
-  display: block;
-  z-index: 99999;
-}
-
-.dropdown__content ul li {
-  list-style-type: none;
-}

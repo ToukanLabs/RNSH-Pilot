@@ -3,7 +3,7 @@
 .phc-detail-down-icon {
   background-color: $patient-subheading-color;
   display: inline-block;
-  width: 14px;
+  width: 20px;
   position: absolute;
   text-align: center;
   padding-top: 2px;
@@ -13,6 +13,12 @@
 .phc-detail-down-icon:hover {
   background-color: $button-hover-color;
   cursor: pointer;
+}
+
+.phc-collapsed,
+.phc-expanded {
+  display: inline-block;
+  width: 100%;
 }
 
 .phc-collapsed {

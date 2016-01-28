@@ -47,6 +47,7 @@ $right-percentage: 80%;
   height: 475px;
   overflow-y: scroll;
   overflow-x: hidden;
+  max-width: calc(100% - 100px);
 }
 
 .gs-results-footer {

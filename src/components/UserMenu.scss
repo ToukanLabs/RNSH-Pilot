@@ -12,20 +12,10 @@
 .user-drop-wrapper {
   display: inline-block;
   width: 100%;
-}
 
-.dropdown__content {
-  display: none;
-  position: absolute;
-  min-width: 200px;
-}
-
-.dropdown--active .dropdown__content {
-  display: block;
-}
-
-.dropdown__content ul li {
-  list-style-type: none;
+  .dropdown__content {
+    right: 0;
+  }
 }
 
 .um-icon-container {
