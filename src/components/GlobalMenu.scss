@@ -19,6 +19,7 @@
 
 .dropdown--active .dropdown__content {
   display: block;
+  z-index: 99999;
 }
 
 .dropdown__content ul li {
