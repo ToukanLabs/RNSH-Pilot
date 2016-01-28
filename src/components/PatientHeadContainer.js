@@ -83,6 +83,27 @@ export default class PatientHeadContainer extends Component {
         ? styles['phc-expanded']
         : styles['phc-collapsed'];
 
+    const toggleIcon = () => {
+      let className = styles['phc-detail-down-icon'];
+      let iconName;
+      if (this.props.patientHeaderVisibility === 'expanded') {
+        iconName = 'angle-double-up';
+      } else {
+        iconName = 'angle-double-down';
+      }
+
+      return (
+        <div
+          className={className}
+          onClick={this.toggleVisibility}
+          >
+          <Icon
+            name={iconName}
+            />
+        </div>
+      );
+    };
+
     return (
       <div>
         <PatientHeader patient={patient}/>
@@ -114,14 +135,7 @@ export default class PatientHeadContainer extends Component {
             phdDetails={allergiesDetails()}
             visibility={this.props.patientHeaderVisibility}
             />
-          <div
-            className={styles['phc-detail-down-icon']}
-            onClick={this.toggleVisibility}
-            >
-            <Icon
-              name='angle-double-down'
-              />
-          </div>
+          {toggleIcon()}
         </div>
       </div>
     );
