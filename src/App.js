@@ -7,6 +7,11 @@ import Root from './containers/Root';
 import configureStore from './redux/configureStore';
 import { initialState } from './initialState';
 
+if (process.env.NODE_ENV === 'development') {
+  var Perf = require('react-addons-perf');
+  window.Perf = Perf;
+}
+
 window.__INITIAL_STATE__ = initialState;
 
 const store = configureStore(window.__INITIAL_STATE__);
