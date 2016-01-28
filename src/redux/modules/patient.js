@@ -195,6 +195,7 @@ export default handleActions({
       allergicTo: null,
       saved: false,
     };
+
     return patient;
   },
   [SET_QUESTIONNAIRE_RESPONSES]: (state, action) => {

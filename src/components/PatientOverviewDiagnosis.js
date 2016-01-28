@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Select, TextInput, DateTimeInput, InlineWidgetGroup } from './widgets';
+import { Select, TextInput, DateTimeInput, InlineWidgetGroup, CheckBoxGroup } from './widgets';
 import Panel from './Panel';
 import styles from './PatientOverviewDiagnosis.scss';
 
@@ -53,6 +53,23 @@ export default class PatientOverviewDiagnosis extends Component {
           />
         </div>
         <div className={styles['diagnosis-grid-part']}>
+          <CheckBoxGroup
+            heading='Anatomical Location'
+            options={[
+              {label: 'Frontal', checked: true},
+              {label: 'Occipital', checked: false},
+              {label: 'Cerebellum', checked: false},
+              {label: 'Temporal', checked: false},
+              {label: 'Basal ganglia', checked: false},
+              {label: 'Brain stem', checked: false},
+              {label: 'Parietal', checked: false},
+            ]}
+            displayColumns={3}
+            className={'anatomical-loc'}
+            editable
+            otherTextbox
+            otherTBLabel='Other'
+          />
           <h3>Enhancing Mass Size (Greatest Diameter Enhancing Region)</h3>
           <InlineWidgetGroup>
             <TextInput

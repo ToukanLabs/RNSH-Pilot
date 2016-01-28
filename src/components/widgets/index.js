@@ -12,3 +12,6 @@ export { _TextArea as TextArea };
 
 import _InlineWidgetGroup from './InlineWidgetGroup';
 export { _InlineWidgetGroup as InlineWidgetGroup };
+
+import _CheckBoxGroup from './CheckBoxGroup';
+export { _CheckBoxGroup as CheckBoxGroup };
