@@ -47,6 +47,9 @@ export default class GlobalSearchContainer extends Component {
   handleSearchOnChange = (e) => {
     const searchString = e.target.value;
     this.props.uiActions.updateSearchString(searchString);
+    if (this.props.searchResultsVisibility === 'collapsed') {
+      this.props.uiActions.showSearchResults();
+    }
   };
 
   handleSearchOnKeyUp = (e) => {
@@ -56,6 +59,8 @@ export default class GlobalSearchContainer extends Component {
         const patientId = results[0].id;
         browserHistory.push(`/patient/${patientId}`);
       }
+    } else if (e.keyCode === 27) {
+      this.props.uiActions.hideSearchResults();
     }
   };
 
