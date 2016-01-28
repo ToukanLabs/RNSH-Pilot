@@ -65,7 +65,7 @@ export class HomeView extends React.Component {
     var patientList = () => {
       return patientResults.map((p) => {
         return (
-          <SearchResultRow patient={p}/>
+          <SearchResultRow key={p.id} patient={p}/>
         );
       });
     };
