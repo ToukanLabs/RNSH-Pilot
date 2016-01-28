@@ -3,6 +3,7 @@
 .ph-container {
   background-color: $patient-heading-colour;
   color: $patient-heading-font-color;
+  position: relative;
 }
 
 .ph-big-field {
@@ -15,7 +16,7 @@
 }
 
 .ph-field {
-  width: 200px;
+  width: 180px;
   display: inline-block;
   margin-left: 10px;
   float: right;

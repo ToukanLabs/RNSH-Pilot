@@ -1,36 +1,125 @@
 import React, {Component} from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import PatientHeader from 'components/PatientHeader';
 import PatientHeaderDetails from 'components/PatientHeaderDetails';
 import Icon from './Icon';
+import { actions as uiActions } from 'redux/modules/ui';
 import styles from './PatientHeadContainer.scss';
 
+const mapStateToProps = (state) => ({
+  activePatient: state.patients.activePatient,
+  patientHeaderVisibility: state.ui.patientHeaderVisibility,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    uiActions: bindActionCreators(uiActions, dispatch),
+  };
+};
+
 export default class PatientHeadContainer extends Component {
+  toggleVisibility = () => {
+    if (this.props.patientHeaderVisibility === 'expanded') {
+      this.props.uiActions.hidePatientHeader();
+    } else {
+      this.props.uiActions.showPatientHeader();
+    }
+  };
+
   render () {
-    var surgical = this.props.patient.surgical === 'Y' ? 'Surgical' : 'Non-Surgical';
+    const patient = this.props.activePatient;
+    var surgical = patient.surgical === 'Y' ? 'Surgical' : 'Non-Surgical';
+
+    const allergiesHeaderData = () => {
+      if (patient.allergies === null) {
+        return 'Allergies not recorded';
+      } else if (patient.allergies.length === 0) {
+        return 'No known allergies';
+      } else {
+        const allergiesCount = patient.allergies.length;
+        return (
+          <span>{`Known allergies (${allergiesCount})`}</span>
+        );
+      }
+    };
+
+    const allergiesDetails = () => {
+      if (patient.allergies === null) {
+        return 'Allergies not recorded';
+      } else if (patient.allergies.length === 0) {
+        return 'No known allergies';
+      } else {
+        const allergiesList = patient.allergies.map((a) => {
+          return (
+            <li key={a.name}>{`${a.name}`}</li>
+          );
+        });
+        return (
+          <ul>
+            {allergiesList}
+          </ul>
+        );
+      }
+    };
+
+    const phoneEmailDetails = () => {
+      return (
+        <div className={styles['phc-phone-email-details']}>
+          <label>
+            Phone:
+          </label>
+          <span>{patient.phone}</span>
+          <label>
+            Email:
+          </label>
+          <span>{patient.email}</span>
+        </div>
+      );
+    };
+
+    const patientHeaderClassName =
+        (this.props.patientHeaderVisibility === 'expanded')
+        ? styles['phc-expanded']
+        : styles['phc-collapsed'];
+
     return (
       <div>
         <div>
-          <PatientHeader patient={this.props.patient}/>
+          <PatientHeader patient={patient}/>
         </div>
-        <div className={styles['phc-details']}>
+        <div className={patientHeaderClassName}>
           <PatientHeaderDetails
             phdLabel='Address'
-            phdHeaderData={this.props.patient.address}
-            phdDetails={this.props.patient}
+            phdHeaderData={patient.address}
+            phdDetails={patient.address}
+            visibility={this.props.patientHeaderVisibility}
           />
           <PatientHeaderDetails
             phdLabel='Phone & Email'
-            phdHeaderData={this.props.patient.phone}
-            phdDetails={this.props.patient}
+            phdHeaderData={patient.phone}
+            phdDetails={phoneEmailDetails()}
+            visibility={this.props.patientHeaderVisibility}
           />
-          <PatientHeaderDetails/>
-          <PatientHeaderDetails/>
+          <PatientHeaderDetails
+            visibility={this.props.patientHeaderVisibility}
+            />
           <PatientHeaderDetails
             phdLabel='Status'
             phdHeaderData={surgical}
-            phdDetails={this.props.patient}
+            phdDetails={surgical}
+            visibility={this.props.patientHeaderVisibility}
           />
-          <div className={styles['phc-detail-down-icon']}>
+          <PatientHeaderDetails
+            phdLabel='Allergies'
+            phdHeaderData={allergiesHeaderData()}
+            phdDetails={allergiesDetails()}
+            visibility={this.props.patientHeaderVisibility}
+            />
+          <div
+            className={styles['phc-detail-down-icon']}
+            onClick={this.toggleVisibility}
+            >
             <Icon
               name='angle-double-down'
               />
@@ -41,6 +130,10 @@ export default class PatientHeadContainer extends Component {
   };
 };
 
+export default connect(mapStateToProps, mapDispatchToProps)(PatientHeadContainer);
+
 PatientHeadContainer.propTypes = {
-  patient: React.PropTypes.object
+  activePatient: React.PropTypes.object,
+  uiActions: React.PropTypes.object,
+  patientHeaderVisibility: React.PropTypes.string,
 };

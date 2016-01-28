@@ -22,6 +22,10 @@ body {
   font-size: 1em;
 }
 
+body {
+  overflow-y: scroll;
+}
+
 h1 {
   color: $text-color;
   font-size: 2em;

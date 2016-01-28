@@ -30,9 +30,19 @@ export default class Root extends React.Component {
   }
 
   render () {
+    const formats = {
+      'date': {
+        'short': {
+          'day': 'numeric',
+          'month': 'short',
+          'year': 'numeric'
+        }
+      }
+    };
+
     return (
       <Provider store={this.props.store}>
-        <IntlProvider locale='en'>
+        <IntlProvider locale='en-AU' formats={formats}>
           <div style={{ height: '100%' }}>
             {this.content}
             {this.devTools}

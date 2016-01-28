@@ -4,12 +4,13 @@ import styles from './PatientHeader.scss';
 
 export default class PatientHeader extends Component {
   render () {
-    const dob = (this.props.patient.dob) ? this.props.patient.dob : '1970-01-01';
-
+    const patient = this.props.patient;
+    const dob = (patient.dob) ? patient.dob : '1970-01-01';
+    const title = (patient.gender === 'F') ? 'Mrs' : 'Mr';
     return (
       <div className={styles['ph-container']}>
         <div className={styles['ph-big-field']}>
-          {this.props.patient.firstname + ' ' + this.props.patient.surname}
+          {`${patient.surname.toUpperCase()}, ${patient.firstname} (${title})`}
         </div>
         <div className={styles['ph-field']}>
           <label className={styles['ph-label']}>
@@ -17,9 +18,7 @@ export default class PatientHeader extends Component {
             <span className={styles['ph-data']}>
               <FormattedDate
                 value={Date.parse(dob)}
-                day='numeric'
-                month='long'
-                year='numeric'
+                format='short'
                 />
             </span>
           </label>
@@ -28,20 +27,20 @@ export default class PatientHeader extends Component {
           <label className={styles['ph-label']}>
             Gender:&nbsp;
             <span className={styles['ph-data']}>
-              {(this.props.patient.gender === 'M') ? 'Male' : 'Female'}
+              {(patient.gender === 'M') ? 'Male' : 'Female'}
             </span>
           </label>
         </div>
         <div className={styles['ph-field']}>
           <label className={styles['ph-label']}>
             MRN:&nbsp;
-            <span className={styles['ph-data']}>{this.props.patient.mrn}</span>
+            <span className={styles['ph-data']}>{patient.mrn}</span>
           </label>
         </div>
         <div className={styles['ph-field']}>
           <label className={styles['ph-label']}>
             Tumor Type:&nbsp;
-            <span className={styles['ph-data']}>{this.props.patient.tumorType}</span>
+            <span className={styles['ph-data']}>{patient.tumorType}</span>
           </label>
         </div>
       </div>

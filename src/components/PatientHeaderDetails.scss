@@ -5,20 +5,31 @@
   display: inline-block;
   width: 19.8%;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   padding: 4px 10px;
   font-size: 0.7em;
   color: $patient-subheading-font-color;
   height: 100%;
   vertical-align: middle;
+  box-sizing: border-box;
+  border-right: 1px solid lighten($patient-subheading-color, 30);
 }
 
 .phd-header-data {
-  font-weight: normal;
+  font-weight: bold;
 }
 
 .phd-header-label {
-  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
   text-transform: uppercase;
+}
+
+.phd-details {
+  padding-top: 10px;
+  font-size: 1.1em;
+  white-space: pre-line;
+
+  ul li {
+    list-style: none;
+  }
 }

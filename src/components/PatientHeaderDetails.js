@@ -3,15 +3,44 @@ import styles from './PatientHeaderDetails.scss';
 
 export default class PatientHeaderDetails extends Component {
   render () {
-    if (this.props.phdLabel !== undefined) {
-      return (
-        <div className={styles['phd-container']}>
+    const expandedData = () => {
+      if (this.props.visibility === 'expanded') {
+        return (
+          <div className={styles['phd-details']}>
+            {this.props.phdDetails}
+          </div>
+        );
+      } else {
+        return <div></div>;
+      }
+    };
+
+    const label = () => {
+      if (this.props.visibility === 'expanded') {
+        return (
+          <label className={styles['phd-header-label']}>
+            {this.props.phdLabel}
+          </label>
+        );
+      } else {
+        return (
           <label className={styles['phd-header-label']}>
             {this.props.phdLabel}:&nbsp;
             <span className={styles['phd-header-data']}>
               {this.props.phdHeaderData}
             </span>
           </label>
+        );
+      }
+    };
+
+    if (this.props.phdLabel !== undefined) {
+      return (
+        <div className={styles['phd-container']}>
+          <div>
+            {label()}
+          </div>
+          {expandedData()}
         </div>
       );
     } else {
@@ -25,5 +54,6 @@ export default class PatientHeaderDetails extends Component {
 PatientHeaderDetails.propTypes = {
   phdLabel: React.PropTypes.string,
   phdHeaderData: React.PropTypes.string,
-  phdDetails: React.PropTypes.object
+  phdDetails: React.PropTypes.object,
+  visibility: React.PropTypes.string,
 };
