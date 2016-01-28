@@ -71,8 +71,15 @@ export class HomeView extends React.Component {
     };
     return (
       <div className={styles['as-container']}>
+        <h2>Patient Search</h2>
+        <GlobalSearchFilters
+          className={styles['hv-search-filters']}
+          toggleTumorFilter={this.props.uiActions.toggleTumorFilter}
+          tumorFilter={this.props.tumorFilter}
+          mainClass='hv-result-filters'
+          selectedClass='gs-tumor-filter-selected'
+        />
         <div className={styles['as-search-container']}>
-          <h2>Patient Search</h2>
           <div className={styles['as-s-field-container']}>
             <form
               onSubmit={(e) => {
@@ -89,15 +96,15 @@ export class HomeView extends React.Component {
                 className={styles['as-input']}
               />
               <label className={styles['as-label']}>First Name:</label>
-                <input
-                  ref='searchFirstname'
-                  className={styles['as-input']}
-                />
+              <input
+                ref='searchFirstname'
+                className={styles['as-input']}
+              />
               <label className={styles['as-label']}>Surname:</label>
-                <input
-                  ref='searchSurname'
-                  className={styles['as-input']}
-                />
+              <input
+                ref='searchSurname'
+                className={styles['as-input']}
+              />
               <input
                 type='submit'
                 value='Search'
@@ -106,14 +113,6 @@ export class HomeView extends React.Component {
           </div>
         </div>
         <div className={styles['as-result-container']}>
-          <h2>Search Results</h2>
-          <GlobalSearchFilters
-            className={styles['hv-search-filters']}
-            toggleTumorFilter={this.props.uiActions.toggleTumorFilter}
-            tumorFilter={this.props.tumorFilter}
-            mainClass='hv-result-filters'
-            selectedClass='gs-tumor-filter-selected'
-          />
           <div className={styles['hv-results']}>
             <ul className={styles['hv-patient-search-results']}>
               {patientList()}

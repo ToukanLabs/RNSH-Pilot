@@ -11,6 +11,11 @@ html {
   box-sizing: border-box;
 }
 
+.page-container,
+.view-container {
+  height: 100%;
+}
+
 html,
 body {
   color: $text-color;
@@ -79,7 +84,9 @@ input[type='submit'] {
   border: none;
 }
 
-button:hover {
+button:hover,
+input[type='button']:hover,
+input[type='submit']:hover  {
   cursor: pointer;
   background-color: $button-hover-color;
 }
