@@ -18,6 +18,7 @@ export const BACKGROUND_HISTORY_CHANGE_DIABETES = 'BACKGROUND_HISTORY_CHANGE_DIA
 export const BACKGROUND_HISTORY_CHANGE_HYPERTENSION = 'BACKGROUND_HISTORY_CHANGE_HYPERTENSION';
 export const BACKGROUND_HISTORY_CHANGE_HYPERCHOLESTEROLEMIA = 'BACKGROUND_HISTORY_CHANGE_HYPERCHOLESTEROLEMIA';
 export const BACKGROUND_HISTORY_CHANGE_ALLERGIES = 'BACKGROUND_HISTORY_CHANGE_ALLERGIES';
+export const BACKGROUND_HISTORY_CHANGE_BLOOD_THINNERS = 'BACKGROUND_HISTORY_CHANGE_BLOOD_THINNERS';
 
 // ------------------------------------
 // Actions
@@ -112,6 +113,12 @@ export const backgroundHistoryChangeHypercholesterolemia = createAction(
   }
 );
 
+export const backgroundHistoryChangeBloodThinners = createAction(
+  BACKGROUND_HISTORY_CHANGE_BLOOD_THINNERS,
+  (bloodThinners) => {
+    return {bloodThinners: bloodThinners};
+  }
+);
 export const backgroundHistoryChangeAllergies = createAction(
   BACKGROUND_HISTORY_CHANGE_ALLERGIES,
   (allergies) => {
@@ -134,6 +141,7 @@ export const actions = {
   backgroundHistoryChangeHypertension,
   backgroundHistoryChangeHypercholesterolemia,
   backgroundHistoryChangeAllergies,
+  backgroundHistoryChangeBloodThinners,
 };
 
 // ------------------------------------
@@ -290,7 +298,19 @@ export default handleActions({
         ...state.activePatient,
         backgroundHistory: {
           ...state.activePatient.backgroundHistory,
-          hypertension: actions.payload.hypercholesterolemia
+          hypercholesterolemia: actions.payload.hypercholesterolemia
+        }
+      }
+    };
+  },
+  [BACKGROUND_HISTORY_CHANGE_BLOOD_THINNERS]: (state, actions) => {
+    return {
+      ...state,
+      activePatient: {
+        ...state.activePatient,
+        backgroundHistory: {
+          ...state.activePatient.backgroundHistory,
+          bloodThinners: actions.payload.bloodThinners
         }
       }
     };
