@@ -70,6 +70,18 @@ export default class PatientOverviewDiagnosis extends Component {
             otherTextbox
             otherTBLabel='Other'
           />
+          <CheckBoxGroup
+            heading='Laterality'
+            options={[
+              {label: 'Left centered', checked: true},
+              {label: 'Right centered', checked: false},
+              {label: 'Crosses midline', checked: false},
+              {label: 'Midline centered', checked: false},
+            ]}
+            displayColumns={2}
+            className={'laterality'}
+            editable
+          />
           <h3>Enhancing Mass Size (Greatest Diameter Enhancing Region)</h3>
           <InlineWidgetGroup>
             <TextInput

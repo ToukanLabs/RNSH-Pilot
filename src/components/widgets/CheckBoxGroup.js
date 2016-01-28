@@ -31,6 +31,7 @@ export default class CheckBoxGroup extends Component {
     otherTBLabel='Other'
   />
   */
+
   getCheckBoxes () {
     let options = [];
     let optionBuilder = [];
@@ -38,6 +39,7 @@ export default class CheckBoxGroup extends Component {
 
     this.props.options.map((o) => {
       count++;
+
       if (o.checked) {
         optionBuilder.push(
           <label className={styles['cbg-label']}>
