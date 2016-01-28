@@ -13,7 +13,7 @@ export default class UserMenu extends Component {
         </span>
         <Dropdown className={styles['user-menu-dropdown']}>
           <DropdownTrigger>
-            <span className={styles['trigger-span']}>{this.props.username} </span>
+            <span className={styles['trigger-span']}>{this.props.username}</span>
           </DropdownTrigger>
           <DropdownContent className={styles['dropdown__content']}>
             <ul>

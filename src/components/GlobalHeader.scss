@@ -18,6 +18,7 @@
   position: relative;
   display: inline-block;
   width: 100%;
+  vertical-align: top;
 }
 
 .gh-menu-container,
@@ -26,26 +27,43 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  vertical-align: top;
 }
 
 .gh-menu-container {
-  width: 19%;
+  width: 23%;
 }
 
 .gh-search-container {
-  width: 55%;
+  width: 54%;
   text-align: center;
 }
 
 .gh-user-container {
-  width: 19%;
+  width: 23%;
+}
+
+@media (max-width: 860px) {
+  .gh-menu-container {
+    width: 30%;
+  }
+
+  .gh-search-container {
+    width: 40%;
+    text-align: center;
+  }
+
+  .gh-user-container {
+    width: 30%;
+  }
 }
 
 .gh-menu-container,
 .gh-search-container,
 .gh-user-container {
   display: inline-block;
-  margin: 0 10px 0 10px;
+  padding: 0 10px 0 10px;
+  box-sizing: border-box;
 }
 
 .gh-search-container input {

@@ -12,36 +12,38 @@ export default class PatientHeader extends Component {
         <div className={styles['ph-big-field']}>
           {`${patient.surname.toUpperCase()}, ${patient.firstname} (${title})`}
         </div>
-        <div className={styles['ph-field']}>
-          <label className={styles['ph-label']}>
-            DOB:&nbsp;
-            <span className={styles['ph-data']}>
-              <FormattedDate
-                value={Date.parse(dob)}
-                format='short'
-                />
-            </span>
-          </label>
-        </div>
-        <div className={styles['ph-field']}>
-          <label className={styles['ph-label']}>
-            Gender:&nbsp;
-            <span className={styles['ph-data']}>
-              {(patient.gender === 'M') ? 'Male' : 'Female'}
-            </span>
-          </label>
-        </div>
-        <div className={styles['ph-field']}>
-          <label className={styles['ph-label']}>
-            MRN:&nbsp;
-            <span className={styles['ph-data']}>{patient.mrn}</span>
-          </label>
-        </div>
-        <div className={styles['ph-field']}>
-          <label className={styles['ph-label']}>
-            Tumor Type:&nbsp;
-            <span className={styles['ph-data']}>{patient.tumorType}</span>
-          </label>
+        <div className={styles['ph-details']}>
+          <div className={styles['ph-field']}>
+            <label className={styles['ph-label']}>
+              Tumor Type:&nbsp;
+              <span className={styles['ph-data']}>{patient.tumorType}</span>
+            </label>
+          </div>
+          <div className={styles['ph-field']}>
+            <label className={styles['ph-label']}>
+              MRN:&nbsp;
+              <span className={styles['ph-data']}>{patient.mrn}</span>
+            </label>
+          </div>
+          <div className={styles['ph-field']}>
+            <label className={styles['ph-label']}>
+              Gender:&nbsp;
+              <span className={styles['ph-data']}>
+                {(patient.gender === 'M') ? 'Male' : 'Female'}
+              </span>
+            </label>
+          </div>
+          <div className={styles['ph-field']}>
+            <label className={styles['ph-label']}>
+              DOB:&nbsp;
+              <span className={styles['ph-data']}>
+                <FormattedDate
+                  value={Date.parse(dob)}
+                  format='short'
+                  />
+              </span>
+            </label>
+          </div>
         </div>
       </div>
     );

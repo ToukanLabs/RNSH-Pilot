@@ -98,6 +98,17 @@ button:hover {
   font-size: 0.8em;
   width: 100%;
   display: block;
+  height: 32px;
+  display: inline-block;
+}
+
+.trigger-span {
+  line-height: 20px;
+  display: inline-block;
+  padding: 6px;
+  width: calc(100% - 50px);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .dropdown__trigger::after {
@@ -107,8 +118,10 @@ button:hover {
   font-size: 1.4em;
   color: white;
   content: "\f0d7";
-  padding: 7.5px 14px;
-  float:right;
+  padding: 8px 14px;
+  width: 38px;
+  position: absolute;
+  right: 0;
 }
 
 .dropdown__content {

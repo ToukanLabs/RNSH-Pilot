@@ -3,24 +3,30 @@
 .ph-container {
   background-color: $patient-heading-colour;
   color: $patient-heading-font-color;
-  position: relative;
+  padding: 3px 10px 7px 10px;
+  display: inline-block;
 }
 
 .ph-big-field {
   font-size: 2em;
   font-weight: bold;
   display: inline-block;
-  margin-top: 3px;
-  margin-left: 10px;
-  margin-bottom: 7px;
+  width: 35%;
+}
+
+.ph-details {
+  display: inline-block;
+  width: 65%;
+  float: right;
 }
 
 .ph-field {
-  width: 180px;
   display: inline-block;
-  margin-left: 10px;
-  float: right;
-  padding-top: 0.9em;
+  padding-top: 0.6em;
+  box-sizing: border-box;
+  white-space: nowrap;
+  margin-right: 20px;
+  min-width: 180px;
 }
 
 .ph-field label {
@@ -29,4 +35,11 @@
 
 .ph-data {
   font-weight: bold;
+}
+
+@media (max-width: 1130px) {
+  .ph-field {
+    font-size: 0.9em;
+    width: 12%;
+  }
 }

@@ -85,9 +85,7 @@ export default class PatientHeadContainer extends Component {
 
     return (
       <div>
-        <div>
-          <PatientHeader patient={patient}/>
-        </div>
+        <PatientHeader patient={patient}/>
         <div className={patientHeaderClassName}>
           <PatientHeaderDetails
             phdLabel='Address'
