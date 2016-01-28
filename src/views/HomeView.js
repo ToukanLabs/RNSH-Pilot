@@ -99,21 +99,27 @@ export class HomeView extends React.Component {
                   this.refs.searchSurname.value
                 );
               }}>
-              <label className={styles['as-label']}>MRN:</label>
-              <input
-                ref='searchMRN'
-                className={styles['as-input']}
-              />
-              <label className={styles['as-label']}>First Name:</label>
-              <input
-                ref='searchFirstname'
-                className={styles['as-input']}
-              />
-              <label className={styles['as-label']}>Surname:</label>
-              <input
-                ref='searchSurname'
-                className={styles['as-input']}
-              />
+              <label className={styles['as-label']}>
+                MRN:
+                <input
+                  ref='searchMRN'
+                  className={styles['as-input']}
+                />
+              </label>
+              <label className={styles['as-label']}>
+                First Name:
+                <input
+                  ref='searchFirstname'
+                  className={styles['as-input']}
+                />
+              </label>
+              <label className={styles['as-label']}>
+                Surname:
+                <input
+                  ref='searchSurname'
+                  className={styles['as-input']}
+                />
+              </label>
               <input
                 type='submit'
                 value='Search'
