@@ -175,7 +175,12 @@ export class BackgroundHistoryView extends Component {
             <TextArea
               label='Allergic to'
               labelClassName={styles['bhv-background-text-area']}
-              />
+              value={backgroundHistory.allergicTo}
+              onChange={(e) => {
+                const allergicTo = e.target.value;
+                this.props.backgroundHistoryChangeAllergicTo(allergicTo);
+              }}
+            />
           );
         } else {
           return null;
@@ -226,6 +231,10 @@ export class BackgroundHistoryView extends Component {
               value={backgroundHistory.background}
               ref='background'
               labelClassName={styles['bhv-background-text-area']}
+              onChange={(e) => {
+                const background = e.target.value;
+                this.props.backgroundHistoryChangeBackground(background);
+              }}
               />
             <Select
               label='Blood Thinners'
@@ -294,4 +303,6 @@ BackgroundHistoryView.propTypes = {
   backgroundHistoryChangeHypercholesterolemia: React.PropTypes.func,
   backgroundHistoryChangeAllergies: React.PropTypes.func,
   backgroundHistoryChangeBloodThinners: React.PropTypes.func,
+  backgroundHistoryChangeBackground: React.PropTypes.func,
+  backgroundHistoryChangeAllergicTo: React.PropTypes.func,
 };

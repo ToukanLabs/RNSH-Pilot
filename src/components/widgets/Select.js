@@ -38,11 +38,11 @@ export default class Select extends Component {
     return options;
   }
 
-  handleOnChange (event) {
+  handleOnChange = (e) => {
     if (this.props.onChange) {
-      this.props.onChange(event);
+      this.props.onChange(e);
     }
-  }
+  };
 
   render () {
     const className = (this.props.className) ? this.props.className : null;

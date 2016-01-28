@@ -19,6 +19,8 @@ export const BACKGROUND_HISTORY_CHANGE_HYPERTENSION = 'BACKGROUND_HISTORY_CHANGE
 export const BACKGROUND_HISTORY_CHANGE_HYPERCHOLESTEROLEMIA = 'BACKGROUND_HISTORY_CHANGE_HYPERCHOLESTEROLEMIA';
 export const BACKGROUND_HISTORY_CHANGE_ALLERGIES = 'BACKGROUND_HISTORY_CHANGE_ALLERGIES';
 export const BACKGROUND_HISTORY_CHANGE_BLOOD_THINNERS = 'BACKGROUND_HISTORY_CHANGE_BLOOD_THINNERS';
+export const BACKGROUND_HISTORY_CHANGE_BACKGROUND = 'BACKGROUND_HISTORY_CHANGE_BACKGROUND';
+export const BACKGROUND_HISTORY_CHANGE_ALLERGIC_TO = 'BACKGROUND_HISTORY_CHANGE_ALLERGIC_TO';
 
 // ------------------------------------
 // Actions
@@ -83,6 +85,7 @@ export const updateBackgroundHistory = createAction(
       hypercholesterolemia: hypercholesterolemia,
       background: background,
       allergies: allergies,
+      allergicTo: null,
       bloodThinners: bloodThinners,
     };
   }
@@ -119,10 +122,25 @@ export const backgroundHistoryChangeBloodThinners = createAction(
     return {bloodThinners: bloodThinners};
   }
 );
+
 export const backgroundHistoryChangeAllergies = createAction(
   BACKGROUND_HISTORY_CHANGE_ALLERGIES,
   (allergies) => {
     return {allergies: allergies};
+  }
+);
+
+export const backgroundHistoryChangeBackground = createAction(
+  BACKGROUND_HISTORY_CHANGE_BACKGROUND,
+  (background) => {
+    return {background: background};
+  }
+);
+
+export const backgroundHistoryChangeAllergicTo = createAction(
+  BACKGROUND_HISTORY_CHANGE_ALLERGIC_TO,
+  (allergicTo) => {
+    return {allergicTo: allergicTo};
   }
 );
 
@@ -142,6 +160,8 @@ export const actions = {
   backgroundHistoryChangeHypercholesterolemia,
   backgroundHistoryChangeAllergies,
   backgroundHistoryChangeBloodThinners,
+  backgroundHistoryChangeBackground,
+  backgroundHistoryChangeAllergicTo,
 };
 
 // ------------------------------------
@@ -170,8 +190,9 @@ export default handleActions({
       hypertension: null,
       hypercholesterolemia: null,
       background: '',
-      allergies: null,
       bloodThinners: null,
+      allergies: null,
+      allergicTo: null,
       saved: false,
     };
     return patient;
@@ -323,6 +344,30 @@ export default handleActions({
         backgroundHistory: {
           ...state.activePatient.backgroundHistory,
           allergies: actions.payload.allergies
+        }
+      }
+    };
+  },
+  [BACKGROUND_HISTORY_CHANGE_BACKGROUND]: (state, actions) => {
+    return {
+      ...state,
+      activePatient: {
+        ...state.activePatient,
+        backgroundHistory: {
+          ...state.activePatient.backgroundHistory,
+          background: actions.payload.background
+        }
+      }
+    };
+  },
+  [BACKGROUND_HISTORY_CHANGE_ALLERGIC_TO]: (state, actions) => {
+    return {
+      ...state,
+      activePatient: {
+        ...state.activePatient,
+        backgroundHistory: {
+          ...state.activePatient.backgroundHistory,
+          allergicTo: actions.payload.allergicTo
         }
       }
     };

@@ -23,14 +23,14 @@ export default class TextArea extends Component {
     }
   }
 
-  handleOnChange (event) {
+  handleOnChange = (e) => {
     if (this.props.onChange) {
-      this.props.onChange(event);
-      this.setState({value: event.target.value});
+      this.props.onChange(e);
+      this.setState({value: e.target.value});
     } else {
-      this.setState({value: event.target.value});
+      this.setState({value: e.target.value});
     }
-  }
+  };
 
   render () {
     const className = (this.props.className) ? this.props.className : null;
@@ -49,8 +49,7 @@ export default class TextArea extends Component {
             disabled={this.props.disabled}
             value={this.props.value}
             onChange={this.handleOnChange}
-            >
-          </textarea>
+            />
           {this.getUnitLabel()}
         </label>
       );
@@ -63,8 +62,7 @@ export default class TextArea extends Component {
             disabled={this.props.disabled}
             value={this.props.value}
             onChange={this.handleOnChange}
-            >
-          </textarea>
+            />
           {this.getUnitLabel()}
         </span>
       );
