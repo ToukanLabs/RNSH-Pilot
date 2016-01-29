@@ -1,6 +1,6 @@
 {
   "name": "RNSH-Pilot",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Pilot clinical research database for Royal North Shore Hospital.",
   "main": "index.js",
   "scripts": {
