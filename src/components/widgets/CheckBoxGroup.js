@@ -10,51 +10,61 @@ export default class CheckBoxGroup extends Component {
     this.state = {
       isEditable: false,
       editableClass: 'cbg-ro',
+      tickedItems: [],
     };
   };
 
-  /* <CheckBoxGroup
-    heading='Anatomical Location'
-    options={[
-      {label: 'Frontal', checked: false},
-      {label: 'Occipital', checked: false},
-      {label: 'Cerebellum', checked: false},
-      {label: 'Temporal', checked: false},
-      {label: 'Basal ganglia', checked: false},
-      {label: 'Brain stem', checked: false},
-      {label: 'Parietal', checked: false},
-    ]}
-    displayColumns={3}
-    className={'anatomical-loc'}
-    editable
-    otherTextbox
-    otherTBLabel='Other'
-  />
-  */
+  componentWillMount () {
+    this.setState({
+      ...this.state,
+      tickedItems: this.props.options,
+    });
+  };
+
+  itemChange = (e) => {
+    var tempArr = this.state.tickedItems;
+    for (var i in tempArr) {
+      if (tempArr[i].label === e.target.value) {
+        tempArr[i].checked = e.target.checked;
+        break;
+      }
+    }
+    this.setState({
+      ...this.state,
+      tickedItems: tempArr,
+    });
+  };
 
   getCheckBoxes () {
     let options = [];
     let optionBuilder = [];
     var count = 0;
 
-    this.props.options.map((o) => {
+    this.state.tickedItems.map((o) => {
       count++;
-
-      if (o.checked) {
-        optionBuilder.push(
-          <label className={styles['cbg-label']}>
-            <input type='checkbox' defaultChecked/>
-            {o.label}
-          </label>
-        );
-      } else if (this.state.isEditable) {
-        optionBuilder.push(
-          <label className={styles['cbg-label']}>
-            <input type='checkbox'/>
-          {o.label}
-          </label>
-        );
+      if (this.state.isEditable || o.checked) {
+        if (!this.state.isEditable) {
+          optionBuilder.push(
+            <span className={styles['cbg-label']}>
+              {o.label}
+            </span>
+          );
+        } else {
+          optionBuilder.push(
+            <label className={styles['cbg-label']}>
+              <input
+                type='checkbox'
+                checked={o.checked}
+                value={o.label}
+                onChange={this.itemChange}
+                disabled={!this.state.isEditable}
+              />
+              {o.label}
+            </label>
+          );
+        }
       }
+
       if (count % this.props.displayColumns === 0) {
         options.push(
           <div>
@@ -112,7 +122,7 @@ CheckBoxGroup.propTypes = {
   heading: React.PropTypes.string.isRequired,
   headingClass: React.PropTypes.string,
   options: React.PropTypes.array.isRequired,
-  displayColumns: React.PropTypes.number,
+  displayColumns: React.PropTypes.number.isRequired,
   className: React.PropTypes.string,
   editable: React.PropTypes.boolean,
   otherTextbox: React.PropTypes.boolean,
