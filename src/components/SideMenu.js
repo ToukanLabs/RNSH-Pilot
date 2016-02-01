@@ -57,23 +57,9 @@ export default class SideMenu extends Component {
               showText={showText()}
               />
             <SideMenuItem
-              text='Pathology'
-              icon='user-md'
-              linkTo={`/patient/${this.props.patientId}/pathology`}
-              currentRouterPath={this.props.routerPath}
-              showText={showText()}
-              />
-            <SideMenuItem
               text='Imaging'
               icon='heartbeat'
               linkTo={`/patient/${this.props.patientId}/imaging`}
-              currentRouterPath={this.props.routerPath}
-              showText={showText()}
-              />
-            <SideMenuItem
-              text='MDT'
-              icon='comments'
-              linkTo={`/patient/${this.props.patientId}/mdt`}
               currentRouterPath={this.props.routerPath}
               showText={showText()}
               />
@@ -85,9 +71,23 @@ export default class SideMenu extends Component {
               showText={showText()}
               />
             <SideMenuItem
+              text='MDT'
+              icon='comments'
+              linkTo={`/patient/${this.props.patientId}/mdt`}
+              currentRouterPath={this.props.routerPath}
+              showText={showText()}
+              />
+            <SideMenuItem
               text='Surgery'
               icon='ambulance'
               linkTo={`/patient/${this.props.patientId}/surgery`}
+              currentRouterPath={this.props.routerPath}
+              showText={showText()}
+              />
+            <SideMenuItem
+              text='Pathology'
+              icon='user-md'
+              linkTo={`/patient/${this.props.patientId}/pathology`}
               currentRouterPath={this.props.routerPath}
               showText={showText()}
               />
@@ -106,6 +106,13 @@ export default class SideMenu extends Component {
               showText={showText()}
               />
             <SideMenuItem
+              text='Clinical Trials'
+              icon='cubes'
+              linkTo={`/patient/${this.props.patientId}/clinical-trials`}
+              currentRouterPath={this.props.routerPath}
+              showText={showText()}
+              />
+            <SideMenuItem
               text='Follow Up'
               icon='smile-o'
               linkTo={`/patient/${this.props.patientId}/follow-up`}
@@ -116,13 +123,6 @@ export default class SideMenu extends Component {
               text='Questionnaires'
               icon='question-circle'
               linkTo={`/patient/${this.props.patientId}/questionnaires`}
-              currentRouterPath={this.props.routerPath}
-              showText={showText()}
-              />
-            <SideMenuItem
-              text='Clinical Trials'
-              icon='cubes'
-              linkTo={`/patient/${this.props.patientId}/clinical-trials`}
               currentRouterPath={this.props.routerPath}
               showText={showText()}
               />
