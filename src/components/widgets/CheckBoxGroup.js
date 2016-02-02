@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { findDOMNode } from 'react-dom';
 // import corestyles from '../../styles/core.scss';
 import Icon from '../Icon.js';
 import styles from './widgets.scss';
@@ -12,6 +13,7 @@ export default class CheckBoxGroup extends Component {
       editableClass: 'cbg-ro',
       tickedItems: [],
     };
+    this._onWindowClick = this._onWindowClick.bind(this);
   };
 
   componentWillMount () {
@@ -19,6 +21,15 @@ export default class CheckBoxGroup extends Component {
       ...this.state,
       tickedItems: this.props.options,
     });
+  };
+
+  _onWindowClick () {
+    if (this.state.isEditable) {
+      const checkgroup = findDOMNode(this);
+      if (event.target !== checkgroup && !checkgroup.contains(event.target)) {
+        this.handleOnClick();
+      }
+    }
   };
 
   itemChange = (e) => {
@@ -91,6 +102,11 @@ export default class CheckBoxGroup extends Component {
   };
 
   handleOnClick = () => {
+    if (!this.state.isEditable) {
+      window.addEventListener('click', this._onWindowClick);
+    } else {
+      window.removeEventListener('click', this._onWindowClick);
+    }
     this.setState({
       ...this.state,
       isEditable: !this.state.isEditable,
