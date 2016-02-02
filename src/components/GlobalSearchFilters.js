@@ -18,7 +18,6 @@ export default class GlobalSearchFilters extends Component {
               href='#'
               onClick={(e) => {
                 e.preventDefault();
-                e.preventDefault();
                 this.props.toggleTumorFilter('');
               }}>All</a>
           </li>
@@ -26,7 +25,6 @@ export default class GlobalSearchFilters extends Component {
             <a
               href='#'
               onClick={(e) => {
-                e.preventDefault();
                 e.preventDefault();
                 this.props.toggleTumorFilter('Prostate');
               }}>Prostate</a>
