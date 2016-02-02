@@ -56,31 +56,28 @@ export default class PatientOverviewDiagnosis extends Component {
           <CheckBoxGroup
             heading='Anatomical Location'
             options={[
-              {label: 'Frontal', checked: true},
-              {label: 'Occipital', checked: false},
-              {label: 'Cerebellum', checked: false},
-              {label: 'Temporal', checked: false},
-              {label: 'Basal ganglia', checked: false},
-              {label: 'Brain stem', checked: false},
-              {label: 'Parietal', checked: false},
+              {id: 'al-1', label: 'Frontal', checked: true},
+              {id: 'al-2', label: 'Occipital', checked: false},
+              {id: 'al-3', label: 'Cerebellum', checked: false},
+              {id: 'al-4', label: 'Temporal', checked: false},
+              {id: 'al-5', label: 'Basal ganglia', checked: false},
+              {id: 'al-6', label: 'Brain stem', checked: false},
+              {id: 'al-7', label: 'Parietal', checked: false},
             ]}
             displayColumns={3}
             className={'anatomical-loc'}
-            editable
-            otherTextbox
             otherTBLabel='Other'
           />
           <CheckBoxGroup
             heading='Laterality'
             options={[
-              {label: 'Left centered', checked: true},
-              {label: 'Right centered', checked: false},
-              {label: 'Crosses midline', checked: false},
-              {label: 'Midline centered', checked: false},
+              {id: 'cbl-1', label: 'Left centered', checked: true},
+              {id: 'cbl-2', label: 'Right centered', checked: false},
+              {id: 'cbl-3', label: 'Crosses midline', checked: false},
+              {id: 'cbl-4', label: 'Midline centered', checked: false},
             ]}
             displayColumns={2}
             className={'laterality'}
-            editable
           />
           <h3>Enhancing Mass Size (Greatest Diameter Enhancing Region)</h3>
           <InlineWidgetGroup>
