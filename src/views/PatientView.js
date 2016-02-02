@@ -42,6 +42,10 @@ export default class PatientView extends React.Component {
     this.props.patientActions.fetchPatient(this.props.params.id);
   };
 
+  componentDidMount () {
+    this.props.uiActions.hideSearchResults();
+  }
+
   render () {
     var getContentClass = () => {
       if (this.props.sidemenuVisibility === 'expanded') {
