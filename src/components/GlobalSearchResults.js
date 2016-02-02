@@ -45,7 +45,6 @@ export default class GlobalSearchResults extends Component {
 
 GlobalSearchResults.propTypes = {
   searchResultsVisibility: React.PropTypes.string,
-  hideSearchResults: React.PropTypes.func.isRequired,
   toggleTumorFilter: React.PropTypes.func.isRequired,
   results: React.PropTypes.array,
   tumorFilter: React.PropTypes.string,
