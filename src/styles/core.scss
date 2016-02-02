@@ -73,6 +73,10 @@ label, .widget-wrapper {
   display: block;
 }
 
+.widget-label {
+  display: inline;
+}
+
 button,
 input[type='button'],
 input[type='submit'] {

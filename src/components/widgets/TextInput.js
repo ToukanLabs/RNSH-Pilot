@@ -29,10 +29,12 @@ export default class TextInput extends Component {
 
     if (this.props.label) {
       return (
-        <label
-          className={labelClassName}
-          >
-          {this.props.label}
+        <span className={corestyles['widget-wrapper']}>
+          <span
+            className={`${corestyles['widget-label']} ${labelClassName}`}
+            >
+            {this.props.label}
+          </span>
           {this.getMandatoryIndicator()}:
           <input
             className={className}
@@ -42,7 +44,7 @@ export default class TextInput extends Component {
             value={this.props.value}
             />
           {this.getUnitLabel()}
-        </label>
+        </span>
       );
     } else {
       return (

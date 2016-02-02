@@ -11,6 +11,7 @@ export default class DateTimeInput extends Component {
         dateFormat={dateFormat}
         timeFormat={timeFormat}
         disabled={this.props.disabled}
+        closeOnSelect
         />
     );
   }
@@ -30,13 +31,14 @@ export default class DateTimeInput extends Component {
 
     if (this.props.label) {
       return (
-        <label
-          className={labelClassName}
-          >
-          {this.props.label}
-          {this.getMandatoryIndicator()}:
+        <span className={corestyles['widget-wrapper']}>
+          <span className={`${corestyles['widget-label']} ${labelClassName}`}
+            >
+            {this.props.label}
+            {this.getMandatoryIndicator()}:
+          </span>
           {this.renderWidget()}
-        </label>
+        </span>
       );
     } else {
       return (
