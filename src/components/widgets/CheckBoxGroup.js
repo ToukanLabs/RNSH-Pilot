@@ -56,14 +56,15 @@ export default class CheckBoxGroup extends Component {
       if (this.state.isEditable || o.checked) {
         if (!this.state.isEditable) {
           optionBuilder.push(
-            <span className={styles['cbg-label']}>
+            <span key={o.id} className={styles['cbg-label']}>
               {o.label}
             </span>
           );
         } else {
           optionBuilder.push(
-            <label className={styles['cbg-label']}>
+            <label key={o.id + 'label'} className={styles['cbg-label']}>
               <input
+                key={o.id}
                 type='checkbox'
                 checked={o.checked}
                 value={o.label}
@@ -78,7 +79,7 @@ export default class CheckBoxGroup extends Component {
 
       if (count % this.props.displayColumns === 0) {
         options.push(
-          <div>
+          <div key={count}>
             {optionBuilder}
           </div>
         );
@@ -140,7 +141,4 @@ CheckBoxGroup.propTypes = {
   options: React.PropTypes.array.isRequired,
   displayColumns: React.PropTypes.number.isRequired,
   className: React.PropTypes.string,
-  editable: React.PropTypes.boolean,
-  otherTextbox: React.PropTypes.boolean,
-  otherTBLabel: React.PropTypes.string
 };
