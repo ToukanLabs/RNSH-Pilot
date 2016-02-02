@@ -133,7 +133,7 @@ export default class FollowUpFollowUp extends Component {
     };
 
     return (
-      <Panel title='Follow Up'>
+      <Panel title={this.props.mainHeading}>
         <div className={styles['fufu-row-one']}>
           <div className={styles['fufu-top-left-container']}>
             <div className={styles['fufu-tlc-one']}>
@@ -311,4 +311,8 @@ export default class FollowUpFollowUp extends Component {
       </Panel>
     );
   };
+};
+
+FollowUpFollowUp.propTypes = {
+  mainHeading: React.PropTypes.string,
 };

@@ -58,7 +58,7 @@ export class FollowUpView extends Component {
 
         <div className={styles['fuv-row-three']}>
           <div className={styles['fuv-followup-container']}>
-            <FollowUpFollowUp />
+            <FollowUpFollowUp mainHeading='Follow Up'/>
           </div>
         </div>
 
