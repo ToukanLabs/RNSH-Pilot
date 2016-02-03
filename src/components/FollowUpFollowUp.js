@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Panel from './Panel';
 import FollowUpDoctorSelect from './FollowUpDoctorSelect';
 import {
   DateTimeInput,
@@ -133,7 +132,7 @@ export default class FollowUpFollowUp extends Component {
     };
 
     return (
-      <Panel title={this.props.mainHeading}>
+      <div>
         <div className={styles['fufu-row-one']}>
           <div className={styles['fufu-top-left-container']}>
             <div className={styles['fufu-tlc-one']}>
@@ -141,6 +140,7 @@ export default class FollowUpFollowUp extends Component {
                 label='FU Date'
                 mandatory
                 noTime
+                value={this.props.data.date}
                 />
               <TextInput
                 label='Time from Prostate RT Finished'
@@ -248,12 +248,16 @@ export default class FollowUpFollowUp extends Component {
               +
               <TextInput />
             </InlineWidgetGroup>
-            <TextInput
-              label='SF-12 PCS'
-              />
-            <TextInput
-              label='SF-12 MCS'
-              />
+            <InlineWidgetGroup>
+              <TextInput
+                label='SF-12 PCS'
+                className={styles['fufu-sf']}
+                />
+              <TextInput
+                label='SF-12 MCS'
+                className={styles['fufu-sf']}
+                />
+            </InlineWidgetGroup>
             ("-1" = data missing / NA)
             <button>Get EPIC Scores</button>
             <button>Enter EPIC Data</button>
@@ -308,11 +312,11 @@ export default class FollowUpFollowUp extends Component {
             </div>
           </div>
         </div>
-      </Panel>
+      </div>
     );
   };
 };
 
 FollowUpFollowUp.propTypes = {
-  mainHeading: React.PropTypes.string,
+  data: React.PropTypes.object,
 };

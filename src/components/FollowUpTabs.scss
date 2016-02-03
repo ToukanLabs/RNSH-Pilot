@@ -1,0 +1,10 @@
+@import '../styles/colors';
+
+.tabs li.fuv-follow-up-add {
+  font-weight: bold;
+  color: #fff;
+  background-color: $button-color;
+  margin-left: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+}

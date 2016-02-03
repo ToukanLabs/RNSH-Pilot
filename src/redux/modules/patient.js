@@ -22,6 +22,10 @@ export const BACKGROUND_HISTORY_CHANGE_BLOOD_THINNERS = 'BACKGROUND_HISTORY_CHAN
 export const BACKGROUND_HISTORY_CHANGE_BACKGROUND = 'BACKGROUND_HISTORY_CHANGE_BACKGROUND';
 export const BACKGROUND_HISTORY_CHANGE_ALLERGIC_TO = 'BACKGROUND_HISTORY_CHANGE_ALLERGIC_TO';
 
+export const FOLLOW_UP_FETCH_LIST = 'FOLLOW_UP_FETCH_LIST';
+export const FOLLOW_UP_FETCH = 'FOLLOW_UP_FETCH';
+export const FOLLOW_UP_CREATE_NEW = 'FOLLOW_UP_CREATE_NEW';
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -144,6 +148,23 @@ export const backgroundHistoryChangeAllergicTo = createAction(
   }
 );
 
+export const followUpFetchList = createAction(
+  FOLLOW_UP_FETCH_LIST
+);
+
+export const followUpFetch = createAction(
+  FOLLOW_UP_FETCH,
+  (followUpId, followUpDate) => {
+    return {
+      id: followUpId,
+      date: followUpDate,
+    };
+  }
+);
+export const followUpCreateNew = createAction(
+  FOLLOW_UP_CREATE_NEW
+);
+
 export const actions = {
   createPatient,
   fetchPatient,
@@ -162,6 +183,9 @@ export const actions = {
   backgroundHistoryChangeBloodThinners,
   backgroundHistoryChangeBackground,
   backgroundHistoryChangeAllergicTo,
+  followUpFetchList,
+  followUpFetch,
+  followUpCreateNew,
 };
 
 // ------------------------------------
@@ -182,9 +206,9 @@ export default handleActions({
           return p;
         }
       })[0],
-      searchResults: state.searchResults
+      searchResults: state.searchResults,
     };
-    patient.activePatient['backgroundHistory'] = {
+    patient.activePatient.backgroundHistory = {
       diabetes: null,
       diabetesControl: null,
       hypertension: null,
@@ -195,6 +219,7 @@ export default handleActions({
       allergicTo: null,
       saved: false,
     };
+    patient.activePatient.activeFollowUp = {};
 
     return patient;
   },
@@ -373,5 +398,53 @@ export default handleActions({
       }
     };
   },
+  [FOLLOW_UP_FETCH_LIST]: (state, action) => {
+    const followUps = [
+      {id: 7, date: '2016-02-01T00:00Z'},
+      {id: 6, date: '2016-01-29T00:00Z'},
+      {id: 5, date: '2015-06-08T00:00Z'},
+      {id: 4, date: '2015-07-02T00:00Z'},
+      {id: 3, date: '2015-06-21T00:00Z'},
+      {id: 2, date: '2015-06-08T00:00Z'},
+      {id: 1, date: '2015-06-01T00:00Z'},
+    ];
 
+    return {
+      ...state,
+      activePatient: {
+        ...state.activePatient,
+        followUps: followUps,
+        activeFollowUp: followUps[0]
+      }
+    };
+  },
+  [FOLLOW_UP_FETCH]: (state, action) => {
+    return {
+      ...state,
+      activePatient: {
+        ...state.activePatient,
+        activeFollowUp: {
+          id: action.payload.id,
+          date: action.payload.date,
+        }
+      }
+    };
+  },
+  [FOLLOW_UP_CREATE_NEW]: (state, action) => {
+    const now = new Date();
+    let followUps = [{
+      id: state.activePatient.followUps.length + 1,
+      date: now.toISOString()
+    }];
+    followUps = followUps.concat(state.activePatient.followUps);
+
+    return {
+      ...state,
+      activePatient: {
+        ...state.activePatient,
+        followUps: followUps,
+        activeFollowUp: followUps[0],
+      }
+    };
+  }
 }, 1);

@@ -11,6 +11,7 @@ export default class DateTimeInput extends Component {
         dateFormat={dateFormat}
         timeFormat={timeFormat}
         disabled={this.props.disabled}
+        value={(this.props.value) ? new Date(this.props.value) : null}
         closeOnSelect
         />
     );
@@ -54,6 +55,7 @@ DateTimeInput.propTypes = {
   noTime: React.PropTypes.bool,
   noDate: React.PropTypes.bool,
   label: React.PropTypes.string,
+  value: React.PropTypes.string,
   labelClassName: React.PropTypes.string,
   mandatory: React.PropTypes.bool,
   disabled: React.PropTypes.bool,

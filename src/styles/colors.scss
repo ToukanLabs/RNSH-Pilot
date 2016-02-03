@@ -25,6 +25,8 @@ $table-heading-background: #f6f4f4;
 $table-background: #f5eeee;
 $table-row-highlight: lighten(#18A29C, 55);
 
+$panel-background: $table-background;
+
 $widget-disabled-bg-color: #bdbdbd;
 $widget-disabled-color: lighten(#bdbdbd, 15);
 
@@ -34,3 +36,7 @@ $search-results-base: grey;
 
 $button-color: #16918c;
 $button-hover-color: $patient-sm-background;
+
+$tab-border-color: $button-color;
+$tab-inactive-background: darken($panel-background, 20);
+$tab-active-background: $panel-background;

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { actions as patientActions } from '../redux/modules/patient';
 import FollowUpDiagnosis from 'components/FollowUpDiagnosis';
 import FollowUpIntent from 'components/FollowUpIntent';
 import FollowUpPreRTAssessment from 'components/FollowUpPreRTAssessment';
 import FollowUpStatus from 'components/FollowUpStatus';
 import FollowUpFollowUp from 'components/FollowUpFollowUp';
+import FollowUpTabs from 'components/FollowUpTabs';
 import Panel from 'components/Panel';
 import MultiGraph from 'components/MultiGraph';
 import styles from './FollowUpView.scss';
@@ -15,10 +17,20 @@ const mapStateToProps = (state) => ({
   activePatient: state.patients.activePatient
 });
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    patientActions: bindActionCreators(patientActions, dispatch),
+  };
+};
+
 export class FollowUpView extends Component {
 
   handleDetailViewClick = (id) => {
     this.props.setRTDetailViewId(id);
+  };
+
+  componentDidMount = () => {
+    this.props.patientActions.followUpFetchList();
   };
 
   render () {
@@ -58,19 +70,27 @@ export class FollowUpView extends Component {
 
         <div className={styles['fuv-row-three']}>
           <div className={styles['fuv-followup-container']}>
-            <FollowUpFollowUp mainHeading='Follow Up'/>
+            <FollowUpTabs
+              followUps={this.props.activePatient.followUps}
+              activeFollowUp={this.props.activePatient.activeFollowUp}
+              handleFollowUpOnClick={this.props.patientActions.followUpFetch}
+              handleNewFollowUpOnClick={this.props.patientActions.followUpCreateNew}
+              />
+            <Panel title='Follow Up' className={styles['fuv-follow-up-panel']}>
+              <FollowUpFollowUp data={this.props.activePatient.activeFollowUp} />
+            </Panel>
           </div>
         </div>
-
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, patientActions)(FollowUpView);
+export default connect(mapStateToProps, mapDispatchToProps)(FollowUpView);
 
 FollowUpView.propTypes = {
   graphs: React.PropTypes.array,
   activePatient: React.PropTypes.object,
-  setRTDetailViewId: React.PropTypes.func
+  setRTDetailViewId: React.PropTypes.func,
+  patientActions: React.PropTypes.object,
 };
