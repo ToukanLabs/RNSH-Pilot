@@ -29,10 +29,6 @@ export class FollowUpView extends Component {
     this.props.setRTDetailViewId(id);
   };
 
-  componentDidMount = () => {
-    this.props.patientActions.followUpFetchList();
-  };
-
   render () {
     return (
       <div>
