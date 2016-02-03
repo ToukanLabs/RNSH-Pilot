@@ -34,14 +34,15 @@ export default class TextInput extends Component {
             className={`${corestyles['widget-label']} ${labelClassName}`}
             >
             {this.props.label}
+            {this.getMandatoryIndicator()}:
           </span>
-          {this.getMandatoryIndicator()}:
           <input
             className={className}
             type='text'
             placeholder={this.props.placeholder}
             disabled={this.props.disabled}
             value={this.props.value}
+            defaultValue={this.props.defaultValue}
             />
           {this.getUnitLabel()}
         </span>
@@ -55,6 +56,7 @@ export default class TextInput extends Component {
             placeholder={this.props.placeholder}
             disabled={this.props.disabled}
             value={this.props.value}
+            defaultValue={this.props.defaultValue}
             />
           {this.getUnitLabel()}
         </span>
@@ -68,7 +70,8 @@ TextInput.propTypes = {
   className: React.PropTypes.string,
   labelClassName: React.PropTypes.string,
   label: React.PropTypes.string,
-  value: React.PropTypes.string,
+  value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  defaultValue: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
   unitLabel: React.PropTypes.string,
   placeholder: React.PropTypes.string,
   mandatory: React.PropTypes.bool,

@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
 export class FollowUpView extends Component {
 
   handleDetailViewClick = (id) => {
-    this.props.setRTDetailViewId(id);
+    this.props.patientActions.setRTDetailViewId(id);
   };
 
   render () {

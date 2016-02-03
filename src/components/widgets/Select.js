@@ -55,8 +55,8 @@ export default class Select extends Component {
             className={`${corestyles['widget-label']} ${labelClassName}`}
             >
             {this.props.label}
+            {this.getMandatoryIndicator()}:
           </span>
-          {this.getMandatoryIndicator()}:
           <select
             className={className}
             onChange={this.handleOnChange}
@@ -89,7 +89,7 @@ Select.propTypes = {
   label: React.PropTypes.string,
   labelClassName: React.PropTypes.string,
   options: React.PropTypes.array.isRequired,
-  value: React.PropTypes.string,
+  value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.bool]),
   placeholder: React.PropTypes.string,
   mandatory: React.PropTypes.bool,
   disabled: React.PropTypes.bool,

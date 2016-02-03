@@ -43,8 +43,8 @@ export default class TextArea extends Component {
             className={`${corestyles['widget-label']} ${labelClassName}`}
             >
             {this.props.label}
+            {this.getMandatoryIndicator()}:
           </span>
-          {this.getMandatoryIndicator()}:
           <textarea
             className={className}
             placeholder={this.props.placeholder}

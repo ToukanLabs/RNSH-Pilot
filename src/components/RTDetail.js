@@ -28,14 +28,14 @@ export default class RTDetail extends Component {
             ref='rtDose'
             label='Dose'
             type='text'
-            value={this.props.data.dose}
+            defaultValue={this.props.data.dose}
             className={styles['rt-field-general']}
             />
           <TextInput
             ref='rtFraction'
             label='Fraction'
             type='text'
-            value={this.props.data.fractions}
+            defaultValue={this.props.data.fractions}
             className={styles['rt-field-general']}
             />
             <Select
@@ -68,5 +68,5 @@ export default class RTDetail extends Component {
 
 RTDetail.propTypes = {
   data: React.PropTypes.object,
-  RTDetailViewId: React.PropTypes.string
+  RTDetailViewId: React.PropTypes.number
 };

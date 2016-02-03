@@ -84,7 +84,7 @@ export class BackgroundHistoryView extends Component {
   getBackgroundString = () => {
     const newPatientResponses = this.props.activePatient.newPatientResponses;
     if (newPatientResponses) {
-      let background = [];
+      let background = '';
       if (newPatientResponses['Comorbidities/co2_ihd'] === 'yes') {
         background += 'Heart disease\n';
       }
@@ -174,7 +174,8 @@ export class BackgroundHistoryView extends Component {
           return (
             <TextArea
               label='Allergic to'
-              labelClassName={styles['bhv-background-text-area']}
+              labelClassName={styles['bhv-background-textarea-label']}
+              className={styles['bhv-background-textarea']}
               value={backgroundHistory.allergicTo}
               onChange={(e) => {
                 const allergicTo = e.target.value;
@@ -230,7 +231,8 @@ export class BackgroundHistoryView extends Component {
               label='History of Previous Illnesses'
               value={backgroundHistory.background}
               ref='background'
-              labelClassName={styles['bhv-background-text-area']}
+              labelClassName={styles['bhv-background-textarea-label']}
+              className={styles['bhv-background-textarea']}
               onChange={(e) => {
                 const background = e.target.value;
                 this.props.backgroundHistoryChangeBackground(background);
