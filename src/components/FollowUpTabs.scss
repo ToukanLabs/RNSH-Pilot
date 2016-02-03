@@ -1,10 +1,20 @@
 @import '../styles/colors';
 
-.tabs li.fuv-follow-up-add {
+.tabs li.fut-follow-up-add {
   font-weight: bold;
   color: #fff;
   background-color: $button-color;
   margin-left: 6px;
   padding: 5px 10px;
   cursor: pointer;
+}
+
+.fut-follow-up-date-relative {
+  font-size: 0.8em;
+  font-style: italic;
+  margin-top: 1px;
+}
+
+.tabs li.fut-follow-up-add .fut-follow-up-date-relative {
+  font-style: normal;
 }

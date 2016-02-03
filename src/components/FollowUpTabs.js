@@ -12,16 +12,18 @@ export default class FollowUpTabs extends Component {
           className = corestyles['active'];
         }
         return (
-          <li key={fu.id} className={className}>
-            <a href='#' onClick={() => {
+          <li
+            key={fu.id}
+            className={className}
+            onClick={() => {
               this.props.handleFollowUpOnClick(fu.id, fu.date);
-            }}>
-              <FormattedDate
+            }}
+            >
+            <FormattedDate
               value={Date.parse(fu.date)}
               format='short'
               />
-            </a>
-            <div className={styles['fuv-follow-up-date-relative']}>
+            <div className={styles['fut-follow-up-date-relative']}>
               <FormattedRelative value={Date.parse(fu.date)} />
             </div>
           </li>
@@ -33,11 +35,11 @@ export default class FollowUpTabs extends Component {
       <ol className={corestyles['tabs']}>
         <li
           key='newFU'
-          className={styles['fuv-follow-up-add']}
+          className={styles['fut-follow-up-add']}
           onClick={this.props.handleNewFollowUpOnClick}
           >
           +
-          <div className={styles['fuv-follow-up-date-relative']}>
+          <div className={styles['fut-follow-up-date-relative']}>
             New
           </div>
         </li>

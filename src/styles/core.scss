@@ -246,6 +246,11 @@ table td {
   z-index: 0;
   text-align: center;
   font-size: 0.8em;
+  cursor: pointer;
+}
+
+.tabs li:hover {
+  background-color: $tab-hover-background;
 }
 
 .tabs li.fuv-follow-up-add:hover {
