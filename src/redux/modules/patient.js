@@ -35,12 +35,25 @@ export const createPatient = createAction(
   }
 );
 
-export const fetchPatient = createAction(
+const fetchPatient = createAction(
   FETCH_PATIENT,
-  (patientId) => {
-    return {patientId};
+  (patientJson) => {
+    return {patient: patientJson};
   }
 );
+
+export const fetchPatientFromServer = (patientId) => {
+  return (dispatch, getState) => {
+    fetch(`http://localhost:3001/patient/${patientId}`)
+    .then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      dispatch(fetchPatient(json));
+    }).catch(function (ex) {
+      console.log('parsing failed', ex);
+    });
+  };
+};
 
 export const setQuestionnaireResponses = createAction(
   SET_QUESTIONNAIRE_RESPONSES,
@@ -162,7 +175,7 @@ export const followUpCreateNew = createAction(
 
 export const actions = {
   createPatient,
-  fetchPatient,
+  fetchPatientFromServer,
   setQuestionnaireResponses,
   removeQuestionnaireResponses,
   setQuestionnaireDetailViewId,
@@ -195,12 +208,8 @@ export default handleActions({
   [FETCH_PATIENT]: (state, action) => {
     let patient = {};
     patient = {
-      activePatient: state.searchResults.filter((p) => {
-        if (p.id === parseInt(action.payload.patientId, 10)) {
-          return p;
-        }
-      })[0],
-      searchResults: state.searchResults,
+      ...state,
+      activePatient: action.payload.patient,
     };
     patient.activePatient.backgroundHistory = {
       diabetes: null,

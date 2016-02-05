@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
 export default class PatientView extends React.Component {
   componentWillReceiveProps (newProps) {
     if (newProps.params.id !== this.props.params.id) {
-      this.props.patientActions.fetchPatient(newProps.params.id);
+      this.props.patientActions.fetchPatientFromServer(newProps.params.id);
       this.props.uiActions.hideSearchResults();
       if (this.props.patientHeaderVisibility === 'expanded') {
         this.props.uiActions.hidePatientHeader();
@@ -39,7 +39,7 @@ export default class PatientView extends React.Component {
   };
 
   componentWillMount () {
-    this.props.patientActions.fetchPatient(this.props.params.id);
+    this.props.patientActions.fetchPatientFromServer(this.props.params.id);
   };
 
   componentDidMount () {

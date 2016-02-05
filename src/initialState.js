@@ -8,7 +8,6 @@ export const initialState = {
     surname: '',
   },
   patients: {
-    activePatient: {},
     searchResults: [
       {
         id: 1,
