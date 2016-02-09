@@ -5,6 +5,7 @@ import { createAction, handleActions } from 'redux-actions';
 // ------------------------------------
 export const CREATE_PATIENT = 'CREATE_PATIENT';
 export const FETCH_PATIENT = 'FETCH_PATIENT';
+export const SET_PATIENT_SEARCH_RESULTS = 'SET_PATIENT_SEARCH_RESULTS';
 export const SET_QUESTIONNAIRE_RESPONSES = 'SET_QUESTIONNAIRE_RESPONSES';
 export const REMOVE_QUESTIONNAIRE_RESPONSES = 'REMOVE_QUESTIONNAIRE_RESPONSES';
 export const SET_QUESTIONNAIRE_DETAIL_VIEW_ID = 'SET_QUESTIONNAIRE_DETAIL_VIEW_ID';
@@ -41,6 +42,28 @@ const fetchPatient = createAction(
     return {patient: patientJson};
   }
 );
+
+const setPatientSearchResults = createAction(
+  SET_PATIENT_SEARCH_RESULTS,
+  (patientsJson) => {
+    return {
+      patients: patientsJson
+    };
+  }
+);
+
+export const searchPatients = () => {
+  return (dispatch, getState) => {
+    fetch(`http://localhost:3001/patient/`)
+    .then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      dispatch(setPatientSearchResults(json));
+    }).catch(function (ex) {
+      console.log('parsing failed', ex);
+    });
+  };
+};
 
 export const fetchPatientFromServer = (patientId) => {
   return (dispatch, getState) => {
@@ -175,6 +198,7 @@ export const followUpCreateNew = createAction(
 
 export const actions = {
   createPatient,
+  searchPatients,
   fetchPatientFromServer,
   setQuestionnaireResponses,
   removeQuestionnaireResponses,
@@ -235,6 +259,12 @@ export default handleActions({
     patient.activePatient.activeFollowUp = followUps[0];
 
     return patient;
+  },
+  [SET_PATIENT_SEARCH_RESULTS]: (state, action) => {
+    return {
+      ...state,
+      searchResults: action.payload.patients
+    };
   },
   [SET_QUESTIONNAIRE_RESPONSES]: (state, action) => {
     return {
