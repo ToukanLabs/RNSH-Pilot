@@ -1,0 +1,19 @@
+
+.apv-form {
+
+}
+
+.apv-field-wrapper {
+  //display: inline-block;
+  padding : 5px;
+
+  label {
+    margin-right: 3px;
+  }
+}
+
+.apv-error-span {
+  font-size: 0.7em;
+  padding-left: 2px;
+  color: red;
+}

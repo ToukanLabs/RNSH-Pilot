@@ -8,6 +8,7 @@ import { Route, IndexRoute } from 'react-router';
 // your current file is.
 import CoreLayout from 'layouts/CoreLayout';
 import HomeView from 'views/HomeView';
+import AddPatientView from 'views/AddPatientView';
 import PatientView from 'views/PatientView';
 import UnderMaintenanceView from 'views/UnderMaintenanceView';
 import QuestionnaireView from 'views/QuestionnaireView';
@@ -19,6 +20,7 @@ import BackgroundHistoryView from 'views/BackgroundHistoryView';
 export default (
   <Route path='/' component={CoreLayout}>
     <IndexRoute component={HomeView} />
+    <Route path='addPatient' component={AddPatientView}/>
     <Route path='patient/:id' component={PatientView}>
       <IndexRoute component={PatientOverview} />
       <Route path='background-history' component={BackgroundHistoryView} />

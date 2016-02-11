@@ -9,7 +9,9 @@ export default class SearchResultRow extends Component {
     const patient = this.props.patient;
     const title = (patient.gender === 'F') ? 'Mrs' : 'Mr';
     return (
-      <Link to={`/patient/${patient.id}`}>
+      <Link to={{
+        pathname: `/patient/${patient.id}`,
+      }}>
         <li className={styles['gs-patient-search-result']} key={patient.id}>
           <h2>
             {`${patient.surname.toUpperCase()}, ${patient.firstname} (${title})`}

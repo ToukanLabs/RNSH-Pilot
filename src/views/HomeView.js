@@ -67,21 +67,42 @@ export class HomeView extends React.Component {
 
   render () {
     var patientResults;
-    if (this.props.mrn || this.props.firstname || this.props.surname || this.props.tumorFilter) {
-      patientResults = this.props.patients.filter(this.filterPatients);
-      patientResults = patientResults.sort(this.sortPatients);
-    } else {
-      patientResults = this.props.patients;
-      patientResults = patientResults.sort(this.sortPatients);
+    if (this.props.patients) {
+      if (this.props.mrn || this.props.firstname || this.props.surname || this.props.tumorFilter) {
+        patientResults = this.props.patients.filter(this.filterPatients);
+        patientResults = patientResults.sort(this.sortPatients);
+      } else {
+        patientResults = this.props.patients;
+        patientResults = patientResults.sort(this.sortPatients);
+      }
+
+      var patientList = () => {
+        return patientResults.map((p) => {
+          return (
+            <SearchResultRow key={p.id} patient={p}/>
+          );
+        });
+      };
     }
 
-    var patientList = () => {
-      return patientResults.map((p) => {
+    var resultsDiv = () => {
+      if (this.props.patients) {
         return (
-          <SearchResultRow key={p.id} patient={p}/>
+          <div className={styles['as-result-container']}>
+            <div className={styles['hv-results']}>
+              <ul className={styles['hv-patient-search-results']}>
+                {patientList()}
+              </ul>
+            </div>
+          </div>
         );
-      });
+      } else {
+        return (
+          <h2>Loading...</h2>
+        );
+      }
     };
+
     return (
       <div className={styles['as-container']}>
         <h2>Patient Search</h2>
@@ -131,13 +152,7 @@ export class HomeView extends React.Component {
             </form>
           </div>
         </div>
-        <div className={styles['as-result-container']}>
-          <div className={styles['hv-results']}>
-            <ul className={styles['hv-patient-search-results']}>
-              {patientList()}
-            </ul>
-          </div>
-        </div>
+        {resultsDiv()}
       </div>
     );
   };

@@ -263,3 +263,13 @@ table td {
   border-bottom: none;
   z-index: 2;
 }
+
+.close-modal-icon {
+  border-radius: 25;
+  background-color: grey;
+  font-family: FontAwesome;
+  color: white;
+  content: "\F00D";
+  height: 20px;
+  width: 20px;
+}

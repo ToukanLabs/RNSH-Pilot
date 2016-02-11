@@ -19,6 +19,14 @@ export default class GlobalMenu extends Component {
                      Home
                    </Link>
                  </li>
+                 <li>
+                   <Link to={{
+                     pathname: `/AddPatient`,
+                     state: { modal: true }
+                   }}>
+                     Add a Patient
+                   </Link>
+                 </li>
              </ul>
           </DropdownContent>
         </Dropdown>
