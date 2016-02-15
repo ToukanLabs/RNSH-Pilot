@@ -10,7 +10,7 @@ export default class GlobalHeader extends Component {
       <div className={styles['gh-header']}>
         <div className={styles['gh-header-content']}>
           <div className={styles['gh-menu-container']}>
-            <GlobalMenu />
+            <GlobalMenu/>
           </div>
           <div className={styles['gh-search-container']}>
             <GlobalSearchContainer icon='search' placeholder='Global Search'/>
