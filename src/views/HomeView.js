@@ -8,7 +8,6 @@ import GlobalSearchFilters from 'components/GlobalSearchFilters';
 import SearchResultRow from 'components/SearchResultRow';
 import styles from './HomeView.scss';
 // import MultiGraph from '../components/MultiGraph';
-// import CreatePatient from '../components/CreatePatient';
 
 // We define mapStateToProps where we'd normally use
 // the @connect decorator so the data requirements are clear upfront, but then
@@ -161,7 +160,6 @@ export class HomeView extends React.Component {
 export default connect(mapStateToProps, mapDispatchToProps)(HomeView);
 
 HomeView.propTypes = {
-  createPatient: React.PropTypes.func,
   graphs: React.PropTypes.array,
   uiActions: React.PropTypes.object,
   patientActions: React.PropTypes.object,

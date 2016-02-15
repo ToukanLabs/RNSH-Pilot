@@ -4,6 +4,7 @@ import { createAction, handleActions } from 'redux-actions';
 // Constants
 // ------------------------------------
 export const CREATE_PATIENT = 'CREATE_PATIENT';
+export const UPDATE_PATIENT = 'UPDATE_PATIENT';
 export const FETCH_PATIENT = 'FETCH_PATIENT';
 export const SET_PATIENT_SEARCH_RESULTS = 'SET_PATIENT_SEARCH_RESULTS';
 export const SET_QUESTIONNAIRE_RESPONSES = 'SET_QUESTIONNAIRE_RESPONSES';
@@ -31,8 +32,15 @@ export const FOLLOW_UP_CREATE_NEW = 'FOLLOW_UP_CREATE_NEW';
 // ------------------------------------
 export const createPatient = createAction(
   CREATE_PATIENT,
-  (patientName) => {
-    return {patientName};
+  (patient) => {
+    return {patient};
+  }
+);
+
+export const updatePatient = createAction(
+  UPDATE_PATIENT,
+  (patient, token) => {
+    return {patient, token};
   }
 );
 
@@ -198,6 +206,7 @@ export const followUpCreateNew = createAction(
 
 export const actions = {
   createPatient,
+  updatePatient,
   searchPatients,
   fetchPatientFromServer,
   setQuestionnaireResponses,
@@ -224,10 +233,26 @@ export const actions = {
 // ------------------------------------
 export default handleActions({
   [CREATE_PATIENT]: (state, action) => {
-    return [
+    let patients = state.searchResults;
+    patients.push(action.payload.patient);
+    return {
       ...state,
-      { name: action.payload.patientName }
-    ];
+      searchResults: patients
+    };
+  },
+  [UPDATE_PATIENT]: (state, action) => {
+    let patients = state.searchResults.map((p) => {
+      if (p.token && action.payload.token === p.token) {
+        return action.payload.patient;
+      } else {
+        return p;
+      }
+    });
+
+    return {
+      ...state,
+      searchResults: patients
+    };
   },
   [FETCH_PATIENT]: (state, action) => {
     let patient = {};
