@@ -60,3 +60,5 @@ server {
         }
 }
 ```
+5. Create a symlink to the new config `ln -s /etc/nginx/sites-available/rnshpilot.fiviumdev.com /etc/nginx/sites-enable/rnshpilot.fiviumdev.com`
+6. Restart nginx `service nginx restart`
