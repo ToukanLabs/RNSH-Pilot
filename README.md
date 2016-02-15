@@ -28,18 +28,35 @@ If you have issues getting things to run on widows, specifically errors relating
 3. Tag build.
 4. Run `npm run clean`
 5. Run `npm run compile`
-6. Remove all files in your apache html directory (/var/www/html)
-7. Deploy all files in `./dist` to your apache html directory.
+6. If using apache:
+    * Remove all files in your apache html directory (/var/www/html)
+    * Deploy all files in `./dist` to your apache html directory.
+7. If using nginx:
+    * Remove all files in your server root (/var/www/rnshpilot.fiviumdev.com)
+    * Deploy all files in `./dist` to your server root directory.
 
 # Server Config
 
-1. Ensure apache mod_rewrite is installed: `a2enmod rewrite`
-2. Add the following to `<Directory /> ...` in apache2.conf:
+## nginx
+
+***Note: all occurrences of rnshpilot.fiviumdev.com below should be replace with the actual domain you are using***
+
+1. Install nginx `sudo apt-get install nginx`
+2. Create a directory to store the webpage assets (/var/www/rnshpilot.fiviumdev.com)
+3. Create a config by copying the default one `cp /etc/nginx/site-available/default /etc/nginx/site-available/rnshpilot.fiviumdev.com`
+4. Modify the following in the contents of the newly created file.
   ```
-  RewriteEngine On
-  RewriteBase /
-  RewriteRule ^index\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
-  ```
+server {
+        listen 80;
+
+        root /var/www/rnshpilot.fiviumdev.com;
+        index index.html index.htm;
+
+        server_name rnshpilot.fiviumdev.com;
+
+        location / {
+                # Ensure all URL requests are redirected to index.html
+                try_files $uri /index.html;
+        }
+}
+```
