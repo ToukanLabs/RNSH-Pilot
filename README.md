@@ -24,14 +24,15 @@ If you have issues getting things to run on widows, specifically errors relating
 # Manual Deployment
 
 1. Change `NODE_ENV` in .env to `production`
-2. Bump version in `package.json`
-3. Tag build.
-4. Run `npm run clean`
-5. Run `npm run compile`
-6. If using apache:
+2. Change `OPENEHR_URL` in .env to the URL of the OpenEHR api endpoint.
+3. Bump version in `package.json`
+4. Tag build.
+5. Run `npm run clean`
+6. Run `npm run compile`
+7. If using apache:
     * Remove all files in your apache html directory (/var/www/html)
     * Deploy all files in `./dist` to your apache html directory.
-7. If using nginx:
+8. If using nginx:
     * Remove all files in your server root (/var/www/rnshpilot.fiviumdev.com)
     * Deploy all files in `./dist` to your server root directory.
 
