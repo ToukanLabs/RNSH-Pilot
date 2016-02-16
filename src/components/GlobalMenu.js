@@ -22,7 +22,7 @@ export default class GlobalMenu extends Component {
                  <li>
                    <Link to={{
                      pathname: `/AddPatient`,
-                     state: { modal: true }
+                     state: { modal: true, modalHeading: 'Add New Patient' }
                    }}>
                      Add a Patient
                    </Link>
@@ -33,4 +33,8 @@ export default class GlobalMenu extends Component {
       </div>
     );
   };
+};
+
+GlobalMenu.propTypes = {
+  uiActions: React.PropTypes.object,
 };

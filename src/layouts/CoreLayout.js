@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from '../styles/core.scss';
-import { Link } from 'react-router';
+import Modal from '../components/Modal';
 import GlobalHeader from 'components/GlobalHeader';
 var pjson = require('../../package.json');
 
@@ -13,49 +13,6 @@ var pjson = require('../../package.json');
 //
 // CoreLayout is a pure function of it's props, so we can
 // define it with a plain javascript function...
-
-class Modal extends Component {
-  constructor () {
-    super();
-    this.modalStyles = {
-      position: 'fixed',
-      top: '20%',
-      right: '20%',
-      bottom: '20%',
-      left: '20%',
-      padding: 20,
-      boxShadow: '0px 0px 150px 130px rgba(0, 0, 0, 0.5)',
-      background: '#fff',
-      WebkitTransition: 'opacity 400ms ease-in',
-      MozTransition: 'opacity 400ms ease-in',
-      transition: 'opacity 400ms ease-in',
-    };
-    this.modalBodyStyles = {
-      overflow: 'auto',
-      height: '100%',
-      background: '#fff'
-    };
-  }
-  render () {
-    return (
-      <div style={this.modalStyles}>
-          <div style={this.modalBodyStyles}>
-            <Link to={this.props.returnTo}>
-              <a href='#' title='Close' className={styles['close']}>X</a>
-            </Link>
-            <div >
-              {this.props.children}
-            </div>
-          </div>
-      </div>
-    );
-  };
-};
-
-Modal.propTypes = {
-  children: React.PropTypes.element,
-  returnTo: React.PropTypes.function,
-};
 
 class CoreLayout extends Component {
 
@@ -88,7 +45,7 @@ class CoreLayout extends Component {
         <div className={styles['view-container']}>
           {isModal ? this.previousChildren : this.props.children}
           {isModal && (
-            <Modal isOpen returnTo={location.state.returnTo}>
+            <Modal isOpen returnTo={location.state.returnTo} modalHeading={location.state.modalHeading}>
               {this.props.children}
             </Modal>
           )}
