@@ -115,7 +115,7 @@ export class AddPatientView extends Component {
     .then(function (response) {
       return response.json();
     }).then(function (json) {
-      dispatch(thisAddPatientView.props.patientActions.updatePatient(json, newToken));
+      thisAddPatientView.props.patientActions.updatePatient(json, newToken);
     }).catch(function (ex) {
       console.log('parsing failed', ex);
     });
