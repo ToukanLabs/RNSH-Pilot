@@ -67,7 +67,7 @@ export const searchPatients = createAction(
   null,
   (patientId) => {
     return {
-      endpoint: `http://localhost:3001/patient/`,
+      endpoint: `${process.env.OPENEHR_URL}/patient/`,
       success: setPatientSearchResults
     };
   }
@@ -80,24 +80,11 @@ export const fetchPatientFromServer = createAction(
   },
   (patientId) => {
     return {
-      endpoint: `http://localhost:3001/patient/${patientId}`,
+      endpoint: `${process.env.OPENEHR_URL}/patient/${patientId}`,
       success: fetchPatient
     };
   }
 );
-
-// export const fetchPatientFromServer = (patientId) => {
-//   return (dispatch, getState) => {
-//     fetch(`http://localhost:3001/patient/${patientId}`)
-//     .then(function (response) {
-//       return response.json();
-//     }).then(function (json) {
-//       dispatch(fetchPatient(json));
-//     }).catch(function (ex) {
-//       console.log('parsing failed', ex);
-//     });
-//   };
-// };
 
 export const setQuestionnaireResponses = createAction(
   SET_QUESTIONNAIRE_RESPONSES,

@@ -72,6 +72,7 @@ Edit at Your Own Risk
 config.globals = {
   'process.env'  : {
     'NODE_ENV' : JSON.stringify(config.env),
+    'OPENEHR_URL' : JSON.stringify(process.env.OPENEHR_URL),
   },
   'NODE_ENV'     : config.env,
   '__DEV__'      : config.env === 'development',
