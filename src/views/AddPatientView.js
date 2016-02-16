@@ -130,9 +130,6 @@ export class AddPatientView extends Component {
       } = this.props;
     return (
       <form className={styles['apv-form']} onSubmit={handleSubmit(this.submit)}>
-        <div>
-          <h2>Add a Patient</h2>
-        </div>
         <div className={styles['apv-field-wrapper']}>
           <label className={corestyles['widget-label']}>MRN</label>
           <input type='text' placeholder='MRN' {...mrn}/>
