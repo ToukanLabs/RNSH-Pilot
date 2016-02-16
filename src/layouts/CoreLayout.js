@@ -25,18 +25,28 @@ class Modal extends Component {
       left: '20%',
       padding: 20,
       boxShadow: '0px 0px 150px 130px rgba(0, 0, 0, 0.5)',
+      background: '#fff',
+      WebkitTransition: 'opacity 400ms ease-in',
+      MozTransition: 'opacity 400ms ease-in',
+      transition: 'opacity 400ms ease-in',
+    };
+    this.modalBodyStyles = {
       overflow: 'auto',
+      height: '100%',
       background: '#fff'
     };
-  };
-
+  }
   render () {
     return (
       <div style={this.modalStyles}>
-        <Link to={this.props.returnTo}>
-          <div className={styles['close-modal-icon']}/>
-        </Link>
-        {this.props.children}
+          <div style={this.modalBodyStyles}>
+            <Link to={this.props.returnTo}>
+              <a href='#' title='Close' className={styles['close']}>X</a>
+            </Link>
+            <div >
+              {this.props.children}
+            </div>
+          </div>
       </div>
     );
   };
