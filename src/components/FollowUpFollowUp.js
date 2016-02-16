@@ -182,7 +182,7 @@ export default class FollowUpFollowUp extends Component {
                   ]}
                   onChange={this.handleAlphaBlockerChange}
                   />
-                -
+                {' - '}
                 {anticholinergicWidget()}
               </InlineWidgetGroup>
             </div>
