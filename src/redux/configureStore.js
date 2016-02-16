@@ -6,10 +6,26 @@ import {
   createStore
 } from 'redux';
 
+const fetchMiddleware = store => next => action => {
+  next(action);
+
+  if (action.meta && action.meta.endpoint) {
+    fetch(action.meta.endpoint)
+    .then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      next(action.meta.success(json));
+    }).catch(function (ex) {
+      console.log('parsing failed', ex);
+    });
+    console.log('fetching: ' + action.meta.endpoint);
+  }
+};
+
 export default function configureStore (initialState) {
   let createStoreWithMiddleware;
 
-  const middleware = applyMiddleware(thunk);
+  const middleware = applyMiddleware(thunk, fetchMiddleware);
 
   if (__DEBUG__) {
     createStoreWithMiddleware = compose(

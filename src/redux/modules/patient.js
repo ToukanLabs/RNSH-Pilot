@@ -6,6 +6,8 @@ import { createAction, handleActions } from 'redux-actions';
 export const CREATE_PATIENT = 'CREATE_PATIENT';
 export const UPDATE_PATIENT = 'UPDATE_PATIENT';
 export const FETCH_PATIENT = 'FETCH_PATIENT';
+export const FETCH_PATIENT_PATIENT_FROM_SERVER = 'FETCH_PATIENT_PATIENT_FROM_SERVER';
+export const SEARCH_PATIENTS = 'SEARCH_PATIENTS';
 export const SET_PATIENT_SEARCH_RESULTS = 'SET_PATIENT_SEARCH_RESULTS';
 export const SET_QUESTIONNAIRE_RESPONSES = 'SET_QUESTIONNAIRE_RESPONSES';
 export const REMOVE_QUESTIONNAIRE_RESPONSES = 'REMOVE_QUESTIONNAIRE_RESPONSES';
@@ -60,31 +62,42 @@ const setPatientSearchResults = createAction(
   }
 );
 
-export const searchPatients = () => {
-  return (dispatch, getState) => {
-    fetch(`http://localhost:3001/patient/`)
-    .then(function (response) {
-      return response.json();
-    }).then(function (json) {
-      dispatch(setPatientSearchResults(json));
-    }).catch(function (ex) {
-      console.log('parsing failed', ex);
-    });
-  };
-};
+export const searchPatients = createAction(
+  SEARCH_PATIENTS,
+  null,
+  (patientId) => {
+    return {
+      endpoint: `http://localhost:3001/patient/`,
+      success: setPatientSearchResults
+    };
+  }
+);
 
-export const fetchPatientFromServer = (patientId) => {
-  return (dispatch, getState) => {
-    fetch(`http://localhost:3001/patient/${patientId}`)
-    .then(function (response) {
-      return response.json();
-    }).then(function (json) {
-      dispatch(fetchPatient(json));
-    }).catch(function (ex) {
-      console.log('parsing failed', ex);
-    });
-  };
-};
+export const fetchPatientFromServer = createAction(
+  FETCH_PATIENT_PATIENT_FROM_SERVER,
+  (patientId) => {
+    return {patientId: patientId};
+  },
+  (patientId) => {
+    return {
+      endpoint: `http://localhost:3001/patient/${patientId}`,
+      success: fetchPatient
+    };
+  }
+);
+
+// export const fetchPatientFromServer = (patientId) => {
+//   return (dispatch, getState) => {
+//     fetch(`http://localhost:3001/patient/${patientId}`)
+//     .then(function (response) {
+//       return response.json();
+//     }).then(function (json) {
+//       dispatch(fetchPatient(json));
+//     }).catch(function (ex) {
+//       console.log('parsing failed', ex);
+//     });
+//   };
+// };
 
 export const setQuestionnaireResponses = createAction(
   SET_QUESTIONNAIRE_RESPONSES,
