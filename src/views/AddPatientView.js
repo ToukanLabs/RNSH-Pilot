@@ -101,7 +101,7 @@ export class AddPatientView extends Component {
 
     this.props.patientActions.createPatient(patient);
 
-    const url = `${process.env.OPENEHR_URL}/patient/`;
+    const url = `${process.env.BACKEND_API_URL}/patient/`;
     const options = {
       method: 'post',
       headers: {

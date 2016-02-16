@@ -24,7 +24,7 @@ If you have issues getting things to run on widows, specifically errors relating
 # Manual Deployment
 
 1. Change `NODE_ENV` in .env to `production`
-2. Change `OPENEHR_URL` in .env to the URL of the OpenEHR api endpoint.
+2. Change `BACKEND_API_URL` in .env to the URL of the backend API end point (e.g. http://api.rnshpilot.fiviumdev.com).
 3. Bump version in `package.json`
 4. Tag build.
 5. Run `npm run clean`

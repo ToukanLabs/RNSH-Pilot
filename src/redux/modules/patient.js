@@ -72,7 +72,7 @@ export const searchPatients = createAction(
   null,
   (patientId) => {
     return {
-      endpoint: `${process.env.OPENEHR_URL}/patient/`,
+      endpoint: `${process.env.BACKEND_API_URL}/patient/`,
       success: setPatientSearchResults
     };
   }
@@ -85,7 +85,7 @@ export const fetchPatientFromServer = createAction(
   },
   (patientId) => {
     return {
-      endpoint: `${process.env.OPENEHR_URL}/patient/${patientId}`,
+      endpoint: `${process.env.BACKEND_API_URL}/patient/${patientId}`,
       success: fetchPatient
     };
   }
