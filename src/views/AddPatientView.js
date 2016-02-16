@@ -6,6 +6,7 @@ import styles from './AddPatientView.scss';
 import corestyles from '../styles/core.scss';
 import { actions as patientActions } from 'redux/modules/patient';
 export const fields = ['mrn', 'firstName', 'lastName', 'dob', 'email', 'phone', 'gender', 'tumorType', 'surgical', 'address'];
+import Datetime from 'react-datetime';
 
 const mapStateToProps = (state) => ({
   routerPath: state.router.path,
@@ -73,8 +74,8 @@ export class AddPatientView extends Component {
     const body = {
       firstNames: values.firstName,
       lastNames: values.lastName,
-      gender: (values.gender === 'M') ? 'MALE' : 'FEMALE',
-      dateOfBirth: '1964-02-12T00:00:00.000Z', // values.dob,
+      gender: values.gender,
+      dateOfBirth: values.dob.toISOString(),
       address: values.address,
       mrn: values.mrn,
       tumorType: values.tumorType,
@@ -88,8 +89,8 @@ export class AddPatientView extends Component {
       id: '',
       firstname: values.firstName,
       surname: values.lastName,
-      gender: (values.gender === 'M') ? 'MALE' : 'FEMALE',
-      dob: '1964-02-12T00:00:00.000Z', // values.dob,
+      gender: values.gender,
+      dob: values.dob.toISOString(),
       address: values.address,
       mrn: values.mrn,
       tumorType: values.tumorType,
@@ -147,7 +148,12 @@ export class AddPatientView extends Component {
         </div>
         <div className={styles['apv-field-wrapper']}>
           <label className={corestyles['widget-label']}>Date of Birth</label>
-          <input type='dateTime' placeholder='DOB' {...dob}/>
+          <Datetime
+            dateFormat='DD/MM/YYYY'
+            timeFormat={false}
+            closeOnSelect
+            {...dob}
+            />
           {dob.touched && dob.error && <span className={styles['apv-error-span']}>{dob.error}</span>}
         </div>
         <div className={styles['apv-field-wrapper']}>
@@ -164,10 +170,10 @@ export class AddPatientView extends Component {
           <label className={corestyles['widget-label']}>Gender</label>
           <span className={styles['apv-gender-radio-container']}>
             <label className={corestyles['widget-label']}>
-              <input type='radio' {...gender} value='M' checked={gender.value === 'M'}/> Male
+              <input type='radio' {...gender} value='MALE' checked={gender.value === 'MALE'}/> Male
             </label>
             <label className={corestyles['widget-label']}>
-              <input type='radio' {...gender} value='F' checked={gender.value === 'F'}/> Female
+              <input type='radio' {...gender} value='FEMALE' checked={gender.value === 'FEMALE'}/> Female
             </label>
           </span>
           {gender.touched && gender.error && <span className={styles['apv-error-span']}>{gender.error}</span>}

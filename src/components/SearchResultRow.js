@@ -7,7 +7,7 @@ export default class SearchResultRow extends Component {
 
   render () {
     const patient = this.props.patient;
-    const title = (patient.gender === 'F') ? 'Mrs' : 'Mr';
+    const title = (patient.gender === 'FEMALE') ? 'Mrs' : 'Mr';
     return (
       <Link to={{
         pathname: `/patient/${patient.id}`,

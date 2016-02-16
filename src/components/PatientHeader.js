@@ -6,7 +6,7 @@ export default class PatientHeader extends Component {
   render () {
     const patient = this.props.patient;
     const dob = (patient.dob) ? patient.dob : '1970-01-01';
-    const title = (patient.gender === 'F') ? 'Mrs' : 'Mr';
+    const title = (patient.gender === 'FEMALE') ? 'Mrs' : 'Mr';
     return (
       <div className={styles['ph-container']}>
         <div className={styles['ph-big-field']}>
@@ -29,7 +29,7 @@ export default class PatientHeader extends Component {
             <label className={styles['ph-label']}>
               Gender:&nbsp;
               <span className={styles['ph-data']}>
-                {(patient.gender === 'M') ? 'Male' : 'Female'}
+                {(patient.gender === 'MALE') ? 'Male' : 'Female'}
               </span>
             </label>
           </div>
