@@ -7,6 +7,7 @@ export const CREATE_PATIENT = 'CREATE_PATIENT';
 export const UPDATE_PATIENT = 'UPDATE_PATIENT';
 export const FETCH_PATIENT = 'FETCH_PATIENT';
 export const FETCH_PATIENT_PATIENT_FROM_SERVER = 'FETCH_PATIENT_PATIENT_FROM_SERVER';
+export const REMOVE_ACTIVE_PATIENT = 'REMOVE_ACTIVE_PATIENT';
 export const SEARCH_PATIENTS = 'SEARCH_PATIENTS';
 export const SET_PATIENT_SEARCH_RESULTS = 'SET_PATIENT_SEARCH_RESULTS';
 export const SET_QUESTIONNAIRE_RESPONSES = 'SET_QUESTIONNAIRE_RESPONSES';
@@ -51,6 +52,10 @@ const fetchPatient = createAction(
   (patientJson) => {
     return {patient: patientJson};
   }
+);
+
+const removeActivePatient = createAction(
+  REMOVE_ACTIVE_PATIENT
 );
 
 const setPatientSearchResults = createAction(
@@ -207,6 +212,7 @@ export const followUpCreateNew = createAction(
 export const actions = {
   createPatient,
   updatePatient,
+  removeActivePatient,
   searchPatients,
   fetchPatientFromServer,
   setQuestionnaireResponses,
@@ -284,6 +290,13 @@ export default handleActions({
     patient.activePatient.activeFollowUp = followUps[0];
 
     return patient;
+  },
+  [REMOVE_ACTIVE_PATIENT]: (state, action) => {
+    let newState = {
+      ...state
+    };
+    delete newState.activePatient;
+    return newState;
   },
   [SET_PATIENT_SEARCH_RESULTS]: (state, action) => {
     return {

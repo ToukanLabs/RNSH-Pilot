@@ -36,6 +36,7 @@ export default class PatientView extends React.Component {
     if (this.props.patientHeaderVisibility === 'expanded') {
       this.props.uiActions.hidePatientHeader();
     }
+    this.props.patientActions.removeActivePatient();
   };
 
   componentWillMount () {
