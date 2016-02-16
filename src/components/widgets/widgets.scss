@@ -40,6 +40,10 @@ input[disabled] {
   display: inline-block;
 }
 
+.cbg-ro {
+  border: 1px solid rgba(0,0,0,0);
+}
+
 .cbg-ro:hover {
   border: solid 1px $gh-box-fill-color;
   cursor: pointer;
