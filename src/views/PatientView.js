@@ -1,6 +1,7 @@
 import React from 'react';
 import SideMenu from 'components/SideMenu';
 import PatientHeadContainer from 'components/PatientHeadContainer';
+import Loading from 'components/Loading';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actions as uiActions } from 'redux/modules/ui';
@@ -58,7 +59,7 @@ export default class PatientView extends React.Component {
 
     if (this.props.activePatient === undefined) {
       return (
-        <h2>Loading...</h2>
+        <Loading />
       );
     }
 

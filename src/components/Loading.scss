@@ -1,0 +1,11 @@
+@import '../styles/colors';
+
+.loading-container {
+  padding: 0.5em;
+}
+
+.loading-container .fa {
+  font-size: 1.2em;
+  margin-left: 0.5em;
+  color: $loading-spinner-color;
+}

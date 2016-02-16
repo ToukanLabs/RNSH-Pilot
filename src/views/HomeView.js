@@ -6,6 +6,7 @@ import { actions as patientActions } from 'redux/modules/patient';
 import { actions as advancedSearchActions } from 'redux/modules/advancedSearch';
 import GlobalSearchFilters from 'components/GlobalSearchFilters';
 import SearchResultRow from 'components/SearchResultRow';
+import Loading from 'components/Loading';
 import styles from './HomeView.scss';
 // import MultiGraph from '../components/MultiGraph';
 
@@ -97,7 +98,7 @@ export class HomeView extends React.Component {
         );
       } else {
         return (
-          <h2>Loading...</h2>
+          <Loading />
         );
       }
     };
