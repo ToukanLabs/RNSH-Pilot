@@ -161,15 +161,15 @@ export class AddPatientView extends Component {
           {phone.touched && phone.error && <span className={styles['apv-error-span']}>{phone.error}</span>}
         </div>
         <div className={styles['apv-field-wrapper']}>
-          <label>Gender</label>
-          <div>
+          <label className={corestyles['widget-label']}>Gender</label>
+          <span className={styles['apv-gender-radio-container']}>
             <label className={corestyles['widget-label']}>
               <input type='radio' {...gender} value='M' checked={gender.value === 'M'}/> Male
             </label>
             <label className={corestyles['widget-label']}>
               <input type='radio' {...gender} value='F' checked={gender.value === 'F'}/> Female
             </label>
-          </div>
+          </span>
           {gender.touched && gender.error && <span className={styles['apv-error-span']}>{gender.error}</span>}
         </div>
         <div className={styles['apv-field-wrapper']}>
@@ -187,9 +187,12 @@ export class AddPatientView extends Component {
           </select>
           {tumorType.touched && tumorType.error && <span className={styles['apv-error-span']}>{tumorType.error}</span>}
         </div>
-        <div>
+        <div className={styles['apv-field-wrapper']}>
           <label>
-            <input type='checkbox' {...surgical}/> Surgical
+            <span className={corestyles['widget-label']}>
+              Surgical
+            </span>
+            <input type='checkbox' {...surgical}/>
           </label>
         </div>
         <div className={styles['apv-field-wrapper']}>

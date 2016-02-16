@@ -8,7 +8,7 @@ export default class PatientOverviewTreatment extends Component {
   render () {
     return (
       <Panel title='Treatement' className={styles['treatment-panel']}>
-        <div className={styles['treatment-grid-part']}>
+        <div className={styles['treatment-grid-part-left']}>
           <Select
             label='Surgery'
             className={styles['po-field-general']}
@@ -26,7 +26,7 @@ export default class PatientOverviewTreatment extends Component {
             ]}
           />
         </div>
-        <div className={styles['treatment-grid-part']}>
+        <div className={styles['treatment-grid-part-middle']}>
           <Select
             label='Radiotherapy'
             className={styles['po-field-general']}
@@ -44,7 +44,7 @@ export default class PatientOverviewTreatment extends Component {
             ]}
           />
         </div>
-        <div className={styles['treatment-grid-part']}>
+        <div className={styles['treatment-grid-part-right']}>
           <Select
             label='Extent of Resection'
             className={styles['po-field-general']}

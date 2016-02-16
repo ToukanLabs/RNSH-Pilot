@@ -4,6 +4,10 @@
   display: inline-block;
 }
 
+.inline-widget-group .widget-wrapper:not(:first-child) .widget-label {
+  margin-left: 5px;
+}
+
 input[disabled] {
   background-color: $widget-disabled-bg-color;
   color: $widget-disabled-color;

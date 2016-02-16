@@ -3,7 +3,21 @@
   width: 100%;
 }
 
-.treatment-grid-part {
+.treatment-grid-part-left .widget-label {
+  min-width: 110px;
+}
+
+.treatment-grid-part-middle .widget-label {
+  min-width: 125px;
+}
+
+.treatment-grid-part-right .widget-label {
+  min-width: 140px;
+}
+
+.treatment-grid-part-left,
+.treatment-grid-part-middle,
+.treatment-grid-part-right  {
   display: inline-block;
   width: 33%;
 }

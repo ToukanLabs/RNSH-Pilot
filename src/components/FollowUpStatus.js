@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Panel from './Panel';
 import { Select, DateTimeInput } from './widgets';
-// import styles from './FollowUpStatus.scss';
+import styles from './FollowUpStatus.scss';
 
 export default class FollowUpStatus extends Component {
   constructor () {
@@ -20,7 +20,7 @@ export default class FollowUpStatus extends Component {
 
   render () {
     return (
-      <Panel title='Status' >
+      <Panel title='Status' className={styles['fus-panel']}>
         <Select
           ref='patientStatus'
           label='Current Status'

@@ -231,58 +231,65 @@ export default class FollowUpFollowUp extends Component {
           </div>
 
           <div className={styles['fufu-top-middle-container']}>
-            <h3 className={styles['fufu-sub-heading-top']}>Quality of Life</h3>
-            <Select
-              label='EPIC Completed'
-              options={[
-                {key: 'Yes', value: 'Yes'},
-                {key: 'No', value: 'No'},
-                {key: 'Yes, before RT', value: 'Yes, before RT'},
-                {key: 'Yes, completed but paperwork lost', value: 'Yes, completed but paperwork lost'},
-              ]}
-              />
-            <InlineWidgetGroup>
-              <TextInput
-                label='IPSS'
+            <div className={styles['fufu-qol-container']}>
+              <h3 className={styles['fufu-sub-heading-top']}>Quality of Life</h3>
+              <Select
+                label='EPIC Completed'
+                options={[
+                  {key: 'Yes', value: 'Yes'},
+                  {key: 'No', value: 'No'},
+                  {key: 'Yes, before RT', value: 'Yes, before RT'},
+                  {key: 'Yes, completed but paperwork lost', value: 'Yes, completed but paperwork lost'},
+                ]}
                 />
-              +
-              <TextInput />
-            </InlineWidgetGroup>
-            <InlineWidgetGroup>
+              <InlineWidgetGroup>
+                <TextInput
+                  label='IPSS'
+                  />
+                +
+                <TextInput />
+              </InlineWidgetGroup>
+              <InlineWidgetGroup>
+                <TextInput
+                  label='SF-12 PCS'
+                  className={styles['fufu-sf']}
+                  />
+                <TextInput
+                  label='SF-12 MCS'
+                  className={styles['fufu-sf']}
+                  />
+              </InlineWidgetGroup>
+              <div className={styles['fufu-dataimissing-info']}>
+                ("-1" = data missing / NA)
+              </div>
+              <button>Get EPIC Scores</button>
+              <button>Enter EPIC Data</button>
+            </div>
+
+            <div className={styles['fufu-hrqol-container']}>
+              <h3>HRQOL Domain Scores</h3>
+              <InlineWidgetGroup>
+                <TextInput
+                  label='Urinary'
+                  />
+                <TextInput
+                  label='Sexual'
+                  />
+              </InlineWidgetGroup>
+              <InlineWidgetGroup>
+                <TextInput
+                  label='Bowel'
+                  />
+                <TextInput
+                  label='Hormonal'
+                  />
+              </InlineWidgetGroup>
               <TextInput
-                label='SF-12 PCS'
-                className={styles['fufu-sf']}
+                label='Record ID in EPIC DB'
+                disabled
                 />
-              <TextInput
-                label='SF-12 MCS'
-                className={styles['fufu-sf']}
-                />
-            </InlineWidgetGroup>
-            ("-1" = data missing / NA)
-            <button>Get EPIC Scores</button>
-            <button>Enter EPIC Data</button>
-            <h3>HRQOL Domain Scores</h3>
-            <InlineWidgetGroup>
-              <TextInput
-                label='Urinary'
-                />
-              <TextInput
-                label='Sexual'
-                />
-            </InlineWidgetGroup>
-            <InlineWidgetGroup>
-              <TextInput
-                label='Bowel'
-                />
-              <TextInput
-                label='Hormonal'
-                />
-            </InlineWidgetGroup>
-            <TextInput
-              label='Record ID in EPIC DB'
-              disabled
-              />
-            <button>View All EPIC Data</button>
+              <button>View All EPIC Data</button>
+            </div>
           </div>
 
           <div className={styles['fufu-top-right-container']}>

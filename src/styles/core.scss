@@ -74,7 +74,8 @@ label, .widget-wrapper {
 }
 
 .widget-label {
-  display: inline;
+  display: inline-block;
+  margin-bottom: 1px;
 }
 
 button,

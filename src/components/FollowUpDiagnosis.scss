@@ -5,3 +5,19 @@
 .fud-cores {
   width: 50px;
 }
+
+.fud-cores-involved {
+  color: red;
+}
+
+.fud-widget-group-one .widget-label {
+  min-width: 110px;
+}
+
+.fud-widget-group-two .widget-label {
+  min-width: 135px;
+}
+
+.fud-widget-group-two select, input {
+  width: 150px;
+}

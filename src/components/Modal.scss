@@ -9,6 +9,7 @@
   -webkit-transition: opacity 400ms ease-in;
   -moz-transition: opacity 400ms ease-in;
   transition: opacity 400ms ease-in;
+  z-index: 99999;
 };
 
 .modal .content {
@@ -44,6 +45,7 @@
   -webkit-box-shadow: 1px 1px 3px #000;
   box-shadow: 1px 1px 3px #000;
 }
+
 .close:hover {
   background: #00d9ff;
 }
