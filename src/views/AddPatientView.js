@@ -65,60 +65,8 @@ export class AddPatientView extends Component {
     router: React.PropTypes.object.isRequired
   };
 
-  createToken = () => {
-    var currentdate = new Date();
-    return 'NEWPATIENT-' + currentdate.getMonth().toString() + '-' + currentdate.getHours().toString() + '-' + currentdate.getMinutes().toString() + '-' + currentdate.getSeconds().toString();
-  };
-
   submit = (values, dispatch) => {
-    const body = {
-      firstNames: values.firstName,
-      lastNames: values.lastName,
-      gender: values.gender,
-      dateOfBirth: values.dob.toISOString(),
-      address: values.address,
-      mrn: values.mrn,
-      tumorType: values.tumorType,
-      isSurgical: (values.surgical) ? 'true' : 'false',
-      phone: values.phone,
-      email: values.email,
-    };
-    const newToken = this.createToken();
-    const patient = {
-      token: newToken,
-      id: '',
-      firstname: values.firstName,
-      surname: values.lastName,
-      gender: values.gender,
-      dob: values.dob.toISOString(),
-      address: values.address,
-      mrn: values.mrn,
-      tumorType: values.tumorType,
-      surgical: (values.surgical) ? 'true' : 'false',
-      phone: values.phone,
-      email: values.email,
-    };
-
-    this.props.patientActions.createPatient(patient);
-
-    const url = `${process.env.BACKEND_API_URL}/patient/`;
-    const options = {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    };
-    const thisAddPatientView = this;
-
-    fetch(url, options)
-    .then(function (response) {
-      return response.json();
-    }).then(function (json) {
-      thisAddPatientView.props.patientActions.updatePatient(json, newToken);
-    }).catch(function (ex) {
-      console.log('parsing failed', ex);
-    });
+    this.props.patientActions.createPatient(values);
     this.context.router.goBack();
   };
 

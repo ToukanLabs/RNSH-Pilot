@@ -36,14 +36,49 @@ export const FOLLOW_UP_CREATE_NEW = 'FOLLOW_UP_CREATE_NEW';
 export const createPatient = createAction(
   CREATE_PATIENT,
   (patient) => {
-    return {patient};
+    const newToken = createToken();
+    const newPatient = {
+      token: newToken,
+      id: '',
+      firstname: patient.firstName,
+      surname: patient.lastName,
+      gender: patient.gender,
+      dob: patient.dob.toISOString(),
+      address: patient.address,
+      mrn: patient.mrn,
+      tumorType: patient.tumorType,
+      surgical: (patient.surgical) ? 'true' : 'false',
+      phone: patient.phone,
+      email: patient.email,
+    };
+    return {patient: newPatient};
+  },
+  (patient) => {
+    const body = {
+      firstNames: patient.firstName,
+      lastNames: patient.lastName,
+      gender: patient.gender,
+      dateOfBirth: patient.dob.toISOString(),
+      address: patient.address,
+      mrn: patient.mrn,
+      tumorType: patient.tumorType,
+      isSurgical: (patient.surgical) ? 'true' : 'false',
+      phone: patient.phone,
+      email: patient.email,
+    };
+    return {
+      endpoint: `${process.env.BACKEND_API_URL}/patient/`,
+      method: 'POST',
+      body: body,
+      success: updatePatient
+    };
   }
 );
 
 export const updatePatient = createAction(
   UPDATE_PATIENT,
-  (patient, token) => {
-    return {patient, token};
+  (patient, originalPayload) => {
+    return {patient, token: originalPayload.patient.token};
   }
 );
 
@@ -208,6 +243,11 @@ export const followUpFetch = createAction(
 export const followUpCreateNew = createAction(
   FOLLOW_UP_CREATE_NEW
 );
+
+function createToken () {
+  var currentdate = new Date();
+  return 'NEWPATIENT-' + currentdate.getMonth().toString() + '-' + currentdate.getHours().toString() + '-' + currentdate.getMinutes().toString() + '-' + currentdate.getSeconds().toString();
+};
 
 export const actions = {
   createPatient,
