@@ -5,6 +5,7 @@ export default class FollowUpDoctorSelect extends Component {
   render () {
     return (
       <Select
+        {...this.props.formValue}
         label={this.props.label}
         options={[
           {key: 'M. Back', value: 'M. Back'},
@@ -23,4 +24,5 @@ export default class FollowUpDoctorSelect extends Component {
 
 FollowUpDoctorSelect.propTypes = {
   label: React.PropTypes.string,
+  formValue: React.PropTypes.object
 };

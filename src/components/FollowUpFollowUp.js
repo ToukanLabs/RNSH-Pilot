@@ -1,4 +1,11 @@
 import React, { Component } from 'react';
+import {reduxForm} from 'redux-form';
+import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
+import { actions as patientActions } from 'redux/modules/patient';
+export const fields = ['date', 'prostateRTFinished', 'lastCourseRT', 'hormones',
+ 'systemicTherapy', 'alphaBlocker', 'anticholinergic', 'currentFU', 'doctor', 'nocturia',
+ 'biochemicalFailure', 'BFdate', 'comments'];
 import FollowUpDoctorSelect from './FollowUpDoctorSelect';
 import {
   DateTimeInput,
@@ -9,7 +16,17 @@ import {
 } from './widgets';
 import styles from './FollowUpFollowUp.scss';
 
-export default class FollowUpFollowUp extends Component {
+const mapStateToProps = (state) => ({
+  activePatient: state.router.path,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    patientActions: bindActionCreators(patientActions, dispatch),
+  };
+};
+
+export class FollowUpFollowUp extends Component {
   constructor () {
     super();
 
@@ -63,6 +80,11 @@ export default class FollowUpFollowUp extends Component {
     });
   };
 
+  submit = (values, dispatch) => {
+    const name = this.props.firstname + ' ' + this.props.surname;
+    //this.props.patientActions.followUpPDF(values, this.props.mrn, name);
+  };
+
   render () {
     const metastasesWidget = () => {
       if (this.state.biochemicalFailure) {
@@ -81,10 +103,11 @@ export default class FollowUpFollowUp extends Component {
       }
     };
 
-    const anticholinergicWidget = () => {
+    const anticholinergicWidget = (anticholinergic) => {
       // if (this.state.alphaBlocker) {
       return (
         <Select
+          {...anticholinergic}
           options={[
             {key: '0', value: '0'},
             {key: '1', value: '1'},
@@ -99,12 +122,13 @@ export default class FollowUpFollowUp extends Component {
       // }
     };
 
-    const dateOfBFWidget = () => {
+    const dateOfBFWidget = (BFdate) => {
       if (this.state.biochemicalFailure) {
         return (
           <DateTimeInput
             label='Date of BF'
             noTime
+            formField={BFdate}
             />
         );
       } else {
@@ -130,9 +154,16 @@ export default class FollowUpFollowUp extends Component {
         return null;
       }
     };
-
+    const {
+      fields: {date, prostateRTFinished, lastCourseRT, hormones,
+       systemicTherapy, alphaBlocker, anticholinergic, currentFU, doctor, nocturia,
+       biochemicalFailure, BFdate, comments},
+      handleSubmit,
+      resetForm,
+      submitting,
+      } = this.props;
     return (
-      <div>
+      <form className={styles['apv-form']} onSubmit={handleSubmit(this.submit)}>
         <div className={styles['fufu-row-one']}>
           <div className={styles['fufu-top-left-container']}>
             <div className={styles['fufu-tlc-one']}>
@@ -141,18 +172,22 @@ export default class FollowUpFollowUp extends Component {
                 mandatory
                 noTime
                 value={this.props.data.date}
+                formField={date}
                 />
               <TextInput
                 label='Time from Prostate RT Finished'
                 unitLabel='months'
+                formField={prostateRTFinished}
                 />
               <TextInput
                 label='Time from Last Course of RT'
                 unitLabel='months'
+                formField={lastCourseRT}
                 />
             </div>
             <div className={styles['fufu-tlc-two']}>
               <Select
+                {...hormones}
                 label='Current hormones'
                 options={[
                   {key: 'No', value: 'No'},
@@ -162,6 +197,7 @@ export default class FollowUpFollowUp extends Component {
                 ]}
                 />
               <Select
+                {...systemicTherapy}
                 label='Current Systemic Therapy'
                 options={[
                   {key: 'Nil', value: 'Nil'},
@@ -174,6 +210,7 @@ export default class FollowUpFollowUp extends Component {
               <InlineWidgetGroup>
 
                 <Select
+                  {...alphaBlocker}
                   label='Alpha Blocker / Anticholinergic'
                   labelClassName={styles['fufu-alpha-blocker-label']}
                   options={[
@@ -183,12 +220,13 @@ export default class FollowUpFollowUp extends Component {
                   onChange={this.handleAlphaBlockerChange}
                   />
                 {' - '}
-                {anticholinergicWidget()}
+                {anticholinergicWidget(anticholinergic)}
               </InlineWidgetGroup>
             </div>
 
             <div className={styles['fufu-sub-panel-one']}>
               <Select
+                {...currentFU}
                 label='Current Follow-Up'
                 options={[
                   {key: 'Phone', value: 'Phone'},
@@ -197,8 +235,10 @@ export default class FollowUpFollowUp extends Component {
                 />
               <FollowUpDoctorSelect
                 label='Doctor'
+                formValue={doctor}
                 />
               <Select
+                {...nocturia}
                 label='Nocturia'
                 options={[
                   {key: '0', value: '0'},
@@ -215,6 +255,7 @@ export default class FollowUpFollowUp extends Component {
             </div>
             <div className={styles['fufu-sub-panel-two']}>
               <Select
+                {...biochemicalFailure}
                 label='Biochemical Failure'
                 options={[
                   {key: 'Yes', value: 'Yes'},
@@ -223,7 +264,7 @@ export default class FollowUpFollowUp extends Component {
                 ]}
                 onChange={this.handleBiochemicalFailureChange}
                 />
-              {dateOfBFWidget()}
+              {dateOfBFWidget(BFdate)}
               {metastasesWidget()}
 
               {metastasesSiteAndDateWidgets()}
@@ -303,8 +344,13 @@ export default class FollowUpFollowUp extends Component {
             <div className={styles['fufu-comments-container']}>
               <TextArea
                 label='Comments'
+                {...comments}
                 />
             </div>
+            <button onClick={(e) => {
+              e.preventDefault();
+              this.props.patientActions.followUpPDF();
+            }}>Save</button>
             <div className={styles['fufu-second-cancer-container']}>
               <Select
                 label='2nd Cancer'
@@ -319,11 +365,31 @@ export default class FollowUpFollowUp extends Component {
             </div>
           </div>
         </div>
-      </div>
+        <div>
+          <button type='submit' disabled={submitting}>
+            {submitting ? <i/> : <i/>} Save
+          </button>
+          <button type='button' disabled={submitting} onClick={resetForm}>
+            Clear Values
+          </button>
+        </div>
+      </form>
     );
   };
 };
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
+  form: 'addFollowUp',
+  fields,
+})(FollowUpFollowUp));
 
 FollowUpFollowUp.propTypes = {
   data: React.PropTypes.object,
+  mrn: React.PropTypes.string,
+  firstname: React.PropTypes.string,
+  surname: React.PropTypes.string,
+  patientActions: React.PropTypes.object,
+  fields: React.PropTypes.object,
+  handleSubmit: React.PropTypes.func,
+  resetForm: React.PropTypes.func,
+  submitting: React.PropTypes.boolean,
 };

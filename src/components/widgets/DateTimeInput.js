@@ -3,7 +3,7 @@ import Datetime from 'react-datetime';
 import corestyles from '../../styles/core.scss';
 
 export default class DateTimeInput extends Component {
-  renderWidget () {
+  renderWidget (formField) {
     const dateFormat = (this.props.noDate) ? false : 'DD/MM/YYYY';
     const timeFormat = (this.props.noTime) ? false : 'HH:MM';
     return (
@@ -13,6 +13,7 @@ export default class DateTimeInput extends Component {
         disabled={this.props.disabled}
         value={(this.props.value) ? new Date(this.props.value) : null}
         closeOnSelect
+        {...formField}
         />
     );
   }
@@ -38,13 +39,13 @@ export default class DateTimeInput extends Component {
             {this.props.label}
             {this.getMandatoryIndicator()}:
           </span>
-          {this.renderWidget()}
+          {this.renderWidget(this.props.formField)}
         </span>
       );
     } else {
       return (
         <span className={corestyles['widget-wrapper']}>
-          {this.renderWidget()}
+          {this.renderWidget(this.props.formField)}
         </span>
       );
     }
@@ -59,4 +60,5 @@ DateTimeInput.propTypes = {
   labelClassName: React.PropTypes.string,
   mandatory: React.PropTypes.bool,
   disabled: React.PropTypes.bool,
+  formField: React.PropTypes.object,
 };

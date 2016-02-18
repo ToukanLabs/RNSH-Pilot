@@ -43,6 +43,7 @@ export default class TextInput extends Component {
             disabled={this.props.disabled}
             value={this.props.value}
             defaultValue={this.props.defaultValue}
+            {...this.props.formField}
             />
           {this.getUnitLabel()}
         </span>
@@ -57,6 +58,7 @@ export default class TextInput extends Component {
             disabled={this.props.disabled}
             value={this.props.value}
             defaultValue={this.props.defaultValue}
+            {...this.props.formField}
             />
           {this.getUnitLabel()}
         </span>
@@ -76,4 +78,5 @@ TextInput.propTypes = {
   placeholder: React.PropTypes.string,
   mandatory: React.PropTypes.bool,
   disabled: React.PropTypes.bool,
+  formField: React.PropTypes.object,
 };

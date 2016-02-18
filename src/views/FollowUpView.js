@@ -73,7 +73,13 @@ export class FollowUpView extends Component {
               handleNewFollowUpOnClick={this.props.patientActions.followUpCreateNew}
               />
             <Panel title='Follow Up' className={styles['fuv-follow-up-panel']}>
-              <FollowUpFollowUp data={this.props.activePatient.activeFollowUp} />
+              <FollowUpFollowUp
+                data={this.props.activePatient.activeFollowUp}
+                mrn={this.props.activePatient.mrn}
+                firstname={this.props.activePatient.firstname}
+                surname={this.props.activePatient.surname}
+                patientActions={this.props.patientActions}
+              />
             </Panel>
           </div>
         </div>
