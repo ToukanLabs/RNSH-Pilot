@@ -4,6 +4,8 @@ import { createAction, handleActions } from 'redux-actions';
 // Constants
 // ------------------------------------
 export const CREATE_PATIENT = 'CREATE_PATIENT';
+export const FOLLOWUP_PDF = 'FOLLOWUP_PDF';
+export const SAVE_FOLLOWUP = 'SAVE_FOLLOWUP';
 export const UPDATE_PATIENT = 'UPDATE_PATIENT';
 export const FETCH_PATIENT = 'FETCH_PATIENT';
 export const FETCH_PATIENT_PATIENT_FROM_SERVER = 'FETCH_PATIENT_PATIENT_FROM_SERVER';
@@ -71,6 +73,44 @@ export const createPatient = createAction(
       method: 'POST',
       body: body,
       success: updatePatient
+    };
+  }
+);
+
+export const saveFollowUp = createAction(
+    SAVE_FOLLOWUP,
+    (followUp) => {
+      return {
+        followUp: followUp
+      };
+    }
+);
+
+export const followUpPDF = createAction(
+  FOLLOWUP_PDF,
+  (followUp, mrn, name) => {},
+  (followUp, mrn, name) => {
+    const body = {
+      pdfhtml: `<html>
+        <head/>
+        <body>
+      	<h1>Patient Follow Up</h1>
+      	<p>
+      	  Patient: ${followUp.name}
+          Doctor: ${followUp.doctor}<br/>
+      	  Date: 11-Aug-2015
+      	</p>
+      	<p>
+      		${followUp.comments}
+      	</p>
+        </body>
+      </html>`,
+      mrn: mrn
+    };
+    return {
+      endpoint: `${process.env.BACKEND_API_URL}/download/`,
+      method: 'POST',
+      body: body
     };
   }
 );
@@ -252,6 +292,8 @@ function createToken () {
 export const actions = {
   createPatient,
   updatePatient,
+  followUpPDF,
+  saveFollowUp,
   removeActivePatient,
   searchPatients,
   fetchPatientFromServer,
@@ -298,6 +340,31 @@ export default handleActions({
     return {
       ...state,
       searchResults: patients
+    };
+  },
+  [SAVE_FOLLOWUP]: (state, action) => {
+    let match = false;
+    let allFollowUps = state.activePatient.followUps.map((f) => {
+      if (action.payload.followUp.id === f.id) {
+        match = true;
+        return action.payload.followUp;
+      } else {
+        return f;
+      }
+    });
+
+    if (!match) {
+      allFollowUps.unshift(action.payload.followUp);
+    }
+    let activePatient = state.activePatient;
+    activePatient = {
+      ...activePatient,
+      activeFollowUp: action.payload.followUp,
+      followUps: allFollowUps
+    };
+    return {
+      ...state,
+      activePatient: activePatient,
     };
   },
   [FETCH_PATIENT]: (state, action) => {

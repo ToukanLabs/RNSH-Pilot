@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import {reduxForm} from 'redux-form';
-import { connect } from 'react-redux';
-import {bindActionCreators} from 'redux';
 import { actions as patientActions } from 'redux/modules/patient';
-export const fields = ['date', 'prostateRTFinished', 'lastCourseRT', 'hormones',
+import {bindActionCreators} from 'redux';
+export const fields = ['id', 'date', 'prostateRTFinished', 'lastCourseRT', 'hormones',
  'systemicTherapy', 'alphaBlocker', 'anticholinergic', 'currentFU', 'doctor', 'nocturia',
- 'biochemicalFailure', 'BFdate', 'comments'];
+ 'biochemicalFailure', 'BFdate', 'metastases', 'site', 'metastasesDate', 'comments',
+ 'epicCompleted', 'ipssOne', 'ipssTwo', 'sf12pcs', 'sp12mcs', 'hrqolUrinary', 'hrqolSexual',
+  'hrqolBowel', 'hrqolHormonal', 'secondCancer', 'dateHistology'];
 import FollowUpDoctorSelect from './FollowUpDoctorSelect';
 import {
   DateTimeInput,
@@ -15,10 +16,6 @@ import {
   TextArea,
 } from './widgets';
 import styles from './FollowUpFollowUp.scss';
-
-const mapStateToProps = (state) => ({
-  activePatient: state.router.path,
-});
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -81,15 +78,17 @@ export class FollowUpFollowUp extends Component {
   };
 
   submit = (values, dispatch) => {
-    const name = this.props.firstname + ' ' + this.props.surname;
-    //this.props.patientActions.followUpPDF(values, this.props.mrn, name);
+    // const name = this.props.firstname + ' ' + this.props.surname;
+    this.props.patientActions.saveFollowUp(values);
+    // this.props.patientActions.followUpPDF(values, this.props.mrn, name);
   };
 
   render () {
-    const metastasesWidget = () => {
+    const metastasesWidget = (metastases) => {
       if (this.state.biochemicalFailure) {
         return (
           <Select
+            {...metastases}
             label='Metastases'
             options={[
               {key: 'Yes', value: 'Yes'},
@@ -136,17 +135,19 @@ export class FollowUpFollowUp extends Component {
       }
     };
 
-    const metastasesSiteAndDateWidgets = () => {
+    const metastasesSiteAndDateWidgets = (site, metastasesDate) => {
       if (this.state.metastases) {
         return (
           <span>
             <Select
+              {...site}
               label='Site'
               options={[]}
               />
             <DateTimeInput
               label='Date'
               noTime
+              formField={metastasesDate}
               />
           </span>
         );
@@ -155,15 +156,17 @@ export class FollowUpFollowUp extends Component {
       }
     };
     const {
-      fields: {date, prostateRTFinished, lastCourseRT, hormones,
+      fields: {id, date, prostateRTFinished, lastCourseRT, hormones,
        systemicTherapy, alphaBlocker, anticholinergic, currentFU, doctor, nocturia,
-       biochemicalFailure, BFdate, comments},
+       biochemicalFailure, BFdate, metastases, site, metastasesDate, comments, epicCompleted,
+       ipssOne, ipssTwo, sf12pcs, sp12mcs, hrqolUrinary, hrqolSexual, hrqolBowel, hrqolHormonal,
+       secondCancer, dateHistology},
       handleSubmit,
       resetForm,
       submitting,
       } = this.props;
     return (
-      <form className={styles['apv-form']} onSubmit={handleSubmit(this.submit)}>
+      <form key={id} className={styles['apv-form']} onSubmit={handleSubmit(this.submit)}>
         <div className={styles['fufu-row-one']}>
           <div className={styles['fufu-top-left-container']}>
             <div className={styles['fufu-tlc-one']}>
@@ -265,9 +268,9 @@ export class FollowUpFollowUp extends Component {
                 onChange={this.handleBiochemicalFailureChange}
                 />
               {dateOfBFWidget(BFdate)}
-              {metastasesWidget()}
+              {metastasesWidget(metastases)}
 
-              {metastasesSiteAndDateWidgets()}
+              {metastasesSiteAndDateWidgets(site, metastasesDate)}
             </div>
           </div>
 
@@ -275,6 +278,7 @@ export class FollowUpFollowUp extends Component {
             <div className={styles['fufu-qol-container']}>
               <h3 className={styles['fufu-sub-heading-top']}>Quality of Life</h3>
               <Select
+                {...epicCompleted}
                 label='EPIC Completed'
                 options={[
                   {key: 'Yes', value: 'Yes'},
@@ -286,18 +290,21 @@ export class FollowUpFollowUp extends Component {
               <InlineWidgetGroup>
                 <TextInput
                   label='IPSS'
+                  formField={ipssOne}
                   />
                 +
-                <TextInput />
+                <TextInput formField={ipssTwo}/>
               </InlineWidgetGroup>
               <InlineWidgetGroup>
                 <TextInput
                   label='SF-12 PCS'
                   className={styles['fufu-sf']}
+                  formField={sf12pcs}
                   />
                 <TextInput
                   label='SF-12 MCS'
                   className={styles['fufu-sf']}
+                  formField={sp12mcs}
                   />
               </InlineWidgetGroup>
               <div className={styles['fufu-dataimissing-info']}>
@@ -312,17 +319,21 @@ export class FollowUpFollowUp extends Component {
               <InlineWidgetGroup>
                 <TextInput
                   label='Urinary'
+                  formField={hrqolUrinary}
                   />
                 <TextInput
                   label='Sexual'
+                  formField={hrqolSexual}
                   />
               </InlineWidgetGroup>
               <InlineWidgetGroup>
                 <TextInput
                   label='Bowel'
+                  formField={hrqolBowel}
                   />
                 <TextInput
                   label='Hormonal'
+                  formField={hrqolHormonal}
                   />
               </InlineWidgetGroup>
               <TextInput
@@ -347,12 +358,9 @@ export class FollowUpFollowUp extends Component {
                 {...comments}
                 />
             </div>
-            <button onClick={(e) => {
-              e.preventDefault();
-              this.props.patientActions.followUpPDF();
-            }}>Save</button>
             <div className={styles['fufu-second-cancer-container']}>
               <Select
+                {...secondCancer}
                 label='2nd Cancer'
                 options={[
                   {key: 'Yes', value: 'Yes'},
@@ -361,6 +369,7 @@ export class FollowUpFollowUp extends Component {
                 />
               <TextInput
                 label='Date/Histology'
+                formField={dateHistology}
                 />
             </div>
           </div>
@@ -377,10 +386,15 @@ export class FollowUpFollowUp extends Component {
     );
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
+export default reduxForm({
   form: 'addFollowUp',
   fields,
-})(FollowUpFollowUp));
+},
+state => ({
+  initialValues: state.patients.activePatient.activeFollowUp
+}),
+mapDispatchToProps
+)(FollowUpFollowUp);
 
 FollowUpFollowUp.propTypes = {
   data: React.PropTypes.object,
@@ -391,5 +405,5 @@ FollowUpFollowUp.propTypes = {
   fields: React.PropTypes.object,
   handleSubmit: React.PropTypes.func,
   resetForm: React.PropTypes.func,
-  submitting: React.PropTypes.boolean,
+  submitting: React.PropTypes.func,
 };
