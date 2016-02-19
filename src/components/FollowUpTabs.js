@@ -16,7 +16,7 @@ export default class FollowUpTabs extends Component {
             key={fu.id}
             className={className}
             onClick={() => {
-              this.props.handleFollowUpOnClick(fu.id, fu.date);
+              this.props.handleFollowUpOnClick(fu.id);
             }}
             >
             <FormattedDate

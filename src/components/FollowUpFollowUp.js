@@ -190,6 +190,7 @@ export class FollowUpFollowUp extends Component {
             <div className={styles['fufu-tlc-two']}>
               <Select
                 {...hormones}
+                value={hormones.value || ''}
                 label='Current hormones'
                 options={[
                   {key: 'No', value: 'No'},
@@ -200,6 +201,7 @@ export class FollowUpFollowUp extends Component {
                 />
               <Select
                 {...systemicTherapy}
+                value={systemicTherapy.value || ''}
                 label='Current Systemic Therapy'
                 options={[
                   {key: 'Nil', value: 'Nil'},
@@ -210,9 +212,9 @@ export class FollowUpFollowUp extends Component {
                 ]}
                 />
               <InlineWidgetGroup>
-
                 <Select
                   {...alphaBlocker}
+                  value={alphaBlocker.value || ''}
                   label='Alpha Blocker / Anticholinergic'
                   labelClassName={styles['fufu-alpha-blocker-label']}
                   options={[
@@ -229,6 +231,7 @@ export class FollowUpFollowUp extends Component {
             <div className={styles['fufu-sub-panel-one']}>
               <Select
                 {...currentFU}
+                value={currentFU.value || ''}
                 label='Current Follow-Up'
                 options={[
                   {key: 'Phone', value: 'Phone'},
@@ -241,6 +244,7 @@ export class FollowUpFollowUp extends Component {
                 />
               <Select
                 {...nocturia}
+                value={nocturia.value || ''}
                 label='Nocturia'
                 options={[
                   {key: '0', value: '0'},
@@ -258,6 +262,7 @@ export class FollowUpFollowUp extends Component {
             <div className={styles['fufu-sub-panel-two']}>
               <Select
                 {...biochemicalFailure}
+                value={biochemicalFailure.value || ''}
                 label='Biochemical Failure'
                 options={[
                   {key: 'Yes', value: 'Yes'},
@@ -278,6 +283,7 @@ export class FollowUpFollowUp extends Component {
               <h3 className={styles['fufu-sub-heading-top']}>Quality of Life</h3>
               <Select
                 {...epicCompleted}
+                value={epicCompleted.value || ''}
                 label='EPIC Completed'
                 options={[
                   {key: 'Yes', value: 'Yes'},
@@ -355,6 +361,7 @@ export class FollowUpFollowUp extends Component {
               <TextArea
                 label='Comments'
                 {...comments}
+                value={comments.value || ''}
                 />
             </div>
             <div className={styles['fufu-second-cancer-container']}>

@@ -274,10 +274,9 @@ export const backgroundHistoryChangeAllergicTo = createAction(
 
 export const followUpFetch = createAction(
   FOLLOW_UP_FETCH,
-  (followUpId, followUpDate) => {
+  (followUpId) => {
     return {
       id: followUpId,
-      date: followUpDate,
     };
   }
 );
@@ -588,14 +587,13 @@ export default handleActions({
     };
   },
   [FOLLOW_UP_FETCH]: (state, action) => {
+    const followUps = state.activePatient.followUps;
+    const elementPos = followUps.map((x) => { return x.id; }).indexOf(action.payload.id);
     return {
       ...state,
       activePatient: {
         ...state.activePatient,
-        activeFollowUp: {
-          id: action.payload.id,
-          date: action.payload.date,
-        }
+        activeFollowUp: followUps[elementPos]
       }
     };
   },
@@ -603,7 +601,7 @@ export default handleActions({
     const now = new Date();
     let followUps = [{
       id: state.activePatient.followUps.length + 1,
-      date: now.toISOString()
+      date: moment(now.toISOString())
     }];
     followUps = followUps.concat(state.activePatient.followUps);
 

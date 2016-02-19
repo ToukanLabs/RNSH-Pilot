@@ -6,6 +6,7 @@ export default class FollowUpDoctorSelect extends Component {
     return (
       <Select
         {...this.props.formValue}
+        value={this.props.formValue.value || ''}
         label={this.props.label}
         options={[
           {key: 'M. Back', value: 'M. Back'},
