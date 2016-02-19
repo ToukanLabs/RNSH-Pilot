@@ -32,6 +32,7 @@ export const BACKGROUND_HISTORY_CHANGE_ALLERGIC_TO = 'BACKGROUND_HISTORY_CHANGE_
 
 export const FOLLOW_UP_FETCH = 'FOLLOW_UP_FETCH';
 export const FOLLOW_UP_CREATE_NEW = 'FOLLOW_UP_CREATE_NEW';
+export const FOLLOW_UP_FETCH_LATEST = 'FOLLOW_UP_FETCH_LATEST';
 
 // ------------------------------------
 // Actions
@@ -128,6 +129,11 @@ const fetchPatient = createAction(
   (patientJson) => {
     return {patient: patientJson};
   }
+);
+
+const fetchFollowUpLatest = createAction(
+  FOLLOW_UP_FETCH_LATEST,
+  () => {}
 );
 
 const removeActivePatient = createAction(
@@ -313,6 +319,7 @@ export const actions = {
   backgroundHistoryChangeBackground,
   backgroundHistoryChangeAllergicTo,
   followUpFetch,
+  fetchFollowUpLatest,
   followUpCreateNew,
 };
 
@@ -594,6 +601,15 @@ export default handleActions({
       activePatient: {
         ...state.activePatient,
         activeFollowUp: followUps[elementPos]
+      }
+    };
+  },
+  [FOLLOW_UP_FETCH_LATEST]: (state, action) => {
+    return {
+      ...state,
+      activePatient: {
+        ...state.activePatient,
+        activeFollowUp: state.activePatient.followUps[0]
       }
     };
   },
