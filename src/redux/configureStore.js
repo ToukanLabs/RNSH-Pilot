@@ -31,7 +31,10 @@ const fetchMiddleware = store => next => action => {
     .then(function (response) {
       return response.json();
     }).then(function (json) {
-      next(action.meta.success(json, action.payload));
+      console.log(json);
+      if (action.meta.success) {
+        next(action.meta.success(json, action.payload));
+      }
     }).catch(function (ex) {
       console.log('parsing failed', ex);
     });

@@ -78,9 +78,9 @@ export class FollowUpFollowUp extends Component {
   };
 
   submit = (values, dispatch) => {
-    // const name = this.props.firstname + ' ' + this.props.surname;
+    const name = this.props.firstname + ' ' + this.props.surname;
     this.props.patientActions.saveFollowUp(values);
-    // this.props.patientActions.followUpPDF(values, this.props.mrn, name);
+    this.props.patientActions.followUpPDF(values, this.props.mrn, name);
   };
 
   render () {
@@ -174,7 +174,6 @@ export class FollowUpFollowUp extends Component {
                 label='FU Date'
                 mandatory
                 noTime
-                value={this.props.data.date}
                 formField={date}
                 />
               <TextInput

@@ -1,4 +1,5 @@
 import { createAction, handleActions } from 'redux-actions';
+var moment = require('moment');
 
 // ------------------------------------
 // Constants
@@ -96,9 +97,9 @@ export const followUpPDF = createAction(
         <body>
       	<h1>Patient Follow Up</h1>
       	<p>
-      	  Patient: ${followUp.name}
+      	  Patient: ${name}
           Doctor: ${followUp.doctor}<br/>
-      	  Date: 11-Aug-2015
+      	  Date: ${followUp.date.format('DD MMM YYYY')}
       	</p>
       	<p>
       		${followUp.comments}
@@ -110,7 +111,7 @@ export const followUpPDF = createAction(
     return {
       endpoint: `${process.env.BACKEND_API_URL}/download/`,
       method: 'POST',
-      body: body
+      body: body,
     };
   }
 );
@@ -385,13 +386,13 @@ export default handleActions({
       saved: false,
     };
     const followUps = [
-      {id: 7, date: '2016-02-01T00:00Z'},
-      {id: 6, date: '2016-01-29T00:00Z'},
-      {id: 5, date: '2015-06-08T00:00Z'},
-      {id: 4, date: '2015-07-02T00:00Z'},
-      {id: 3, date: '2015-06-21T00:00Z'},
-      {id: 2, date: '2015-06-08T00:00Z'},
-      {id: 1, date: '2015-06-01T00:00Z'},
+      {id: 7, date: moment('2016-02-01T00:00Z')},
+      {id: 6, date: moment('2016-01-29T00:00Z')},
+      {id: 5, date: moment('2015-06-08T00:00Z')},
+      {id: 4, date: moment('2015-07-02T00:00Z')},
+      {id: 3, date: moment('2015-06-21T00:00Z')},
+      {id: 2, date: moment('2015-06-08T00:00Z')},
+      {id: 1, date: moment('2015-06-01T00:00Z')},
     ];
     patient.activePatient.followUps = followUps;
     patient.activePatient.activeFollowUp = followUps[0];
