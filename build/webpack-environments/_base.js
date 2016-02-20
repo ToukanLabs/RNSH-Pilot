@@ -33,6 +33,9 @@ const webpackConfig = {
   },
   plugins: [
     new webpack.DefinePlugin(config.globals),
+    new webpack.ProvidePlugin({
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch',
+    }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
     new HtmlWebpackPlugin({
