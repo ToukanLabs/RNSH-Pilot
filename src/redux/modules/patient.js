@@ -98,7 +98,7 @@ export const followUpPDF = createAction(
         <body>
       	<h1>Patient Follow Up</h1>
       	<p>
-      	  Patient: ${name}
+      	  Patient: ${name} <br/>
           Doctor: ${followUp.doctor}<br/>
       	  Date: ${followUp.date.format('DD MMM YYYY')}
       	</p>
@@ -110,7 +110,7 @@ export const followUpPDF = createAction(
       mrn: mrn
     };
     return {
-      endpoint: `${process.env.BACKEND_API_URL}/download/`,
+      endpoint: `${process.env.BACKEND_API_URL}/sendaria/`,
       method: 'POST',
       body: body,
     };
