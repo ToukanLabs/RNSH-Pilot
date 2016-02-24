@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import styles from '../styles/core.scss';
 import Modal from '../components/Modal';
 import GlobalHeader from 'components/GlobalHeader';
+import NotificationSystem from 'react-notification-system';
+import { notificationManager } from 'utils/NotificationManager';
+
 var pjson = require('../../package.json');
 
 // Note: Stateless/function components *will not* hot reload!
@@ -28,6 +31,10 @@ class CoreLayout extends Component {
     }
   };
 
+  componentDidMount () {
+    notificationManager.setNotificationSystem(this.refs.notificationSystem);
+  }
+
   render () {
     let { location } = this.props;
 
@@ -51,6 +58,7 @@ class CoreLayout extends Component {
           )}
         </div>
         <span style={{position: 'fixed', right: 2, bottom: 2, color: '#aaa', fontSize: '0.7em'}}>v{pjson.version}</span>
+        <NotificationSystem ref='notificationSystem' />
       </div>
     );
   };
