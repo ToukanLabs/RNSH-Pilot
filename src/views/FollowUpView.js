@@ -78,6 +78,7 @@ export class FollowUpView extends Component {
                 firstname={this.props.activePatient.firstname}
                 surname={this.props.activePatient.surname}
                 patientActions={this.props.patientActions}
+                enableFollowUpSave
               />
             </Panel>
           </div>

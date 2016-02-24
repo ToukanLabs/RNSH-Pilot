@@ -155,6 +155,24 @@ export class FollowUpFollowUp extends Component {
         return null;
       }
     };
+
+    const saveControls = () => {
+      if (this.props.enableFollowUpSave) {
+        return (
+          <div>
+            <button type='submit' disabled={submitting}>
+              {submitting ? <i/> : <i/>} Save
+            </button>
+            <button type='button' disabled={submitting} onClick={resetForm}>
+              Clear Values
+            </button>
+          </div>
+        );
+      } else {
+        return null;
+      }
+    };
+
     const {
       fields: {id, date, prostateRTFinished, lastCourseRT, hormones,
        systemicTherapy, alphaBlocker, anticholinergic, currentFU, doctor, nocturia,
@@ -165,6 +183,7 @@ export class FollowUpFollowUp extends Component {
       resetForm,
       submitting,
       } = this.props;
+
     return (
       <form key={id} className={styles['apv-form']} onSubmit={handleSubmit(this.submit)}>
         <div className={styles['fufu-row-one']}>
@@ -380,14 +399,7 @@ export class FollowUpFollowUp extends Component {
             </div>
           </div>
         </div>
-        <div>
-          <button type='submit' disabled={submitting}>
-            {submitting ? <i/> : <i/>} Save
-          </button>
-          <button type='button' disabled={submitting} onClick={resetForm}>
-            Clear Values
-          </button>
-        </div>
+        {saveControls()}
       </form>
     );
   };
@@ -405,6 +417,7 @@ mapDispatchToProps
 FollowUpFollowUp.propTypes = {
   data: React.PropTypes.object,
   mrn: React.PropTypes.string,
+  enableFollowUpSave: React.PropTypes.bool,
   firstname: React.PropTypes.string,
   surname: React.PropTypes.string,
   patientActions: React.PropTypes.object,
