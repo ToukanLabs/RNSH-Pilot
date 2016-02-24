@@ -1,4 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
+import { notificationManager } from 'utils/NotificationManager';
+
 var moment = require('moment');
 
 // ------------------------------------
@@ -113,6 +115,13 @@ export const followUpPDF = createAction(
       endpoint: `${process.env.BACKEND_API_URL}/sendaria/`,
       method: 'POST',
       body: body,
+      success: () => {
+        notificationManager.addNotification({
+          message: 'Comments have been successfully saved to ARIA.',
+          level: 'success',
+          autoDismiss: 15
+        });
+      }
     };
   }
 );
