@@ -25,7 +25,12 @@ const fetchMiddleware = store => next => action => {
     }).then(function (json) {
       console.log(json);
       if (action.meta.success) {
-        next(action.meta.success(json, action.payload));
+        var successResult = action.meta.success(json, action.payload);
+        // Check to see if the result has a type attribute, if it does then
+        // assume its a Redux action and dispatch it.
+        if (successResult && successResult.type) {
+          next(successResult);
+        }
       }
     }).catch(function (ex) {
       console.log('parsing failed', ex);
