@@ -10,6 +10,7 @@ export const CREATE_PATIENT = 'CREATE_PATIENT';
 export const FOLLOWUP_PDF = 'FOLLOWUP_PDF';
 export const SAVE_FOLLOWUP = 'SAVE_FOLLOWUP';
 export const UPDATE_PATIENT = 'UPDATE_PATIENT';
+export const REMOVE_PATIENT = 'REMOVE_PATIENT';
 export const FETCH_PATIENT = 'FETCH_PATIENT';
 export const FETCH_PATIENT_PATIENT_FROM_SERVER = 'FETCH_PATIENT_PATIENT_FROM_SERVER';
 export const REMOVE_ACTIVE_PATIENT = 'REMOVE_ACTIVE_PATIENT';
@@ -76,7 +77,8 @@ export const createPatient = createAction(
       endpoint: `${process.env.BACKEND_API_URL}/patient/`,
       method: 'POST',
       body: body,
-      success: updatePatient
+      success: updatePatient,
+      error: removePatient,
     };
   }
 );
@@ -130,6 +132,13 @@ export const updatePatient = createAction(
   UPDATE_PATIENT,
   (patient, originalPayload) => {
     return {patient, token: originalPayload.patient.token};
+  }
+);
+
+export const removePatient = createAction(
+  REMOVE_PATIENT,
+  (patient, originalPayload) => {
+    return {token: originalPayload.patient.token};
   }
 );
 
@@ -351,6 +360,20 @@ export default handleActions({
       } else {
         return p;
       }
+    });
+
+    return {
+      ...state,
+      searchResults: patients
+    };
+  },
+  [REMOVE_PATIENT]: (state, action) => {
+    let patients = [];
+    state.searchResults.map((p) => {
+      if (p.token !== action.payload.token) {
+        patients.push(p);
+      }
+      return p;
     });
 
     return {
