@@ -32,7 +32,6 @@ const COMORBILITIES_QUESTION_KEY_MAP = {
 export class BackgroundHistoryView extends Component {
   constructor () {
     super();
-    this.processAllFormData = this.processAllFormData.bind(this);
   };
 
   componentWillMount () {
@@ -45,11 +44,11 @@ export class BackgroundHistoryView extends Component {
     this.requestKoBoToolboxDataWithJSONP();
   };
 
-  processAllFormData (data) {
+  processAllFormData = (data) => {
     let activePatientMrn = this.props.activePatient.mrn;
 
     let activePatientForms = data.filter((d) => {
-      if (parseInt(d[QUESTIONNAIRE_MRN_KEY], 10) === activePatientMrn) {
+      if (parseInt(d[QUESTIONNAIRE_MRN_KEY], 10) === parseInt(activePatientMrn, 10)) {
         return d;
       }
     });

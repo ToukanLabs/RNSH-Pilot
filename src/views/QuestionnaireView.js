@@ -19,24 +19,25 @@ const QUESTIONNAIRE_MRN_KEY = 'demographics/mrn';
 export class QuestionnaireView extends Component {
   constructor () {
     super();
-    this.processAllFormData = this.processAllFormData.bind(this);
-    this.handleDetailViewClick = this.handleDetailViewClick.bind(this);
   };
 
-  componentWillMount () {
+  componentWillMount = () => {
     window['callback'] = function (data) {
+      console.log('setting callback');
       this.processAllFormData(data);
     }.bind(this);
   };
 
-  processAllFormData (data) {
+  processAllFormData = (data) => {
     let activePatientMrn = this.props.activePatient.mrn;
-
     let activePatientForms = data.filter((d) => {
-      if (parseInt(d[QUESTIONNAIRE_MRN_KEY], 10) === activePatientMrn) {
+      if (parseInt(d[QUESTIONNAIRE_MRN_KEY], 10) === parseInt(activePatientMrn, 10)) {
         return d;
       }
     });
+
+    console.log('activePatientForms');
+    console.log(activePatientForms);
 
     activePatientForms.sort((a, b) => {
       return Date.parse(b._submission_time) - Date.parse(a._submission_time);
@@ -56,19 +57,19 @@ export class QuestionnaireView extends Component {
     document.body.appendChild(scriptTag);
   };
 
-  componentDidMount () {
+  componentDidMount = () => {
     this.requestKoBoToolboxDataWithJSONP();
   };
 
-  componentWillUnmount () {
+  componentWillUnmount = () => {
     document.getElementById('kobotoolbox-jsonp').remove();
     this.props.removeQuestionnaireResponses();
     window['callback'] = undefined;
   };
 
-  handleDetailViewClick (id) {
+  handleDetailViewClick = (id) => {
     this.props.setQuestionnaireDetailViewId(id);
-  }
+  };
 
   getQuestionnaireDetailData () {
     if (this.props.activePatient.questionnaireResponses) {
