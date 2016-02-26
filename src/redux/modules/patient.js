@@ -37,6 +37,10 @@ export const FOLLOW_UP_FETCH = 'FOLLOW_UP_FETCH';
 export const FOLLOW_UP_CREATE_NEW = 'FOLLOW_UP_CREATE_NEW';
 export const FOLLOW_UP_FETCH_LATEST = 'FOLLOW_UP_FETCH_LATEST';
 
+export const DIAGNOSIS_FETCH = 'DIAGNOSIS_FETCH';
+export const DIAGNOSIS_SAVE = 'DIAGNOSIS_SAVE';
+export const UPDATE_DIAGNOSIS = 'UPDATE_DIAGNOSIS';
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -191,6 +195,54 @@ export const fetchPatientFromServer = createAction(
   }
 );
 
+export const fetchDiagnosis = createAction(
+  DIAGNOSIS_FETCH,
+  (ehrId) => {
+    return {ehrId: ehrId};
+  },
+  (ehrId) => {
+    return {
+      endpoint: `${process.env.BACKEND_API_URL}/prostate/diagnosis/${ehrId}`,
+      success: updateDiagnosis
+    };
+  }
+);
+
+const updateDiagnosis = createAction(
+  UPDATE_DIAGNOSIS,
+  (diagnosisJson) => {
+    return {diagnosis: diagnosisJson};
+  }
+);
+
+export const saveDiagnosis = createAction(
+  DIAGNOSIS_SAVE,
+  (ehrId, primary_tumour_pt, regional_lymph_node_pn, distant_metastasis_pm) => {
+    return {
+      ehrId: ehrId,
+      diagnosis: {
+        primary_tumour_pt: primary_tumour_pt,
+        regional_lymph_node_pn: regional_lymph_node_pn,
+        distant_metastasis_pm: distant_metastasis_pm
+      }
+    };
+  },
+  (ehrId, primary_tumour_pt, regional_lymph_node_pn, distant_metastasis_pm) => {
+    const body = {
+      diagnosis: {
+        primary_tumour_pt: primary_tumour_pt,
+        regional_lymph_node_pn: regional_lymph_node_pn,
+        distant_metastasis_pm: distant_metastasis_pm
+      }
+    };
+    return {
+      endpoint: `${process.env.BACKEND_API_URL}/prostate/diagnosis/${ehrId}`,
+      method: 'POST',
+      body: body
+    };
+  }
+);
+
 export const setQuestionnaireResponses = createAction(
   SET_QUESTIONNAIRE_RESPONSES,
   (questionnaireResponseData) => {
@@ -318,6 +370,9 @@ export const actions = {
   updatePatient,
   followUpPDF,
   saveFollowUp,
+  fetchDiagnosis,
+  saveDiagnosis,
+  updateDiagnosis,
   removeActivePatient,
   searchPatients,
   fetchPatientFromServer,
@@ -435,6 +490,15 @@ export default handleActions({
     patient.activePatient.followUps = followUps;
     patient.activePatient.activeFollowUp = followUps[0];
 
+    return patient;
+  },
+  [UPDATE_DIAGNOSIS]: (state, action) => {
+    let activePatient = {...state.activePatient};
+    activePatient.diagnosis = action.payload.diagnosis;
+    let patient = {
+      ...state,
+      activePatient: activePatient,
+    };
     return patient;
   },
   [REMOVE_ACTIVE_PATIENT]: (state, action) => {

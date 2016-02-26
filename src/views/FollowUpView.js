@@ -35,7 +35,7 @@ export class FollowUpView extends Component {
         <div className={styles['fuv-container-table']}>
           <div className={styles['fuv-row-one']}>
             <div className={styles['fuv-diagnosis-container']}>
-              <FollowUpDiagnosis />
+              <FollowUpDiagnosis/>
             </div>
             <div className={styles['fuv-intent-status-container']}>
               <div className={styles['fuv-intent-container']}>
