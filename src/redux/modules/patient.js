@@ -493,13 +493,19 @@ export default handleActions({
     return patient;
   },
   [UPDATE_DIAGNOSIS]: (state, action) => {
-    let activePatient = {...state.activePatient};
-    activePatient.diagnosis = action.payload.diagnosis;
-    let patient = {
-      ...state,
-      activePatient: activePatient,
-    };
-    return patient;
+    if (state.activePatient) {
+      let activePatient = {...state.activePatient};
+      activePatient.diagnosis = action.payload.diagnosis;
+      let patient = {
+        ...state,
+        activePatient: activePatient,
+      };
+      return patient;
+    } else {
+      return {
+        ...state
+      };
+    }
   },
   [REMOVE_ACTIVE_PATIENT]: (state, action) => {
     let newState = {
@@ -702,13 +708,19 @@ export default handleActions({
     };
   },
   [FOLLOW_UP_FETCH_LATEST]: (state, action) => {
-    return {
-      ...state,
-      activePatient: {
-        ...state.activePatient,
-        activeFollowUp: state.activePatient.followUps[0]
-      }
-    };
+    if (state.activePatient && state.activePatient.followUps) {
+      return {
+        ...state,
+        activePatient: {
+          ...state.activePatient,
+          activeFollowUp: state.activePatient.followUps[0]
+        }
+      };
+    } else {
+      return {
+        ...state
+      };
+    }
   },
   [FOLLOW_UP_CREATE_NEW]: (state, action) => {
     const now = new Date();
