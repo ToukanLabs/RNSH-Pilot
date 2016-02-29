@@ -11,7 +11,7 @@ export default class Modal extends Component {
         </div>
         <div className={styles['content']}>
           <Link to={this.props.returnTo}>
-            <a href='#' title='Close' className={styles['close']}>X</a>
+            <span title='Close' className={styles['close']}>X</span>
           </Link>
           <div >
             {this.props.children}
