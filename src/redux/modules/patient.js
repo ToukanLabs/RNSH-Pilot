@@ -563,11 +563,12 @@ export default handleActions({
   },
   [REMOVE_NEW_PATIENT_RESPONSES]: (state, action) => {
     const newState = {
-      activePatient: state.activePatient,
-      searchResults: state.searchResults
+      ...state
     };
 
-    delete newState.activePatient.newPatientResponses;
+    if (newState.activePatient && newState.activePatient.newPatientResponses) {
+      delete newState.activePatient.newPatientResponses;
+    }
 
     return newState;
   },
