@@ -193,10 +193,10 @@ export class BackgroundHistoryView extends Component {
             <Select
               label='Diabetes Mellitus'
               options={[
-                {key: 'Yes', value: true},
-                {key: 'No', value: false},
+                {key: 'Yes', value: 'Yes'},
+                {key: 'No', value: 'No'},
               ]}
-              value={backgroundHistory.diabetes}
+              value={(backgroundHistory.diabetes) ? 'Yes' : (backgroundHistory.diabetes === null) ? null : 'No'}
               onChange={(e) => {
                 const diabetes = (e.target.value === 'Yes');
                 this.props.backgroundHistoryChangeDiabetes(diabetes);
@@ -205,10 +205,10 @@ export class BackgroundHistoryView extends Component {
             <Select
               label='Hypertension'
               options={[
-                {key: 'Yes', value: true},
-                {key: 'No', value: false},
+                {key: 'Yes', value: 'Yes'},
+                {key: 'No', value: 'No'},
               ]}
-              value={backgroundHistory.hypertension}
+              value={(backgroundHistory.hypertension) ? 'Yes' : (backgroundHistory.hypertension === null) ? null : 'No'}
               onChange={(e) => {
                 const hypertension = (e.target.value === 'Yes');
                 this.props.backgroundHistoryChangeHypertension(hypertension);
@@ -217,10 +217,10 @@ export class BackgroundHistoryView extends Component {
             <Select
               label='Hypercholesterolemia'
               options={[
-                {key: 'Yes', value: true},
-                {key: 'No', value: false},
+                {key: 'Yes', value: 'Yes'},
+                {key: 'No', value: 'No'},
               ]}
-              value={backgroundHistory.hypercholesterolemia}
+              value={(backgroundHistory.hypercholesterolemia) ? 'Yes' : (backgroundHistory.hypercholesterolemia === null) ? null : 'No'}
               onChange={(e) => {
                 const hypercholesterolemia = (e.target.value === 'Yes');
                 this.props.backgroundHistoryChangeHypercholesterolemia(hypercholesterolemia);
@@ -240,10 +240,10 @@ export class BackgroundHistoryView extends Component {
             <Select
               label='Blood Thinners'
               options={[
-                {key: 'Yes', value: true},
-                {key: 'No', value: false},
+                {key: 'Yes', value: 'Yes'},
+                {key: 'No', value: 'No'},
               ]}
-              value={backgroundHistory.bloodThinners}
+              value={(backgroundHistory.bloodThinners) ? 'Yes' : (backgroundHistory.bloodThinners === null) ? null : 'No'}
               onChange={(e) => {
                 const bloodThinners = (e.target.value === 'Yes');
                 this.props.backgroundHistoryChangeBloodThinners(bloodThinners);
@@ -252,10 +252,10 @@ export class BackgroundHistoryView extends Component {
             <Select
               label='Allergies'
               options={[
-                {key: 'Yes', value: true},
-                {key: 'No', value: false},
+                {key: 'Yes', value: 'Yes'},
+                {key: 'No', value: 'No'},
               ]}
-              value={backgroundHistory.allergies}
+              value={(backgroundHistory.allergies) ? 'Yes' : (backgroundHistory.allergies === null) ? null : 'No'}
               onChange={(e) => {
                 const allergies = (e.target.value === 'Yes');
                 this.props.backgroundHistoryChangeAllergies(allergies);
