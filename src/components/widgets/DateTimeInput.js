@@ -4,18 +4,24 @@ import corestyles from '../../styles/core.scss';
 
 export default class DateTimeInput extends Component {
   renderWidget (formField) {
-    const dateFormat = (this.props.noDate) ? false : 'DD/MM/YYYY';
-    const timeFormat = (this.props.noTime) ? false : 'HH:MM';
-    return (
-      <Datetime
-        dateFormat={dateFormat}
-        timeFormat={timeFormat}
-        disabled={this.props.disabled}
-        value={(this.props.value) ? new Date(this.props.value) : null}
-        closeOnSelect
-        {...formField}
-        />
-    );
+    if (this.props.disabled) {
+      return (
+        <input type='text' disabled />
+      );
+    } else {
+      const dateFormat = (this.props.noDate) ? false : 'DD/MM/YYYY';
+      const timeFormat = (this.props.noTime) ? false : 'HH:MM';
+      return (
+        <Datetime
+          dateFormat={dateFormat}
+          timeFormat={timeFormat}
+          disabled={this.props.disabled}
+          value={(this.props.value) ? new Date(this.props.value) : null}
+          closeOnSelect
+          {...formField}
+          />
+      );
+    }
   }
 
   isMandatory () {
