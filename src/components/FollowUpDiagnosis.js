@@ -63,11 +63,14 @@ export default class FollowUpDiagnosis extends Component {
   };
 
   componentWillUnmount () {
-    this.props.patientActions.saveDiagnosis(
-      this.props.activePatient.ehrId,
-      this.props.activePatient.diagnosis.primary_tumour_pt,
-      this.props.activePatient.diagnosis.regional_lymph_node_pn,
-      this.props.activePatient.diagnosis.distant_metastasis_pm);
+    if (this.props.activePatient.diagnosis) {
+      this.props.patientActions.saveDiagnosis(
+        this.props.activePatient.ehrId,
+        this.props.activePatient.diagnosis.primary_tumour_pt,
+        this.props.activePatient.diagnosis.regional_lymph_node_pn,
+        this.props.activePatient.diagnosis.distant_metastasis_pm
+      );
+    }
   };
 
   handleChangePrimaryTumorPt = (e) => {
