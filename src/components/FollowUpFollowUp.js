@@ -26,56 +26,7 @@ const mapDispatchToProps = (dispatch) => {
 export class FollowUpFollowUp extends Component {
   constructor () {
     super();
-
-    this.state = {
-      alphaBlocker: false,
-      biochemicalFailure: false,
-      metastases: false,
-    };
   }
-
-  handleAlphaBlockerChange = (e) => {
-    const alphaBlockerVal = e.target.value;
-    let newVal = false;
-    if (alphaBlockerVal === 'Yes') {
-      newVal = true;
-    }
-    this.setState({
-      alphaBlocker: newVal,
-      biochemicalFailure: this.state.biochemicalFailure,
-      metastases: this.state.metastases,
-    });
-  };
-
-  handleBiochemicalFailureChange = (e) => {
-    const biochemicalFailureVal = e.target.value;
-    let newVal = false;
-    let metastasesNewVal;
-    if (biochemicalFailureVal === 'Yes') {
-      newVal = true;
-      metastasesNewVal = this.state.metastases;
-    } else {
-      metastasesNewVal = false;
-    }
-    this.setState({
-      alphaBlocker: this.state.alphaBlocker,
-      biochemicalFailure: newVal,
-      metastases: metastasesNewVal,
-    });
-  };
-
-  handleMetastasesChange = (e) => {
-    const metastasesVal = e.target.value;
-    let newVal = false;
-    if (metastasesVal === 'Yes') {
-      newVal = true;
-    }
-    this.setState({
-      alphaBlocker: this.state.alphaBlocker,
-      biochemicalFailure: this.state.biochemicalFailure,
-      metastases: newVal,
-    });
-  };
 
   submit = (values, dispatch) => {
     const name = this.props.firstname + ' ' + this.props.surname;
@@ -85,7 +36,7 @@ export class FollowUpFollowUp extends Component {
 
   render () {
     const metastasesWidget = (metastases) => {
-      if (this.state.biochemicalFailure) {
+      if (biochemicalFailure.value === 'Yes') {
         return (
           <Select
             {...metastases}
@@ -94,7 +45,6 @@ export class FollowUpFollowUp extends Component {
               {key: 'Yes', value: 'Yes'},
               {key: 'No', value: 'No'},
             ]}
-            onChange={this.handleMetastasesChange}
             />
         );
       } else {
@@ -103,7 +53,6 @@ export class FollowUpFollowUp extends Component {
     };
 
     const anticholinergicWidget = (anticholinergic) => {
-      // if (this.state.alphaBlocker) {
       return (
         <Select
           {...anticholinergic}
@@ -113,16 +62,13 @@ export class FollowUpFollowUp extends Component {
             {key: '2', value: '2'},
             {key: '3', value: '3'},
           ]}
-          disabled={!this.state.alphaBlocker}
+          disabled={!alphaBlocker.value}
           />
       );
-      // } else {
-        // return null;
-      // }
     };
 
     const dateOfBFWidget = (BFdate) => {
-      if (this.state.biochemicalFailure) {
+      if (biochemicalFailure.value === 'Yes') {
         return (
           <DateTimeInput
             label='Date of BF'
@@ -136,7 +82,7 @@ export class FollowUpFollowUp extends Component {
     };
 
     const metastasesSiteAndDateWidgets = (site, metastasesDate) => {
-      if (this.state.metastases) {
+      if (metastases.value === 'Yes') {
         return (
           <span>
             <Select
@@ -240,7 +186,6 @@ export class FollowUpFollowUp extends Component {
                     {key: 'Yes', value: 'Yes'},
                     {key: 'No', value: 'No'},
                   ]}
-                  onChange={this.handleAlphaBlockerChange}
                   />
                 {' - '}
                 {anticholinergicWidget(anticholinergic)}
@@ -288,7 +233,6 @@ export class FollowUpFollowUp extends Component {
                   {key: 'No', value: 'No'},
                   {key: 'UKN', value: 'UKN'},
                 ]}
-                onChange={this.handleBiochemicalFailureChange}
                 />
               {dateOfBFWidget(BFdate)}
               {metastasesWidget(metastases)}
