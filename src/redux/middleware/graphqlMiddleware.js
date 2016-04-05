@@ -1,26 +1,21 @@
 import { notificationManager } from 'utils/NotificationManager';
 
-const fetchMiddleware = store => next => action => {
+const graphqlMiddleware = store => next => action => {
   next(action);
-  let options;
-  if (action.meta && action.meta.endpoint) {
-    switch (action.meta.method) {
-      case 'POST':
-        options = {
-          method: 'post',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(action.meta.body)
-        };
 
-        break;
-      default:
-        options = {
-          method: 'get'
-        };
-    }
-    fetch(action.meta.endpoint, options)
+  if (action.meta && action.meta.query) {
+    let options;
+    options = {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        query: action.meta.query,
+        variables: action.meta.variables,
+      })
+    };
+    fetch(`${process.env.BACKEND_API_URL}/graphql`, options)
     .then(function (response) {
       return response.json();
     }).then(function (json) {
@@ -41,9 +36,8 @@ const fetchMiddleware = store => next => action => {
         }
         return;
       }
-
       if (action.meta.success) {
-        var successResult = action.meta.success(json, action.payload);
+        var successResult = action.meta.success(json.data, action.payload);
         // Check to see if the result has a type attribute, if it does then
         // assume its a Redux action and dispatch it.
         if (successResult && successResult.type) {
@@ -53,8 +47,8 @@ const fetchMiddleware = store => next => action => {
     }).catch(function (ex) {
       console.log('parsing failed', ex);
     });
-    console.log('fetching: ' + action.meta.endpoint);
+    console.log('fetching: ' + action.meta.query);
   }
 };
 
-export { fetchMiddleware as fetchMiddleware };
+export { graphqlMiddleware as graphqlMiddleware };

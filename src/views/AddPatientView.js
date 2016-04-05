@@ -135,9 +135,9 @@ export class AddPatientView extends Component {
                                                // when resetting
             >
             <option></option>
-            <option value='PROSTATE'>Prostate</option>
+            <option value='Prostate'>Prostate</option>
             <option value='CNS'>CNS</option>
-            <option value='BREAST'>Breast</option>
+            <option value='Breast'>Breast</option>
           </select>
           {tumorType.touched && tumorType.error && <span className={styles['apv-error-span']}>{tumorType.error}</span>}
         </div>

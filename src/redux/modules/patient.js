@@ -65,22 +65,58 @@ export const createPatient = createAction(
     return {patient: newPatient};
   },
   (patient) => {
-    const body = {
-      firstNames: patient.firstName,
-      lastNames: patient.lastName,
-      gender: patient.gender,
-      dateOfBirth: patient.dob.toISOString(),
-      address: patient.address,
-      mrn: patient.mrn,
-      tumorType: patient.tumorType,
-      isSurgical: (patient.surgical) ? 'true' : 'false',
-      phone: patient.phone,
-      email: patient.email,
-    };
+    const query = `mutation insertPatient (
+        $firstname: String!,
+        $surname: String!,
+        $gender: String!,
+        $dob: String!,
+        $address: String!,
+        $mrn: Int!,
+        $tumorType: String!,
+        $surgical: String!,
+        $phone: String!,
+        $email: String!
+      ) {
+      patient: createPatient(
+        firstname: $firstname,
+        surname: $surname,
+        gender: $gender,
+        dob: $dob,
+        address: $address,
+        mrn: $mrn,
+        tumorType: $tumorType,
+        surgical: $surgical,
+        phone: $phone,
+        email: $email
+      ) {
+        id,
+        mrn,
+        surname
+        firstname,
+        gender,
+        tumorType,
+        surgical,
+        dob,
+        address,
+        phone,
+        email,
+      }
+    }`;
+    const variables = `{
+      "firstname": "${patient.firstName}",
+      "surname": "${patient.lastName}",
+      "gender": "${patient.gender}",
+      "dob": "${patient.dob.toISOString()}",
+      "address": "${patient.address}",
+      "mrn": ${patient.mrn},
+      "tumorType": "${patient.tumorType}",
+      "surgical": "${(patient.surgical) ? 'true' : 'false'}",
+      "phone": "${patient.phone}",
+      "email": "${patient.email}"
+    }`;
     return {
-      endpoint: `${process.env.BACKEND_API_URL}/patient/`,
-      method: 'POST',
-      body: body,
+      query: query,
+      variables: variables,
       success: updatePatient,
       error: removePatient,
     };
@@ -135,7 +171,7 @@ export const followUpPDF = createAction(
 export const updatePatient = createAction(
   UPDATE_PATIENT,
   (patient, originalPayload) => {
-    return {patient, token: originalPayload.patient.token};
+    return {patient: patient.patient, token: originalPayload.patient.token};
   }
 );
 
@@ -149,7 +185,7 @@ export const removePatient = createAction(
 const fetchPatient = createAction(
   FETCH_PATIENT,
   (patientJson) => {
-    return {patient: patientJson};
+    return {patient: patientJson.patient};
   }
 );
 
@@ -166,7 +202,7 @@ const setPatientSearchResults = createAction(
   SET_PATIENT_SEARCH_RESULTS,
   (patientsJson) => {
     return {
-      patients: patientsJson
+      patients: patientsJson.patients
     };
   }
 );
@@ -175,8 +211,23 @@ export const searchPatients = createAction(
   SEARCH_PATIENTS,
   null,
   (patientId) => {
+    const query = `query getAllPatients {
+      patients {
+        id,
+        mrn,
+        surname
+        firstname,
+        gender,
+        tumorType,
+        surgical,
+        dob,
+        address,
+        phone,
+        email,
+      }
+    }`;
     return {
-      endpoint: `${process.env.BACKEND_API_URL}/patient/`,
+      query: query,
       success: setPatientSearchResults
     };
   }
@@ -188,8 +239,32 @@ export const fetchPatientFromServer = createAction(
     return {patientId: patientId};
   },
   (patientId) => {
+    const query = `query getPatient ($id: Int!) {
+      patient(id: $id) {
+        id,
+        mrn,
+        ehrId,
+        surname
+        firstname,
+        gender,
+        tumorType,
+        surgical,
+        dob,
+        address,
+        phone,
+        email,
+        allergies{
+          name,
+          date
+        }
+      }
+    }`;
+    const variables = `{
+      "id": ${patientId}
+    }`;
     return {
-      endpoint: `${process.env.BACKEND_API_URL}/patient/${patientId}`,
+      query: query,
+      variables: variables,
       success: fetchPatient
     };
   }
