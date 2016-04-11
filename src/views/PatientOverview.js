@@ -6,7 +6,6 @@ import PatientOverviewDemographics from 'components/PatientOverviewDemographics'
 import PatientOverviewDiagnosis from 'components/PatientOverviewDiagnosis';
 import PatientOverviewTreatment from 'components/PatientOverviewTreatment';
 import FollowUpFollowUp from 'components/FollowUpFollowUp';
-import Panel from 'components/Panel';
 
 const mapStateToProps = (state) => ({
   activeFollowUp: state.patients.activePatient.activeFollowUp,
@@ -30,16 +29,15 @@ export class PatientOverview extends Component {
         <PatientOverviewDiagnosis />
         <PatientOverviewTreatment />
         {
-        <Panel title='Latest Follow Up'>
-          <FollowUpFollowUp
-            data={this.props.activeFollowUp}
-            mrn={this.props.mrn}
-            firstname={this.props.firstname}
-            surname={this.props.surname}
-            patientActions={this.props.patientActions}
-            enableFollowUpSave={false}
-            />
-        </Panel>
+        <FollowUpFollowUp
+          data={this.props.activeFollowUp}
+          mrn={this.props.mrn}
+          panelTitle={'Latest Follow Up'}
+          firstname={this.props.firstname}
+          surname={this.props.surname}
+          patientActions={this.props.patientActions}
+          enableFollowUpSave={false}
+          />
         }
       </div>
     );
