@@ -1,6 +1,6 @@
 export const initialState = {
   ui: {
-    sidemenuVisibility: 'collapsed'
+    sidemenuVisibility: 'expanded'
   },
   advancedSearch: {
     mrn: '',
