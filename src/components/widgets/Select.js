@@ -50,9 +50,9 @@ export default class Select extends Component {
 
     if (this.props.label) {
       return (
-        <span className={corestyles['widget-wrapper']}>
+        <span className={corestyles['widgetWrapper']}>
           <span
-            className={`${corestyles['widget-label']} ${labelClassName}`}
+            className={`${corestyles['widgetLabel']} ${labelClassName}`}
             >
             {this.props.label}
             {this.getMandatoryIndicator()}:
@@ -70,7 +70,7 @@ export default class Select extends Component {
       );
     } else {
       return (
-        <span className={corestyles['widget-wrapper']}>
+        <span className={corestyles['widgetWrapper']}>
           <select
             className={className}
             onChange={this.handleOnChange}

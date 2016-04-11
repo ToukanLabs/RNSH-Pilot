@@ -26,6 +26,7 @@ $table-background: #f5eeee;
 $table-row-highlight: lighten(#18A29C, 55);
 
 $panel-background: $table-background;
+$panel-heading-background: darken($panel-background, 5);
 
 $widget-disabled-bg-color: #bdbdbd;
 $widget-disabled-color: lighten(#bdbdbd, 15);

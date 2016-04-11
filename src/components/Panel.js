@@ -3,17 +3,22 @@ import styles from './Panel.scss';
 
 const Panel = ({title, className, children}) => {
   const componentClassName = (className)
-      ? `${styles['panel']} ${className}`
-      : styles['panel'];
+      ? `${styles.panel} ${className}`
+      : styles.panel;
 
   const componentTitle = (title)
       ? (<h2>{title}</h2>)
       : null;
 
+  const componentContent =
+      <div className={styles.panelContent}>
+        {children}
+      </div>;
+
   return (
     <div className={componentClassName}>
       {componentTitle}
-      {children}
+      {componentContent}
     </div>
   );
 };

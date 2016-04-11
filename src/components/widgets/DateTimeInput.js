@@ -39,8 +39,8 @@ export default class DateTimeInput extends Component {
 
     if (this.props.label) {
       return (
-        <span className={corestyles['widget-wrapper']}>
-          <span className={`${corestyles['widget-label']} ${labelClassName}`}
+        <span className={corestyles['widgetWrapper']}>
+          <span className={`${corestyles['widgetLabel']} ${labelClassName}`}
             >
             {this.props.label}
             {this.getMandatoryIndicator()}:
@@ -50,7 +50,7 @@ export default class DateTimeInput extends Component {
       );
     } else {
       return (
-        <span className={corestyles['widget-wrapper']}>
+        <span className={corestyles['widgetWrapper']}>
           {this.renderWidget(this.props.formField)}
         </span>
       );

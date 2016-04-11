@@ -3,16 +3,22 @@
 .panel {
   background-color: $panel-background;
   border-top: 1px solid $gh-box-fill-color;
-  padding: 3px 10px 6px 10px;
+  padding: 0;
   font-size: 0.9em;
 }
 
 .panel h2 {
   font-size: 1.3em;
   box-sizing: border-box;
+  padding: 0.5em 0 0.5em 0.5em;
+  background-color: $panel-heading-background;
 }
 
-.panel label, .panel .widget-wrapper {
+.panelContent {
+  padding: 0.5em 0 0.5em 0.5em;
+}
+
+.panel label, .panel .widgetWrapper {
   margin: 3px 0;
 }
 

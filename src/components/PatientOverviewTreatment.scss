@@ -1,23 +1,23 @@
-.treatment-panel {
+.treatmentPanel {
   position: relative;
   width: 100%;
 }
 
-.treatment-grid-part-left .widget-label {
+.treatmentGridPartLeft .widgetLabel {
   min-width: 110px;
 }
 
-.treatment-grid-part-middle .widget-label {
+.treatmentGridPartMiddle .widgetLabel {
   min-width: 125px;
 }
 
-.treatment-grid-part-right .widget-label {
+.treatmentGridPartRight .widgetLabel {
   min-width: 140px;
 }
 
-.treatment-grid-part-left,
-.treatment-grid-part-middle,
-.treatment-grid-part-right  {
+.treatmentGridPartLeft,
+.treatmentGridPartMiddle,
+.treatmentGridPartRight  {
   display: inline-block;
   width: 33%;
 }

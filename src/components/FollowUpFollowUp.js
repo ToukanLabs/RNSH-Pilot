@@ -131,10 +131,10 @@ export class FollowUpFollowUp extends Component {
       } = this.props;
 
     return (
-      <form key={id} className={styles['apv-form']} onSubmit={handleSubmit(this.submit)}>
-        <div className={styles['fufu-row-one']}>
-          <div className={styles['fufu-top-left-container']}>
-            <div className={styles['fufu-tlc-one']}>
+      <form key={id} className={styles.apvForm} onSubmit={handleSubmit(this.submit)}>
+        <div className={styles.fufuRowOne}>
+          <div className={styles.fufuTopLeftContainer}>
+            <div className={styles.fufuTlcOne}>
               <DateTimeInput
                 label='FU Date'
                 mandatory
@@ -152,7 +152,7 @@ export class FollowUpFollowUp extends Component {
                 formField={lastCourseRT}
                 />
             </div>
-            <div className={styles['fufu-tlc-two']}>
+            <div className={styles.fufuTlcTwo}>
               <Select
                 {...hormones}
                 value={hormones.value || ''}
@@ -181,7 +181,7 @@ export class FollowUpFollowUp extends Component {
                   {...alphaBlocker}
                   value={alphaBlocker.value || ''}
                   label='Alpha Blocker / Anticholinergic'
-                  labelClassName={styles['fufu-alpha-blocker-label']}
+                  labelClassName={styles.fufuAlphaBlockerLabel}
                   options={[
                     {key: 'Yes', value: 'Yes'},
                     {key: 'No', value: 'No'},
@@ -192,7 +192,7 @@ export class FollowUpFollowUp extends Component {
               </InlineWidgetGroup>
             </div>
 
-            <div className={styles['fufu-sub-panel-one']}>
+            <div className={styles.fufuSubPanelOne}>
               <Select
                 {...currentFU}
                 value={currentFU.value || ''}
@@ -223,7 +223,7 @@ export class FollowUpFollowUp extends Component {
                 ]}
                 />
             </div>
-            <div className={styles['fufu-sub-panel-two']}>
+            <div className={styles.fufuSubPanelTwo}>
               <Select
                 {...biochemicalFailure}
                 value={biochemicalFailure.value || ''}
@@ -241,9 +241,9 @@ export class FollowUpFollowUp extends Component {
             </div>
           </div>
 
-          <div className={styles['fufu-top-middle-container']}>
-            <div className={styles['fufu-qol-container']}>
-              <h3 className={styles['fufu-sub-heading-top']}>Quality of Life</h3>
+          <div className={styles.fufuTopMiddleContainer}>
+            <div className={styles.fufuQolContainer}>
+              <h3 className={styles.fufuSubHeadingTop}>Quality of Life</h3>
               <Select
                 {...epicCompleted}
                 value={epicCompleted.value || ''}
@@ -266,23 +266,23 @@ export class FollowUpFollowUp extends Component {
               <InlineWidgetGroup>
                 <TextInput
                   label='SF-12 PCS'
-                  className={styles['fufu-sf']}
+                  className={styles.fufuSf}
                   formField={sf12pcs}
                   />
                 <TextInput
                   label='SF-12 MCS'
-                  className={styles['fufu-sf']}
+                  className={styles.fufuSf}
                   formField={sp12mcs}
                   />
               </InlineWidgetGroup>
-              <div className={styles['fufu-dataimissing-info']}>
+              <div className={styles.fufuDataimissingInfo}>
                 ("-1" = data missing / NA)
               </div>
               <button>Get EPIC Scores</button>
               <button>Enter EPIC Data</button>
             </div>
 
-            <div className={styles['fufu-hrqol-container']}>
+            <div className={styles.fufuHrqolContainer}>
               <h3>HRQOL Domain Scores</h3>
               <InlineWidgetGroup>
                 <TextInput
@@ -312,33 +312,36 @@ export class FollowUpFollowUp extends Component {
             </div>
           </div>
 
-          <div className={styles['fufu-top-right-container']}>
-            <h3 className={styles['fufu-sub-heading-top']}>Toxicity Assessment</h3>
+          <div className={styles.fufuTopRightContainer}>
+            <h3 className={styles.fufuSubHeadingTop}>Toxicity Assessment</h3>
             <button>Open Assessment Form</button>
             <button>Check All Assessments</button>
           </div>
         </div>
-        <div className={styles['fufu-row-two-container']}>
-          <div className={styles['fufu-row-two']}>
-            <div className={styles['fufu-comments-container']}>
+
+        <div className={styles.fufuRowTwoContainer}>
+          <div className={styles.fufuRowTwo}>
+            <div className={styles.fufuSecondCancerContainer}>
+              <InlineWidgetGroup>
+                <Select
+                  {...secondCancer}
+                  label='2nd Cancer'
+                  options={[
+                    {key: 'Yes', value: 'Yes'},
+                    {key: 'No', value: 'No'},
+                  ]}
+                  />
+                <TextInput
+                  label='Date/Histology'
+                  formField={dateHistology}
+                  />
+              </InlineWidgetGroup>
+            </div>
+            <div className={styles.fufuCommentsContainer}>
               <TextArea
                 label='Comments'
                 {...comments}
                 value={comments.value || ''}
-                />
-            </div>
-            <div className={styles['fufu-second-cancer-container']}>
-              <Select
-                {...secondCancer}
-                label='2nd Cancer'
-                options={[
-                  {key: 'Yes', value: 'Yes'},
-                  {key: 'No', value: 'No'},
-                ]}
-                />
-              <TextInput
-                label='Date/Histology'
-                formField={dateHistology}
                 />
             </div>
           </div>

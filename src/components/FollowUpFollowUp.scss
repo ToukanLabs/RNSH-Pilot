@@ -1,134 +1,128 @@
 @import '../styles/colors';
 
-.fufu-top-left-container {
-  width: 36%;
+.fufuTopLeftContainer {
+  width: 40%;
   display: table-cell;
 }
 
-.fufu-top-middle-container {
-  width: 36%;
+.fufuTopMiddleContainer {
+  width: 30%;
   display: table-cell;
 }
 
-.fufu-top-right-container {
-  width: 13%;
+.fufuTopRightContainer {
+  width: 30%;
   display: table-cell;
+  padding-right: 2em;
 }
 
-.fufu-tlc-one,
-.fufu-tlc-two {
+.fufuTlcOne,
+.fufuTlcTwo {
   display: table-cell;
   width: 50%;
 
 }
 
-.fufu-top-right-container button {
+.fufuTopRightContainer button {
   width: 100%;
 }
 
-.fufu-sub-panel-one,
-.fufu-sub-panel-two {
+.fufuSubPanelOne,
+.fufuSubPanelTwo {
   display: inline-block;
   width: 50%;
 }
 
-.fufu-sub-panel-two {
+.fufuSubPanelTwo {
   vertical-align: top;
 }
 
-.fufu-sub-heading-top {
-  margin-top: -15px
-}
+.fufuSubHeadingTop {}
 
-.fufu-row-two-container {
+.fufuRowTwoContainer {
   display: table;
   width: 100%;
 }
 
-.fufu-row-two {
+.fufuRowTwo {
   display: table-row;
   width: 100%;
 }
 
-.fufu-comments-container {
+.fufuCommentsContainer {
   width: 75%;
-  display: table-cell;
 }
 
-.fufu-comments-container textarea {
+.fufuCommentsContainer textarea {
   display: block;
   margin-left: 0;
   width: 98%;
   height: 120px;
 }
 
-.fufu-second-cancer-container {
-  width: 25%;
-  display: table-cell;
+.fufuSecondCancerContainer {
+  width: 100%;
 }
 
-.fufu-alpha-blocker-label {
+.fufuAlphaBlockerLabel {
   display: inline !important;
 }
 
-.fufu-sf {
+.fufuSf {
   width: 4em;
 }
 
-.fufu-tlc-one .widget-label,
-.fufu-tlc-two .widget-label {
+.fufuTlcOne .widgetLabel,
+.fufuTlcTwo .widgetLabel {
   display: block;
 }
 
-.fufu-tlc-two .inline-widget-group .widget-wrapper {
+.fufuTlcTwo .inlineWidgetGroup .widgetWrapper {
   display: inline;
 }
 
-.fufu-sub-panel-one .widget-label {
+.fufuSubPanelOne .widgetLabel,
+.fufuSubPanelTwo .widgetLabel {
   min-width: 130px;
 }
 
-.fufu-sub-panel-one select {
+.fufuSubPanelOne select,
+.fufuSubPanelTwo select {
   width: 130px;
 }
 
-.fufu-sub-panel-two .widget-label {
-  min-width: 90px;
-}
-
-.fufu-tlc-two select,
-.fufu-sub-panel-two select {
+.fufuTlcTwo select {
   min-width: 60px;
 }
 
-.fufu-qol-container .widget-label {
+.fufuQolContainer .widgetLabel {
   min-width: 110px;
 }
 
-.fufu-top-middle-container input {
+.fufuTopMiddleContainer input {
   width: 50px;
 }
 
-.fufu-hrqol-container {
-  margin-top: 5px;
+.fufuHrqolContainer {
+  margin-top: 1em;
 }
 
-.fufu-hrqol-container .widget-label {
+.fufuHrqolContainer .widgetLabel {
   min-width: 75px;
 }
 
-.fufu-dataimissing-info {
+.fufuDataimissingInfo {
   margin: 4px 0 4px 5px;
   font-size: 0.8em;
   font-style: italic;
   color: $secondary-text-color;
 }
 
-.fufu-row-two .widget-label {
+.fufuRowTwo .widgetLabel {
   min-width: 110px;
 }
 
-.fufu-row-two select,
-.fufu-row-two input {
+.fufuRowTwo select,
+.fufuRowTwo input {
   width: 100px;
 }

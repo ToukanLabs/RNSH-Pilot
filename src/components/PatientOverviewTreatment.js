@@ -7,11 +7,11 @@ export default class PatientOverviewTreatment extends Component {
 
   render () {
     return (
-      <Panel title='Treatement' className={styles['treatment-panel']}>
-        <div className={styles['treatment-grid-part-left']}>
+      <Panel title='Treatment' className={styles.treatmentPanel}>
+        <div className={styles.treatmentGridPartLeft}>
           <Select
             label='Surgery'
-            className={styles['po-field-general']}
+            className={styles.poFieldGeneral}
             options={[
               {key: 'Yes', value: 'Y'},
               {key: 'No', value: 'N'},
@@ -19,17 +19,17 @@ export default class PatientOverviewTreatment extends Component {
           />
           <Select
             label='Chemotherapy'
-            className={styles['po-field-general']}
+            className={styles.poFieldGeneral}
             options={[
               {key: 'Yes', value: 'Y'},
               {key: 'No', value: 'N'},
             ]}
           />
         </div>
-        <div className={styles['treatment-grid-part-middle']}>
+        <div className={styles.treatmentGridPartMiddle}>
           <Select
             label='Radiotherapy'
-            className={styles['po-field-general']}
+            className={styles.poFieldGeneral}
             options={[
               {key: 'Yes', value: 'Y'},
               {key: 'No', value: 'N'},
@@ -37,17 +37,17 @@ export default class PatientOverviewTreatment extends Component {
           />
           <Select
             label='Local Recurrence'
-            className={styles['po-field-general']}
+            className={styles.poFieldGeneral}
             options={[
               {key: 'Yes', value: 'Y'},
               {key: 'No', value: 'N'},
             ]}
           />
         </div>
-        <div className={styles['treatment-grid-part-right']}>
+        <div className={styles.treatmentGridPartRight}>
           <Select
             label='Extent of Resection'
-            className={styles['po-field-general']}
+            className={styles.poFieldGeneral}
             options={[
               {key: 'Biopsy', value: 'Biopsy'},
               {key: 'NA', value: 'NA'},
@@ -55,7 +55,7 @@ export default class PatientOverviewTreatment extends Component {
           />
           <Select
             label='Technique'
-            className={styles['po-field-general']}
+            className={styles.poFieldGeneral}
             options={[
               {key: 'IMRT', value: 'IMRT'},
               {key: 'Unknown', value: 'Unknown'},

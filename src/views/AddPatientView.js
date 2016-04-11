@@ -78,24 +78,24 @@ export class AddPatientView extends Component {
       submitting,
       } = this.props;
     return (
-      <form className={styles['apv-form']} onSubmit={handleSubmit(this.submit)}>
+      <form className={styles['apvForm']} onSubmit={handleSubmit(this.submit)}>
         <div className={styles['apv-field-wrapper']}>
-          <label className={corestyles['widget-label']}>MRN</label>
+          <label className={corestyles['widgetLabel']}>MRN</label>
           <input type='text' placeholder='MRN' {...mrn}/>
           {mrn.touched && mrn.error && <span className={styles['apv-error-span']}>{mrn.error}</span>}
         </div>
         <div className={styles['apv-field-wrapper']}>
-          <label className={corestyles['widget-label']}>First Name</label>
+          <label className={corestyles['widgetLabel']}>First Name</label>
           <input type='text' placeholder='First Name' {...firstName}/>
           {firstName.touched && firstName.error && <span className={styles['apv-error-span']}>{firstName.error}</span>}
         </div>
         <div className={styles['apv-field-wrapper']}>
-          <label className={corestyles['widget-label']}>Last Name</label>
+          <label className={corestyles['widgetLabel']}>Last Name</label>
           <input type='text' placeholder='Last Name' {...lastName}/>
           {lastName.touched && lastName.error && <span className={styles['apv-error-span']}>{lastName.error}</span>}
         </div>
         <div className={styles['apv-field-wrapper']}>
-          <label className={corestyles['widget-label']}>Date of Birth</label>
+          <label className={corestyles['widgetLabel']}>Date of Birth</label>
           <Datetime
             dateFormat='DD/MM/YYYY'
             timeFormat={false}
@@ -105,29 +105,29 @@ export class AddPatientView extends Component {
           {dob.touched && dob.error && <span className={styles['apv-error-span']}>{dob.error}</span>}
         </div>
         <div className={styles['apv-field-wrapper']}>
-          <label className={corestyles['widget-label']}>Email</label>
+          <label className={corestyles['widgetLabel']}>Email</label>
             <input type='email' placeholder='Email' {...email}/>
           {email.touched && email.error && <span className={styles['apv-error-span']}>{email.error}</span>}
         </div>
         <div className={styles['apv-field-wrapper']}>
-          <label className={corestyles['widget-label']}>Phone</label>
+          <label className={corestyles['widgetLabel']}>Phone</label>
           <input type='text' placeholder='Phone' {...phone}/>
           {phone.touched && phone.error && <span className={styles['apv-error-span']}>{phone.error}</span>}
         </div>
         <div className={styles['apv-field-wrapper']}>
-          <label className={corestyles['widget-label']}>Gender</label>
+          <label className={corestyles['widgetLabel']}>Gender</label>
           <span className={styles['apv-gender-radio-container']}>
-            <label className={corestyles['widget-label']}>
+            <label className={corestyles['widgetLabel']}>
               <input type='radio' {...gender} value='MALE' checked={gender.value === 'MALE'}/> Male
             </label>
-            <label className={corestyles['widget-label']}>
+            <label className={corestyles['widgetLabel']}>
               <input type='radio' {...gender} value='FEMALE' checked={gender.value === 'FEMALE'}/> Female
             </label>
           </span>
           {gender.touched && gender.error && <span className={styles['apv-error-span']}>{gender.error}</span>}
         </div>
         <div className={styles['apv-field-wrapper']}>
-          <label className={corestyles['widget-label']}>Tumor Type</label>
+          <label className={corestyles['widgetLabel']}>Tumor Type</label>
           <select
             {...tumorType}
             value={tumorType.value || ''}  // required syntax for reset form to work
@@ -143,14 +143,14 @@ export class AddPatientView extends Component {
         </div>
         <div className={styles['apv-field-wrapper']}>
           <label>
-            <span className={corestyles['widget-label']}>
+            <span className={corestyles['widgetLabel']}>
               Surgical
             </span>
             <input type='checkbox' {...surgical}/>
           </label>
         </div>
         <div className={styles['apv-field-wrapper']}>
-          <label className={corestyles['widget-label']}>Address</label>
+          <label className={corestyles['widgetLabel']}>Address</label>
           <textarea
             {...address}
             value={address.value || ''} // required for reset form to work (only on textareas)

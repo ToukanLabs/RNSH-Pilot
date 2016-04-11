@@ -1,10 +1,10 @@
 @import '../../styles/colors';
 
-.inline-widget-group label, .inline-widget-group .widget-wrapper {
+.inlineWidgetGroup label, .inlineWidgetGroup .widgetWrapper {
   display: inline-block;
 }
 
-.inline-widget-group .widget-wrapper:not(:first-child) .widget-label {
+.inlineWidgetGroup .widgetWrapper:not(:first-child) .widgetLabel {
   margin-left: 5px;
 }
 

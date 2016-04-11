@@ -38,9 +38,9 @@ export default class TextArea extends Component {
 
     if (this.props.label) {
       return (
-        <span className={corestyles['widget-wrapper']}>
+        <span className={corestyles['widgetWrapper']}>
           <span
-            className={`${corestyles['widget-label']} ${labelClassName}`}
+            className={`${corestyles['widgetLabel']} ${labelClassName}`}
             >
             {this.props.label}
             {this.getMandatoryIndicator()}:
@@ -57,7 +57,7 @@ export default class TextArea extends Component {
       );
     } else {
       return (
-        <span className={corestyles['widget-wrapper']}>
+        <span className={corestyles['widgetWrapper']}>
           <textarea
             className={className}
             placeholder={this.props.placeholder}

@@ -4,7 +4,7 @@ import styles from './widgets.scss';
 export default class InlineWidgetGroup extends Component {
   render () {
     return (
-      <div className={styles['inline-widget-group']}>
+      <div className={styles.inlineWidgetGroup}>
         {this.props.children}
       </div>
     );

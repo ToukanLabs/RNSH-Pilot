@@ -1,34 +1,38 @@
-.diagnosis-panel {
+.diagnosisPanel {
   position: relative;
   width: 100%;
 }
 
-.diagnosis-panel .widget-label {
+.diagnosisPanel .widgetLabel {
   min-width: 150px;
 }
 
-.diagnosis-panel .cbg .widget-label {
+.diagnosisPanel .cbg .widgetLabel {
   min-width: 10px;
 }
 
-.diagnosis-panel .cbg input {
+.diagnosisPanel .cbg input {
   width: 20px;
 }
 
-.diagnosis-grid-part {
+.diagnosisGridPart {
   display: inline-block;
   width: 50%;
   vertical-align: top;
 }
 
-.po-field-EMS {
+.diagnosisGridPartHeading {
+  margin: 3px 0 0 3px;
+}
+
+.poFieldEMS {
   width: 40px;
 }
 
-.laterality, .anatomical-loc, .cbg-container {
-  margin: 3px 0 3px 0;
+.laterality, .anatomicalLoc, .cbgContainer {
+  margin: 0.25em 0 0.25em 0;
 }
 
-.laterality, .anatomical-loc {
+.laterality, .anatomicalLoc {
   margin: 2px;
 }

@@ -37,6 +37,7 @@ export class PatientOverview extends Component {
             firstname={this.props.firstname}
             surname={this.props.surname}
             patientActions={this.props.patientActions}
+            enableFollowUpSave={false}
             />
         </Panel>
         }

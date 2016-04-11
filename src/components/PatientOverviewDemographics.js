@@ -7,26 +7,29 @@ export default class PatientOverviewDemographics extends Component {
 
   render () {
     return (
-      <Panel className={styles['demographics-panel']}>
-        <div className={styles['demographics-grid-part-one']}>
-          <DateTimeInput label='1st Consultation' noTime mandatory className={styles['po-field-general']}/>
+      <Panel className={styles.demographicsPanel}>
+        <div className={styles.demographicsGridPartOne}>
+          <DateTimeInput label='1st Consultation'
+            noTime
+            mandatory
+            className={styles.poFieldGeneral}/>
           <TextInput
             ref='poAge'
             label='Age'
             type='text'
-            className={styles['po-field-general']}
+            className={styles.poFieldGeneral}
           />
           <TextInput
             ref='poOccupation'
             label='Occupation'
             type='text'
-            className={styles['po-field-general']}
+            className={styles.poFieldGeneral}
           />
         </div>
-        <div className={styles['demographics-grid-part-two']}>
+        <div className={styles.demographicsGridPartTwo}>
           <Select
             label='Current Status'
-            className={styles['po-field-general']}
+            className={styles.poFieldGeneral}
             options={[
               {key: 'Alive', value: 'Alive'},
               {key: 'Deceased', value: 'Deceased'},
@@ -34,7 +37,7 @@ export default class PatientOverviewDemographics extends Component {
           />
           <Select
             label='Level of Education'
-            className={styles['po-field-general']}
+            className={styles.poFieldGeneral}
             options={[
               {key: 'Secondary', value: 'Secondary'},
               {key: 'Tertiary', value: 'Tertiary'},
@@ -42,7 +45,7 @@ export default class PatientOverviewDemographics extends Component {
           />
           <Select
             label='Social Support'
-            className={styles['po-field-general']}
+            className={styles.poFieldGeneral}
             options={[
               {key: '0 - Lives alone / nil support', value: '0'},
               {key: '1 - Lives alone / has family or community support', value: '1'},
@@ -53,10 +56,10 @@ export default class PatientOverviewDemographics extends Component {
             ]}
           />
         </div>
-        <div className={styles['demographics-grid-part-three']}>
+        <div className={styles.demographicsGridPartThree}>
           <Select
             label='Handedness'
-            className={styles['po-field-general']}
+            className={styles.poFieldGeneral}
             options={[
               {key: 'Left', value: 'Left'},
               {key: 'Right', value: 'Right'},
@@ -64,13 +67,13 @@ export default class PatientOverviewDemographics extends Component {
           />
           <Select
             label='Link to Pall Care'
-            className={styles['po-field-general']}
+            className={styles.poFieldGeneral}
             options={[
               {key: 'Yes', value: 'Y'},
               {key: 'No', value: 'N'},
             ]}
           />
-          <DateTimeInput label='Date Linked' noTime mandatory className={styles['po-field-general']}/>
+          <DateTimeInput label='Date Linked' noTime mandatory className={styles.poFieldGeneral}/>
         </div>
       </Panel>
     );

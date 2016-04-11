@@ -7,12 +7,12 @@ export default class PatientOverviewDiagnosis extends Component {
 
   render () {
     return (
-      <Panel title='Diagnosis' className={styles['diagnosis-panel']}>
-        <div className={styles['diagnosis-grid-part']}>
-          <DateTimeInput label='Date of Pre-Op MRI' noTime mandatory className={styles['po-field-general']}/>
+      <Panel title='Diagnosis' className={styles.diagnosisPanel}>
+        <div className={styles.diagnosisGridPart}>
+          <DateTimeInput label='Date of Pre-Op MRI' noTime mandatory className={styles['poFieldGeneral']}/>
           <Select
             label='Enhancement'
-            className={styles['po-field-general']}
+            className={styles.poFieldGeneral}
             options={[
               {key: 'Yes', value: 'Y'},
               {key: 'No', value: 'N'},
@@ -20,7 +20,7 @@ export default class PatientOverviewDiagnosis extends Component {
           />
           <Select
             label='Calcification'
-            className={styles['po-field-general']}
+            className={styles.poFieldGeneral}
             options={[
               {key: 'Yes', value: 'Y'},
               {key: 'No', value: 'N'},
@@ -28,7 +28,7 @@ export default class PatientOverviewDiagnosis extends Component {
           />
           <Select
             label='Haemorrhage'
-            className={styles['po-field-general']}
+            className={styles.poFieldGeneral}
             options={[
               {key: 'Yes', value: 'Y'},
               {key: 'Nil', value: 'N'},
@@ -36,7 +36,7 @@ export default class PatientOverviewDiagnosis extends Component {
           />
           <Select
             label='Diagnosis'
-            className={styles['po-field-general']}
+            className={styles.poFieldGeneral}
             options={[
               {key: 'Anaplastic astrocytoma (G3)', value: 'Anaplastic astrocytoma (G3)'},
               {key: 'Anaplastic oligodendroglioma (G3)', value: 'Anaplastic oligodendroglioma (G3)'},
@@ -52,7 +52,7 @@ export default class PatientOverviewDiagnosis extends Component {
             ]}
           />
         </div>
-        <div className={styles['diagnosis-grid-part']}>
+        <div className={styles.diagnosisGridPart}>
           <CheckBoxGroup
             heading='Anatomical Location'
             options={[
@@ -65,7 +65,7 @@ export default class PatientOverviewDiagnosis extends Component {
               {id: 'al-7', label: 'Parietal', checked: false},
             ]}
             displayColumns={3}
-            className={'anatomical-loc'}
+            className={'anatomicalLoc'}
             otherTBLabel='Other'
           />
           <CheckBoxGroup
@@ -79,46 +79,46 @@ export default class PatientOverviewDiagnosis extends Component {
             displayColumns={2}
             className={'laterality'}
           />
-          <h3>Enhancing Mass Size (Greatest Diameter Enhancing Region)</h3>
+        <h3 className={styles.diagnosisGridPartHeading}>Enhancing Mass Size (Greatest Diameter Enhancing Region)</h3>
           <InlineWidgetGroup>
             <TextInput
               ref='poEMS_L'
               type='text'
-              unitLabel='mm  X'
-              className={styles['po-field-EMS']}
+              unitLabel=' mm  X '
+              className={styles.poFieldEMS}
             />
             <TextInput
               ref='poEMS_W'
               type='text'
-              unitLabel='mm  X'
-              className={styles['po-field-EMS']}
+              unitLabel=' mm  X '
+              className={styles.poFieldEMS}
             />
             <TextInput
               ref='poEMS_H'
               type='text'
-              unitLabel='mm  X    (L x W x H)'
-              className={styles['po-field-EMS']}
+              unitLabel=' mm  X    (L x W x H)'
+              className={styles.poFieldEMS}
             />
           </InlineWidgetGroup>
-          <h3>Non Enhancing Mass Size (Greatest Diameter Enhancing Region)</h3>
+          <h3 className={styles.diagnosisGridPartHeading}>Non Enhancing Mass Size (Greatest Diameter Enhancing Region)</h3>
           <InlineWidgetGroup>
             <TextInput
               ref='poNEMS_L'
               type='text'
-              unitLabel='mm  X'
-              className={styles['po-field-EMS']}
+              unitLabel=' mm  X '
+              className={styles.poFieldEMS}
             />
             <TextInput
               ref='poNEMS_W'
               type='text'
-              unitLabel='mm  X'
-              className={styles['po-field-EMS']}
+              unitLabel=' mm  X '
+              className={styles.poFieldEMS}
             />
             <TextInput
               ref='poNEMS_H'
               type='text'
-              unitLabel='mm  X    (L x W x H)'
-              className={styles['po-field-EMS']}
+              unitLabel=' mm  X    (L x W x H)'
+              className={styles.poFieldEMS}
             />
           </InlineWidgetGroup>
         </div>

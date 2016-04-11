@@ -1,25 +1,25 @@
-.apv-form .widget-label,
-.surgical-widget-label {
+.apvForm .widgetLabel,
+.surgical-widgetLabel {
   min-width: 120px;
   font-size: 0.9em;
 }
 
-.apv-form select,
-.apv-form input {
+.apvForm select,
+.apvForm input {
   width: 170px;
 }
 
-.apv-form textarea {
+.apvForm textarea {
   display: block;
   height: 100px;
   width: 300px;
 }
 
-.apv-form .apv-gender-radio-container .widget-label {
+.apvForm .apv-gender-radio-container .widgetLabel {
   min-width: 10px;
 }
 
-.apv-form .apv-gender-radio-container input {
+.apvForm .apv-gender-radio-container input {
   width: 20px;
 }
 
@@ -38,7 +38,7 @@
   color: red;
 }
 
-.apv-form button {
+.apvForm button {
   margin-top: 10px;
   font-size: 1em;
 }
