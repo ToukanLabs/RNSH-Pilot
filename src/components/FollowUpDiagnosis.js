@@ -107,14 +107,14 @@ export default class FollowUpDiagnosis extends Component {
     console.log('rendering FolloupDiagnosis');
     if (this.props.activePatient.diagnosis === undefined) {
       return (
-        <Panel title='Diagnosis' className={styles['fud-panel']}>
+        <Panel title='Diagnosis' className={styles.fudPanel}>
           <Loading/>
         </Panel>
       );
     } else {
       return (
-        <Panel title='Diagnosis' className={styles['fud-panel']}>
-          <div className={styles['fud-widget-group-one']}>
+        <Panel title='Diagnosis' className={styles.fudPanel}>
+          <div className={styles.fudWidgetGroupOne}>
             <DateTimeInput label='Date of Dx' noTime mandatory />
             <InlineWidgetGroup>
               <Select
@@ -184,23 +184,21 @@ export default class FollowUpDiagnosis extends Component {
                 ref='gsCalculated'
                 type='text'
                 value={this.state.gleasonScore}
-                className={styles['fud-gs-result']}
+                className={styles.fudGSResult}
                 />
             </InlineWidgetGroup>
-            <InlineWidgetGroup className={styles['fud-cores-container']}>
-              <TextInput
-                type='text'
-                label='Cores Biopsied'
-                className={styles['fud-cores']}
-                />
-              <TextInput
-                type='text'
-                label='Cores Involved'
-                className={styles['fud-cores']}
-                />
-            </InlineWidgetGroup>
+            <TextInput
+              type='text'
+              label='Cores Biopsied'
+              className={styles.fudCores}
+              />
+            <TextInput
+              type='text'
+              label='Cores Involved'
+              className={styles.fudCores}
+              />
           </div>
-          <div className={styles['fud-widget-group-two']}>
+          <div className={styles.fudWidgetGroupTwo}>
             <Select
               label='RadOnc'
               options={[

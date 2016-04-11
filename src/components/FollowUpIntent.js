@@ -16,7 +16,7 @@ export default class FollowUpIntent extends Component {
             {key: 'Palliative', value: 'Palliative'},
             {key: 'Other', value: 'Other'},
           ]}
-          className={styles['fui-intent']}
+          className={styles['fuiIntent']}
           />
       </Panel>
     );

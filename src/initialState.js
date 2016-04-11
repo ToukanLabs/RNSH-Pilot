@@ -19,6 +19,8 @@ export const initialState = {
         'yAxisLabel': 'ng / mL',
         'data': [
           { 'date': '29-Nov-06', 'data': 2.37 },
+          { 'date': '12-Jan-08', 'data': 2.96 },
+          { 'date': '03-Feb-09', 'data': 3.99 },
           { 'date': '09-Nov-10', 'data': 4.42 },
           { 'date': '21-Jan-11', 'data': 5.18 },
           { 'date': '21-Feb-12', 'data': 11 },
@@ -34,6 +36,8 @@ export const initialState = {
         'yAxisLabel': 'nmol / L',
         'data': [
           { 'date': '29-Nov-06', 'data': 6.4 },
+          { 'date': '12-Jan-08', 'data': 5.5 },
+          { 'date': '03-Feb-09', 'data': 4.9 },
           { 'date': '09-Nov-10', 'data': 3.0 },
           { 'date': '21-Jan-11', 'data': 1.2 },
           { 'date': '21-Feb-12', 'data': 2.4 },

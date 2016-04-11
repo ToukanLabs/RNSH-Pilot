@@ -25,7 +25,7 @@ class Graph {
 class LineGraph extends Graph {
   constructor (name, displayName, data, yAxisLabel, offsetTop, x, axisPosition) {
     super();
-    this.height = 80;
+    this.height = 120;
 
     this.name = name;
     this.displayName = displayName;

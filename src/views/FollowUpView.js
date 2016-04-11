@@ -45,19 +45,20 @@ export class FollowUpView extends Component {
                 <FollowUpStatus />
               </div>
             </div>
-            <div className={styles['fuv-graph-container']}>
-              <Panel>
-                <MultiGraph
-                  graphs={this.props.graphs}
-                  patientId={this.props.activePatient.id}
-                  handleDetailViewClick={this.handleDetailViewClick}
-                />
-              </Panel>
-            </div>
           </div>
         </div>
 
         <div className={styles['fuv-row-two']}>
+          <div className={styles['fuv-graph-container']}>
+            <Panel>
+              <MultiGraph
+                graphs={this.props.graphs}
+                patientId={this.props.activePatient.id}
+                handleDetailViewClick={this.handleDetailViewClick}
+              />
+            </Panel>
+          </div>
+
           <div className={styles['fuv-prertassess-container']}>
             <FollowUpPreRTAssessment />
           </div>

@@ -1,23 +1,23 @@
-.fud-gs-result {
+.fudGSResult {
   width: 30px;
 }
 
-.fud-cores {
+.fudCores {
   width: 50px;
 }
 
-.fud-widget-group-one .widgetLabel {
-  min-width: 110px;
-}
-
-.fud-widget-group-two .widgetLabel {
+.fudWidgetGroupOne .widgetLabel {
   min-width: 135px;
 }
 
-.fud-widget-group-two select, input {
+.fudWidgetGroupTwo .widgetLabel {
+  min-width: 135px;
+}
+
+.fudWidgetGroupTwo select, input {
   width: 150px;
 }
 
-.pv-expanded .fud-widget-group-one .widgetLabel {
+.pvExpanded .fudWidgetGroupOne .widgetLabel {
   min-width: 70px;
 }
