@@ -5,11 +5,20 @@ export default class PatientHeaderDetails extends Component {
   render () {
     const expandedData = () => {
       if (this.props.visibility === 'expanded') {
-        return (
-          <div className={styles['phd-details']}>
-            {this.props.phdDetails}
-          </div>
-        );
+        if (this.props.phdType === 'image') {
+          return (
+            <div className={styles.profileImageContainer}>
+              <span className={styles.profileImageHelper}></span>
+              <img src={this.props.phdDetails} className={styles.profileImage} />
+            </div>
+          );
+        } else {
+          return (
+            <div className={styles.phdDetails}>
+              {this.props.phdDetails}
+            </div>
+          );
+        }
       } else {
         return <div></div>;
       }
@@ -18,15 +27,15 @@ export default class PatientHeaderDetails extends Component {
     const label = () => {
       if (this.props.visibility === 'expanded') {
         return (
-          <label className={styles['phd-header-label']}>
+          <label className={styles.phdHeaderLabel}>
             {this.props.phdLabel}
           </label>
         );
       } else {
         return (
-          <label className={styles['phd-header-label']}>
+          <label className={styles.phdHeaderLabel}>
             {this.props.phdLabel}:&nbsp;
-            <span className={styles['phd-header-data']}>
+            <span className={styles.phdHeaderData}>
               {this.props.phdHeaderData}
             </span>
           </label>
@@ -36,16 +45,22 @@ export default class PatientHeaderDetails extends Component {
 
     if (this.props.phdLabel !== undefined) {
       return (
-        <div className={styles['phd-container']}>
+        <div className={styles.phdContainer}>
           <div>
             {label()}
           </div>
           {expandedData()}
         </div>
       );
+    } else if (this.props.phdDetails !== undefined) {
+      return (
+        <div className={styles.phdContainer}>
+          {expandedData()}
+        </div>
+      );
     } else {
       return (
-        <div className={styles['phd-container']}>&nbsp;</div>
+        <div className={styles.phdContainer}>&nbsp;</div>
       );
     }
   };
@@ -53,6 +68,7 @@ export default class PatientHeaderDetails extends Component {
 
 PatientHeaderDetails.propTypes = {
   phdLabel: React.PropTypes.string,
+  phdType: React.PropTypes.string,
   phdHeaderData: React.PropTypes.oneOfType([
     React.PropTypes.object,
     React.PropTypes.string,

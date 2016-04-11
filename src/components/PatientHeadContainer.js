@@ -65,7 +65,7 @@ export default class PatientHeadContainer extends Component {
 
     const phoneEmailDetails = () => {
       return (
-        <div className={styles['phc-phone-email-details']}>
+        <div className={styles.phcPhoneEmailDetails}>
           <label>
             Phone:
           </label>
@@ -80,11 +80,11 @@ export default class PatientHeadContainer extends Component {
 
     const patientHeaderClassName =
         (this.props.patientHeaderVisibility === 'expanded')
-        ? styles['phc-expanded']
-        : styles['phc-collapsed'];
+        ? styles.phcExpanded
+        : styles.phcCollapsed;
 
     const toggleIcon = () => {
-      let className = styles['phc-detail-down-icon'];
+      let className = styles.phcDetailDownIcon;
       let iconName;
       if (this.props.patientHeaderVisibility === 'expanded') {
         iconName = 'angle-double-up';
@@ -109,6 +109,15 @@ export default class PatientHeadContainer extends Component {
         <PatientHeader patient={patient}/>
         <div className={patientHeaderClassName}>
           <PatientHeaderDetails
+            phdType='image'
+            phdDetails={
+              '/img/profile_pictures/profile_' +
+              (patient.gender === 'MALE' ? 'male_' : 'female_') +
+              parseInt((((Math.random() * 100) % 3) + 1), 10) + '.jpg'
+            }
+            visibility={this.props.patientHeaderVisibility}
+            />
+          <PatientHeaderDetails
             phdLabel='Address'
             phdHeaderData={patient.address}
             phdDetails={patient.address}
@@ -120,9 +129,6 @@ export default class PatientHeadContainer extends Component {
             phdDetails={phoneEmailDetails()}
             visibility={this.props.patientHeaderVisibility}
           />
-          <PatientHeaderDetails
-            visibility={this.props.patientHeaderVisibility}
-            />
           <PatientHeaderDetails
             phdLabel='Status'
             phdHeaderData={surgical}

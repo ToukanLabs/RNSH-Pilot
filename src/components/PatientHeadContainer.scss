@@ -1,6 +1,6 @@
 @import '../styles/colors';
 
-.phc-detail-down-icon {
+.phcDetailDownIcon {
   background-color: $patient-subheading-color;
   display: inline-block;
   width: 20px;
@@ -10,50 +10,50 @@
   color: $patient-subheading-font-color;
 }
 
-.phc-detail-down-icon:hover {
+.phcDetailDownIcon:hover {
   background-color: $button-hover-color;
   cursor: pointer;
 }
 
-.phc-collapsed,
-.phc-expanded {
+.phcCollapsed,
+.phcExpanded {
   display: inline-block;
   width: 100%;
 }
 
-.phc-collapsed {
+.phcCollapsed {
   height: 20px;
 
-  .phc-detail-down-icon {
+  .phcDetailDownIcon {
     height: 20px;
   }
 }
 
-.phc-expanded {
+.phcExpanded {
   height: 100px;
 
-  .phc-detail-down-icon {
+  .phcDetailDownIcon {
     height: 100px;
     padding-top: 80px;
   }
 
-  .phd-container {
+  .phdContainer {
     font-size: 0.8em;
   }
 
-  .phd-header-label {
+  .phdHeaderLabel {
     font-weight: bold;
   }
 }
 
-.phc-phone-email-details label {
+.phcPhoneEmailDetails label {
   margin-top: 5px;
 }
 
-.phc-phone-email-details label:first-child {
+.phcPhoneEmailDetails label:first-child {
   margin-top: 0;
 }
 
-.phc-phone-email-details span {
+.phcPhoneEmailDetails span {
   font-weight: bold;
 }
