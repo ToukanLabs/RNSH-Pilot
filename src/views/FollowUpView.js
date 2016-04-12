@@ -32,18 +32,16 @@ export class FollowUpView extends Component {
   render () {
     return (
       <div>
-        <div className={styles.fuvContainerTable}>
-          <div className={styles.fuvRowOne}>
-            <div className={styles.fuvDiagnosisContainer}>
-              <FollowUpDiagnosis/>
+        <div className={styles.fuvRowOne}>
+          <div className={styles.fuvDiagnosisContainer}>
+            <FollowUpDiagnosis/>
+          </div>
+          <div className={styles.fuvIntentStatusContainer}>
+            <div className={styles.fuvIntentContainer}>
+              <FollowUpIntent />
             </div>
-            <div className={styles.fuvIntentStatusContainer}>
-              <div className={styles.fuvIntentContainer}>
-                <FollowUpIntent />
-              </div>
-              <div className={styles.fuvStatusContainer}>
-                <FollowUpStatus />
-              </div>
+            <div className={styles.fuvStatusContainer}>
+              <FollowUpStatus />
             </div>
           </div>
         </div>

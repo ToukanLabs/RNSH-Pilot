@@ -1,6 +1,9 @@
+@import '../styles/measures';
+
 .diagnosisPanel {
   position: relative;
   width: 100%;
+  margin-bottom: $panel-spacing;
 }
 
 .diagnosisPanel .widgetLabel {

@@ -1,37 +1,34 @@
 @import '../styles/colors';
-
-.fuvContainerTable {
-  display: table;
-  width: 100%;
-}
+@import '../styles/measures';
 
 .fuvRowOne {
   vertical-align: top;
-  display: table-row;
+  margin-bottom: $panel-spacing;
 }
 
 .fuvDiagnosisContainer {
-  width: 30%;
-  display: table-cell;
-  padding: 2px;
+  width: 50%;
+  display: inline-block;
   vertical-align: top;
 }
 
 .fuvIntentStatusContainer {
-  width: 30%;
-  display: table-cell;
-  padding: 2px;
+  width: calc(50% - #{$panel-spacing});
+  display: inline-block;
   vertical-align: top;
+  margin-left: $panel-spacing;
 }
 
-.fuvStatusContainer {
-  margin-top: 3px;
+.fuvIntentContainer {
+  margin-bottom: $panel-spacing;
 }
+
+.fuvStatusContainer {}
 
 .fuvGraphContainer {
-  padding: 2px;
   vertical-align: top;
   min-width: 500px;
+  margin-bottom: $panel-spacing;
 }
 
 .fuvRowTwo {
@@ -41,8 +38,8 @@
 .fuvPrertassessContainer {
   width: 100%;
   display: inline-block;
-  padding: 2px;
   vertical-align: top;
+  margin-bottom: $panel-spacing;
 }
 
 .fuvRowThree {
@@ -52,7 +49,6 @@
 .fuvFollowupContainer {
   width: 100%;
   display: table-row;
-  padding: 2px;
   vertical-align: top;
 }
 
@@ -64,6 +60,4 @@ input {
   border-top: none;
 }
 
-.fuvFollowupContainer .tabs {
-  margin-top: 5px;
-}
+.fuvFollowupContainer .tabs {}
