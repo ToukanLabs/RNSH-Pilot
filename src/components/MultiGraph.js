@@ -70,7 +70,7 @@ class LineGraph extends Graph {
     if (this.getAxisPosition() === 'left') {
       gGraphInfo = this.graphSvg.append('g')
           .attr('class', this.name + ' y axis')
-          .attr('transform', 'translate(60, ' + this.offsetTop + ')')
+          .attr('transform', 'translate(100, ' + this.offsetTop + ')') // 100 is the size of the left margin with titles etc.
           .call(this.yaxis);
 
       // y-axis label (e.g. nmol / L).
@@ -587,9 +587,9 @@ export default class MultiGraph extends Component {
     this.graphSvg.append('clipPath')
         .attr('id', 'clip')
       .append('rect')
-        .attr('x', 60)
+        .attr('x', 100) // offset the clip path by 100, the size of the left margin with titles etc.
         .attr('y', 0)
-        .attr('width', this.width - 60 - 60) // 60 is left margin with titles, etc. 60 is right.
+        .attr('width', this.width - 100 - 60) // 100 is left margin with titles, etc. 60 is right.
         .attr('height', this.height + (this.padding * this.graphCount));
   };
 
@@ -632,9 +632,9 @@ export default class MultiGraph extends Component {
     // Vertical line on left separating axis labels from graph content
     this.graphSvg.append('line')
         .attr('class', 'graphseparator')
-        .attr('x1', 60) // 60 is the width of the left margin
+        .attr('x1', 100) // 100 is the width of the left margin
         .attr('y1', 0)
-        .attr('x2', 60) // 60 is the width of the left margin
+        .attr('x2', 100) // 100 is the width of the left margin
         .attr('y2', this.height + (this.padding * this.graphCount) - (this.padding / 2));
 
     // Vertical line on right separating axis labels from graph content

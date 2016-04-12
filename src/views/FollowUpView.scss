@@ -1,57 +1,55 @@
 @import '../styles/colors';
 
-.fuv-container-table {
+.fuvContainerTable {
   display: table;
   width: 100%;
 }
 
-.fuv-row-one {
+.fuvRowOne {
   vertical-align: top;
   display: table-row;
 }
 
-.fuv-diagnosis-container {
+.fuvDiagnosisContainer {
   width: 30%;
   display: table-cell;
   padding: 2px;
   vertical-align: top;
 }
 
-.fuv-intent-status-container {
+.fuvIntentStatusContainer {
   width: 30%;
   display: table-cell;
   padding: 2px;
   vertical-align: top;
 }
 
-.fuv-status-container {
+.fuvStatusContainer {
   margin-top: 3px;
 }
 
-.fuv-graph-container {
-  width: 40%;
-  display: table-cell;
+.fuvGraphContainer {
   padding: 2px;
   vertical-align: top;
   min-width: 500px;
 }
 
-.fuv-row-two {
+.fuvRowTwo {
   display: block;
 }
 
-.fuv-prertassess-container {
+.fuvPrertassessContainer {
   width: 100%;
   display: inline-block;
   padding: 2px;
   vertical-align: top;
 }
 
-.fuv-row-three {
+.fuvRowThree {
   display: table;
 }
 
-.fuv-followup-container {
+.fuvFollowupContainer {
   width: 100%;
   display: table-row;
   padding: 2px;
@@ -62,10 +60,10 @@ input {
   text-align: center;
 }
 
-.fuv-follow-up-panel {
+.fuvFollowUpPanel {
   border-top: none;
 }
 
-.fuv-followup-container .tabs {
+.fuvFollowupContainer .tabs {
   margin-top: 5px;
 }

@@ -32,24 +32,24 @@ export class FollowUpView extends Component {
   render () {
     return (
       <div>
-        <div className={styles['fuv-container-table']}>
-          <div className={styles['fuv-row-one']}>
-            <div className={styles['fuv-diagnosis-container']}>
+        <div className={styles.fuvContainerTable}>
+          <div className={styles.fuvRowOne}>
+            <div className={styles.fuvDiagnosisContainer}>
               <FollowUpDiagnosis/>
             </div>
-            <div className={styles['fuv-intent-status-container']}>
-              <div className={styles['fuv-intent-container']}>
+            <div className={styles.fuvIntentStatusContainer}>
+              <div className={styles.fuvIntentContainer}>
                 <FollowUpIntent />
               </div>
-              <div className={styles['fuv-status-container']}>
+              <div className={styles.fuvStatusContainer}>
                 <FollowUpStatus />
               </div>
             </div>
           </div>
         </div>
 
-        <div className={styles['fuv-row-two']}>
-          <div className={styles['fuv-graph-container']}>
+        <div className={styles.fuvRowTwo}>
+          <div className={styles.fuvGraphContainer}>
             <Panel>
               <MultiGraph
                 graphs={this.props.graphs}
@@ -59,13 +59,13 @@ export class FollowUpView extends Component {
             </Panel>
           </div>
 
-          <div className={styles['fuv-prertassess-container']}>
+          <div className={styles.fuvPrertassessContainer}>
             <FollowUpPreRTAssessment />
           </div>
         </div>
 
-        <div className={styles['fuv-row-three']}>
-          <div className={styles['fuv-followup-container']}>
+        <div className={styles.fuvRowThree}>
+          <div className={styles.fuvFollowupContainer}>
             <FollowUpTabs
               followUps={this.props.activePatient.followUps}
               activeFollowUp={this.props.activePatient.activeFollowUp}
@@ -76,7 +76,7 @@ export class FollowUpView extends Component {
               data={this.props.activePatient.activeFollowUp}
               mrn={this.props.activePatient.mrn}
               panelTitle={'Follow Up'}
-              className={styles['fuv-follow-up-panel']}
+              className={styles.fuvFollowUpPanel}
               firstname={this.props.activePatient.firstname}
               surname={this.props.activePatient.surname}
               patientActions={this.props.patientActions}
