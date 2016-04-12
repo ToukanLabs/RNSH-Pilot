@@ -39,10 +39,6 @@ export class HomeView extends React.Component {
     this.props.advancedSearchActions.resetSearchFields();
   }
 
-  componentDidMount () {
-    this.props.patientActions.searchPatients();
-  }
-
   filterPatients = (value) => {
     var searchMRN = this.props.mrn ? this.props.mrn.toUpperCase() : '';
     var searchFirstname = this.props.firstname ? this.props.firstname.toUpperCase() : '';

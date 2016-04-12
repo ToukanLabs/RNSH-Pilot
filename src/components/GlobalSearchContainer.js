@@ -3,6 +3,7 @@ import { findDOMNode } from 'react-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actions as uiActions } from 'redux/modules/ui';
+import { actions as patientActions } from 'redux/modules/patient';
 import { browserHistory } from 'react-router';
 import GlobalSearch from 'components/GlobalSearch';
 import GlobalSearchResults from 'components/GlobalSearchResults';
@@ -18,6 +19,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     uiActions: bindActionCreators(uiActions, dispatch),
+    patientActions: bindActionCreators(patientActions, dispatch),
   };
 };
 
@@ -29,6 +31,10 @@ export default class GlobalSearchContainer extends Component {
 
   componentDidMount () {
     window.addEventListener('click', this._onWindowClick);
+
+    if (!this.props.patients || this.props.patients.length === 0) {
+      this.props.patientActions.searchPatients();
+    }
   };
 
   componentWillUnmount () {
@@ -116,6 +122,7 @@ GlobalSearchContainer.propTypes = {
   placeholder: React.PropTypes.string,
   searchResultsVisibility: React.PropTypes.string,
   uiActions: React.PropTypes.object,
+  patientActions: React.PropTypes.object,
   searchString: React.PropTypes.string,
   patients: React.PropTypes.array,
   tumorFilter: React.PropTypes.string,
