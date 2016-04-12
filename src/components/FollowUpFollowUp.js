@@ -187,7 +187,7 @@ export class FollowUpFollowUp extends Component {
                         {key: 'No', value: 'No'},
                       ]}
                       />
-                    {' - '}
+                    {' -'}
                     {anticholinergicWidget(anticholinergic)}
                   </div>
                 </InlineWidgetGroup>
