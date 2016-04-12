@@ -1,56 +1,143 @@
 @import '../styles/colors';
+@import '../styles/measures';
 
-.fufuTopLeftContainer {
-  width: 40%;
-  display: table-cell;
+// Top-level form
+.apvForm {
+  width: 100%;
 }
 
-.fufuTopMiddleContainer {
-  width: 30%;
-  display: table-cell;
-}
-
-.fufuTopRightContainer {
-  width: 30%;
-  display: table-cell;
-  padding-right: 2em;
+// Main Follow Up data
+.fufuRowOneContainer {
+  width: 100%;
+  margin-bottom: $panel-spacing;
 }
 
 .fufuTlcOne,
 .fufuTlcTwo {
-  display: table-cell;
   width: 50%;
-
-}
-
-.fufuTopRightContainer button {
-  width: 100%;
-}
-
-.fufuSubPanelOne,
-.fufuSubPanelTwo {
   display: inline-block;
-  width: 50%;
-}
-
-.fufuSubPanelTwo {
   vertical-align: top;
 }
 
-.fufuSubHeadingTop {}
+.fufuTlcOne .widgetLabel,
+.fufuTlcTwo .widgetLabel {
+  min-width: 200px;
+}
 
+.fufuTlcTwo .inlineWidgetGroup .widgetWrapper {
+  display: inline;
+}
+
+.fufuTlcTwo select {
+  min-width: 60px;
+}
+
+.fufuAlphaBlockerLabel {}
+
+.fufuAlphaBlockerContainer {
+  display: inline-block;
+}
+
+.fufuAlphaBlockerContainer select {
+  width: 100px;
+}
+
+// Row containing QoL, HRQoL, and Toxicity
 .fufuRowTwoContainer {
-  display: table;
   width: 100%;
+  margin-bottom: $panel-spacing;
 }
 
-.fufuRowTwo {
-  display: table-row;
-  width: 100%;
+// QoL containing element
+.fufuQolContainer {
+  width: calc(50% - #{$panel-spacing-half});
+  display: inline-block;
+  vertical-align: top;
+  margin-right: $panel-spacing-half;
 }
 
+.fufuQolContainer .widgetLabel {
+  min-width: 110px;
+}
+
+.fufuQolButtonContainer {
+  width: 100%;
+  text-align: center;
+}
+
+.fufuQolButtonContainer button {
+  width: 45%;
+}
+
+.fufuQOLSmallField {
+  width: 4em !important;
+}
+
+.fufuDataimissingInfo {
+  margin: 0.75em 0 0.1em 0.5em;
+  font-size: 0.8em;
+  font-style: italic;
+  color: $secondary-text-color;
+}
+
+// Container for HRQoL and Toxicity
+.fufuHrqolToxicityContainer {
+  width: calc(50% - #{$panel-spacing-half});
+  display: inline-block;
+  margin-left: $panel-spacing-half;
+}
+
+// HRQoL containing element
+.fufuHrqolContainer {
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: $panel-spacing;
+}
+
+.fufuHrqolContainer .widgetLabel {
+  min-width: 70px;
+}
+
+// Toxicity containing element
+.fufuToxicityContainer {
+  width: 100%;
+  //width: calc(50% - #{$panel-spacing-half});
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+}
+
+.fufuToxicityContainer button {
+  width: 45%;
+  margin-top: 0.2em;
+}
+
+// Row containing Second Cancer and Miscellaneous data
+.fufuRowThreeContainer {
+  width: 100%;
+  margin-bottom: $panel-spacing;
+}
+
+// Second Cancer containing element
+.fufuSecondCancerContainer {
+  width: 100%;
+  margin-bottom: 0.5em;
+}
+
+.fufuSecondCancerContainer .widgetLabel {
+  min-width: 120px;
+}
+
+.fufuSecondCancerContainer select,
+.fufuSecondcancerContainer input {
+  width: 180px;
+  margin-right: 0.5em;
+}
+
+// Comments containing element
 .fufuCommentsContainer {
-  width: 75%;
+  width: 100%;
 }
 
 .fufuCommentsContainer textarea {
@@ -60,69 +147,7 @@
   height: 120px;
 }
 
-.fufuSecondCancerContainer {
-  width: 100%;
-}
-
-.fufuAlphaBlockerLabel {
-  display: inline !important;
-}
-
-.fufuSf {
-  width: 4em;
-}
-
-.fufuTlcOne .widgetLabel,
-.fufuTlcTwo .widgetLabel {
-  display: block;
-}
-
-.fufuTlcTwo .inlineWidgetGroup .widgetWrapper {
-  display: inline;
-}
-
-.fufuSubPanelOne .widgetLabel,
-.fufuSubPanelTwo .widgetLabel {
-  min-width: 130px;
-}
-
-.fufuSubPanelOne select,
-.fufuSubPanelTwo select {
-  width: 130px;
-}
-
-.fufuTlcTwo select {
-  min-width: 60px;
-}
-
-.fufuQolContainer .widgetLabel {
-  min-width: 110px;
-}
-
-.fufuTopMiddleContainer input {
-  width: 50px;
-}
-
-.fufuHrqolContainer {
-  margin-top: 1em;
-}
-
-.fufuHrqolContainer .widgetLabel {
-  min-width: 75px;
-}
-
-.fufuDataimissingInfo {
-  margin: 4px 0 4px 5px;
-  font-size: 0.8em;
-  font-style: italic;
-  color: $secondary-text-color;
-}
-
-.fufuRowTwo .widgetLabel {
-  min-width: 110px;
-}
-
-.fufuRowTwo select,
-.fufuRowTwo input {
-  width: 100px;
+// Save controls
+.saveControls button {
+  margin: 0.5em 0.25em 0.75em 0;
 }
