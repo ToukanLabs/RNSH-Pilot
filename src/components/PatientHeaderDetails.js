@@ -7,9 +7,9 @@ export default class PatientHeaderDetails extends Component {
       if (this.props.visibility === 'expanded') {
         if (this.props.phdType === 'image') {
           return (
-            <div className={styles.profileImageContainer}>
-              <span className={styles.profileImageHelper}></span>
-              <img src={this.props.phdDetails} className={styles.profileImage} />
+            <div className={styles.phdProfileImageContainer}>
+              <span className={styles.phdProfileImageHelper}></span>
+              <img src={this.props.phdDetails} className={styles.phdProfileImage} />
             </div>
           );
         } else {

@@ -1,44 +1,73 @@
 @import '../styles/colors';
 
-.ph-container {
+// Main container for Patient Header
+.phContainer {
   background-color: $patient-heading-colour;
   color: $patient-heading-font-color;
-  padding: 3px 10px 7px 10px;
-  display: block;
+  padding: 0.25em 0.25em 0.25em 1em;
+  display: table;
+  width: 100%;
 }
 
-.ph-big-field {
+// Container for profile image and large name text
+.phIdentifierContainer {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+// Large name text
+.phBigField {
   font-size: 2em;
   font-weight: bold;
   display: inline-block;
-  width: 40%;
+  vertical-align: middle;
+  padding-bottom: 0.1em;
 }
 
-.ph-details {
+// Profile image
+.phProfileImageContainer {
+  height: 40px;
+  text-align: center;
   display: inline-block;
-  width: 60%;
-  float: right;
+  margin-right: 1em;
 }
 
-.ph-field {
+.phProfileImageHelper {
   display: inline-block;
-  padding-top: 0.6em;
-  box-sizing: border-box;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.phProfileImage {
+  max-height: 40px;
+  vertical-align: middle;
+  border-radius: 50%;
+  border: 2px solid $patient-heading-font-color;
+}
+
+// Container for other patient info
+.phDetails {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.phField {
+  display: inline-block;
   white-space: nowrap;
-  margin-right: 15px;
   min-width: 160px;
 }
 
-.ph-field label {
+.phField label {
   font-weight: normal;
 }
 
-.ph-data {
+.phData {
   font-weight: bold;
 }
 
 @media (max-width: 1130px) {
-  .ph-field {
+  .phField {
     font-size: 0.9em;
     width: 12%;
   }

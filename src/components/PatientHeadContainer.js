@@ -29,6 +29,10 @@ export default class PatientHeadContainer extends Component {
 
   render () {
     const patient = this.props.activePatient;
+    const patientProfileImage = '/img/profile_pictures/profile_' +
+      (patient.gender === 'MALE' ? 'male_' : 'female_') +
+      parseInt((((Math.random() * 100) % 3) + 1), 10) + '.jpg';
+
     var surgical = patient.surgical === 'Y' ? 'Surgical' : 'Non-Surgical';
 
     const allergiesHeaderData = () => {
@@ -106,15 +110,14 @@ export default class PatientHeadContainer extends Component {
 
     return (
       <div>
-        <PatientHeader patient={patient}/>
+        <PatientHeader
+            patient={patient}
+            patientProfileImage={patientProfileImage}
+          />
         <div className={patientHeaderClassName}>
           <PatientHeaderDetails
             phdType='image'
-            phdDetails={
-              '/img/profile_pictures/profile_' +
-              (patient.gender === 'MALE' ? 'male_' : 'female_') +
-              parseInt((((Math.random() * 100) % 3) + 1), 10) + '.jpg'
-            }
+            phdDetails={patientProfileImage}
             visibility={this.props.patientHeaderVisibility}
             />
           <PatientHeaderDetails
