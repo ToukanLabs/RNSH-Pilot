@@ -17,6 +17,12 @@ $right-percentage: 80%;
   ul {
     list-style-type: none;
   }
+  overflow: hidden;
+}
+
+.gs-result-container-collapsed {
+  display: none;
+  overflow: hidden;
 }
 
 .gs-patient-search-results h2 {

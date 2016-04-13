@@ -1,45 +1,57 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { Motion, spring } from 'react-motion';
 import SearchResultRow from 'components/SearchResultRow';
 import GlobalSearchFilters from 'components/GlobalSearchFilters';
 import styles from './GlobalSearchResults.scss';
 
 export default class GlobalSearchResults extends Component {
   render () {
-    if (this.props.searchResultsVisibility === 'expanded') {
-      var patientList = () => {
-        return this.props.results.map((p) => {
-          return (
-            <SearchResultRow key={p.id} patient={p}/>
-          );
-        });
-      };
-      return (
-        <div className={styles['gs-result-container']}>
-          <GlobalSearchFilters
-            toggleTumorFilter={this.props.toggleTumorFilter}
-            tumorFilter={this.props.tumorFilter}
-            mainClass='gs-result-filters'
-            selectedClass='gs-tumor-filter-selected'
-          />
-          <div className={styles['gs-results']}>
-            <div className={styles['chrome-workaround']}>
-              <ul className={styles['gs-patient-search-results']}>
-                {patientList()}
-              </ul>
+    const resultContainerClassName =
+      (this.props.searchResultsVisibility === 'expanded')
+      ? styles['gs-result-container']
+      : styles['gs-result-container-collapsed'];
+
+    let patientList = () => {
+      return this.props.results.map((p) => {
+        return (
+          <SearchResultRow key={p.id} patient={p}/>
+        );
+      });
+    };
+
+    const style = this.props.searchResultsVisibility === 'expanded' ? {
+      height: spring(500, {stiffness: 190, damping: 26})
+    } : {
+      height: spring(0, {stiffness: 190, damping: 26})
+    };
+    return (
+      <Motion style={style}>
+        {({height}) =>
+          <div className={resultContainerClassName} style={{height: height}}>
+            <GlobalSearchFilters
+              toggleTumorFilter={this.props.toggleTumorFilter}
+              tumorFilter={this.props.tumorFilter}
+              mainClass='gs-result-filters'
+              selectedClass='gs-tumor-filter-selected'
+            />
+            <div className={styles['gs-results']}>
+              <div className={styles['chrome-workaround']}>
+                <ul className={styles['gs-patient-search-results']}>
+                  {patientList()}
+                </ul>
+              </div>
+            </div>
+            <div className={styles['gs-results-footer']}>
+              <Link
+                className={styles['gs-advanced-search']}
+                to={`/`}
+              >Advanced Search</Link>
             </div>
           </div>
-          <div className={styles['gs-results-footer']}>
-            <Link
-              className={styles['gs-advanced-search']}
-              to={`/`}
-            >Advanced Search</Link>
-          </div>
-        </div>
-      );
-    } else {
-      return null;
-    }
+        }
+      </Motion>
+    );
   };
 };
 

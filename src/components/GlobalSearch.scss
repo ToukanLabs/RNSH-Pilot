@@ -1,6 +1,6 @@
 @import '../styles/colors';
 
-.gs-input {
+.gsInput {
   font-size: 0.8em !important;
   width: 100%;
   padding: 6px;
@@ -8,6 +8,6 @@
   border-right: none;
 }
 
-.gs-input::-webkit-input-placeholder {
+.gsInput::-webkit-input-placeholder {
   text-transform: uppercase;
 }

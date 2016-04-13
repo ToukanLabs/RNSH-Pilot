@@ -8,7 +8,7 @@ export default class GlobalSearch extends Component {
       <input
         ref='searchBox'
         placeholder={this.props.placeholder}
-        className={styles['gs-input']}
+        className={styles['gsInput']}
         onChange={this.props.onChange}
         onKeyUp={this.props.onKeyUp}
         onFocus={this.props.onFocus}
