@@ -41,14 +41,14 @@ export class RadiotherapyView extends Component {
   render () {
     return (
       <div>
-        <div className={styles['radiotherapy-rt-list']}>
+        <div className={styles.radiotherapyRTList}>
           <RTList
             data={this.getRTList()}
             selectedRTId={this.props.activePatient.RTDetailViewId}
             handleDetailViewClick={this.handleDetailViewClick}
             />
         </div>
-        <div className={styles['radiotherapy-rt-detail']}>
+        <div className={styles.radiotherapyRTDetail}>
           <RTDetail
             data={this.getRTDetailData()}
             RTDetailViewId={this.props.activePatient.RTDetailViewId}

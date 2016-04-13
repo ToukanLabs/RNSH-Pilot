@@ -10,14 +10,16 @@ export default class RTDetail extends Component {
     if (this.props.RTDetailViewId) {
       return (
         <Panel title='Radiotherapy Treatement Period'>
-          <div className={styles['rt-timeframe']}>
-            from <FormattedDate
+          <div className={styles.rtTimeframe}>
+            {'from '}
+            <FormattedDate
               value={Date(this.props.data.start)}
               day='numeric'
               month='short'
               year='numeric'
-            /> &nbsp;
-            to <FormattedDate
+            />
+            {' to '}
+            <FormattedDate
               value={Date(this.props.data.end)}
               day='numeric'
               month='short'
@@ -29,19 +31,19 @@ export default class RTDetail extends Component {
             label='Dose'
             type='text'
             defaultValue={this.props.data.dose}
-            className={styles['rt-field-general']}
+            className={styles.rtFieldGeneral}
             />
           <TextInput
             ref='rtFraction'
             label='Fraction'
             type='text'
             defaultValue={this.props.data.fractions}
-            className={styles['rt-field-general']}
+            className={styles.rtFieldGeneral}
             />
             <Select
               ref='rtLocalisation'
               label='Localisation'
-              className={styles['rt-field-general']}
+              className={styles.rtFieldGeneral}
               options={[
                 {key: 'Bony', value: 'Bony'},
                 {key: 'NA', value: 'NA'},
@@ -50,7 +52,7 @@ export default class RTDetail extends Component {
             <Select
               ref='rtLN'
               label='Lymph nodes treated?'
-              className={styles['rt-field-general']}
+              className={styles.rtFieldGeneral}
               options={[
                 {key: 'Yes', value: 'Y'},
                 {key: 'No', value: 'N'},
@@ -60,7 +62,9 @@ export default class RTDetail extends Component {
       );
     } else {
       return (
-        <h3>Select a radiotherapy treatment period.</h3>
+        <Panel title='Radiotherapy Treatement Period'>
+          <h3>Select a radiotherapy treatment period.</h3>
+        </Panel>
       );
     }
   };

@@ -1,5 +1,9 @@
 @import '../styles/colors';
 
-.rt-active {
+.rtActive {
   background-color: $table-row-highlight;
+}
+
+.rtList {
+  width: 100%;
 }

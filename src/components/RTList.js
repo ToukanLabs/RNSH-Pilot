@@ -6,10 +6,10 @@ export default class RTList extends Component {
 
   render () {
     const radiotherapy_rows = this.props.data.map((r) => {
-      var rowClass = (r.id === this.props.selectedRTId) ? 'rt-active' : '';
+      var rowClass = (r.id === this.props.selectedRTId) ? 'rtActive' : '';
 
       return (
-        <tr key={r.id} className={styles[rowClass]}>
+        <tr key={r.id} className={rowClass}>
           <td>
             <FormattedDate
               value={Date(r.start)}
@@ -42,11 +42,11 @@ export default class RTList extends Component {
     });
 
     return (
-      <table>
+      <table className={styles.rtList}>
         <thead>
           <tr>
             <th>Treatment Start</th>
-            <th>End</th>
+            <th>Treatment End</th>
             <th></th>
           </tr>
         </thead>
