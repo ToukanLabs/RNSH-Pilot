@@ -1,6 +1,6 @@
 @import '../styles/colors';
 
-.gs-result-filters {
+.gsResultFilters {
   position: relative;
   display: inline-block;
   float: left;
@@ -34,6 +34,6 @@
   }
 }
 
-.gs-tumor-filter-selected {
+.gsTumorFilterSelected {
   background-color: darken($patient-subheading-color, 8);
 }

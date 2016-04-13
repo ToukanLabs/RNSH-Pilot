@@ -1,13 +1,13 @@
 @import '../styles/colors';
 
-.gsc-input-wrapper {
+.gscInputWrapper {
   display: inline-block;
   width: 100%;
   padding: 0;
   position: relative;
 }
 
-.gsc-input-wrapper::after {
+.gscInputWrapper::after {
   background-color: $gh-box-fill-color;
   display: inline-block;
   font-family: FontAwesome;

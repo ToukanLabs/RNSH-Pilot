@@ -3,7 +3,7 @@
 $left-percentage: 20%;
 $right-percentage: 80%;
 
-.gs-result-container {
+.gsResultContainer {
   border: solid 1px $gh-box-fill-color;
   height: 500px;
   background-color: $gs-results-background;
@@ -20,12 +20,12 @@ $right-percentage: 80%;
   overflow: hidden;
 }
 
-.gs-result-container-collapsed {
+.gsResultContainerCollapsed {
   display: none;
   overflow: hidden;
 }
 
-.gs-patient-search-results h2 {
+.gsPatientSearchResults h2 {
   font-size: 1.2em;
   margin-bottom: 0.2em;
   text-align: left;
@@ -33,7 +33,7 @@ $right-percentage: 80%;
   color: $patient-subheading-color;
 }
 
-.gs-patient-search-results {
+.gsPatientSearchResults {
   margin: 5px 0 5px 0;
   width: 100%;
   a li {
@@ -47,7 +47,7 @@ $right-percentage: 80%;
   }
 }
 
-.gs-results {
+.gsResults {
   float: left;
   width: $right-percentage;
   height: 475px;
@@ -56,7 +56,7 @@ $right-percentage: 80%;
   max-width: calc(100% - 100px);
 }
 
-.gs-results-footer {
+.gsResultsFooter {
   border-top: solid 1px $patient-subheading-color;
   position: absolute;
   bottom: 0;
@@ -66,11 +66,11 @@ $right-percentage: 80%;
   font-size: 0.7em;
 }
 
-.gs-advanced-search {
+.gsAdvancedSearch {
   float: right;
 }
 
-.gs-advanced-search::before {
+.gsAdvancedSearch::before {
   display: inline-block;
   font-family: FontAwesome;
   content: "\f002";
@@ -78,7 +78,7 @@ $right-percentage: 80%;
   position: relative;
 }
 
-.chrome-workaround {
+.chromeWorkaround {
   // This is required in version 47 of chrome to wrap the scrolling div when
   // displaying results from a scrollable search result set to one without scroll
   // without this div the results magically disappear until you hover over them

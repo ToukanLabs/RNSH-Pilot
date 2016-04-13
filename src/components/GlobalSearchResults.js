@@ -9,8 +9,8 @@ export default class GlobalSearchResults extends Component {
   render () {
     const resultContainerClassName =
       (this.props.searchResultsVisibility === 'expanded')
-      ? styles['gs-result-container']
-      : styles['gs-result-container-collapsed'];
+      ? styles.gsResultContainer
+      : styles.gsResultContainerCollapsed;
 
     let patientList = () => {
       if (this.props.searchResultsVisibility === 'expanded') {
@@ -36,19 +36,19 @@ export default class GlobalSearchResults extends Component {
             <GlobalSearchFilters
               toggleTumorFilter={this.props.toggleTumorFilter}
               tumorFilter={this.props.tumorFilter}
-              mainClass='gs-result-filters'
-              selectedClass='gs-tumor-filter-selected'
+              mainClass='gsResultFilters'
+              selectedClass='gsTumorFilterSelected'
             />
-            <div className={styles['gs-results']}>
-              <div className={styles['chrome-workaround']}>
-                <ul className={styles['gs-patient-search-results']}>
+          <div className={styles.gsResults}>
+              <div className={styles.chromeWorkaround}>
+                <ul className={styles.gsPatientSearchResults}>
                   {patientList()}
                 </ul>
               </div>
             </div>
-            <div className={styles['gs-results-footer']}>
+            <div className={styles.gsResultsFooter}>
               <Link
-                className={styles['gs-advanced-search']}
+                className={styles.gsAdvancedSearch}
                 to={`/`}
               >Advanced Search</Link>
             </div>
