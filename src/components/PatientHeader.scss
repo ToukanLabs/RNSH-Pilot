@@ -17,19 +17,26 @@
 
 // Large name text
 .phBigField {
+  height: 40px;
   font-size: 2em;
   font-weight: bold;
   display: inline-block;
   vertical-align: middle;
-  padding-bottom: 0.1em;
+  padding: 0 0 0.1em 0.5em;
 }
 
 // Profile image
-.phProfileImageContainer {
-  height: 40px;
+.phProfileImageShowHideContainer {
   text-align: center;
   display: inline-block;
-  margin-right: 1em;
+  vertical-align: middle;
+}
+
+.phProfileImageContainer {
+  width: inherit;
+  text-align: center;
+  display: inline-block;
+  overflow: hidden;
 }
 
 .phProfileImageHelper {
@@ -39,6 +46,8 @@
 }
 
 .phProfileImage {
+  width: inherit;
+  height: 40px;
   max-height: 40px;
   vertical-align: middle;
   border-radius: 50%;

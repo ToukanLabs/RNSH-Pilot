@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Motion, spring, presets } from 'react-motion';
 import PatientHeader from 'components/PatientHeader';
 import PatientHeaderDetails from 'components/PatientHeaderDetails';
 import Icon from './Icon';
@@ -108,44 +109,54 @@ export default class PatientHeadContainer extends Component {
       );
     };
 
+    const style = this.props.patientHeaderVisibility === 'expanded' ? {
+      height: spring(100, presets.noWobble)
+    } : {
+      height: spring(20, presets.noWobble)
+    };
     return (
       <div>
         <PatientHeader
             patient={patient}
             patientProfileImage={patientProfileImage}
+            showPatientProfileImage={this.props.patientHeaderVisibility === 'expanded' ? 'false' : 'true'}
           />
-        <div className={patientHeaderClassName}>
-          <PatientHeaderDetails
-            phdType='image'
-            phdDetails={patientProfileImage}
-            visibility={this.props.patientHeaderVisibility}
+        <Motion style={style}>
+          {({height}) =>
+          <div className={patientHeaderClassName} style={{height: height}}>
+            <PatientHeaderDetails
+              phdType='image'
+              phdDetails={patientProfileImage}
+              visibility={this.props.patientHeaderVisibility}
+              />
+            <PatientHeaderDetails
+              phdLabel='Address'
+              phdHeaderData={patient.address}
+              phdDetails={patient.address}
+              visibility={this.props.patientHeaderVisibility}
             />
-          <PatientHeaderDetails
-            phdLabel='Address'
-            phdHeaderData={patient.address}
-            phdDetails={patient.address}
-            visibility={this.props.patientHeaderVisibility}
-          />
-          <PatientHeaderDetails
-            phdLabel='Phone & Email'
-            phdHeaderData={patient.phone}
-            phdDetails={phoneEmailDetails()}
-            visibility={this.props.patientHeaderVisibility}
-          />
-          <PatientHeaderDetails
-            phdLabel='Status'
-            phdHeaderData={surgical}
-            phdDetails={surgical}
-            visibility={this.props.patientHeaderVisibility}
-          />
-          <PatientHeaderDetails
-            phdLabel='Allergies'
-            phdHeaderData={allergiesHeaderData()}
-            phdDetails={allergiesDetails()}
-            visibility={this.props.patientHeaderVisibility}
+            <PatientHeaderDetails
+              phdLabel='Phone & Email'
+              phdHeaderData={patient.phone}
+              phdDetails={phoneEmailDetails()}
+              visibility={this.props.patientHeaderVisibility}
             />
-          {toggleIcon()}
-        </div>
+            <PatientHeaderDetails
+              phdLabel='Status'
+              phdHeaderData={surgical}
+              phdDetails={surgical}
+              visibility={this.props.patientHeaderVisibility}
+            />
+            <PatientHeaderDetails
+              phdLabel='Allergies'
+              phdHeaderData={allergiesHeaderData()}
+              phdDetails={allergiesDetails()}
+              visibility={this.props.patientHeaderVisibility}
+              />
+            {toggleIcon()}
+          </div>
+          }
+        </Motion>
       </div>
     );
   };
