@@ -7,10 +7,10 @@ export default class SideMenu extends Component {
     var menuHeader = () => {
       if (this.props.sidemenuVisibility === 'expanded') {
         return (
-          <div className={styles['sm-header']}>
+          <div className={styles.smHeader}>
             <h3>Menu</h3>
             <span
-              className={styles['hide-menu-icon']}
+              className={styles.hideMenuIcon}
               onClick={this.props.hideSideMenu}
               >
               Hide
@@ -19,10 +19,10 @@ export default class SideMenu extends Component {
         );
       } else {
         return (
-          <div className={styles['sm-header']}>
+          <div className={styles.smHeader}>
             <h3>Menu</h3>
             <span
-              className={styles['hide-menu-icon']}
+              className={styles.hideMenuIcon}
               onClick={this.props.showSideMenu}
               >
               Show
@@ -36,12 +36,20 @@ export default class SideMenu extends Component {
       return this.props.sidemenuVisibility === 'expanded';
     };
 
+    var sideMenuClass = () => {
+      if (this.props.sidemenuVisibility === 'collapsed') {
+        return 'smCollapsed';
+      } else {
+        return 'smExpanded';
+      }
+    };
+
     return (
-      <div id='sidemenu' className={styles['sm-' + this.props.sidemenuVisibility]}>
+      <div id='sidemenu' className={sideMenuClass()}>
         {menuHeader()}
-        <div className={styles['sm-content']}>
+        <div className={styles.smContent}>
           <ul>
-            <li className={styles['sm-spacer']} />
+            <li className={styles.smSpacer} />
             <SideMenuItem
               text='Patient Overview'
               icon='eye'
@@ -56,48 +64,48 @@ export default class SideMenu extends Component {
               currentRouterPath={this.props.routerPath}
               showText={showText()}
               />
-            <SideMenuItem
+            {/* <SideMenuItem
               text='Imaging'
               icon='heartbeat'
               linkTo={`/patient/${this.props.patientId}/imaging`}
               currentRouterPath={this.props.routerPath}
               showText={showText()}
-              />
-            <SideMenuItem
+              />*/}
+            {/* <SideMenuItem
               text='Blood Test'
               icon='stethoscope'
               linkTo={`/patient/${this.props.patientId}/blood-test`}
               currentRouterPath={this.props.routerPath}
               showText={showText()}
-              />
-            <SideMenuItem
+              />*/}
+            {/* <SideMenuItem
               text='MDT'
               icon='comments'
               linkTo={`/patient/${this.props.patientId}/mdt`}
               currentRouterPath={this.props.routerPath}
               showText={showText()}
-              />
-            <SideMenuItem
+              />*/}
+            {/* <SideMenuItem
               text='Surgery'
               icon='ambulance'
               linkTo={`/patient/${this.props.patientId}/surgery`}
               currentRouterPath={this.props.routerPath}
               showText={showText()}
-              />
-            <SideMenuItem
+              />*/}
+            {/* <SideMenuItem
               text='Pathology'
               icon='user-md'
               linkTo={`/patient/${this.props.patientId}/pathology`}
               currentRouterPath={this.props.routerPath}
               showText={showText()}
-              />
-            <SideMenuItem
+              />*/}
+            {/* <SideMenuItem
               text='Chemotherapy'
               icon='balance-scale'
               linkTo={`/patient/${this.props.patientId}/chemotherapy`}
               currentRouterPath={this.props.routerPath}
               showText={showText()}
-              />
+              />*/}
             <SideMenuItem
               text='Radiotherapy'
               icon='bed'
@@ -105,13 +113,13 @@ export default class SideMenu extends Component {
               currentRouterPath={this.props.routerPath}
               showText={showText()}
               />
-            <SideMenuItem
+            {/* <SideMenuItem
               text='Clinical Trials'
               icon='cubes'
               linkTo={`/patient/${this.props.patientId}/clinical-trials`}
               currentRouterPath={this.props.routerPath}
               showText={showText()}
-              />
+              />*/}
             <SideMenuItem
               text='Follow Up'
               icon='smile-o'
@@ -126,7 +134,7 @@ export default class SideMenu extends Component {
               currentRouterPath={this.props.routerPath}
               showText={showText()}
               />
-            <li className={styles['sm-spacer']} />
+            <li className={styles.smSpacer} />
           </ul>
         </div>
       </div>

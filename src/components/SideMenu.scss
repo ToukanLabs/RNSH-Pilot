@@ -1,26 +1,26 @@
 @import '../styles/measures';
 @import '../styles/colors';
 
-.sm-expanded,
-.sm-collapsed {
+.smExpanded,
+.smCollapsed {
   height: 100%;
   float: left;
   background-color: $patient-sidemenu-colour;
 }
 
-.sm-expanded {
+.smExpanded {
   width: $patient-sidemenu-width-expanded;
 }
 
-.sm-collapsed {
+.smCollapsed {
   width: $patient-sidemenu-width-collapsed;
 }
 
-.sm-spacer {
+.smSpacer {
   height: 0px;
 }
 
-.sm-header {
+.smHeader {
   font-size: 1.1em;
   position: relative;
   height: 30px;
@@ -30,25 +30,25 @@
   padding-left: 8px;
 }
 
-.sm-content {
+.smContent {
   padding: 0;
   background-color: $patient-sm-background;
 }
 
-.sm-collapsed .sm-header {
+.smCollapsed .smHeader {
   padding: 0;
 }
 
-.sm-collapsed .sm-header h3 {
+.smCollapsed .smHeader h3 {
   display: none;
 }
 
-.sm-header h3 {
+.smHeader h3 {
   font-weight: normal;
   display: inline-block;
 }
 
-.sm-collapsed .hide-menu-icon {
+.smCollapsed .hideMenuIcon {
   margin-left: 0;
   padding: 0 2px;
   left: 4px;
@@ -56,7 +56,7 @@
   position: absolute;
 }
 
-.hide-menu-icon {
+.hideMenuIcon {
   background-color: #16918c;
   color: #f6f4f4;
   display: inline-block;
@@ -70,7 +70,7 @@
   position: absolute;
 }
 
-.hide-menu-icon:hover {
+.hideMenuIcon:hover {
   cursor: pointer;
   background-color: $patient-sm-background;
 }
