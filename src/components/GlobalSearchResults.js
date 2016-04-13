@@ -13,11 +13,15 @@ export default class GlobalSearchResults extends Component {
       : styles['gs-result-container-collapsed'];
 
     let patientList = () => {
-      return this.props.results.map((p) => {
-        return (
-          <SearchResultRow key={p.id} patient={p}/>
-        );
-      });
+      if (this.props.searchResultsVisibility === 'expanded') {
+        return this.props.results.map((p) => {
+          return (
+            <SearchResultRow key={p.id} patient={p}/>
+          );
+        });
+      } else {
+        return null;
+      }
     };
 
     const style = this.props.searchResultsVisibility === 'expanded' ? {
