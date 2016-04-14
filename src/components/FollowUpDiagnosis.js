@@ -166,7 +166,7 @@ export default class FollowUpDiagnosis extends Component {
                 ]}
                 onChange={this.setGSPatternOne}
                 />
-              +
+              {' +'}
               <Select
                 ref='gsPatternTwo'
                 options={[
@@ -179,7 +179,7 @@ export default class FollowUpDiagnosis extends Component {
                 ]}
                 onChange={this.setGSPatternTwo}
                 />
-              =
+              {' ='}
               <TextInput
                 ref='gsCalculated'
                 type='text'
