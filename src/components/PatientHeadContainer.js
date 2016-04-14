@@ -30,9 +30,18 @@ export default class PatientHeadContainer extends Component {
 
   render () {
     const patient = this.props.activePatient;
-    const patientProfileImage = '/img/profile_pictures/profile_' +
-      (patient.gender === 'MALE' ? 'male_' : 'female_') +
-      parseInt((((Math.random() * 100) % 3) + 1), 10) + '.jpg';
+
+    const patientProfileImage = () => {
+      let nameValue = (patient.firstname + patient.surname).split('').map(function (str) {
+        return str.charCodeAt(0);
+      }).reduce(function (previousValue, currentValue) {
+        return previousValue + currentValue;
+      });
+
+      return '/img/profile_pictures/profile_' +
+        (patient.gender === 'MALE' ? 'male_' : 'female_') +
+        parseInt(((nameValue % 8) + 1), 10) + '.jpg';
+    };
 
     var surgical = patient.surgical === 'Y' ? 'Surgical' : 'Non-Surgical';
 
@@ -118,7 +127,7 @@ export default class PatientHeadContainer extends Component {
       <div>
         <PatientHeader
             patient={patient}
-            patientProfileImage={patientProfileImage}
+            patientProfileImage={patientProfileImage()}
             showPatientProfileImage={this.props.patientHeaderVisibility === 'expanded' ? 'false' : 'true'}
           />
         <Motion style={style}>
@@ -126,7 +135,7 @@ export default class PatientHeadContainer extends Component {
           <div className={patientHeaderClassName} style={{height: height}}>
             <PatientHeaderDetails
               phdType='image'
-              phdDetails={patientProfileImage}
+              phdDetails={patientProfileImage()}
               visibility={this.props.patientHeaderVisibility}
               />
             <PatientHeaderDetails
