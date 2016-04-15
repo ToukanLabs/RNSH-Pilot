@@ -97,8 +97,11 @@ export default class GlobalSearchContainer extends Component {
   };
 
   render () {
+    const wrapperDivStyle = this.props.searchResultsVisibility === 'expanded'
+      ? styles.gscInputWrapper
+      : styles.gscInputWrapperHidden;
     return (
-      <div className={styles.gscInputWrapper}>
+      <div className={wrapperDivStyle}>
         <GlobalSearch
           placeholder={this.props.placeholder}
           onFocus={this.props.uiActions.showSearchResults}

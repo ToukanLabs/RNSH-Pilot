@@ -1,6 +1,6 @@
 @import '../styles/colors';
 
-.as-container {
+.asContainer {
   position: relative;
   height: 100%;
   h2 {
@@ -9,7 +9,7 @@
   }
 }
 
-.as-s-field-container {
+.asSFieldCcontainer {
   padding: 20px 0 20px 200px;
   margin-bottom: 10px;
   border-bottom: 1px solid #DDDDDD;
@@ -24,16 +24,16 @@
   }
 }
 
-.as-result-container {
+.asResultContainer {
   height: 100%;
 }
 
-.hv-patient-search-results h2 {
+.hvPatientSearchResults h2 {
   font-size: 2.3125rem;
   margin-bottom: 0.2em;
 }
 
-.hv-patient-search-results h2 {
+.hvPatientSearchResults h2 {
   font-size: 1.2em;
   margin-bottom: 0.2em;
   text-align: left;
@@ -41,7 +41,7 @@
   color: $patient-subheading-color;
 }
 
-.hv-patient-search-results {
+.hvPatientSearchResults {
   margin: 5px 0 5px 0;
   width: 80%;
   position: absolute;
@@ -58,12 +58,12 @@
   }
 }
 
-.hv-results {
+.hvResults {
   float: right;
   width: 85%;
 }
 
-.hv-result-filters {
+.hvResultFilters {
   position: relative;
   display: inline-block;
   float: left;
@@ -99,17 +99,17 @@
   }
 }
 
-.as-label {
+.asLabel {
   display: inline-block;
   margin-right: 2px;
 }
 
-.as-input {
+.asInput {
   display: inline-block;
   margin-right: 10px;
 }
 
-.search-icon {
+.searchIcon {
   background-color: #16918c;
   color: #f6f4f4;
   display: inline-block;

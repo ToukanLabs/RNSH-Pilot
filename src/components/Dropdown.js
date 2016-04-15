@@ -1,4 +1,5 @@
 import React, { cloneElement, createClass } from 'react';
+import { Motion, spring, presets } from 'react-motion';
 import { findDOMNode } from 'react-dom';
 import cx from 'classnames';
 
@@ -40,7 +41,18 @@ var Dropdown = createClass({
       }
       return child;
     });
-    return <div className={dropdown_classes}>{bound_children}</div>;
+    const style = this.isActive() ? {
+      height: spring(this.props.height, {stiffness: 190, damping: 26})
+    } : {
+      height: spring(0, {stiffness: 190, damping: 26})
+    };
+    return (
+      <Motion style={style}>
+        {({height}) =>
+          <div className={dropdown_classes} style={{height: height}}>{bound_children}</div>
+        }
+      </Motion>
+    );
   },
   isActive: function(){
     return ( typeof this.props.active === 'boolean' ) ?

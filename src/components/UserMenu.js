@@ -11,11 +11,11 @@ export default class UserMenu extends Component {
         <span className={styles['um-icon-container']}>
           <Icon name='user' className={styles['um-icon']} />
         </span>
-        <Dropdown className={styles['user-menu-dropdown']}>
+        <Dropdown className={styles['user-menu-dropdown']} height={143}>
           <DropdownTrigger>
             <span className={styles['trigger-span']}>{this.props.username}</span>
           </DropdownTrigger>
-          <DropdownContent className={styles['dropdown__content']}>
+          <DropdownContent>
             <ul>
               <li>
                 <a>

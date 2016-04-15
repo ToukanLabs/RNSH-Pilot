@@ -102,6 +102,8 @@ input[type='submit']:hover  {
   min-height: 35px;
   width: 100%;
   position: relative;
+  overflow: hidden;
+  z-index: 99999;
 }
 
 .dropdown__trigger {
@@ -137,20 +139,13 @@ input[type='submit']:hover  {
 }
 
 .dropdown__content {
-  border-color: $gh-box-color;
   background-color: $field-back-color;
-  border-bottom: 1px solid;
-  border-left: 1px solid;
-  border-right: 1px solid;
-  border-color: $gh-box-color;
+  border: 0px solid $gh-box-color;
   width: 100%;
   box-sizing: border-box;
   color: $react-dropdown-font;
   padding: 5px;
   float: left;
-  -webkit-box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
-  -moz-box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
-  box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
   display: none;
   position: absolute;
   min-width: 200px;

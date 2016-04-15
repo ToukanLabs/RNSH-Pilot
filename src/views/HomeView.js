@@ -84,9 +84,9 @@ export class HomeView extends React.Component {
     var resultsDiv = () => {
       if (this.props.patients) {
         return (
-          <div className={styles['as-result-container']}>
-            <div className={styles['hv-results']}>
-              <ul className={styles['hv-patient-search-results']}>
+          <div className={styles.asResultContainer}>
+            <div className={styles.hvResults}>
+              <ul className={styles.hvPatientSearchResults}>
                 {patientList()}
               </ul>
             </div>
@@ -100,17 +100,17 @@ export class HomeView extends React.Component {
     };
 
     return (
-      <div className={styles['as-container']}>
+      <div className={styles.asContainer}>
         <h2>Patient Search</h2>
         <GlobalSearchFilters
-          className={styles['hv-search-filters']}
+          className={styles.hvSearchFilters}
           toggleTumorFilter={this.props.uiActions.toggleTumorFilter}
           tumorFilter={this.props.tumorFilter}
-          mainClass='hv-result-filters'
-          selectedClass='gs-tumor-filter-selected'
+          mainClass='hvResultFilters'
+          selectedClass='gsTumorFilterSelected'
         />
-        <div className={styles['as-search-container']}>
-          <div className={styles['as-s-field-container']}>
+      <div className={styles.asSearchContainer}>
+          <div className={styles.asSFieldContainer}>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -120,25 +120,25 @@ export class HomeView extends React.Component {
                   this.refs.searchSurname.value
                 );
               }}>
-              <label className={styles['as-label']}>
+              <label className={styles.asLabel}>
                 MRN:
                 <input
                   ref='searchMRN'
-                  className={styles['as-input']}
+                  className={styles.asInput}
                 />
               </label>
-              <label className={styles['as-label']}>
+              <label className={styles.asLabel}>
                 First Name:
                 <input
                   ref='searchFirstname'
-                  className={styles['as-input']}
+                  className={styles.asInput}
                 />
               </label>
-              <label className={styles['as-label']}>
+              <label className={styles.asLabel}>
                 Surname:
                 <input
                   ref='searchSurname'
-                  className={styles['as-input']}
+                  className={styles.asInput}
                 />
               </label>
               <input
