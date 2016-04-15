@@ -1,13 +1,23 @@
 @import '../styles/colors';
 @import '../styles/measures';
 
-.radiotherapyRTList, .radiotherapyRTDetail {
+.radiotherapyContainer {
   width: 100%;
-  margin-bottom: $panel-spacing;
+}
+
+.radiotherapyRTList, .radiotherapyRTDetail {
+  display: inline-block;
+  width: calc(50% - #{$panel-spacing-half});
+  vertical-align: top;
+}
+
+.radiotherapyRTList {
+  margin-right: $panel-spacing-half;
 }
 
 .radiotherapyRTDetail {
   box-sizing: border-box;
+  margin-left: $panel-spacing-half;
 }
 
 .radiotherapyRTDetail h3 {

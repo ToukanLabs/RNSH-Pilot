@@ -40,7 +40,7 @@ export class RadiotherapyView extends Component {
 
   render () {
     return (
-      <div>
+      <div className={styles.radiotherapyContainer}>
         <div className={styles.radiotherapyRTList}>
           <RTList
             data={this.getRTList()}
