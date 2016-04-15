@@ -25,9 +25,9 @@ export default class GlobalSearchResults extends Component {
     };
 
     const style = this.props.searchResultsVisibility === 'expanded' ? {
-      height: spring(500, {stiffness: 190, damping: 26})
+      height: spring(500, {stiffness: 300, damping: 26})
     } : {
-      height: spring(0, {stiffness: 190, damping: 26})
+      height: spring(0, {stiffness: 300, damping: 26})
     };
     return (
       <Motion style={style}>

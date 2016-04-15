@@ -42,9 +42,9 @@ var Dropdown = createClass({
       return child;
     });
     const style = this.isActive() ? {
-      height: spring(this.props.height, {stiffness: 190, damping: 26})
+      height: spring(this.props.height, {stiffness: 300, damping: 26})
     } : {
-      height: spring(0, {stiffness: 190, damping: 26})
+      height: spring(0, {stiffness: 300, damping: 26})
     };
     return (
       <Motion style={style}>
