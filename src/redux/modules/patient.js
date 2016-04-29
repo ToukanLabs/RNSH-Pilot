@@ -71,7 +71,7 @@ export const createPatient = createAction(
         $gender: String!,
         $dob: String!,
         $address: String!,
-        $mrn: Int!,
+        $mrn: String!,
         $tumorType: String!,
         $surgical: String!,
         $phone: String!,
