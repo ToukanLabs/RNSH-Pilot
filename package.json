@@ -27,6 +27,7 @@
   },
   "license": "BSD-3-Clause",
   "dependencies": {
+    "classnames": "^2.2.3",
     "d3": "^3.5.12",
     "debug": "^2.2.0",
     "dotenv": "^1.2.0",
