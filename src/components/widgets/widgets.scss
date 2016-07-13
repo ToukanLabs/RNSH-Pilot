@@ -1,0 +1,77 @@
+@import '../../styles/colors';
+
+.inline-widget-group label, .inline-widget-group .widget-wrapper {
+  display: inline-block;
+}
+
+.inline-widget-group .widget-wrapper:not(:first-child) .widget-label {
+  margin-left: 5px;
+}
+
+input[disabled] {
+  background-color: $widget-disabled-bg-color;
+  color: $widget-disabled-color;
+  cursor: not-allowed;
+}
+
+.unit-label {
+  font-style: italic;
+  color: lighten($text-color, 25);
+  font-size: 0.9em;
+}
+
+.cbg-label {
+  display: inline-block;
+  max-width: 200px;
+  width: 150px;
+  margin: 0 !important;
+  input {
+    padding: 0;
+    margin: 0;
+    border: 0;
+  }
+}
+
+.cbg-container {
+  position: relative;
+}
+
+.cbg {
+  display: inline-block;
+}
+
+.cbg-ro {
+  border: 1px solid rgba(0,0,0,0);
+}
+
+.cbg-ro:hover {
+  border: solid 1px $gh-box-fill-color;
+  cursor: pointer;
+  label, input {
+    cursor: pointer;
+  }
+}
+
+.cbg-ro:hover .cbg-icon, .cbg-editable .cbg-icon {
+  display: inline-block;
+}
+
+.cbg-editable {
+  border: solid 1px $gh-box-fill-color;
+}
+
+.cbg-icon {
+  display: none;
+  cursor: pointer;
+  right: 0;
+  top: 0;
+  padding: 5px 2px 0 5px;
+  position: absolute;
+  background-color: $gh-box-fill-color;
+  color: white;
+  height: 100%;
+}
+
+.cbg-icon:hover {
+  background-color: $button-hover-color;
+}

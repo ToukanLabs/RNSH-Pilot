@@ -1,0 +1,266 @@
+@import 'base';
+@import 'vendor/reset';
+@import 'vendor/ReactDatetimeWidget';
+@import 'colors';
+$fa-font-path: '../../node_modules/font-awesome/fonts/';
+@import '../../node_modules/font-awesome/scss/font-awesome';
+
+// Some best-practice CSS that's useful for most apps
+// Just remove them if they're not what you want
+html {
+  box-sizing: border-box;
+}
+
+.page-container,
+.view-container {
+  height: 100%;
+}
+
+html,
+body {
+  color: $text-color;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family:'Open Sans','Helvetica','Arial',sans-serif;
+  font-size: 14px;
+  font-size: 1em;
+}
+
+body {
+  overflow-y: scroll;
+}
+
+h1 {
+  color: $text-color;
+  font-size: 2em;
+  font-weight: bolder;
+  margin-top: 0.6em;
+  margin-bottom: 1em;
+}
+
+a {
+  color: #008cba;
+  text-decoration: none;
+  line-height: inherit;
+}
+
+a:hover, a:focus {
+  color: #056888;
+}
+a:hover {
+  cursor: pointer;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+input, select {
+  border: 2px solid $gh-box-color;
+  background-color: $field-back-color;
+  padding: 2px;
+  height: 24px;
+}
+
+input[type='date'], input[type='time'] {
+  font-family:'Open Sans','Helvetica','Arial',sans-serif;
+}
+
+label, .widget-wrapper {
+  display: block;
+}
+
+.widget-label {
+  display: inline-block;
+  margin-bottom: 1px;
+}
+
+button,
+input[type='button'],
+input[type='submit'] {
+  background-color: $button-color;
+  color: #f6f4f4;
+  padding: 5px;
+  margin: 2px;
+  font-weight: bold;
+  border: none;
+}
+
+button:hover,
+input[type='button']:hover,
+input[type='submit']:hover  {
+  cursor: pointer;
+  background-color: $button-hover-color;
+}
+
+.dropdown-generic {
+  background-color: $field-back-color;
+  border: 2px solid $gh-box-color;
+  min-height: 35px;
+  width: 100%;
+  position: relative;
+}
+
+.dropdown__trigger {
+  color: $react-dropdown-font;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  width: 100%;
+  display: block;
+  height: 32px;
+  display: inline-block;
+}
+
+.trigger-span {
+  line-height: 20px;
+  display: inline-block;
+  padding: 6px;
+  width: calc(100% - 50px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdown__trigger::after {
+  background-color: $gh-box-fill-color;
+  display: inline-block;
+  font-family: FontAwesome;
+  font-size: 1.4em;
+  color: white;
+  content: "\f0d7";
+  padding: 8px 14px;
+  width: 38px;
+  position: absolute;
+  right: 0;
+}
+
+.dropdown__content {
+  border-color: $gh-box-color;
+  background-color: $field-back-color;
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-color: $gh-box-color;
+  width: 100%;
+  box-sizing: border-box;
+  color: $react-dropdown-font;
+  padding: 5px;
+  float: left;
+  -webkit-box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
+  -moz-box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
+  box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
+  display: none;
+  position: absolute;
+  min-width: 200px;
+}
+
+.dropdown__content a {
+  color: $react-dropdown-font;
+}
+
+.dropdown__content a:hover {
+  color: darken($react-dropdown-font, 30);
+}
+
+.dropdown--active .dropdown__content {
+  display: block;
+  z-index: 99999;
+}
+
+.dropdown__content ul:not(:first-child) {
+  border-top: 1px solid;
+}
+
+.dropdown__content ul {
+  padding-bottom: 3px;
+}
+
+.dropdown__content ul li {
+  list-style-type: none;
+  line-height: 2.2em;
+  font-size: 0.9em;
+}
+
+.dropdown__content a {
+  display: block;
+}
+
+table {
+  text-align: left;
+  background-color: $table-background;
+  font-size: 0.9em;
+}
+
+table thead {
+  border-top: 1px solid $gh-box-fill-color;
+  background-color: $table-heading-background;
+  line-height: 1.8em;
+  font-size: 1.3em;
+  text-align: left;
+}
+
+table tr:first-child {
+  border-top: none;
+}
+
+table tr {
+  border-top: 1px solid $gh-box-fill-color;
+}
+
+table th {
+  padding: 6px 10px;
+}
+
+table td {
+  padding: 10px;
+}
+
+.tabs {
+  width: 100%;
+  position: relative;
+}
+
+.tabs::before {
+  z-index: 1;
+}
+
+.tabs::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  border-bottom: 1px solid $tab-border-color;
+  z-index: 1;
+}
+
+.tabs li {
+  display: inline-block;
+  border: 1px solid $tab-border-color;
+  border-bottom: none;
+  padding: 5px;
+  box-sizing: border-box;
+  margin: 0 3px;
+  position: relative;
+  z-index: 0;
+  text-align: center;
+  font-size: 0.8em;
+  cursor: pointer;
+}
+
+.tabs li:hover {
+  background-color: $tab-hover-background;
+}
+
+.tabs li.fuv-follow-up-add:hover {
+  background-color: $button-hover-color;
+}
+
+.tabs li.active {
+  background-color: $tab-active-background;
+  font-weight: bold;
+  border-bottom: none;
+  z-index: 2;
+}

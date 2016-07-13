@@ -1,0 +1,80 @@
+@import '../styles/colors';
+
+$left-percentage: 20%;
+$right-percentage: 80%;
+
+.gs-result-container {
+  border: solid 1px $gh-box-fill-color;
+  height: 500px;
+  background-color: $gs-results-background;
+  position: absolute;
+  width: 100%;
+  -webkit-box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
+  -moz-box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
+  box-shadow: -2px 6px 11px 3px rgba(0,0,0,0.4);
+  text-align: left;
+  z-index: 100;
+  ul {
+    list-style-type: none;
+  }
+}
+
+.gs-patient-search-results h2 {
+  font-size: 1.2em;
+  margin-bottom: 0.2em;
+  text-align: left;
+  margin-left: 10px;
+  color: $patient-subheading-color;
+}
+
+.gs-patient-search-results {
+  margin: 5px 0 5px 0;
+  width: 100%;
+  a li {
+    padding-bottom: 5px;
+  }
+  a li:hover {
+    background-color: lighten($patient-subheading-color,55) !important;
+  }
+  a:nth-child(even) li {
+    background-color: lighten($search-results-base,45);
+  }
+}
+
+.gs-results {
+  float: left;
+  width: $right-percentage;
+  height: 475px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-width: calc(100% - 100px);
+}
+
+.gs-results-footer {
+  border-top: solid 1px $patient-subheading-color;
+  position: absolute;
+  bottom: 0;
+  left: $left-percentage;
+  width: 100% - $left-percentage;
+  padding: 3px;
+  font-size: 0.7em;
+}
+
+.gs-advanced-search {
+  float: right;
+}
+
+.gs-advanced-search::before {
+  display: inline-block;
+  font-family: FontAwesome;
+  content: "\f002";
+  padding-right:2px;
+  position: relative;
+}
+
+.chrome-workaround {
+  // This is required in version 47 of chrome to wrap the scrolling div when
+  // displaying results from a scrollable search result set to one without scroll
+  // without this div the results magically disappear until you hover over them
+  height: 100%;
+}

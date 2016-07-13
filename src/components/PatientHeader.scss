@@ -1,0 +1,45 @@
+@import '../styles/colors';
+
+.ph-container {
+  background-color: $patient-heading-colour;
+  color: $patient-heading-font-color;
+  padding: 3px 10px 7px 10px;
+  display: block;
+}
+
+.ph-big-field {
+  font-size: 2em;
+  font-weight: bold;
+  display: inline-block;
+  width: 40%;
+}
+
+.ph-details {
+  display: inline-block;
+  width: 60%;
+  float: right;
+}
+
+.ph-field {
+  display: inline-block;
+  padding-top: 0.6em;
+  box-sizing: border-box;
+  white-space: nowrap;
+  margin-right: 15px;
+  min-width: 160px;
+}
+
+.ph-field label {
+  font-weight: normal;
+}
+
+.ph-data {
+  font-weight: bold;
+}
+
+@media (max-width: 1130px) {
+  .ph-field {
+    font-size: 0.9em;
+    width: 12%;
+  }
+}

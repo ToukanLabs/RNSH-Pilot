@@ -1,0 +1,76 @@
+@import '../styles/measures';
+@import '../styles/colors';
+
+.sm-expanded,
+.sm-collapsed {
+  height: 100%;
+  float: left;
+  background-color: $patient-sidemenu-colour;
+}
+
+.sm-expanded {
+  width: $patient-sidemenu-width-expanded;
+}
+
+.sm-collapsed {
+  width: $patient-sidemenu-width-collapsed;
+}
+
+.sm-spacer {
+  height: 0px;
+}
+
+.sm-header {
+  font-size: 1.1em;
+  position: relative;
+  height: 30px;
+  background-color: $patient-sm-header;
+  color: $patient-sm-header-font;
+  line-height: 30px;
+  padding-left: 8px;
+}
+
+.sm-content {
+  padding: 0;
+  background-color: $patient-sm-background;
+}
+
+.sm-collapsed .sm-header {
+  padding: 0;
+}
+
+.sm-collapsed .sm-header h3 {
+  display: none;
+}
+
+.sm-header h3 {
+  font-weight: normal;
+  display: inline-block;
+}
+
+.sm-collapsed .hide-menu-icon {
+  margin-left: 0;
+  padding: 0 2px;
+  left: 4px;
+  top: 4px;
+  position: absolute;
+}
+
+.hide-menu-icon {
+  background-color: #16918c;
+  color: #f6f4f4;
+  display: inline-block;
+  font-size: 0.7em;
+  line-height: 1.8em;
+  text-transform: uppercase;
+  padding: 0 10px;
+  font-weight: bold;
+  right: 5px;
+  top: 4px;
+  position: absolute;
+}
+
+.hide-menu-icon:hover {
+  cursor: pointer;
+  background-color: $patient-sm-background;
+}

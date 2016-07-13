@@ -1,0 +1,59 @@
+@import '../styles/colors';
+
+.phc-detail-down-icon {
+  background-color: $patient-subheading-color;
+  display: inline-block;
+  width: 20px;
+  position: absolute;
+  text-align: center;
+  padding-top: 2px;
+  color: $patient-subheading-font-color;
+}
+
+.phc-detail-down-icon:hover {
+  background-color: $button-hover-color;
+  cursor: pointer;
+}
+
+.phc-collapsed,
+.phc-expanded {
+  display: inline-block;
+  width: 100%;
+}
+
+.phc-collapsed {
+  height: 20px;
+
+  .phc-detail-down-icon {
+    height: 20px;
+  }
+}
+
+.phc-expanded {
+  height: 100px;
+
+  .phc-detail-down-icon {
+    height: 100px;
+    padding-top: 80px;
+  }
+
+  .phd-container {
+    font-size: 0.8em;
+  }
+
+  .phd-header-label {
+    font-weight: bold;
+  }
+}
+
+.phc-phone-email-details label {
+  margin-top: 5px;
+}
+
+.phc-phone-email-details label:first-child {
+  margin-top: 0;
+}
+
+.phc-phone-email-details span {
+  font-weight: bold;
+}

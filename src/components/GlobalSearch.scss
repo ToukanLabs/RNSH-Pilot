@@ -1,0 +1,13 @@
+@import '../styles/colors';
+
+.gs-input {
+  font-size: 0.8em !important;
+  width: 100%;
+  padding: 6px;
+  height: 38px;
+  border-right: none;
+}
+
+.gs-input::-webkit-input-placeholder {
+  text-transform: uppercase;
+}

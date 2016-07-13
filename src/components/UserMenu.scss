@@ -1,0 +1,39 @@
+@import '../styles/colors';
+@import '../styles/core';
+
+.dropdown {
+  @extend .dropdown-generic;
+  display: inline-block;
+  min-width: 108px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-drop-wrapper {
+  display: inline-block;
+  width: 100%;
+
+  .dropdown__content {
+    right: 0;
+  }
+}
+
+.um-icon-container {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 20px;
+  vertical-align: top;
+  padding-top: 5px;
+}
+
+.um-icon {
+  font-size: 1.8em !important;
+  color: $gh-box-fill-color;
+  margin-right: 4px;
+  position: absolute;
+}
+
+.user-menu-dropdown {
+  width: calc(100% - 30px);
+}

@@ -1,0 +1,21 @@
+@import '../styles/colors';
+
+.panel {
+  background-color: $panel-background;
+  border-top: 1px solid $gh-box-fill-color;
+  padding: 3px 10px 6px 10px;
+  font-size: 0.9em;
+}
+
+.panel h2 {
+  font-size: 1.3em;
+  box-sizing: border-box;
+}
+
+.panel label, .panel .widget-wrapper {
+  margin: 3px 0;
+}
+
+.panel input, .panel select {
+  margin-left: 4px;
+}

@@ -1,0 +1,13 @@
+@import '../styles/colors';
+
+.rt-timeframe{
+  color: $secondary-text-color;
+  font-size: 0.8em;
+  font-style: italic;
+  padding-bottom: 20px;
+}
+
+.rt-field-general {
+  width: 80px;
+  margin-bottom: 5px;
+}

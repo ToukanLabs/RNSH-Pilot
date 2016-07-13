@@ -1,0 +1,23 @@
+.demographics-panel {
+  position: relative;
+  width: 100%;
+}
+
+.demographics-grid-part-one {
+  display: inline-block;
+  width: 28%;
+}
+
+.demographics-grid-part-two {
+  display: inline-block;
+  width: 44%;
+}
+
+.demographics-grid-part-three {
+  display: inline-block;
+  width: 28%;
+}
+
+.demographics-panel .widget-label {
+  min-width: 130px;
+}

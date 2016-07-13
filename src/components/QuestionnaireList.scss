@@ -1,0 +1,11 @@
+@import '../styles/colors';
+
+.ql-relative-time {
+  color: $secondary-text-color;
+  font-size: 0.8em;
+  font-style: italic;
+}
+
+.ql-active {
+  background-color: $table-row-highlight;
+}

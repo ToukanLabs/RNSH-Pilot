@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - "5.3"
+
+cache:
+  directories:
+    - node_modules
+
+install:
+  - npm install
+
+script:
+  - NODE_ENV=production npm run compile
+
+env:
+  global:
+  - GH_REF: github.com/FiviumAustralia/RNSH-Pilot.git
+  - secure: "l/sA8wG4eV2Sd0JtKS5F2mH/W/qzS9JZwc6nJey4462vF9xpVWrNlzJzR5rSqL2EIpKUYcx/w5wEFrLxOUl9T5tfgAMLR3potn0z9B1bl8Hzlr/0OSIYSCbfgl04iz+wTte16TZm4YtB2vPOorVB7MxtNQH14D0ZjrAOC4fxAvGEW+LqtBD1HlTxiGu+gS2ghIJnkan/pZPYgDGSOGLGPyX8yo681+h5JGal2Uc2wM5vRAYeI/CsHN/Xx8G70ze9ykbm2idFomMgjuefH1T+qob/pz1GT4OHm7p3t/LtnNJbIuhHDBw+MMXcCoPy8dYvf8JLbYfC4coXuE/X4LqRwFjDGJ6UOPnCTAQbM4LBmY33WW6CKI9cBZXTNbZ8r4lR6PMiCw6+r69nNTuuoWdcLbuX3fBigsNqL1jaCrJ+02FsxGYHFmx/gPxfuknLCuBbJRgpWbaJlvuNn9R1shk6IMYqmKygy3+yh4VEx3No4Gu8Z+Q2uwtU29ttnuH6wN7ek92ls+W6YaeUBTDuUx2w1bC/DQ+nQdrTKQz/vFtyCznVHAmMIbq4Xg07SnMiyQucyD4bCVnKCwBYwhenGRdmrczdL/SXJfaY/lZjNL/977VdSCSg9kzwfqFHvYWiMYxEIKl8q+/i2HC5nyDbToYd+qmNnkWfYVNE7L+SkjgWJx0="

@@ -1,0 +1,71 @@
+@import '../styles/colors';
+
+.fuv-container-table {
+  display: table;
+  width: 100%;
+}
+
+.fuv-row-one {
+  vertical-align: top;
+  display: table-row;
+}
+
+.fuv-diagnosis-container {
+  width: 30%;
+  display: table-cell;
+  padding: 2px;
+  vertical-align: top;
+}
+
+.fuv-intent-status-container {
+  width: 30%;
+  display: table-cell;
+  padding: 2px;
+  vertical-align: top;
+}
+
+.fuv-status-container {
+  margin-top: 3px;
+}
+
+.fuv-graph-container {
+  width: 40%;
+  display: table-cell;
+  padding: 2px;
+  vertical-align: top;
+  min-width: 500px;
+}
+
+.fuv-row-two {
+  display: block;
+}
+
+.fuv-prertassess-container {
+  width: 100%;
+  display: inline-block;
+  padding: 2px;
+  vertical-align: top;
+}
+
+.fuv-row-three {
+  display: table;
+}
+
+.fuv-followup-container {
+  width: 100%;
+  display: table-row;
+  padding: 2px;
+  vertical-align: top;
+}
+
+input {
+  text-align: center;
+}
+
+.fuv-follow-up-panel {
+  border-top: none;
+}
+
+.fuv-followup-container .tabs {
+  margin-top: 5px;
+}

@@ -1,0 +1,77 @@
+@import '../styles/colors';
+@import '../styles/measures';
+
+.gh-header {
+  height: $global-header-height;
+  padding-top: 7px;
+  background-color: $heading-colour;
+}
+
+.gh-home-img {
+  display: inline-block;
+  padding: 6px 0 0 2px;
+  float: left;
+  margin-right: 0.5em;
+}
+
+.gh-header-content {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+}
+
+.gh-menu-container,
+.gh-search-container,
+.gh-user-container {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+}
+
+.gh-menu-container {
+  width: 23%;
+}
+
+.gh-search-container {
+  width: 54%;
+  text-align: center;
+}
+
+.gh-user-container {
+  width: 23%;
+}
+
+@media (max-width: 860px) {
+  .gh-menu-container {
+    width: 30%;
+  }
+
+  .gh-search-container {
+    width: 40%;
+    text-align: center;
+  }
+
+  .gh-user-container {
+    width: 30%;
+  }
+}
+
+.gh-menu-container,
+.gh-search-container,
+.gh-user-container {
+  display: inline-block;
+  padding: 0 10px 0 10px;
+  box-sizing: border-box;
+}
+
+.gh-search-container input {
+  width: calc(100% - 43px);
+}
+
+.gh-header-content input,
+.gh-header-content select,
+.gh-header-content .fa {
+  font-size: 1.3em;
+}

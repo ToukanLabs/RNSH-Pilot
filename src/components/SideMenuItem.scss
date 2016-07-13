@@ -1,0 +1,40 @@
+@import '../styles/colors';
+
+.smi-menu-item:first-child {
+  margin-top: 0;
+}
+
+.sm-collapsed .smi-menu-item {
+  height: 28px;
+  line-height: 1px;
+  padding-left: 10px;
+}
+
+.smi-menu-item {
+  padding: 0.3em;
+  border-left: 5px solid $patient-sm-item-bar;
+  margin: 8px 0;
+  font-size: 0.9em;
+  text-transform: uppercase;
+}
+
+.smi-icon {
+  margin-right: 0.3em;
+  font-size: 1.3em !important;
+  width: 24px;
+}
+
+.smi-menu-item a {
+  color: $patient-sidemenu-link-colour;
+  display: block;
+}
+
+.smi-menu-item a:hover {
+  color: darken($patient-sidemenu-link-colour, 20);
+}
+
+.smi-active {
+  background-color: $patient-sm-current-selection;
+  color: $patient-sm-curr-selection-font;
+  text-transform: uppercase;
+}

@@ -1,0 +1,19 @@
+.qv-questionnaire-list, .qv-questionnaire-detail {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.qv-questionnaire-list {
+  width: 35%;
+}
+
+.qv-questionnaire-detail {
+  width: 65%;
+  padding-left: 1em;
+  box-sizing: border-box;
+}
+
+.qv-questionnaire-detail h3 {
+  font-size: 1.2em;
+  margin: 15px 0;
+}

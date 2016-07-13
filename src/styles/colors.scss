@@ -1,0 +1,45 @@
+$text-color: #3F4144;
+$secondary-text-color: lighten($text-color, 20);
+
+$heading-colour: #ECECEC;
+$gh-box-fill-color: #00C2CE;
+$gh-box-color: #1DDDE8;
+$patient-heading-colour: white;
+$patient-subheading-color: #18A29C;
+$patient-heading-font-color: #18A29C;
+$patient-sm-header: #18A29C;
+$patient-subheading-font-color: white;
+$patient-sidemenu-colour: lighten($heading-colour, 15);
+$patient-sidemenu-link-colour: #f6f4f4;
+$patient-sm-background: #3F4144;
+$patient-sm-header-font: white;
+$patient-sm-current-selection: white;
+$patient-sm-curr-selection-font: #18A29C;
+$patient-sm-item-bar: #16A085;
+
+$field-back-color: lighten($heading-colour,35);
+
+$react-dropdown-font: #9C9B9B;
+
+$table-heading-background: #f6f4f4;
+$table-background: #f5eeee;
+$table-row-highlight: lighten(#18A29C, 55);
+
+$panel-background: $table-background;
+
+$widget-disabled-bg-color: #bdbdbd;
+$widget-disabled-color: lighten(#bdbdbd, 15);
+
+$gs-results-background: white;
+
+$search-results-base: grey;
+
+$button-color: #16918c;
+$button-hover-color: $patient-sm-background;
+
+$tab-border-color: $button-color;
+$tab-inactive-background: darken($panel-background, 20);
+$tab-active-background: $panel-background;
+$tab-hover-background: lighten($button-color, 40);
+
+$loading-spinner-color: $patient-subheading-color;
