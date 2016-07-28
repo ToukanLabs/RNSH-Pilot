@@ -14,6 +14,13 @@ Pilot clinical research database for Royal North Shore Hospital, Sydney.
 4. To start the dev server run `npm start`
 5. Point your browser to `http://localhost:3000`.
 
+NOTE:
+The front end executes in isolation and requires the backend details to be updated in /.env file before you start the server.
+- If you plan to use the Go backend, add the following url to the .env file
+  BACKEND_API_URL=http://localhost:3001/
+- If you plan to use the Java backend, change the above url to
+  BACKEND_API_URL=http://localhost:3001/rnsh-pilot-server-java
+
 ### Troubleshooting
 
 If you have issues getting things to run on widows, specifically errors relating to `libsass`, try the following:
