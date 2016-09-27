@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default class GlobalSearchContainer extends Component {
+ class GlobalSearchContainer extends Component {
   constructor () {
     super();
     this._onWindowClick = this._onWindowClick.bind(this);

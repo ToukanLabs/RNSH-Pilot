@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default class PatientView extends React.Component {
+class PatientView extends React.Component {
   componentWillReceiveProps (newProps) {
     if (newProps.params.id !== this.props.params.id) {
       this.props.patientActions.removeActivePatient();

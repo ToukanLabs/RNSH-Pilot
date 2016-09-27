@@ -5,7 +5,7 @@ const mapStateToProps = (state) => ({
   routerPath: state.router.path
 });
 
-export default class PatientView extends React.Component {
+class PatientView extends React.Component {
 
   render () {
     const divStyle = {

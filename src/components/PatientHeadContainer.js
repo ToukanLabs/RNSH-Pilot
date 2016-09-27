@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default class PatientHeadContainer extends Component {
+ class PatientHeadContainer extends Component {
   toggleVisibility = () => {
     if (this.props.patientHeaderVisibility === 'expanded') {
       this.props.uiActions.hidePatientHeader();

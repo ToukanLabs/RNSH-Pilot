@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default class FollowUpDiagnosis extends Component {
+class FollowUpDiagnosis extends Component {
   constructor () {
     super();
     this.state = {
