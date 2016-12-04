@@ -29,7 +29,7 @@ class PatientView extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(PatientView);
+connect(mapStateToProps)(PatientView);
 
 PatientView.propTypes = {
   routerPath: React.PropTypes.string

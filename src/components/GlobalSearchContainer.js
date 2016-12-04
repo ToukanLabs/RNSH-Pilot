@@ -95,7 +95,7 @@ const mapDispatchToProps = (dispatch) => {
       <div className={styles['gsc-input-wrapper']}>
         <GlobalSearch
           onFocus={this.props.uiActions.showSearchResults}
-          onChange={this.handleSearchOnChange}
+          onChange={this.handleSearchOnChange.bind(this)}
           onKeyUp={this.handleSearchOnKeyUp}
         />
         <GlobalSearchResults

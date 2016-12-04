@@ -142,7 +142,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PatientHeadContainer);
+ connect(mapStateToProps, mapDispatchToProps)(PatientHeadContainer);
 
 PatientHeadContainer.propTypes = {
   activePatient: React.PropTypes.object,
