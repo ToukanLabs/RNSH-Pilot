@@ -235,7 +235,7 @@ class FollowUpDiagnosis extends Component {
   };
 };
 
-connect(mapStateToProps, mapDispatchToProps)(FollowUpDiagnosis);
+export default connect(mapStateToProps, mapDispatchToProps)(FollowUpDiagnosis);
 
 FollowUpDiagnosis.propTypes = {
   patientActions: React.PropTypes.object,
